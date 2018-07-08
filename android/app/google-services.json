@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "24259410212",
+    "firebase_url": "https://blueberrypuddingcakeapp.firebaseio.com",
+    "project_id": "blueberrypuddingcakeapp",
+    "storage_bucket": "blueberrypuddingcakeapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24259410212:android:4204fe3b0fb01e67",
+        "android_client_info": {
+          "package_name": "pl.zimny.blueberrypuddingcakeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24259410212-313q89efi3tk15tb1heti784sjc1boh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMUVGVP69cwLJq_SeuER_oMmXS0YYjkVg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.blueberrypuddingcakeapp;
+package pl.zimny.blueberrypuddingcakeapp;
 
 import com.facebook.react.ReactActivity;
 
