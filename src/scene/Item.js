@@ -16,8 +16,7 @@ export default class Item extends Component {
     componentWillMount() {}
 
     render() {
-        const {navigation} = this.props;
-        const item = navigation.getParam('item', '0');
+        const item= this.props.item;
         return (
             <ScrollView>
                 <View
