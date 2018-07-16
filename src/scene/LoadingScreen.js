@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Image} from 'react-native';
 import Spinner from 'react-native-spinkit'
 import Color from '../Color'
-import { NavigationActions } from 'react-navigation';
+import {Actions} from 'react-native-router-flux';
 export default class LoadingScreen extends Component {
     constructor(props) {
         super(props);
@@ -10,19 +10,7 @@ export default class LoadingScreen extends Component {
     }
     componentDidMount = () => {
         fetch('https://bgg-json.azurewebsites.net/collection/edwalter').then((response) => response.json()).then((responseJson) => {
-            this
-                .props
-                .navigation
-                .push('List', {listgame: responseJson});
-            const navigateAction = NavigationActions.navigate({
-                
-
-                params: { listgame: responseJson },
-
-                action: NavigationActions.navigate({ routeName: 'List'} ),
-            });
-
-            this.props.navigation.dispatch(navigateAction);
+            Actions.replace('List',{listgame: responseJson});
         }).catch((error) => {
             console.error(error);
         });

@@ -6,24 +6,19 @@ const Icon = createIconSetFromIcoMoon(selection);
 import Spinner from 'react-native-spinkit'
 import StarRating from 'react-native-star-rating';
 import Color from '../Color'
+import {Actions} from "react-native-router-flux";
 export default class List extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            listgame: [1]
-        };
+        this.state = {};
     }
 
-    componentWillMount() {
-        const {navigation} = this.props;
-        const item = navigation.getParam('listgame', '0');
-        this.setState({listgame: item});
-    }
+    componentWillMount() {}
 
     render() {
         return (
             <FlatList
-                data={this.state.listgame}
+                data={this.props.listgame}
                 renderItem={({item}) => <TouchableHighlight onPress={() => this.openItem(item)}>
                 <View
                     style={{
@@ -108,9 +103,6 @@ export default class List extends Component {
         return table;
     }
     openItem(item) {
-        this
-            .props
-            .navigation
-            .navigate('Item', {item: item});
+        Actions.Item({item: item});
     }
 }
