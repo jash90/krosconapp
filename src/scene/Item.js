@@ -16,7 +16,7 @@ export default class Item extends Component {
     componentWillMount() {}
 
     render() {
-        const item= this.props.item;
+        const item = this.props.item;
         return (
             <ScrollView>
                 <View
@@ -139,17 +139,15 @@ export default class Item extends Component {
                 </View>
                 <View
                     style={{
-                        flex: 1,
-                        flexDirection: 'column',
-                        backgroundColor: 'white',
-                        borderRadius: 20,
-                        padding: 20,
-                        marginLeft: 20,
-                        marginRight: 20,
-                        marginBottom: 20
-                    }}>
-                    
-                </View>
+                    flex: 1,
+                    flexDirection: 'column',
+                    backgroundColor: 'white',
+                    borderRadius: 20,
+                    padding: 20,
+                    marginLeft: 20,
+                    marginRight: 20,
+                    marginBottom: 20
+                }}></View>
             </ScrollView>
         );
     }
@@ -207,7 +205,7 @@ export default class Item extends Component {
             "mauris",
             "at",
             "tristique",
-            "arcu",
+            "arcu"
         ])
     }
 }

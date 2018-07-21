@@ -23,12 +23,12 @@ export default class Camera extends Component {
                     flashMode={RNCamera.Constants.FlashMode.on}
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera phone'}
-                    onBarCodeRead={(data, type)=>this.takePicture(data,type)}/>
+                    onBarCodeRead={(data, type) => this.takePicture(data, type)}/>
             </View>
         );
     }
-    takePicture (data,type) {
-        Actions.AddItem({data,type});
+    takePicture(data, type) {
+        Actions.AddItem({data, type});
     }
 }
 

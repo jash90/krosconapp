@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {View, Image, FlatList, Text, TouchableHighlight, StyleSheet} from 'react-native';
+import {
+    View,
+    Image,
+    FlatList,
+    Text,
+    TouchableHighlight,
+    StyleSheet
+} from 'react-native';
 import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
 import {Fab, Button, Icon as NIcon} from 'native-base';
 import selection from '../../android/app/src/main/assets/style/selection';
@@ -101,7 +108,7 @@ export default class List extends Component {
                     backgroundColor: '#5067FF'
                 }}
                     position="bottomRight"
-                    onPress={()=>Actions.Camera()}>
+                    onPress={() => Actions.Camera()}>
                     <NIcon name="camera"/>
                 </Fab>
             </View>
