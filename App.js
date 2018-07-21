@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Router, Stack, Scene} from 'react-native-router-flux';
 import LoadingScreen from './src/scene/LoadingScreen';
 import List from './src/scene/List';
@@ -9,8 +9,12 @@ import Login from './src/scene/Login';
 import Register from './src/scene/Register';
 import Profile from './src/scene/Profile';
 import BorrowBooks from './src/scene/BorrowBooks';
-
-export default class App extends React.Component {
+import DeviceInfo from 'react-native-device-info';
+import Language from './src/Language'
+export default class App extends Component {
+  componentWillMount() {
+    Language.setL(DeviceInfo.getDeviceLocale().substring(0, 2));
+  }
   render() {
     return (
       <Router>

@@ -22,7 +22,7 @@ import Color from "../../Color";
 export default class Head extends Component {
   render() {
     return (
-      <Header androidStatusBarColor={Color.primaryColor} style={styles.styleHeader}>
+      <Header androidStatusBarColor={Color.secondaryColor} style={styles.styleHeader}>
         <Left style={styles.fullStyle}>{this.renderLeft()}</Left>
         <Body style={styles.textHeader}>
           <Title style={{ color: "#fff" }}>{this.props.text}</Title>
@@ -61,7 +61,7 @@ export default class Head extends Component {
 }
 
 var styles = StyleSheet.create({
-  styleHeader: { backgroundColor: Color.primaryColor },
+  styleHeader: { backgroundColor: Color.secondaryColor },
   textHeader: { flex: 3, justifyContent: "center", alignItems: "center" },
   iconLeftHeader: { color: "white", paddingLeft: 5 },
   iconRightHeader: { paddingRight: 5 },

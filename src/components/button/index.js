@@ -17,7 +17,7 @@ export default class Button extends Component {
             height: 60,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: Color.primaryColor,
+            backgroundColor: Color.accentColor,
             alignSelf: "center"
           }}
         >

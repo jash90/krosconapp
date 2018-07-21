@@ -1,176 +1,119 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import {
-    View,
-    Image,
-    FlatList,
-    Text,
-    TouchableOpacity,
-    StyleSheet,
-    ScrollView,
-    TextInput
-} from 'react-native';
-import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
-import {Fab, Button, Icon as NIcon, Container} from 'native-base';
-import selection from '../../android/app/src/main/assets/style/selection';
-const Icon = createIconSetFromIcoMoon(selection);
-import Spinner from 'react-native-spinkit'
-import StarRating from 'react-native-star-rating';
-import Color from '../Color'
-import {Actions} from "react-native-router-flux";
-export default class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            image: null
-        };
-    }
-    render() {
-        return (
-            <ScrollView
-                style={{
-                backgroundColor: Color.primaryColor,
-            }}>
-                <View
-                    style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginTop:100,
-                    marginBottom:30
-                }}>
-                    <View
-                        style={{
-                        backgroundColor: 'white',
-                        padding: 15,
-                        borderRadius: 360
-                    }}>
-                        <Image
-                            style={{
-                            width: 100,
-                            height: 100
-                        }}
-                            source={require('../img/muffin.png')}/>
-                    </View>
-                </View>
-                <View
-                    style={{
-                    justifyContent: 'flex-end',
-                        marginTop: 50,
-                        marginBottom: 50
-                }}>
-                    <TextInput
-                        underlineColorAndroid='transparent'
-                        style={{
-                        backgroundColor: "white",
-                        width: '90%',
-                        height: 50,
-                        borderRadius: 10,
-                        alignSelf: 'center',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: Color.secondaryColor,
-                        fontWeight: 'bold',
-                        paddingLeft: 10,
-                        paddingRight: 10,
-                        marginBottom: 20
-                    }}
-                        placeholder={"Login"}/>
-                    <TextInput
-                        underlineColorAndroid='transparent'
-                        style={{
-                        backgroundColor: "white",
-                        width: '90%',
-                        height: 50,
-                        borderRadius: 10,
-                        alignSelf: 'center',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: Color.secondaryColor,
-                        fontWeight: 'bold',
-                        paddingLeft: 10,
-                        paddingRight: 10,
-                    }}
-                        placeholder={"Hasło"}/>
-                </View>
+  Platform,
+  StyleSheet,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Modal,
+  Image,
+  ToastAndroid,
+  AsyncStorage,
+  Alert
+} from "react-native";
 
-                <View
-                    style={{
-                    justifyContent: 'flex-end',
-                }}>
-                    <TouchableOpacity
-                        style={{
-                        backgroundColor: Color.secondaryColor,
-                        width: '90%',
-                        height: 50,
-                        borderRadius: 10,
-                        alignSelf: 'center',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: 20,
-                    }}>
-                        <Text
-                            style={{
-                            fontSize: 20,
-                            color: 'white'
-                        }}>
-                            Login
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                        backgroundColor: Color.accentColor,
-                        width: '90%',
-                        height: 50,
-                        borderRadius: 10,
-                        alignSelf: 'center',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
-                        <Text
-                            style={{
-                            fontSize: 20,
-                            color: 'white'
-                        }}>
-                            Register
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            backgroundColor: Color.accentColor,
-                            width: '90%',
-                            height: 50,
-                            borderRadius: 10,
-                            alignSelf: 'center',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}>
-                        <Text
-                            style={{
-                                fontSize: 20,
-                                color: 'white'
-                            }}>
-                            Sign in Facebook
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            backgroundColor: Color.accentColor,
-                            width: '90%',
-                            height: 50,
-                            borderRadius: 10,
-                            alignSelf: 'center',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}>
-                        <Text
-                            style={{
-                                fontSize: 20,
-                                color: 'white'
-                            }}>
-                            Sign in Google
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
-        );
-    }
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Fab,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  Icon,
+  Text
+} from "native-base";
+
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import LinearGradient from "react-native-linear-gradient";
+import {Actions} from "react-native-router-flux";
+import Moment from "moment";
+
+import Logo from "@components/logo";
+import GoogleButton from "@components/google-button";
+import FacebookButton from "@components/facebook-button";
+import Button from "@components/button";
+import Input from "@components/input";
+import Head from "@components/head";
+import Color from "../Color";
+import Language from "../Language";
+
+import firebase from "react-native-firebase";
+import Toast from "react-native-simple-toast";
+import LoadingScreen from "./LoadingScreen";
+
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+  componentWillMount = () => {
+  };
+
+  async componentDidMount() {
+   
+  }
+  render() {
+    return (
+      <Container>
+        <Head
+          right={true}
+          icon={"person-add"}
+          text={Language.get("sign")}
+          onPress={() => Actions.Register()}/>
+        <View style={styles.fullStyle}>
+          <View>
+            <Logo size={150}/>
+            <Input
+              placeholder={Language.get("email")}
+              onChangeText={text => this.setState({email: text})}
+              value={this.state.email}/>
+            <Input
+              placeholder={Language.get("password")}
+              secureTextEntry={true}
+              onChangeText={text => this.setState({password: text})}
+              value={this.state.password}/>
+          </View>
+          <Content contentContainerStyle={styles.buttonContener}>
+            <Button text={Language.get("login")} onPress={() => this.login()}/>
+            <FacebookButton
+              text={Language.get("signFace")}
+              onPress={() => this.facebookLogin()}/>
+            <GoogleButton
+              text={Language.get("signGoogle")}
+              onPress={() => this.googleLogin()}/>
+          </Content>
+        </View>
+      </Container>
+    );
+  }
+  async saveloginhaslo(login, password) {
+  }
+  googleLogin = async() => {
+  };
+  facebookLogin = async() => {
+  
+  };
+
+  login() {
+   Actions.Loading();
+  }
 }
+
+var styles = StyleSheet.create({
+  fullStyle: {
+    flex: 1,
+    backgroundColor:Color.primaryColor
+  },
+  buttonContener: {
+    width: "100%",
+    flex: 1,
+    justifyContent: "space-evenly",
+    alignItems: "center"
+  }
+});

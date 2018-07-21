@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Image, View } from "react-native";
 import { Icon } from "native-base";
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -13,31 +13,25 @@ export default class Logo extends Component {
   }
   render() {
     return (
-      <LinearGradient
-        colors={[Color.primaryColor, Color.accentColor]}
+      <View
         style={{
-          borderRadius: 20,
+          borderRadius: 360,
           width: this.props.size,
           height: this.props.size,
           justifyContent: "center",
           alignItems: "center",
           alignSelf: "center",
-          margin: 10
+          margin: 10,
+          backgroundColor: 'white'
         }}
       >
         <TouchableOpacity>
-          <Icon
-            name={"md-bus"}
-            style={{
-              paddingLeft: 10,
-              paddingRight: 10,
-              color: "white",
-              fontSize: this.props.size - 20,
-              alignSelf: "center"
-            }}
+          <Image
+          source={require('../../img/muffin.png')}
+            style={{ width:this.props.size-20, height:this.props.size-20}}
           />
         </TouchableOpacity>
-      </LinearGradient>
+      </View>
     );
   }
 }
