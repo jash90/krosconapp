@@ -1,41 +1,13 @@
 import React, {Component} from "react";
 import {
-    Platform,
     StyleSheet,
-    View,
-    FlatList,
-    TouchableOpacity,
-    Modal,
-    TextInput,
-    Image,
-    ToastAndroid
+    View
 } from "react-native";
 
-import {
-    Container,
-    Header,
-    Title,
-    Content,
-    Fab,
-    FooterTab,
-    Left,
-    Right,
-    Body,
-    Icon,
-    Text
-} from "native-base";
-
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import LinearGradient from "react-native-linear-gradient";
-import {Actions} from "react-native-router-flux";
-import Moment from "moment";
-
 import Logo from "@components/logo";
-import GoogleButton from "@components/google-button";
-import FacebookButton from "@components/facebook-button";
 import Button from "@components/button";
 import Input from "@components/input";
-import Head from "@components/head";
+import Container from "@components/container";
 import Color from "../Color";
 import Language from "../Language";
 
@@ -52,8 +24,6 @@ export default class Register extends Component {
     render() {
         return (
             <Container>
-                <Head back={true} text={Language.get("registration")}/>
-                <Content style={styles.fullStyle}>
                     <Logo size={100}/>
                     <Input
                         underlineColorAndroid="transparent"
@@ -77,7 +47,6 @@ export default class Register extends Component {
                     }}>
                         <Button text={Language.get("register")} onPress={() => this.register()}/>
                     </View>
-                </Content>
             </Container>
         );
     }

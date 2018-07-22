@@ -100,7 +100,7 @@ export default class Language {
       pl: "Miasto jest wymagane."
     },
     appName: {
-      en: "Transport Notification"
+      en: "Blueberrypuddingcake"
     },
     editProfile: {
       en: "Edit Profile",

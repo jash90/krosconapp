@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, TouchableOpacity, Image, TextInput, ScrollView, Text} from 'react-native'
 import ImagePicker from 'react-native-image-picker';
+import Container from "@components/container";
 export default class AddItem extends Component {
     constructor(props) {
         super(props);
@@ -10,9 +11,7 @@ export default class AddItem extends Component {
     }
     render() {
         return (
-            <ScrollView style={{
-                flex: 1
-            }}>
+            <Container>
                 <View
                     style={{
                     flexDirection: 'column',
@@ -157,7 +156,7 @@ export default class AddItem extends Component {
                     }}>
                     <TextInput placeholder={"mechaniki planszówki"} />
                 </View>
-            </ScrollView>
+            </Container>
 
         )
     }
