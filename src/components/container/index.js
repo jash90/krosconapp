@@ -13,30 +13,16 @@ class Container extends Component {
         return (
             <NContainer>
                 <Head
-                    back={this.props.back
-                    ? this.props.back
-                    : true}
-                    left={this.props.left
-                    ? this.props.left
-                    : false}
-                    leftIcon={this.props.leftIcon
-                    ? this.props.leftIcon
-                    : false}
-                    leftPress={this.props.leftPress
-                    ? this.props.leftPress
-                    : false}
+                    back={this.props.back==undefined?true:this.props.back}
+                    left={this.props.left}
+                    leftIcon={this.props.leftIcon}
+                    leftPress={this.props.leftPress}
                     text={this.props.text
                     ? this.props.text
                     : Language.get('appName')}
-                    right={this.props.right
-                    ? this.props.right
-                    : false}
-                    icon={this.props.icon
-                    ? this.props.icon
-                    : null}
-                    onPress={this.props.onPress
-                    ? this.props.onPress
-                    : null}/>{this.renderChildren()}
+                    right={this.props.right}
+                    icon={this.props.icon}
+                    onPress={this.props.onPress}/>{this.renderChildren()}
             </NContainer>
         );
     }

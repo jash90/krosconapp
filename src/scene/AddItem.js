@@ -11,16 +11,14 @@ export default class AddItem extends Component {
     }
     render() {
         return (
-            <Container>
+            <Container scrollView={true}>
                 <View
                     style={{
                     flexDirection: 'column',
                     backgroundColor: 'white',
                     borderRadius: 20,
                     padding: 20,
-                    marginLeft: 20,
-                    marginRight: 20,
-                    marginBottom: 20
+                    margin:20
                 }}>
                     {this.renderImage()}
                 </View>

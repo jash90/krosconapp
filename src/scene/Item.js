@@ -5,7 +5,7 @@ import selection from '../../android/app/src/main/assets/style/selection';
 const Icon = createIconSetFromIcoMoon(selection);
 import Spinner from 'react-native-spinkit'
 import StarRating from 'react-native-star-rating';
-import Color from '../Color'
+import Container from "@components/container";
 export default class Item extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +18,7 @@ export default class Item extends Component {
     render() {
         const item = this.props.item;
         return (
-            <ScrollView>
+            <Container scrollView={true}>
                 <View
                     style={{
                     flex: 1,
@@ -148,7 +148,7 @@ export default class Item extends Component {
                     marginRight: 20,
                     marginBottom: 20
                 }}></View>
-            </ScrollView>
+            </Container>
         );
     }
     renderPawn(min, max) {

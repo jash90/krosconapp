@@ -11,9 +11,8 @@ import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
 import {Fab, Button, Icon as NIcon} from 'native-base';
 import selection from '../../android/app/src/main/assets/style/selection';
 const Icon = createIconSetFromIcoMoon(selection);
-import Spinner from 'react-native-spinkit'
 import StarRating from 'react-native-star-rating';
-import Color from '../Color'
+import Container from "@components/container";
 import {Actions} from "react-native-router-flux";
 export default class List extends Component {
     constructor(props) {
@@ -27,9 +26,8 @@ export default class List extends Component {
 
     render() {
         return (
-            <View style={{
-                flex: 1
-            }}>
+            <Container
+                back={false} >
                 <FlatList
                     data={this.props.listgame}
                     renderItem={({item}) => <TouchableHighlight onPress={() => this.openItem(item)}>
@@ -111,7 +109,7 @@ export default class List extends Component {
                     onPress={() => Actions.Camera()}>
                     <NIcon name="camera"/>
                 </Fab>
-            </View>
+            </Container>
         );
     }
     renderPawn(min, max) {
