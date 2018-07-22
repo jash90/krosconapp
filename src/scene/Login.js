@@ -44,7 +44,12 @@ export default class Login extends Component {
   }
   render() {
     return (
-      <Container>
+      <Container
+        back={false} 
+        right={true}
+        icon={"person-add"}
+        text={Language.get("sign")}
+        onPress={() => Actions.Register()}>
         <View>
           <Logo size={150} />
           <Input

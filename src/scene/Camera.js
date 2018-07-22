@@ -28,7 +28,7 @@ export default class Camera extends Component {
         );
     }
     takePicture(data, type) {
-        Actions.AddItem({data, type});
+        Actions.replace("AddItem", {data, type});
     }
 }
 
