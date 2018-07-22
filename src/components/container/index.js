@@ -30,7 +30,8 @@ class Container extends Component {
                     : Language.get('appName')}
                     right={this.props.right}
                     icon={this.props.icon}
-                    onPress={this.props.onPress}/>{this.renderChildren()}
+                    onPress={this.props.onPress}/>
+                    {this.renderChildren()}
             </NContainer>
         );
     }
@@ -40,7 +41,28 @@ class Container extends Component {
                 <ScrollView
                     style={this.props.styleContent
                     ? this.props.styleContent
-                    : styles.fullStyle}>{this.props.children}</ScrollView>
+                    : styles.fullStyle}>
+                    <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                        <Image
+                            ref={(img) => {
+                                this.backgroundImage = img;
+                            }}
+                            resizeMode={'contain'}
+                            source={require('../../img/muffin.png')}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+
+                            }}
+                            onLoadEnd={() => this.imageLoaded()} />
+                    </View>
+                    <BlurView
+                        style={styles.absolute}
+                        viewRef={this.state.viewRef}
+                        blurType="xlight"
+                        blurAmount={100} />
+                    {this.props.children}
+                    </ScrollView>
             );
         } else {
             return (
