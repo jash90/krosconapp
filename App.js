@@ -9,6 +9,8 @@ import Login from './src/scene/Login';
 import Register from './src/scene/Register';
 import Profile from './src/scene/Profile';
 import BorrowBooks from './src/scene/BorrowBooks';
+import Example from "./src/scene/Example";
+
 import DeviceInfo from 'react-native-device-info';
 import Language from './src/Language'
 export default class App extends Component {
@@ -28,6 +30,7 @@ export default class App extends Component {
           <Scene key="Register" component={Register} hideNavBar/>
           <Scene key="Profile" component={Profile} hideNavBar/>
           <Scene key="BorrowBooks" component={BorrowBooks} hideNavBar/>
+          <Scene key="Example" component={Example} hideNavBar/>
         </Stack>
       </Router>
     );
