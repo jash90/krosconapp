@@ -27,20 +27,20 @@ import {
 } from "../components";
 import { Props } from "../interfaces";
 interface State {
-  email:string;
-  password:string;
+  email: string;
+  password: string;
 }
-export default class Login extends Component<Props,State> {
-  constructor(props:Props) {
+export default class Login extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       email: "",
       password: ""
     };
   }
-  componentWillMount = () => {};
+  componentWillMount = () => { };
 
-  async componentDidMount() {}
+  async componentDidMount() { }
   render() {
     return (
       <Container
@@ -53,13 +53,13 @@ export default class Login extends Component<Props,State> {
           <Logo size={150} />
           <Input
             placeholder={Language.get("email")}
-            onChangeText={(text:string) => this.setState({ email: text })}
+            onChangeText={(text: string) => this.setState({ email: text })}
             value={this.state.email}
           />
           <Input
             placeholder={Language.get("password")}
             secureTextEntry={true}
-            onChangeText={(text:string) => this.setState({ password: text })}
+            onChangeText={(text: string) => this.setState({ password: text })}
             value={this.state.password}
           />
         </View>
@@ -77,9 +77,9 @@ export default class Login extends Component<Props,State> {
       </Container>
     );
   }
-  async saveloginhaslo(login: string, password:string) {}
-  googleLogin =  () => {};
-  facebookLogin =  () => {};
+  async saveloginhaslo(login: string, password: string) { }
+  googleLogin = () => { };
+  facebookLogin = () => { };
 
   login() {
     Actions.Loading();

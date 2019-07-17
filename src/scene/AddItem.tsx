@@ -16,7 +16,7 @@ import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Item, Label, Input } from "native-base";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
-    data:any
+  data: any
 }
 interface State {
   image: any;
@@ -90,7 +90,7 @@ export default class AddItem extends Component<Props, State> {
             }}
             extraData={this.state.extraData}
             data={this.createArray(this.state.extraData, 10)}
-            keyExtractor={(item, index)=>String(index)}
+            keyExtractor={(item, index) => String(index)}
             horizontal={true}
             renderItem={(item: any) => (
               <TouchableOpacity
@@ -229,7 +229,7 @@ export default class AddItem extends Component<Props, State> {
     }
   }
   selectImage() {
-  
+
   }
   createArray(number: number, max: number) {
     return new Array(number)

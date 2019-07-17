@@ -1,7 +1,7 @@
 export default {
-    primaryColor : "#ccc",
-    secondaryColor : "#000",
-    accentColor : "#d80000",
+    primaryColor: "#ccc",
+    secondaryColor: "#000",
+    accentColor: "#d80000",
     textColor: "#000",
     placeholderColor: "#b8b8b8",
     disabledColor: "#e9e9e9",

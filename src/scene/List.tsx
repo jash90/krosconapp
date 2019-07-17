@@ -19,7 +19,7 @@ interface State {
   active: boolean;
 }
 interface Props {
-    listgame:any[]
+  listgame: any[]
 }
 export default class List extends Component<Props, State> {
   constructor(props: Props) {
@@ -29,7 +29,7 @@ export default class List extends Component<Props, State> {
     };
   }
 
-  componentWillMount() {}
+  componentWillMount() { }
 
   render() {
     return (

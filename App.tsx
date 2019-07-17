@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Router, Stack, Scene} from 'react-native-router-flux';
+import React, { Component } from 'react';
+import { Router, Stack, Scene } from 'react-native-router-flux';
 import LoadingScreen from './src/scene/LoadingScreen';
 import List from './src/scene/List';
 import Item from './src/scene/Item';
@@ -21,16 +21,16 @@ export default class App extends Component {
     return (
       <Router>
         <Stack key="root">
-          <Scene key="Loading" component={LoadingScreen} hideNavBar/>
-          <Scene key="List" component={List} hideNavBar/>
-          <Scene key="Item" component={Item} hideNavBar/>
-          <Scene key="Camera" component={Camera} hideNavBar/>
-          <Scene key="AddItem" component={AddItem} hideNavBar/>
-          <Scene key="Login" component={Login} hideNavBar/>
-          <Scene key="Register" component={Register} hideNavBar/>
-          <Scene key="Profile" component={Profile} hideNavBar/>
-          <Scene key="BorrowBooks" component={BorrowBooks} hideNavBar/>
-          <Scene key="Example" component={Example} hideNavBar/>
+          <Scene key="Loading" component={LoadingScreen} hideNavBar />
+          <Scene key="List" component={List} hideNavBar />
+          <Scene key="Item" component={Item} hideNavBar />
+          <Scene key="Camera" component={Camera} hideNavBar />
+          <Scene key="AddItem" component={AddItem} hideNavBar />
+          <Scene key="Login" component={Login} hideNavBar />
+          <Scene key="Register" component={Register} hideNavBar />
+          <Scene key="Profile" component={Profile} hideNavBar />
+          <Scene key="BorrowBooks" component={BorrowBooks} hideNavBar />
+          <Scene key="Example" component={Example} hideNavBar />
         </Stack>
       </Router>
     );

@@ -11,8 +11,8 @@ import ImagePicker from "react-native-image-picker";
 interface State {
   image: any;
 }
-interface Props{
-    data:any
+interface Props {
+  data: any
 }
 export default class BorrowBooks extends Component<Props, State> {
   constructor(props: Props) {

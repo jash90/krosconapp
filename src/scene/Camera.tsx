@@ -1,37 +1,37 @@
-import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {Actions} from 'react-native-router-flux';
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Props } from '../interfaces';
-import {RNCamera} from 'react-native-camera';
-interface State{
-    listgame:number[]
+import { RNCamera } from 'react-native-camera';
+interface State {
+    listgame: number[]
 }
-export default class Camera extends Component<Props,State> {
+export default class Camera extends Component<Props, State> {
     public camera: any;
-    constructor(props:Props) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             listgame: [1]
         };
     }
-    componentWillMount() {}
+    componentWillMount() { }
 
     render() {
         return (
             <View style={styles.container}>
                 <RNCamera
-                    ref={(ref:any) => {
-                    this.camera = ref;
-                }}
+                    ref={(ref: any) => {
+                        this.camera = ref;
+                    }}
                     style={styles.preview}
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera phone'}
-                    onBarCodeRead={(data:any, type:any) => this.takePicture(data, type)}/>
+                    onBarCodeRead={(data: any, type: any) => this.takePicture(data, type)} />
             </View>
         );
     }
-    takePicture(data:any, type:any) {
-        Actions.replace("AddItem", {data, type});
+    takePicture(data: any, type: any) {
+        Actions.replace("AddItem", { data, type });
     }
 }
 
