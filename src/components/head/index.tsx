@@ -22,8 +22,14 @@ import { HeadProps } from "../../interfaces";
 
 export default class Head extends Component<HeadProps> {
   static defaultProps = {
-    icon: "",
-    leftIcon: ""
+    back: true,
+    left: false,
+    leftIcon: '',
+    leftPress: () => { },
+    right: false,
+    icon: '',
+    text: false,
+    onPress: () => { },
   };
   render() {
     return (

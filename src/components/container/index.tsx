@@ -18,6 +18,21 @@ interface State {
 }
 class Container extends Component<ContainerProps, State> {
   public backgroundImage: any;
+
+  static defaultProps = {
+    back:true,
+    left:false,
+    leftIcon:'',
+    leftPress:()=>{},
+    right:false,
+    icon:'',
+    scrollView:false,
+    styleContent:null,
+    text:false,
+    children:null,
+    onPress:()=>{},
+  };
+
   constructor(props: ContainerProps) {
     super(props);
     this.state = {
