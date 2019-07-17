@@ -21,9 +21,15 @@ import Color from "../../Color";
 import { HeadProps } from "../../interfaces";
 
 export default class Head extends Component<HeadProps> {
-  static defaultProps ={
-    icon :"",
-    leftIcon:""
+  static defaultProps = {
+    back: true,
+    left: false,
+    leftIcon: '',
+    leftPress: () => { },
+    right: false,
+    icon: '',
+    text: false,
+    onPress: () => { },
   };
   render() {
     return (
@@ -38,7 +44,7 @@ export default class Head extends Component<HeadProps> {
           {this.props.right ? (
             <TouchableOpacity onPress={this.props.onPress}>
               <MaterialIcons
-                name={this.props.icon? this.props.icon :""}
+                name={this.props.icon ? this.props.icon : ""}
                 color="white"
                 size={30}
                 style={styles.iconRightHeader}
@@ -60,7 +66,7 @@ export default class Head extends Component<HeadProps> {
     if (this.props.left) {
       return (
         <TouchableOpacity onPress={this.props.leftPress}>
-          <Icon name={this.props.leftIcon? this.props.leftIcon :""} style={styles.iconLeftHeader} />
+          <Icon name={this.props.leftIcon ? this.props.leftIcon : ""} style={styles.iconLeftHeader} />
         </TouchableOpacity>
       );
     }

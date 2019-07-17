@@ -28,8 +28,8 @@ interface State {
   visible2: boolean;
   age: string;
 }
-export default class Example extends Component<Props,State> {
-  constructor(props:Props) {
+export default class Example extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       image: null,
@@ -63,7 +63,7 @@ export default class Example extends Component<Props,State> {
             extraData={this.state.extraData}
             data={this.createArray(this.state.extraData, 10)}
             horizontal={true}
-            renderItem={(item:any) => (
+            renderItem={(item: any) => (
               <TouchableOpacity
                 onPress={() => {
                   this.setState({ extraData: item.index + 1 });
@@ -297,7 +297,7 @@ export default class Example extends Component<Props,State> {
               }
             ]}
             value={this.state.time2}
-            onChangeText={(text:number) => {
+            onChangeText={(text: number) => {
               this.setState({ time2: text });
             }}
           />
@@ -325,7 +325,7 @@ export default class Example extends Component<Props,State> {
       </Container>
     );
   }
-  createArray(number:number, max:number) {
-    return new Array(number).map(()=> true).concat(new Array(max - number).map(()=> false));
+  createArray(number: number, max: number) {
+    return new Array(number).map(() => true).concat(new Array(max - number).map(() => false));
   }
 }

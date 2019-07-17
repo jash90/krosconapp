@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 import Color from "../Color";
 import Language from "../Language";
-import { Container,Logo, Input, Button } from "../components";
+import { Container, Logo, Input, Button } from "../components";
 import { Props } from "../interfaces";
 interface State {
   email: string;
@@ -58,7 +58,7 @@ export default class Register extends Component<Props, State> {
       </Container>
     );
   }
-  register() {}
+  register() { }
 }
 
 var styles = StyleSheet.create({

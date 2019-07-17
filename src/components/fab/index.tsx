@@ -8,7 +8,7 @@ export default class Fab extends Component<FabProps> {
   render() {
     return (
       <LinearGradient
-        colors={[Color.primaryColor,Color.accentColor]}
+        colors={[Color.primaryColor, Color.accentColor]}
         style={{
           width: 60,
           height: 60,

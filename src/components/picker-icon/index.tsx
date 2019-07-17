@@ -1,15 +1,15 @@
-import React, {Component} from "react";
-import {View, FlatList, TouchableOpacity, StyleSheet} from "react-native";
-import {Icon} from "native-base";
+import React, { Component } from "react";
+import { View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import { Icon } from "native-base";
 import LinearGradient from "react-native-linear-gradient";
 import Color from "../../Color";
 import { PickerIconProps } from "../../interfaces";
-interface State{
-  transports:string[]
-  select:number
+interface State {
+  transports: string[]
+  select: number
 }
-export default class PickerIcon extends Component<PickerIconProps,State> {
-  constructor(props:PickerIconProps) {
+export default class PickerIcon extends Component<PickerIconProps, State> {
+  constructor(props: PickerIconProps) {
     super(props);
     this.state = {
       transports: [
@@ -28,7 +28,7 @@ export default class PickerIcon extends Component<PickerIconProps,State> {
       if (this.props.select) {
         var index = this.state.transports.indexOf(this.props.select);
         if (index > -1) {
-          this.setState({select: index});
+          this.setState({ select: index });
         }
       }
     }
@@ -42,34 +42,34 @@ export default class PickerIcon extends Component<PickerIconProps,State> {
           data={this.state.transports}
           extraData={this.state.select}
           renderItem={item => item.index == this.state.select
-          ? (
-            <LinearGradient
-              colors={[Color.primaryColor, Color.accentColor]}
-              style={styles.gradientIcon}>
+            ? (
+              <LinearGradient
+                colors={[Color.primaryColor, Color.accentColor]}
+                style={styles.gradientIcon}>
+                <TouchableOpacity onPress={() => this.onChange(item)}>
+                  <Icon
+                    name={"md-" + item.item}
+                    ios={"md-" + item.item}
+                    android={"md-" + item.item}
+                    style={styles.activeIcon} />
+                </TouchableOpacity>
+              </LinearGradient>
+            )
+            : (
               <TouchableOpacity onPress={() => this.onChange(item)}>
                 <Icon
                   name={"md-" + item.item}
                   ios={"md-" + item.item}
                   android={"md-" + item.item}
-                  style={styles.activeIcon}/>
+                  style={styles.unActiveIcon} />
               </TouchableOpacity>
-            </LinearGradient>
-          )
-          : (
-            <TouchableOpacity onPress={() => this.onChange(item)}>
-              <Icon
-                name={"md-" + item.item}
-                ios={"md-" + item.item}
-                android={"md-" + item.item}
-                style={styles.unActiveIcon}/>
-            </TouchableOpacity>
-          )}
-          horizontal={true}/>
+            )}
+          horizontal={true} />
       </View>
     );
   }
-  onChange = (item:any) => {
-    this.setState({select: item.index});
+  onChange = (item: any) => {
+    this.setState({ select: item.index });
     this
       .props
       .onChange(item);
