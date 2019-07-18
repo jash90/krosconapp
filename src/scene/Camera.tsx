@@ -31,7 +31,7 @@ export default class Camera extends Component<Props, State> {
         );
     }
     takePicture(data: any, type: any) {
-        Actions.replace("AddItem", { data, type });
+        this.props.navigation.replace('AddItem', {data,type});
     }
 }
 

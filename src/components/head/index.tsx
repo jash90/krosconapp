@@ -58,7 +58,7 @@ export default class Head extends Component<HeadProps> {
   renderLeft() {
     if (this.props.back) {
       return (
-        <TouchableOpacity onPress={() => Actions.pop()}>
+        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
           <Icon name="arrow-back" style={styles.iconLeftHeader} />
         </TouchableOpacity>
       );

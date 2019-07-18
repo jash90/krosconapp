@@ -21,9 +21,9 @@ export default class Item extends Component<Props, State> {
     componentWillMount() { }
 
     render() {
-        const item = this.props.item;
+        const item = this.props.navigation.state.params.item;
         return (
-            <Container scrollView={true}>
+            <Container scrollView={true} navigation={this.props.navigation}>
                 <View
                     style={{
                         flex: 1,

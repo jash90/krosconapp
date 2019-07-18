@@ -22,11 +22,13 @@ interface HeadProps extends ButtonProps {
     leftPress: () => any;
     right: boolean;
     icon: string;
+    navigation:any;
 }
 
 interface ContainerProps extends HeadProps{
     styleContent: any;
     scrollView: boolean;
+    navigation:any;
 };
 
 export { Props, TextProps, ButtonProps, PickerIconProps, HeadProps, ContainerProps };

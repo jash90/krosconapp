@@ -49,7 +49,7 @@ export default class BorrowBooks extends Component<Props, State> {
             marginRight: 20,
             marginBottom: 20
           }}>
-          <Text>{JSON.stringify(this.props.data.data)}</Text>
+          <Text>{JSON.stringify(this.props.navigation.state.params.data.data)}</Text>
         </View>
         <View
           style={{

@@ -26,7 +26,7 @@ import { Actions } from "react-native-router-flux";
 
 import Language from "../Language";
 
-import { Separator, Logo, Input, Head, Button, } from "../components";
+import { Separator, Logo, Input, Head, Button } from "../components";
 import { Props } from "../interfaces";
 interface State {
   password: string;
@@ -45,11 +45,13 @@ export default class Person extends Component<Props, State> {
     return (
       <Container>
         <Head
+          navigation={this.props.navigation}
           back={true}
           right={true}
           text={Language.get("editProfile")}
           icon={"save"}
-          onPress={() => this.changePassword()} />
+          onPress={() => this.changePassword()}
+        />
         <Content style={styles.fullStyle}>
           <Logo size={100} />
           <Separator text={Language.get("changePassword")} />
@@ -58,17 +60,25 @@ export default class Person extends Component<Props, State> {
             placeholder={Language.get("password")}
             secureTextEntry={true}
             value={this.state.password}
-            onChangeText={(text: string) => this.setState({ password: text })} />
+            onChangeText={(text: string) => this.setState({ password: text })}
+          />
           <Input
             underlineColorAndroid="transparent"
             placeholder={Language.get("repeatPassword")}
             secureTextEntry={true}
             value={this.state.repeatPassword}
-            onChangeText={(text: string) => this.setState({ repeatPassword: text })} />
-          <View style={{
-            marginTop: 10
-          }}>
-            <Button text={Language.get("logout")} onPress={() => this.signOutUser()} />
+            onChangeText={(text: string) =>
+              this.setState({ repeatPassword: text })
+            }
+          />
+          <View
+            style={{
+              marginTop: 10
+            }}>
+            <Button
+              text={Language.get("logout")}
+              onPress={() => this.signOutUser()}
+            />
           </View>
         </Content>
       </Container>
@@ -76,7 +86,7 @@ export default class Person extends Component<Props, State> {
   }
 
   signOutUser = () => {
-    Actions.Login();
+    this.props.navigation.navigate("Login");
   };
   changePassword = () => {
     if (this.state.password === "") {
@@ -91,7 +101,6 @@ export default class Person extends Component<Props, State> {
       alert(Language.get("passwordSame"));
       return;
     }
-
   };
 }
 

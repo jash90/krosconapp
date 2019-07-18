@@ -34,7 +34,7 @@ export default class AddItem extends Component<Props, State> {
   }
   render() {
     return (
-      <Container scrollView={true}>
+      <Container navigation={this.props.navigation} scrollView={true}>
         <View
           style={{
             flexDirection: "column",
@@ -55,7 +55,7 @@ export default class AddItem extends Component<Props, State> {
             marginRight: 20,
             marginBottom: 20
           }}>
-          <Text>{JSON.stringify(this.props.data.data)}</Text>
+          <Text>{JSON.stringify(this.props.navigation.state.params.data.data)}</Text>
         </View>
         <View
           style={{

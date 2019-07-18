@@ -38,17 +38,18 @@ export default class Login extends Component<Props, State> {
       password: ""
     };
   }
-  componentWillMount = () => { };
+  componentWillMount = () => {};
 
-  async componentDidMount() { }
+  async componentDidMount() {}
   render() {
     return (
       <Container
+        navigation={this.props.navigation}
         back={false}
         right={true}
         icon={"person-add"}
         text={Language.get("sign")}
-        onPress={() => Actions.Register()}>
+        onPress={() => this.props.navigation.navigate("Register")}>
         <View>
           <Logo size={150} />
           <Input
@@ -77,12 +78,12 @@ export default class Login extends Component<Props, State> {
       </Container>
     );
   }
-  async saveloginhaslo(login: string, password: string) { }
-  googleLogin = () => { };
-  facebookLogin = () => { };
+  async saveloginhaslo(login: string, password: string) {}
+  googleLogin = () => {};
+  facebookLogin = () => {};
 
   login() {
-    Actions.Loading();
+    this.props.navigation.navigate("LoadingScreen");
   }
 }
 

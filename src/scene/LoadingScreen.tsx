@@ -7,7 +7,7 @@ export default class LoadingScreen extends Component {
     fetch("https://bgg-json.azurewebsites.net/collection/edwalter")
       .then(response => response.json())
       .then(responseJson => {
-        Actions.replace("List", { listgame: responseJson });
+        this.props.navigation.navigate('List', {listgame: responseJson});
       })
       .catch(error => {
         console.error(error);

@@ -33,9 +33,9 @@ export default class List extends Component<Props, State> {
 
   render() {
     return (
-      <Container back={false}>
+      <Container navigation={this.props.navigation} back={false}>
         <FlatList
-          data={this.props.listgame}
+          data={this.props.navigation.state.params.listgame}
           renderItem={({ item }: any) => (
             <TouchableHighlight onPress={() => this.openItem(item)}>
               <View
@@ -119,7 +119,7 @@ export default class List extends Component<Props, State> {
             backgroundColor: Color.accentColor
           }}
           position="bottomRight"
-          onPress={() => Actions.Camera()}>
+          onPress={() => this.props.navigation.navigate('Camera')}>
           <NIcon name="camera" />
         </Fab>
       </Container>
@@ -137,6 +137,6 @@ export default class List extends Component<Props, State> {
     return table;
   }
   openItem(item: any) {
-    Actions.Item({ item: item });
+    this.props.navigation.navigate({routeName:'Item', params: {item: item} });
   }
 }

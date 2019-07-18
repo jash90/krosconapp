@@ -22,7 +22,7 @@ export default class Register extends Component<Props, State> {
 
   render() {
     return (
-      <Container>
+      <Container navigation={this.props.navigation}>
         <Logo size={100} />
         <Input
           underlineColorAndroid="transparent"

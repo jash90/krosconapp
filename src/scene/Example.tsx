@@ -45,7 +45,7 @@ export default class Example extends Component<Props, State> {
   }
   render() {
     return (
-      <Container scrollView={true}>
+      <Container navigation={this.props.navigation} scrollView={true}>
         <View
           style={{
             backgroundColor: "white",
