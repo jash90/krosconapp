@@ -33,7 +33,8 @@ export default class List extends Component<Props, State> {
 
   render() {
     return (
-      <Container navigation={this.props.navigation} back={false}>
+      <Container navigation={this.props.navigation} back={false} right
+      icon={'person'} onPress={()=>this.props.navigation.navigate('Profile')}>
         <FlatList
           data={this.props.navigation.state.params.listgame}
           renderItem={({ item }: any) => (

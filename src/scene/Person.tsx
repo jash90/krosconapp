@@ -47,39 +47,76 @@ export default class Person extends Component<Props, State> {
         <Head
           navigation={this.props.navigation}
           back={true}
-          right={true}
           text={Language.get("editProfile")}
-          icon={"save"}
-          onPress={() => this.changePassword()}
         />
-        <Content style={styles.fullStyle}>
-          <Logo size={100} />
-          <Separator text={Language.get("changePassword")} />
-          <Input
-            underlineColorAndroid="transparent"
-            placeholder={Language.get("password")}
-            secureTextEntry={true}
-            value={this.state.password}
-            onChangeText={(text: string) => this.setState({ password: text })}
+        <Content style={{height:'100%',width:'100%',  }}>
+
+          <Button
+          style={{paddingVertical: 10}}
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
           />
-          <Input
-            underlineColorAndroid="transparent"
-            placeholder={Language.get("repeatPassword")}
-            secureTextEntry={true}
-            value={this.state.repeatPassword}
-            onChangeText={(text: string) =>
-              this.setState({ repeatPassword: text })
-            }
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
           />
-          <View
-            style={{
-              marginTop: 10
-            }}>
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
             <Button
-              text={Language.get("logout")}
-              onPress={() => this.signOutUser()}
-            />
-          </View>
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+            <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+            <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+          <Button
+            text={"Dodaj książkę"}
+            onPress={() => this.signOutUser()}
+          />
+
         </Content>
       </Container>
     );

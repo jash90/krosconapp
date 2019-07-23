@@ -4,14 +4,12 @@ import { Actions } from 'react-native-router-flux';
 import { Props } from '../interfaces';
 import { RNCamera } from 'react-native-camera';
 interface State {
-    listgame: number[]
 }
 export default class Camera extends Component<Props, State> {
     public camera: any;
     constructor(props: Props) {
         super(props);
         this.state = {
-            listgame: [1]
         };
     }
     componentWillMount() { }
@@ -26,12 +24,12 @@ export default class Camera extends Component<Props, State> {
                     style={styles.preview}
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera phone'}
-                    onBarCodeRead={(data: any, type: any) => this.takePicture(data, type)} />
+                    onBarCodeRead={(data: any, type: any) => this.onBarCodeRead(data, type)} />
             </View>
         );
     }
-    takePicture(data: any, type: any) {
-        this.props.navigation.replace('AddItem', {data,type});
+    onBarCodeRead(data: any, type: any) {
+        console.log(this.props.navigation.state.params);
     }
 }
 
