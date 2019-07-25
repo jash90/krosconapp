@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 
-import Color from "../../Color";
-import { ButtonProps } from "../../interfaces";
+import Color from "../Color";
+import { ButtonProps } from "../interfaces";
 
 export default class Button extends Component<ButtonProps> {
   render() {

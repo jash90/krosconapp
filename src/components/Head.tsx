@@ -17,8 +17,8 @@ import {
 
 import { Actions } from "react-native-router-flux";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import Color from "../../Color";
-import { HeadProps } from "../../interfaces";
+import Color from "../Color";
+import { HeadProps } from "../interfaces";
 
 export default class Head extends Component<HeadProps> {
   static defaultProps = {

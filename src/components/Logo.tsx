@@ -23,7 +23,7 @@ export default class Logo extends Component<Props> {
         }}>
         <TouchableOpacity>
           <Image
-            source={require("../../img/logo.png")}
+            source={require("../img/logo.png")}
             style={{
               width: this.props.size - 20,
               height: this.props.size - 20

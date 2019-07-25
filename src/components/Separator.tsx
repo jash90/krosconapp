@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { View, Text, StyleSheet } from "react-native";
-import { TextProps } from "../../interfaces";
+import { TextProps } from "../interfaces";
 
 export default class Separator extends Component<TextProps> {
   render() {

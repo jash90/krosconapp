@@ -9,10 +9,10 @@ import {
 import { Container as NContainer, Content } from "native-base";
 
 import BlurView from "react-native-blur";
-import Color from "../../Color";
-import Language from "../../Language";
-import { Head } from "..";
-import { ContainerProps } from "../../interfaces";
+import Color from "../Color";
+import Language from "../Language";
+import { Head } from ".";
+import { ContainerProps } from "./interfaces";
 interface State {
   viewRef: any;
 }
@@ -77,7 +77,7 @@ class Container extends Component<ContainerProps, State> {
                 this.backgroundImage = img;
               }}
               resizeMode={"contain"}
-              source={require("../../img/logo.png")}
+              source={require("../img/logo.png")}
               style={{
                 width: "100%",
                 height: "100%"
@@ -113,7 +113,7 @@ class Container extends Component<ContainerProps, State> {
                 this.backgroundImage = img;
               }}
               resizeMode={"contain"}
-              source={require("../../img/logo.png")}
+              source={require("../img/logo.png")}
               style={{
                 width: "100%",
                 height: "100%"

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { Icon } from "native-base";
 import LinearGradient from "react-native-linear-gradient";
-import Color from "../../Color";
-import { PickerIconProps } from "../../interfaces";
+import Color from "../Color";
+import { PickerIconProps } from "../interfaces";
 interface State {
   transports: string[]
   select: number
