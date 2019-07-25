@@ -11,6 +11,7 @@ import Profile from "./src/scene/Profile";
 import BorrowBooks from "./src/scene/BorrowBooks";
 import Example from "./src/scene/Example";
 import Person from "./src/scene/Person";
+import LoanGame from "./src/scene/LoanGame";
 
 import DeviceInfo from "react-native-device-info";
 import Language from "./src/Language";
@@ -50,6 +51,9 @@ const AppNavigator = createStackNavigator(
     },
     Person:{
       screen:Person
+    },
+    LoanGame:{
+      screen:LoanGame
     }
   },
   {

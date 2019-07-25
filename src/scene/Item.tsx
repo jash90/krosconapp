@@ -4,99 +4,26 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import selection from '../../android/app/src/main/assets/style/selection';
 const Icon = createIconSetFromIcoMoon(selection);
 import StarRating from 'react-native-star-rating';
-import { Container } from '../components';
+import { Container, GameHeader } from '../components';
 interface Props {
     item: any;
 }
 interface State {
-    listgame: number[]
 }
 export default class Item extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            listgame: [1]
         };
     }
     componentWillMount() { }
 
     render() {
         const item = this.props.navigation.state.params.item;
+        console.log(item);
         return (
             <Container scrollView={true} navigation={this.props.navigation}>
-                <View
-                    style={{
-                        flex: 1,
-                        flexDirection: 'column',
-                        backgroundColor: 'white',
-                        borderRadius: 20,
-                        padding: 20,
-                        margin: 20
-                    }}>
-                    <View
-                        style={{
-                            width: '100%',
-                            flexDirection: 'row'
-                        }}>
-                        <Image
-                            source={{
-                                uri: item.image
-                            }}
-                            resizeMode={'contain'}
-                            style={{
-                                width: 150,
-                                height: 150
-                            }} />
-                        <View
-                            style={{
-                                flex: 1,
-                                padding: 10,
-                                justifyContent: 'flex-start',
-                                alignItems: 'flex-start'
-                            }}>
-                            <Text
-                                style={{
-                                    width: '100%',
-                                    fontSize: 18,
-                                    textAlign: 'center'
-                                }}>
-                                {item.name}
-                            </Text>
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    height: 25,
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
-                                <StarRating
-                                    disabled={true}
-                                    maxStars={10}
-                                    rating={item.averageRating}
-                                    starSize={15}
-                                    fullStarColor={'#FFEE58'}
-                                    halfStarColor={'#FFEE58'} />
-                            </View>
-                            <View
-                                style={{
-                                    flexDirection: 'row'
-                                }}>
-                                {this.renderPawn(item.minPlayers, item.maxPlayers)}
-                            </View>
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    height: 30,
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
-                                <Icon name={'time'} size={20} />
-                                <Text>{item.playingTime}
-                                    min</Text>
-                            </View>
-                        </View>
-                    </View>
-                </View>
+             <GameHeader navigation={this.props.navigation} item={item}/>
                 <View
                     style={{
                         flex: 1,

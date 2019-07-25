@@ -8,4 +8,6 @@ import FacebookButton from "./FacebookButton";
 import Fab from "./Fab";
 import Container from "./Container";
 import Button from "./Button";
-export { Separator, PickerIcon, Logo, Input, Head, GoogleButton, FacebookButton, Fab, Container, Button };
+import GameHeader from "./GameHeader";
+import UserHeader from "./UserHeader";
+export { Separator, PickerIcon, Logo, Input, Head, GoogleButton, FacebookButton, Fab, Container, Button, GameHeader, UserHeader };

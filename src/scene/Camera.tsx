@@ -29,7 +29,9 @@ export default class Camera extends Component<Props, State> {
         );
     }
     onBarCodeRead(data: any, type: any) {
-        console.log(this.props.navigation.state.params);
+        console.log(data);
+        const action = this.props.navigation.state.params.action;
+        this.props.navigation.navigate('LoanGame',{action})
     }
 }
 
