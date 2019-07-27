@@ -10,4 +10,5 @@ import Container from "./Container";
 import Button from "./Button";
 import GameHeader from "./GameHeader";
 import UserHeader from "./UserHeader";
-export { Separator, PickerIcon, Logo, Input, Head, GoogleButton, FacebookButton, Fab, Container, Button, GameHeader, UserHeader };
+import ScannerComponent from "./ScannerComponent";
+export { Separator, PickerIcon, Logo, Input, Head, GoogleButton, FacebookButton, Fab, Container, Button, GameHeader, UserHeader, ScannerComponent };
