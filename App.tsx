@@ -57,7 +57,8 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    headerMode: "none"
+    headerMode: "none",
+    initialRouteName:'LoanGame'
   }
 );
 
