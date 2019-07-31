@@ -10,7 +10,6 @@ export default class Button extends Component<ButtonProps> {
       <TouchableOpacity
         style={{
           width: "100%",
-          height: 60,
         }}
         onPress={this.props.onPress}>
         <View
@@ -18,6 +17,7 @@ export default class Button extends Component<ButtonProps> {
             borderRadius: 20,
             width: "90%",
             height: 60,
+            marginVertical:20,
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: Color.accentColor,

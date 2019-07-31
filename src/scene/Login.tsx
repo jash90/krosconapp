@@ -26,6 +26,7 @@ import {
   Input
 } from "../components";
 import { Props } from "../interfaces";
+import axios from "../Axios";
 interface State {
   email: string;
   password: string;
@@ -45,7 +46,6 @@ export default class Login extends Component<Props, State> {
     return (
       <Container
         navigation={this.props.navigation}
-        back={false}
         right={true}
         icon={"person-add"}
         text={Language.get("sign")}
@@ -65,25 +65,16 @@ export default class Login extends Component<Props, State> {
           />
         </View>
         <Content contentContainerStyle={styles.buttonContener}>
-          <Button text={Language.get("login")} onPress={() => this.login()} />
-          <FacebookButton
-            text={Language.get("signFace")}
-            onPress={() => this.facebookLogin()}
-          />
-          <GoogleButton
-            text={Language.get("signGoogle")}
-            onPress={() => this.googleLogin()}
-          />
+          <Button text={Language.get("login")} onPress={async () => await this.login()} />
         </Content>
       </Container>
     );
   }
-  async saveloginhaslo(login: string, password: string) {}
-  googleLogin = () => {};
-  facebookLogin = () => {};
 
-  login() {
-    this.props.navigation.navigate("LoadingScreen");
+  login(){
+    // const response = await axios.post('/login',{email:this.state.email,password:this.state.password});
+    // console.log(response);
+    this.props.navigation.navigate('Admin');
   }
 }
 

@@ -28,7 +28,13 @@ interface Props {
 export default class UserHeader extends Component<Props> {
   render() {
     return (
-      <View>
+      <View
+        style={{
+          backgroundColor: "white",
+          padding: 10,
+          margin: 10,
+          borderRadius: 20
+        }}>
         <Text style={{ fontWeight: "bold", fontSize: 22 }}>
           {`${this.props.fistname} ${this.props.lastname}`}
         </Text>

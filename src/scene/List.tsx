@@ -15,13 +15,16 @@ import StarRating from "react-native-star-rating";
 import { Actions } from "react-native-router-flux";
 import { Container, GameHeader } from "../components";
 import Color from "../Color";
+import { observer, inject } from "mobx-react";
+import AuthStore from "../store/AuthStore.js";
 interface State {
   active: boolean;
 }
 interface Props {
-  listgame: any[]
+  listgame: any[];
+  authStore: AuthStore;
 }
-export default class List extends Component<Props, State> {
+class List extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -29,16 +32,20 @@ export default class List extends Component<Props, State> {
     };
   }
 
-  componentWillMount() { }
+  componentWillMount() {}
 
   render() {
     return (
-      <Container navigation={this.props.navigation} back={false} right
-      icon={'person'} onPress={()=>this.props.navigation.navigate('Profile')}>
+      <Container
+        navigation={this.props.navigation}
+        back={false}
+        right
+        icon={"person"}
+        onPress={this.openProfile}>
         <FlatList
           data={this.props.navigation.state.params.listgame}
           renderItem={({ item }: any) => (
-            <GameHeader navigation={this.props.navigation} item={item}/>
+            <GameHeader navigation={this.props.navigation} item={item} />
           )}
         />
         <Fab
@@ -47,7 +54,7 @@ export default class List extends Component<Props, State> {
             backgroundColor: Color.accentColor
           }}
           position="bottomRight"
-          onPress={() => this.props.navigation.navigate('Camera')}>
+          onPress={() => this.props.authStore.setToken("asdfghjklsdfghjk")}>
           <NIcon name="camera" />
         </Fab>
       </Container>
@@ -65,6 +72,18 @@ export default class List extends Component<Props, State> {
     return table;
   }
   openItem(item: any) {
-    this.props.navigation.navigate({routeName:'Item', params: {item: item} });
+    this.props.navigation.navigate({
+      routeName: "Item",
+      params: { item: item }
+    });
   }
+  openProfile = () => {
+    if (this.props.authStore.token){
+      this.props.navigation.navigate('Profile');
+    }else{
+      this.props.navigation.navigate('Login');
+    }
+  };
 }
+
+export default inject("authStore")(observer(List));

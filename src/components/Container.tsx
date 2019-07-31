@@ -72,7 +72,7 @@ class Container extends Component<ContainerProps, State> {
               justifyContent: "center",
               alignItems: "center"
             }}>
-            <Image
+            {/* <Image
               ref={img => {
                 this.backgroundImage = img;
               }}
@@ -83,7 +83,7 @@ class Container extends Component<ContainerProps, State> {
                 height: "100%"
               }}
               onLoadEnd={() => this.imageLoaded()}
-            />
+            /> */}
           </View>
           {/* <BlurView
             style={styles.absolute}
@@ -108,7 +108,7 @@ class Container extends Component<ContainerProps, State> {
               justifyContent: "center",
               alignItems: "center"
             }}>
-            <Image
+            {/* <Image
               ref={img => {
                 this.backgroundImage = img;
               }}
@@ -119,7 +119,7 @@ class Container extends Component<ContainerProps, State> {
                 height: "100%"
               }}
               onLoadEnd={() => this.imageLoaded()}
-            />
+            /> */}
           </View>
           {/* <BlurView
             style={styles.absolute}

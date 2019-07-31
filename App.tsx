@@ -12,10 +12,13 @@ import BorrowBooks from "./src/scene/BorrowBooks";
 import Example from "./src/scene/Example";
 import Person from "./src/scene/Person";
 import LoanGame from "./src/scene/LoanGame";
+import Admin from "./src/scene/Admin";
 
 import DeviceInfo from "react-native-device-info";
 import Language from "./src/Language";
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import { View, StyleSheet } from "react-native";
+import { Provider } from "mobx-react";
 
 const AppNavigator = createStackNavigator(
   {
@@ -49,20 +52,34 @@ const AppNavigator = createStackNavigator(
     Example: {
       screen: Example
     },
-    Person:{
-      screen:Person
+    Person: {
+      screen: Person
     },
-    LoanGame:{
-      screen:LoanGame
+    LoanGame: {
+      screen: LoanGame
+    },
+    Admin:{
+      screen:Admin
     }
   },
   {
-    headerMode: "none",
-    initialRouteName:'LoanGame'
+    headerMode: "none"
   }
 );
+import store from "./src/store";
 
-export default createAppContainer(AppNavigator);
+const RootNavigator = createAppContainer(AppNavigator);
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider {...store}>
+        <RootNavigator />
+      </Provider>
+    );
+  }
+}
+
 // export default class App extends Component {
 //   componentWillMount() {
 //     Language.setL(DeviceInfo.getDeviceLocale().substring(0, 2));
