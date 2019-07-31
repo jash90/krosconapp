@@ -27,11 +27,18 @@ import {
 } from "../components";
 import { Props } from "../interfaces";
 import axios from "../Axios";
+import { AuthApi } from "../api/AuthApi";
+import Toast from "react-native-simple-toast";
+import { observer, inject } from "mobx-react";
+import AuthStore from "../store/AuthStore";
 interface State {
   email: string;
   password: string;
 }
-export default class Login extends Component<Props, State> {
+interface Props {
+  authStore: AuthStore;
+}
+class Login extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -41,7 +48,6 @@ export default class Login extends Component<Props, State> {
   }
   componentWillMount = () => {};
 
-  async componentDidMount() {}
   render() {
     return (
       <Container
@@ -65,16 +71,29 @@ export default class Login extends Component<Props, State> {
           />
         </View>
         <Content contentContainerStyle={styles.buttonContener}>
-          <Button text={Language.get("login")} onPress={async () => await this.login()} />
+          <Button
+            text={Language.get("login")}
+            onPress={async () => await this.login()}
+          />
         </Content>
       </Container>
     );
   }
 
-  login(){
-    // const response = await axios.post('/login',{email:this.state.email,password:this.state.password});
-    // console.log(response);
-    this.props.navigation.navigate('Admin');
+  async login() {
+    const response = await AuthApi.login(this.state.email, this.state.password);
+    const data = response.data;
+    if (data.error){
+      Toast.show("Niepoprawny login lub hasło.");
+    }
+    if (data.item){
+      const {email, token, tokenExpired} = data.item;
+      this.props.authStore.setEmail(email);
+      this.props.authStore.setToken(token);
+      this.props.authStore.setTokenExpired(tokenExpired);
+      this.props.navigation.navigate("Admin");
+    }
+    //
   }
 }
 
@@ -90,3 +109,4 @@ var styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+export default inject("authStore")(observer(Login));

@@ -5645,7 +5645,7 @@ react-native-safe-area-view@^0.14.1:
   dependencies:
     debounce "^1.2.0"
 
-react-native-simple-toast@^0.0.8:
+react-native-simple-toast@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/react-native-simple-toast/-/react-native-simple-toast-0.0.8.tgz#513f4add8d30e4c5109e536bfc6ea5825fea5d83"
   integrity sha512-qfhHsAtZuMV7llF74WjAHCjAQhfyDDRVrE9nmczCZSHZ5JRZ3XkqnZ8IyNnNUQMsGQodyV+0QEf5uPiWBICnUA==

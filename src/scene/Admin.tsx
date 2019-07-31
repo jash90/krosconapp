@@ -51,62 +51,50 @@ export default class Profile extends Component<Props, State> {
 
   render() {
     return (
-      <Container>
-        <Head
+      <Container
           navigation={this.props.navigation}
           back={true}
-          text={Language.get("editProfile")}
-        />
+          text={"Panel Administratora"}
+        >
         <View
           style={{
             height: "100%",
             width: "100%",
             flexDirection: "column",
-            justifyContent: "space-evenly"
+            justifyContent: "flex-start"
           }}>
           <UserHeader
             navigation={this.props.navigation}
-            fistname={"Bartłomiej"}
+            firstname={"Bartłomiej"}
             lastname={"Zimny"}
+            email={"bartek@gmail.com"}
+            city={"Strzyżów"}
+            age={25}
             allLoan={9}
             countLoan={1}
           />
 
-          <Button
+          {/* <Button
             style={{ paddingVertical: 10 }}
             text={"Wypożycz grę"}
             onPress={() => this.loanGame()}
-          />
+          /> */}
 
           <Button
             style={{ paddingVertical: 10 }}
-            text={"Oddaj grę"}
-            onPress={() => this.giveBackGame()}
+            text={"Dodaj grę"}
+            onPress={this.addItem}
           />
         </View>
       </Container>
     );
   }
 
-  loanGame = () => {
-    this.props.navigation.navigate("Camera", { action: "loanGame" });
+  addItem = () => {
+    this.props.navigation.navigate("AddItem");
   };
   giveBackGame = () => {
-    this.props.navigation.navigate("Camera", { action: "giveBackGame" });
-  };
-  changePassword = () => {
-    if (this.state.password === "") {
-      alert(Language.get("passwordRequired"));
-      return;
-    }
-    if (this.state.repeatPassword === "") {
-      alert(Language.get("repeatPassRequired"));
-      return;
-    }
-    if (this.state.password !== this.state.repeatPassword) {
-      alert(Language.get("passwordSame"));
-      return;
-    }
+ //   this.props.navigation.navigate("Camera", { action: "giveBackGame" });
   };
 }
 
