@@ -4,19 +4,22 @@ import {
   Image,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   StyleSheet
 } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
-const Icon = createIconSetFromIcoMoon(selection);
+const SIcon = createIconSetFromIcoMoon(selection);
 import StarRating from "react-native-star-rating";
 import { withNavigation } from "react-navigation";
+import { Spacer } from "./StyledComponent";
+import Icon from "react-native-vector-icons/MaterialIcons";
 interface User {
   firstname: string;
   lastname: string;
-  email:string|null;
-  age:number|null;
-  city:string|null;
+  email: string | null;
+  age: number | null;
+  city: string | null;
   countLoan: number;
   allLoan: number;
 }
@@ -24,35 +27,68 @@ interface User {
 interface Props {
   firstname: string;
   lastname: string;
-  email:string|null;
-  age:number|null;
-  city:string|null;
+  email: string | null;
+  age: number | null;
+  city: string | null;
   countLoan: number;
   allLoan: number;
+  edit?:boolean;
+  privilegeId:number;
   navigation: any;
 }
 export default class UserHeader extends Component<Props> {
   render() {
-    const {firstname, lastname, email, age, city, countLoan, allLoan} = this.props;
+    const {
+      firstname,
+      lastname,
+      email,
+      age,
+      city,
+      countLoan,
+      allLoan,
+      edit,
+      privilegeId
+    } = this.props;
     return (
       <View
         style={{
           backgroundColor: "white",
           padding: 10,
-          margin: 20,
+          paddingHorizontal:20,
+          margin: 10,
+          marginHorizontal:20,
           borderRadius: 20
         }}>
-        <Text style={{ fontWeight: "bold", fontSize: 22 }}>
-          {`${firstname} ${lastname}`}
-        </Text>
-        <Text style={{ fontSize: 18 }}>{`${email}`}</Text>
-        <Text style={{ fontSize: 18 }}>{`${age?age:"-"} lat`}</Text>
-        <Text style={{ fontSize: 18 }}>{`Miasto: ${city?city:"-"}`}</Text>
-        <Text style={{ fontSize: 18 }}>{`Numer dokumentu: 1234555555`}</Text>
-        <Text style={{ fontSize: 18 }}>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "column" }}>
+            <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+              {`${firstname?firstname:"-"} ${lastname?lastname:"-"}`}
+            </Text>
+            <Text style={{ fontSize: 16 }}>{`${email}`}</Text>
+          </View>
+        {edit && (<View
+            style={{
+              flex: 1,
+              flexDirection: "column",
+              alignItems: "flex-end"
+            }}>
+            <TouchableOpacity onPress={this.goToEdit}>
+            <Icon name={"edit"} size={30} style={{ padding: 5 }} />
+          </TouchableOpacity>
+          </View>)}
+        </View>
+        <Text style={{ fontSize: 16 }}>{`${age ? age : "-"} lat`}</Text>
+        <Text style={{ fontSize: 16 }}>{`Miasto: ${city ? city : "-"}`}</Text>
+        <Text style={{ fontSize: 16 }}>
           {`Liczba wypożyczonych gier: ${this.props.countLoan}`}
         </Text>
+        {this.props.children}
       </View>
     );
   }
+
+  goToEdit = () => {
+    this.props.navigation.navigate("EditProfile");
+  }
+
 }

@@ -6,4 +6,12 @@ export class AuthApi {
       password: password
     });
   }
+  public static async register(email: string, password: string, firstname: string, lastname: string) {
+    return await axios.post("/register", {
+      email,
+      password,
+      firstname,
+      lastname
+    });
+  }
 }

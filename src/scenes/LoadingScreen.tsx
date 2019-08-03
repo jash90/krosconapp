@@ -1,9 +1,24 @@
 import React, { Component } from "react";
-import { View, Image } from "react-native";
+import { View, Image, AsyncStorage } from "react-native";
 import Color from "../Color";
 import { Actions } from "react-native-router-flux";
-export default class LoadingScreen extends Component {
-  componentDidMount = () => {
+import Toast from "react-native-simple-toast";
+import AuthStore from "../stores/AuthStore";
+import { observer, inject } from "mobx-react";
+interface Props {
+  authStore: AuthStore;
+}
+class LoadingScreen extends Component {
+  componentDidMount = async() => {
+    try {
+      const value = await AsyncStorage.getItem('User');
+      if (value !== null) {
+        let user = JSON.parse(value);
+        this.props.authStore.setUser(user);
+      }
+    } catch (error) {
+      Toast.show(error);
+    }
     fetch("https://bgg-json.azurewebsites.net/collection/edwalter")
       .then(response => response.json())
       .then(responseJson => {
@@ -48,3 +63,4 @@ export default class LoadingScreen extends Component {
     );
   }
 }
+export default inject("authStore")(observer(LoadingScreen));

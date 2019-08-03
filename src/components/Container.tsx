@@ -98,16 +98,16 @@ class Container extends Component<ContainerProps, State> {
       return (
         <View
           style={
-            this.props.styleContent ? this.props.styleContent : styles.fullStyle
+            this.props.styleContent ? [this.props.styleContent, styles.fullStyle] : styles.fullStyle
           }>
-          <View
+          {/* <View
             style={{
               position: "absolute",
               width: "100%",
               height: "100%",
               justifyContent: "center",
               alignItems: "center"
-            }}>
+            }}> */}
             {/* <Image
               ref={img => {
                 this.backgroundImage = img;
@@ -120,7 +120,7 @@ class Container extends Component<ContainerProps, State> {
               }}
               onLoadEnd={() => this.imageLoaded()}
             /> */}
-          </View>
+          {/* </View> */}
           {/* <BlurView
             style={styles.absolute}
             viewRef={this.state.viewRef}

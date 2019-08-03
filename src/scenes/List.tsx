@@ -4,7 +4,7 @@ import {
   Image,
   FlatList,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet
 } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
@@ -16,7 +16,7 @@ import { Actions } from "react-native-router-flux";
 import { Container, GameHeader } from "../components";
 import Color from "../Color";
 import { observer, inject } from "mobx-react";
-import AuthStore from "../store/AuthStore.js";
+import AuthStore from "../stores/AuthStore.js.js";
 interface State {
   active: boolean;
 }
@@ -45,18 +45,34 @@ class List extends Component<Props, State> {
         <FlatList
           data={this.props.navigation.state.params.listgame}
           renderItem={({ item }: any) => (
-            <GameHeader navigation={this.props.navigation} item={item} />
+            <TouchableOpacity
+              onPress={() => {
+                this.openItem(item);
+              }}>
+              <GameHeader
+                navigation={this.props.navigation}
+                name={item.name}
+                thumbnail={item.thumbnail}
+                averageRating={item.averageRating}
+                minPlayers={item.minPlayers}
+                maxPlayers={item.maxPlayers}
+                playingTime={item.playingTime}
+              />
+            </TouchableOpacity>
           )}
         />
-        <Fab
+       {this.props.authStore.privilegeId === 1 && <Fab
           active={this.state.active}
           style={{
             backgroundColor: Color.accentColor
           }}
           position="bottomRight"
-          onPress={() => this.props.authStore.setToken("asdfghjklsdfghjk")}>
-          <NIcon name="camera" />
-        </Fab>
+          onPress={() => this.props.navigation.navigate("QR")}>
+          <Image
+            style={{ width: 20, height: 20 }}
+            source={require("../assets/qr.png")}
+          />
+        </Fab>}
       </Container>
     );
   }
@@ -71,17 +87,17 @@ class List extends Component<Props, State> {
     }
     return table;
   }
-  openItem(item: any) {
+  openItem = (item: any) => {
     this.props.navigation.navigate({
       routeName: "Item",
       params: { item: item }
     });
-  }
+  };
   openProfile = () => {
-    if (this.props.authStore.token){
-      this.props.navigation.navigate('Profile');
-    }else{
-      this.props.navigation.navigate('Login');
+    if (this.props.authStore.token) {
+      this.props.navigation.navigate("Admin");
+    } else {
+      this.props.navigation.navigate("Login");
     }
   };
 }

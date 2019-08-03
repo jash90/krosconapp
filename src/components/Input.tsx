@@ -22,6 +22,7 @@ export default class Input extends Component<Props> {
         secureTextEntry={this.props.secureTextEntry}
         onChangeText={(text: string) => this.props.onChangeText(text)}
         value={this.props.value}
+        autoCapitalize='none'
         style={styles.textInputStyle}
       />
     );

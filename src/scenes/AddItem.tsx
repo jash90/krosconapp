@@ -10,10 +10,13 @@ import {
   FlatList
 } from "react-native";
 import ImagePicker from "react-native-image-picker";
-import { Container, Button } from "../components";
+import { Container, Button, ViewText } from "../components";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Item, Label, Input } from "native-base";
+import { Spacer, RCText, RCView } from "../components/StyledComponent";
+import { withScanner } from "../components/withScanner";
+const WithScannerText = withScanner(ViewText);
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   data: any;
@@ -27,6 +30,8 @@ interface State {
   publisher: string;
   type: string;
   mechanic: string;
+  uuid: string;
+  value: boolean;
 }
 export default class AddItem extends Component<Props, State> {
   constructor(props: Props) {
@@ -39,7 +44,9 @@ export default class AddItem extends Component<Props, State> {
       time: "0",
       publisher: "",
       type: "",
-      mechanic: ""
+      mechanic: "",
+      uuid: "",
+      value: false
     };
   }
   render() {
@@ -49,42 +56,25 @@ export default class AddItem extends Component<Props, State> {
         scrollView={true}
         right
         icon={"save"}
-        onPress={()=>this.save()}>
-        <View
-          style={{
-            flexDirection: "column",
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 20,
-            margin: 20
-          }}>
-          <Text>{JSON.stringify(11)}</Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "column",
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 5,
-            paddingHorizontal: 20,
-            margin: 20
-          }}>
+        onPress={() => this.save()}>
+        <WithScannerText
+          text={"test"}
+          value={this.state.value}
+          onPress={() => {
+            setTimeout(() => {
+              this.setState({ value: true });
+            }, 3000);
+          }}
+        />
+        <RCView>
           <TextInput
             value={this.state.name}
             placeholder={"Nazwa gry"}
-            style={{ fontSize: 25 }}
+            style={{ fontSize: 16 }}
             onChangeText={name => this.setState({ name })}
           />
-        </View>
-        <View
-          style={{
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 20,
-            margin: 20,
-            flexDirection: "row",
-            justifyContent: "center"
-          }}>
+        </RCView>
+        <RCView flexDirection="row" justifyContent="center">
           <FlatList
             contentContainerStyle={{
               justifyContent: "center",
@@ -101,110 +91,67 @@ export default class AddItem extends Component<Props, State> {
                 }}>
                 <Icon
                   name={"pawn"}
-                  size={25}
+                  size={16}
                   color={item.item ? "#c30000" : "black"}
                 />
               </TouchableOpacity>
             )}
           />
           <View>
-            <Text style={{ color: "grey", fontSize: 22 }}>
+            <Text style={{ color: "grey", fontSize: 16 }}>
               {this.state.minPlayers}
             </Text>
           </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 5,
-            paddingLeft: 20,
-            paddingHorizontal: 20,
-            margin: 20,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center"
-          }}>
-          <Text style={{ color: "black", fontSize: 25 }}>Wiek</Text>
+        </RCView>
+        <RCView flexDirection="row">
+          <Text style={{ color: "black", fontSize: 16 }}>Wiek</Text>
           <TextInput
-            style={{ textAlign: "right", marginTop: 2, fontSize: 25 }}
+            style={{ textAlign: "right", fontSize: 16, width: 25 }}
             keyboardType="phone-pad"
             value={this.state.age}
             maxLength={2}
             onChangeText={text => this.setState({ age: text })}
           />
-          <Text style={{ color: "black", fontSize: 25 }}>lat +</Text>
-        </View>
-        <View
-          style={{
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 5,
-            paddingLeft: 20,
-            paddingHorizontal: 20,
-            margin: 20,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center"
-          }}>
-          <Text style={{ color: "black", fontSize: 25 }}>Czas gry</Text>
+          <Text style={{ color: "black", fontSize: 16 }}>lat +</Text>
+        </RCView>
+        <RCView
+          flexDirection="row"
+          justifyContent="flex-start"
+          alignItems="center">
+          <Text style={{ color: "black", fontSize: 16 }}>Czas gry</Text>
           <TextInput
-            style={{ textAlign: "right", marginTop: 2, fontSize: 25 }}
+            style={{ textAlign: "right", fontSize: 16, width: 35 }}
             keyboardType="phone-pad"
             value={this.state.time}
             maxLength={3}
             onChangeText={time => this.setState({ time })}
           />
-          <Text style={{ color: "black", fontSize: 25 }}>min</Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "column",
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 5,
-            paddingLeft: 20,
-            margin: 20
-          }}>
+          <Text style={{ color: "black", fontSize: 16 }}>min</Text>
+        </RCView>
+        <RCView>
           <TextInput
             placeholder={"Wydawca"}
             value={this.state.publisher}
-            style={{ fontSize: 25 }}
+            style={{ fontSize: 16 }}
             onChangeText={publisher => this.setState({ publisher })}
           />
-        </View>
-        <View
-          style={{
-            flexDirection: "column",
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 5,
-            paddingLeft: 20,
-            margin: 20
-          }}>
+        </RCView>
+        <RCView>
           <TextInput
             placeholder={"Typ gry"}
             value={this.state.type}
-            style={{ fontSize: 25 }}
+            style={{ fontSize: 16 }}
             onChangeText={type => this.setState({ type })}
           />
-        </View>
-        <View
-          style={{
-            flexDirection: "column",
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 5,
-            paddingLeft: 20,
-            margin: 20
-          }}>
+        </RCView>
+        <RCView>
           <TextInput
             placeholder={"Mechaniki planszówki"}
             value={this.state.mechanic}
-            style={{ fontSize: 25 }}
+            style={{ fontSize: 16 }}
             onChangeText={mechanic => this.setState({ mechanic })}
           />
-        </View>
+        </RCView>
       </Container>
     );
   }

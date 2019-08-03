@@ -28,7 +28,15 @@ export default class Item extends Component<Props, State> {
     console.log(item);
     return (
       <Container scrollView={true} navigation={this.props.navigation}>
-        <GameHeader navigation={this.props.navigation} item={item} />
+        <GameHeader
+          navigation={this.props.navigation}
+          name={item.name}
+          thumbnail={item.thumbnail}
+          averageRating={item.averageRating}
+          minPlayers={item.minPlayers}
+          maxPlayers={item.maxPlayers}
+          playingTime={item.playingTime}
+        />
         <View
           style={{
             flex: 1,

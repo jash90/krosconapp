@@ -1,72 +1,48 @@
 import React, { Component } from "react";
 import { Router, Stack, Scene } from "react-native-router-flux";
-import LoadingScreen from "./src/scene/LoadingScreen";
-import List from "./src/scene/List";
-import Item from "./src/scene/Item";
-import Camera from "./src/scene/Camera";
-import AddItem from "./src/scene/AddItem";
-import Login from "./src/scene/Login";
-import Register from "./src/scene/Register";
-import Profile from "./src/scene/Profile";
-import BorrowBooks from "./src/scene/BorrowBooks";
-import Example from "./src/scene/Example";
-import Person from "./src/scene/Person";
-import LoanGame from "./src/scene/LoanGame";
-import Admin from "./src/scene/Admin";
+import LoadingScreen from "./src/scenes/LoadingScreen";
+import List from "./src/scenes/List";
+import Item from "./src/scenes/Item";
+import Camera from "./src/scenes/Camera";
+import AddItem from "./src/scenes/AddItem";
+import Login from "./src/scenes/Login";
+import Register from "./src/scenes/Register";
+import LoanGame from "./src/scenes/LoanGame";
+import Admin from "./src/scenes/Admin";
+import QR from "./src/scenes/QR";
+import LoanStatus from "./src/scenes/LoanStatus";
+import Privilege from "./src/scenes/Privilege";
+import EditProfile from "./src/scenes/EditProfile";
+import ChangePassword from "./src/scenes/ChangePassword";
 
 import DeviceInfo from "react-native-device-info";
 import Language from "./src/Language";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, AsyncStorage } from "react-native";
 import { Provider } from "mobx-react";
 
 const AppNavigator = createStackNavigator(
   {
-    LoadingScreen: {
-      screen: LoadingScreen
-    },
-    List: {
-      screen: List
-    },
-    Item: {
-      screen: Item
-    },
-    Camera: {
-      screen: Camera
-    },
-    AddItem: {
-      screen: AddItem
-    },
-    Login: {
-      screen: Login
-    },
-    Register: {
-      screen: Register
-    },
-    Profile: {
-      screen: Profile
-    },
-    BorrowBooks: {
-      screen: BorrowBooks
-    },
-    Example: {
-      screen: Example
-    },
-    Person: {
-      screen: Person
-    },
-    LoanGame: {
-      screen: LoanGame
-    },
-    Admin:{
-      screen:Admin
-    }
+    LoadingScreen,
+    List,
+    Item,
+    Camera,
+    AddItem,
+    Login,
+    Register,
+    LoanGame,
+    Admin,
+    QR,
+    LoanStatus,
+    Privilege,
+    EditProfile,
+    ChangePassword
   },
   {
     headerMode: "none"
   }
 );
-import store from "./src/store";
+import store from "./src/stores";
 
 const RootNavigator = createAppContainer(AppNavigator);
 

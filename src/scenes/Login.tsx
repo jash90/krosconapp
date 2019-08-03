@@ -9,7 +9,8 @@ import {
   Image,
   ToastAndroid,
   AsyncStorage,
-  Alert
+  Alert,
+  TextInput
 } from "react-native";
 
 import { Content } from "native-base";
@@ -30,7 +31,8 @@ import axios from "../Axios";
 import { AuthApi } from "../api/AuthApi";
 import Toast from "react-native-simple-toast";
 import { observer, inject } from "mobx-react";
-import AuthStore from "../store/AuthStore";
+import AuthStore from "../stores/AuthStore";
+import { RCView } from "../components/StyledComponent";
 interface State {
   email: string;
   password: string;
@@ -53,25 +55,37 @@ class Login extends Component<Props, State> {
       <Container
         navigation={this.props.navigation}
         right={true}
+        scrollView
         icon={"person-add"}
         text={Language.get("sign")}
         onPress={() => this.props.navigation.navigate("Register")}>
         <View>
           <Logo size={150} />
-          <Input
-            placeholder={Language.get("email")}
-            onChangeText={(text: string) => this.setState({ email: text })}
-            value={this.state.email}
-          />
-          <Input
-            placeholder={Language.get("password")}
-            secureTextEntry={true}
-            onChangeText={(text: string) => this.setState({ password: text })}
-            value={this.state.password}
-          />
+          <RCView>
+            <TextInput
+              autoCapitalize={"none"}
+              value={this.state.email}
+              placeholder={"Email"}
+              style={{ fontSize: 16 }}
+              onChangeText={(email: any) => this.setState({ email })}
+            />
+          </RCView>
+          <RCView>
+            <TextInput
+              autoCapitalize={"none"}
+              value={this.state.password}
+              placeholder={"Hasło"}
+              secureTextEntry={true}
+              style={{ fontSize: 16 }}
+              onChangeText={(password: any) => this.setState({ password })}
+            />
+          </RCView>
         </View>
         <Content contentContainerStyle={styles.buttonContener}>
           <Button
+            primary
+            color={Color.accentColor}
+            colorText={"white"}
             text={Language.get("login")}
             onPress={async () => await this.login()}
           />
@@ -82,17 +96,18 @@ class Login extends Component<Props, State> {
 
   async login() {
     const response = await AuthApi.login(this.state.email, this.state.password);
+    console.log(response);
     const data = response.data;
-    if (data.error){
+    if (data.error) {
       Toast.show("Niepoprawny login lub hasło.");
     }
-    if (data.item){
-      const {email, token, tokenExpired} = data.item;
-      this.props.authStore.setEmail(email);
-      this.props.authStore.setToken(token);
-      this.props.authStore.setTokenExpired(tokenExpired);
-      this.props.navigation.navigate("Admin");
+    if (data.item) {
+      this.props.authStore.setUser(data.item);
+      console.log(data.item);
+      await AsyncStorage.setItem("User", JSON.stringify(data.item));
+      this.props.navigation.navigate("List");
     }
+    console.log(response);
     //
   }
 }

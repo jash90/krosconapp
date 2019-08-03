@@ -22,18 +22,11 @@ export const withScanner = (WrappedComponent: any) => {
       const { loading, sizeIndicator, colorIndicator, value } = this.props;
 
       return (
-        <View style={{
-            flexDirection: "column",
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 20,
-            margin: 20,
-            borderWidth:1
-          }}>
+        <>
           {value && <WrappedComponent {...this.props}/>} 
 
           {!value && <ScannerComponent {...this.props} />}
-        </View>
+        </>
       );
     }
   };

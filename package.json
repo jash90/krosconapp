@@ -7,6 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.14",
+    "@emotion/is-prop-valid": "^0.8.2",
     "@emotion/native": "^10.0.14",
     "@types/react-native-material-dropdown": "^0.11.0",
     "@types/react-native-star-rating": "^1.1.0",
@@ -28,10 +30,12 @@
     "react-native-linear-gradient": "^2.5.4",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-modal-datetime-picker": "^7.5.0",
+    "react-native-qrcode": "^0.2.7",
     "react-native-router-flux": "^4.0.6",
     "react-native-simple-toast": "0.0.8",
     "react-native-star-rating": "^1.1.0",
-    "react-native-vector-icons": "^6.6.0",
+    "react-native-svg": "^9.5.3",
+    "react-native-vector-icons": "^6.3.0",
     "react-navigation": "^3.11.1"
   },
   "devDependencies": {
