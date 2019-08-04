@@ -76,7 +76,7 @@ export default class Head extends Component<HeadProps> {
 const styles = StyleSheet.create({
   styleHeader: { backgroundColor: Color.secondaryColor },
   textHeader: { flex: 3, justifyContent: "center", alignItems: "center" },
-  iconLeftHeader: { color: "white", paddingLeft: 5 },
+  iconLeftHeader: { color: "white", paddingHorizontal: 5 },
   iconRightHeader: { paddingRight: 5 },
   fullStyle: { flex: 1 }
 });

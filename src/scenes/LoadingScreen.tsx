@@ -9,9 +9,9 @@ interface Props {
   authStore: AuthStore;
 }
 class LoadingScreen extends Component {
-  componentDidMount = async() => {
+  componentDidMount = async () => {
     try {
-      const value = await AsyncStorage.getItem('User');
+      const value = await AsyncStorage.getItem("User");
       if (value !== null) {
         let user = JSON.parse(value);
         this.props.authStore.setUser(user);
@@ -19,14 +19,16 @@ class LoadingScreen extends Component {
     } catch (error) {
       Toast.show(error);
     }
-    fetch("https://bgg-json.azurewebsites.net/collection/edwalter")
-      .then(response => response.json())
-      .then(responseJson => {
-        this.props.navigation.navigate('List', {listgame: responseJson});
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    const listgame: any[] = [];
+    listgame.push({
+      name: "Game",
+      minPlayers: 2,
+      maxPlayers: 4,
+      playingTime: 60,
+      minAge: 5,
+      publisher:"Rebel"
+    });
+    this.props.navigation.navigate("List", { listgame });
   };
 
   render() {

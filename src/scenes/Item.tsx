@@ -11,6 +11,7 @@ import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection";
 const Icon = createIconSetFromIcoMoon(selection);
 import StarRating from "react-native-star-rating";
+import Color from "../Color";
 import { Container, GameHeader, Button } from "../components";
 interface Props {
   item: any;
@@ -31,11 +32,11 @@ export default class Item extends Component<Props, State> {
         <GameHeader
           navigation={this.props.navigation}
           name={item.name}
-          thumbnail={item.thumbnail}
-          averageRating={item.averageRating}
+          minAge={item.minAge}
           minPlayers={item.minPlayers}
           maxPlayers={item.maxPlayers}
           playingTime={item.playingTime}
+          publisher={item.publisher}
         />
         <View
           style={{
@@ -44,10 +45,22 @@ export default class Item extends Component<Props, State> {
             backgroundColor: "white",
             borderRadius: 20,
             padding: 20,
-            marginLeft: 20,
-            marginRight: 20,
-            marginBottom: 20
+            margin: 10,
+            marginHorizontal: 20
           }}>
+          <Text>{this.loremtext()}</Text>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "column",
+            backgroundColor: "white",
+            borderRadius: 20,
+            padding: 20,
+            margin: 10,
+            marginHorizontal: 20
+          }}>
+          <Text>Typ</Text>
           <FlatList
             data={this.getTags()}
             horizontal={true}
@@ -77,13 +90,36 @@ export default class Item extends Component<Props, State> {
             backgroundColor: "white",
             borderRadius: 20,
             padding: 20,
-            marginLeft: 20,
-            marginRight: 20,
-            marginBottom: 20
+            margin: 10,
+            marginHorizontal: 20
           }}>
-          <Text>{this.loremtext()}</Text>
+          <Text>Mechanika</Text>
+          <FlatList
+            data={this.getTags()}
+            horizontal={true}
+            contentContainerStyle={{
+              flex: 1,
+              flexWrap: "wrap"
+            }}
+            renderItem={({ item }) => (
+              <View
+                style={{
+                  margin: 5,
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  borderRadius: 20,
+                  borderWidth: 1,
+                  borderColor: "black"
+                }}>
+                <Text>{item}</Text>
+              </View>
+            )}
+          />
         </View>
         <Button
+          primary
+          color={Color.accentColor}
+          colorText={"white"}
           onPress={() => this.props.navigation.navigate("LoanGame")}
           text={"LoanGame"}
         />
@@ -105,48 +141,10 @@ export default class Item extends Component<Props, State> {
     return (
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor placerat o" +
       "rci, ut ullamcorper tellus scelerisque nec. Nullam accumsan, nunc sit amet susci" +
-      "pit cursus, neque ligula sodales orci, sit amet cursus nulla velit sit amet lore" +
-      "m. Vestibulum et elementum elit. Quisque ligula neque, aliquet vitae ultricies n" +
-      "ec, commodo sed arcu. Duis pretium quam a ultricies convallis. In tristique elit" +
-      " tortor. Donec vulputate justo eget lorem accumsan mattis. Donec laoreet diam eu" +
-      " odio mollis, ut finibus ipsum porta. Ut sagittis tincidunt ipsum, a placerat ve" +
-      "lit condimentum sed. Sed accumsan erat in lacus efficitur tempus. Vestibulum dic" +
-      "tum dignissim ultricies. Nunc pellentesque interdum accumsan. Pellentesque leo m" +
-      "assa, porttitor eu pretium eget, lobortis a dolor. Suspendisse suscipit, lectus " +
-      "nec tincidunt tempus, ex ipsum vulputate tellus, at bibendum lacus velit non lig" +
-      "ula.Curabitur malesuada at quam tempus vehicula.Mauris congue dui est, id luctus" +
-      " risus tempor sit amet.Ut sit amet nibh ipsum.Praesent vitae turpis rutrum, blan" +
-      "dit velit at, maximus urna.Quisque mollis feugiat quam sed lacinia.Donec consect" +
-      "etur, urna ac venenatis sagittis, elit nibh posuere eros, at rutrum ipsum lectus" +
-      " quis libero.Aliquam feugiat, sem sit amet placerat molestie, est ante gravida e" +
-      "x, sagittis ullamcorper ante lectus quis eros.Donec finibus justo quis mi dapibu" +
-      "s consectetur at quis metus.Nullam sed metus a nulla finibus auctor.Fusce vitae " +
-      "augue euismod nisl semper tempus.Curabitur vel efficitur velit."
+      "pit cursus, neque ligula sodales orci, sit amet cursus nulla velit sit amet lore"
     );
   }
   getTags() {
-    return [
-      "Lorem",
-      "ipsum",
-      "dolor",
-      "sit",
-      "amet",
-      "consectetur",
-      "adipiscing",
-      "elit",
-      "Nunc",
-      "eleifend",
-      "tincidunt",
-      "ultricies",
-      "Aenean",
-      "ac",
-      "diam",
-      "posuere",
-      "vestibulum",
-      "mauris",
-      "at",
-      "tristique",
-      "arcu"
-    ];
+    return ["Lorem", "ipsum", "dolor", "sit", "amet"];
   }
 }
