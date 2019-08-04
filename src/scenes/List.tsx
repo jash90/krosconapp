@@ -52,13 +52,13 @@ class List extends Component<Props, State> {
               <GameHeader
                 navigation={this.props.navigation}
                 name={item.name}
-                thumbnail={item.thumbnail}
-                averageRating={item.averageRating}
+                minAge={item.minAge}
                 minPlayers={item.minPlayers}
                 maxPlayers={item.maxPlayers}
                 playingTime={item.playingTime}
+                publisher={item.publisher}
               />
-            </TouchableOpacity>
+             </TouchableOpacity>
           )}
         />
        {this.props.authStore.privilegeId === 1 && <Fab

@@ -28,7 +28,7 @@ import {
 } from "../components";
 import { Props } from "../interfaces";
 import axios from "../Axios";
-import { AuthApi } from "../api/AuthApi";
+import AuthApi from "../api/AuthApi";
 import Toast from "react-native-simple-toast";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
@@ -86,15 +86,15 @@ class Login extends Component<Props, State> {
             primary
             color={Color.accentColor}
             colorText={"white"}
-            text={Language.get("login")}
-            onPress={async () => await this.login()}
+            text={"Zaloguj"}
+            onPress={this.login}
           />
         </Content>
       </Container>
     );
   }
 
-  async login() {
+  login = async () => {
     const response = await AuthApi.login(this.state.email, this.state.password);
     console.log(response);
     const data = response.data;
