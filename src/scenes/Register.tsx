@@ -64,7 +64,7 @@ class Register extends Component<Props, State> {
             value={this.state.password}
             placeholder={"Hasło"}
             secureTextEntry={true}
-            style={{ fontSize: 16 }}
+            style={{ fontSize: 16, flex: 1 }}
             onChangeText={(password: any) => this.setState({ password })}
           />
         </RCView>
