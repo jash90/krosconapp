@@ -14,4 +14,16 @@ export default class AuthApi {
       lastname
     });
   }
+  public static async changePrivilege(userId:number, privilegeId:number){
+    return await axios.post("/changePrivilege",{
+      userId,
+      privilegeId
+    })
+  }
+  public static async changePassword(userId:number, password:string){
+    return await axios.post("/changePassword",{
+      userId,
+      password
+    })
+  }
 }
