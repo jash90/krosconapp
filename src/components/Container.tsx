@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { Container as NContainer, Content } from "native-base";
 
-import BlurView from "react-native-blur";
 import Color from "../Color";
 import Language from "../Language";
 import { Head } from ".";

@@ -26,7 +26,6 @@ import {
   Button,
   Input
 } from "../components";
-import { Props } from "../interfaces";
 import axios from "../Axios";
 import AuthApi from "../api/AuthApi";
 import Toast from "react-native-simple-toast";
