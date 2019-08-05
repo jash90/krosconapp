@@ -6,7 +6,7 @@ import Language from "../Language";
 import { Container, Logo, Input, Button } from "../components";
 import { Props } from "../interfaces";
 import { RCView } from "../components/StyledComponent";
-import { AuthApi } from "../api/AuthApi";
+import AuthApi from "../api/AuthApi";
 import Toast from "react-native-simple-toast";
 import { observer, inject } from "mobx-react";
 interface State {
@@ -64,7 +64,7 @@ class Register extends Component<Props, State> {
             value={this.state.password}
             placeholder={"Hasło"}
             secureTextEntry={true}
-            style={{ fontSize: 16 }}
+            style={{ fontSize: 16, flex: 1 }}
             onChangeText={(password: any) => this.setState({ password })}
           />
         </RCView>
