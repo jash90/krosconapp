@@ -66,17 +66,7 @@ class Admin extends Component<Props, State> {
               primary
               color={`${Color.accentColor}`}
               colorText="white"
-              text={"Wypożycz grę"}
-              onPress={this.loanGame}
-            />
-          )}
-
-          {this.props.authStore.privilegeId === 2 && (
-            <Button
-              primary
-              color={`${Color.accentColor}`}
-              colorText={"white"}
-              text={"Oddaj grę"}
+              text={"Wypożycz grę / Oddaj grę"}
               onPress={this.loanGame}
             />
           )}

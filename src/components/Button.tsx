@@ -5,7 +5,7 @@ import Color from "../Color";
 import { ButtonProps } from "../interfaces";
 
 const Primary = styled.View`
-  width: 90%;
+  width: 100%;
   height: 50px;
   border-radius:20px;
   justify-content: center;
@@ -15,7 +15,7 @@ const Primary = styled.View`
 `;
 
 const Outline = styled.View`
-  width: 90%;
+  width: 100%;
   height: 50px;
   justify-content: center;
   align-items: center;
@@ -38,6 +38,14 @@ interface ColorButtonProps extends ButtonProps{
 }
 
 export default class Button extends Component<ColorButtonProps> {
+  public static defaultProps: ColorButtonProps = {
+    primary:true,
+    colorText:"white",
+    color: "black",
+    text:"",
+    onPress:()=>{}
+  };
+
   render() {
     return (
       <TouchableOpacity
@@ -47,7 +55,7 @@ export default class Button extends Component<ColorButtonProps> {
         }}
         onPress={this.props.onPress}>
         {this.props.outline && this.renderOutline()}
-        {this.props.primary && this.renderPrimary()}
+        {!this.props.outline && this.props.primary && this.renderPrimary()}
       </TouchableOpacity>
     );
   }

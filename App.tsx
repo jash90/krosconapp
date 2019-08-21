@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Router, Stack, Scene } from "react-native-router-flux";
 import LoadingScreen from "./src/scenes/LoadingScreen";
 import List from "./src/scenes/List";
 import Item from "./src/scenes/Item";
@@ -15,10 +14,7 @@ import Privilege from "./src/scenes/Privilege";
 import EditProfile from "./src/scenes/EditProfile";
 import ChangePassword from "./src/scenes/ChangePassword";
 
-import DeviceInfo from "react-native-device-info";
-import Language from "./src/Language";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import { View, StyleSheet, AsyncStorage } from "react-native";
 import { Provider } from "mobx-react";
 
 const AppNavigator = createStackNavigator(
@@ -43,15 +39,18 @@ const AppNavigator = createStackNavigator(
   }
 );
 import store from "./src/stores";
+import { MenuProvider } from "react-native-popup-menu";
 
 const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   render() {
     return (
-      <Provider {...store}>
-        <RootNavigator />
-      </Provider>
+      <MenuProvider>
+        <Provider {...store}>
+          <RootNavigator />
+        </Provider>
+      </MenuProvider>
     );
   }
 }

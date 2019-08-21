@@ -1,5 +1,4 @@
-import styled, { css } from '@emotion/native'
-import isPropValid from '@emotion/is-prop-valid'
+import styled from '@emotion/native'
 const Spacer = styled.View`
   display: flex;
   flex:1;
@@ -7,14 +6,15 @@ const Spacer = styled.View`
 `
 const RCText = styled.Text`
 display: flex;
-font-size: 20px;
+color:black;
+font-size: 16px;
 `
 const RCView = styled.View`
 display:flex;
 flex-direction:row;
 background-color:white;
 height:50px;
-margin:10px 20px;
+margin: 10px 0px;
 padding:0px 20px;
 border-radius:20px;
 justify-content:flex-start;

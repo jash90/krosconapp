@@ -5,19 +5,21 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-  ScrollView,
   Text,
-  FlatList
 } from "react-native";
 import ImagePicker from "react-native-image-picker";
-import { Container, Button, ViewText } from "../components";
+import {
+  Container,
+  ViewText,
+  ModalPickerPawn,
+  ModalSingleList,
+  ModalMultiList
+} from "../components";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
-import { Item, Label, Input } from "native-base";
-import { Spacer, RCText, RCView } from "../components/StyledComponent";
+import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
 const WithScannerText = withScanner(ViewText);
-const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   data: any;
 }
@@ -32,6 +34,13 @@ interface State {
   mechanic: string;
   uuid: string;
   value: boolean;
+  modalVisible: boolean;
+  maxPlayers: number;
+  listDrop: string[];
+  selected: string;
+  modalVisible2: boolean;
+  types: string[];
+  description: string;
 }
 export default class AddItem extends Component<Props, State> {
   constructor(props: Props) {
@@ -39,14 +48,21 @@ export default class AddItem extends Component<Props, State> {
     this.state = {
       image: null,
       age: "",
-      minPlayers: 5,
+      minPlayers: 2,
+      maxPlayers: 5,
       name: "",
       time: "0",
       publisher: "",
       type: "",
       mechanic: "",
       uuid: "",
-      value: false
+      value: false,
+      modalVisible: false,
+      listDrop: ["test"],
+      selected: "",
+      modalVisible2: false,
+      types: [],
+      description: ""
     };
   }
   render() {
@@ -58,12 +74,13 @@ export default class AddItem extends Component<Props, State> {
         icon={"save"}
         onPress={() => this.save()}>
         <WithScannerText
-          text={"test"}
+          text={this.state.uuid}
           value={this.state.value}
           onPress={() => {
-            setTimeout(() => {
-              this.setState({ value: true });
-            }, 3000);
+            this.props.navigation.navigate("Camera", {
+              changeUuid: this.changeUuid,
+              routeName: "AddItem"
+            });
           }}
         />
         <RCView>
@@ -74,35 +91,22 @@ export default class AddItem extends Component<Props, State> {
             onChangeText={name => this.setState({ name })}
           />
         </RCView>
-        <RCView flexDirection="row" justifyContent="center">
-          <FlatList
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-            extraData={this.state.minPlayers}
-            data={this.createArray(this.state.minPlayers, 10)}
-            keyExtractor={(item, index) => String(index)}
-            horizontal={true}
-            renderItem={(item: any) => (
-              <TouchableOpacity
-                onPress={() => {
-                  this.setState({ minPlayers: item.index + 1 });
-                }}>
-                <Icon
-                  name={"pawn"}
-                  size={16}
-                  color={item.item ? "#c30000" : "black"}
-                />
-              </TouchableOpacity>
-            )}
+        <RCView
+          style={{ height: 100, alignItems: "flex-start", paddingTop: 5 }}>
+          <TextInput
+            value={this.state.description}
+            placeholder={"Opis gry"}
+            multiline
+            style={{ flex: 1, fontSize: 16 }}
+            onChangeText={description => this.setState({ description })}
           />
-          <View>
-            <Text style={{ color: "grey", fontSize: 16 }}>
-              {this.state.minPlayers}
-            </Text>
-          </View>
         </RCView>
+        <ModalPickerPawn
+          minPlayers={this.state.minPlayers}
+          maxPlayers={this.state.maxPlayers}
+          onChangeMin={minPlayers => this.setState({ minPlayers })}
+          onChangeMax={maxPlayers => this.setState({ maxPlayers })}
+        />
         <RCView flexDirection="row">
           <Text style={{ color: "black", fontSize: 16 }}>Wiek</Text>
           <TextInput
@@ -128,30 +132,48 @@ export default class AddItem extends Component<Props, State> {
           />
           <Text style={{ color: "black", fontSize: 16 }}>min</Text>
         </RCView>
-        <RCView>
-          <TextInput
-            placeholder={"Wydawca"}
-            value={this.state.publisher}
-            style={{ fontSize: 16 }}
-            onChangeText={publisher => this.setState({ publisher })}
-          />
-        </RCView>
-        <RCView>
-          <TextInput
-            placeholder={"Typ gry"}
-            value={this.state.type}
-            style={{ fontSize: 16 }}
-            onChangeText={type => this.setState({ type })}
-          />
-        </RCView>
-        <RCView>
-          <TextInput
-            placeholder={"Mechaniki planszówki"}
-            value={this.state.mechanic}
-            style={{ fontSize: 16 }}
-            onChangeText={mechanic => this.setState({ mechanic })}
-          />
-        </RCView>
+        <ModalSingleList
+          placeholder={"Wydawca"}
+          value={this.state.publisher}
+          list={[
+            "publisher1",
+            "publisher2",
+            "publisher3",
+            "publisher4",
+            "publisher5",
+            "publisher6",
+            "publisher7"
+          ]}
+          onChangeValue={publisher => this.setState({ publisher })}
+        />
+        <ModalMultiList
+          placeholder={"Typy gry"}
+          value={this.state.types}
+          list={[
+            "publisher1dfgdfgdfgdfgdfgdfgdfg",
+            "publisher2dfgdfg",
+            "publisher3",
+            "publisher4",
+            "publisher5",
+            "publisher6",
+            "publisher7"
+          ]}
+          onChangeValue={types => this.setState({ types })}
+        />
+         <ModalMultiList
+          placeholder={"Mechaniki gry"}
+          value={this.state.types}
+          list={[
+            "publisher1dfgdfgdfgdfgdfgdfgdfg",
+            "publisher2dfgdfg",
+            "publisher3",
+            "publisher4",
+            "publisher5",
+            "publisher6",
+            "publisher7"
+          ]}
+          onChangeValue={types => this.setState({ types })}
+        />
       </Container>
     );
   }
@@ -185,7 +207,10 @@ export default class AddItem extends Component<Props, State> {
       );
     }
   }
-  selectImage() {}
+  changeUuid = (uuid: string) => {
+    this.setState({ uuid });
+    this.setState({ value: true });
+  };
   createArray(count: number, max: number) {
     let active: any[] = new Array(count).fill(true);
     let disactive: any[] = new Array(max - count).fill(false);
