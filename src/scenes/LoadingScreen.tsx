@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { View, Image, AsyncStorage } from "react-native";
 import Color from "../Color";
-import { Actions } from "react-native-router-flux";
 import Toast from "react-native-simple-toast";
 import AuthStore from "../stores/AuthStore";
 import { observer, inject } from "mobx-react";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 interface Props {
   authStore: AuthStore;
 }
@@ -60,7 +59,6 @@ class LoadingScreen extends Component {
               source={require("../img/logo.png")}
             />
           </View>
-          {/* <Spinner isVisible={true} color={'white'} size={100} type={'ThreeBounce'}/> */}
         </View>
       </View>
     );

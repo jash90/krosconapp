@@ -19,7 +19,7 @@ import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 const WithScannerText = withScanner(ViewText);
 interface Props {
   data: any;

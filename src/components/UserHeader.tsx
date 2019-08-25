@@ -14,7 +14,7 @@ import StarRating from "react-native-star-rating";
 import { withNavigation } from "react-navigation";
 import { Spacer } from "./StyledComponent";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 interface User {
   firstname: string;
   lastname: string;

@@ -5,7 +5,7 @@ import { Container, Button, UserHeader } from "../components";
 import AuthStore from "../stores/AuthStore";
 import Toast from "react-native-simple-toast";
 import { inject, observer } from "mobx-react";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 interface State {
   password: string;
   repeatPassword: string;

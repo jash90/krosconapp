@@ -18,7 +18,7 @@ import {
   Privilege,
   QR,
   Register
-} from "./src/scenes";
+ } from "./src/scenes/index";
 import store from "./src/stores";
 
 const AppNavigator = createStackNavigator(

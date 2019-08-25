@@ -13,7 +13,7 @@ const Icon = createIconSetFromIcoMoon(selection);
 import StarRating from "react-native-star-rating";
 import Color from "../Color";
 import { Container, GameHeader, Button } from "../components";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 interface Props {
   item: any;
 }

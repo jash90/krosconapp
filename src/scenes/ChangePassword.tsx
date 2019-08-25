@@ -16,7 +16,7 @@ import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Item, Label, Input } from "native-base";
 import { Spacer, RCText, RCView } from "../components/StyledComponent";
 import { Props } from "../interfaces";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 const Icon = createIconSetFromIcoMoon(selection);
 
 interface State {

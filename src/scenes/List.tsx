@@ -18,7 +18,7 @@ import Color from "../Color";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 interface State {
   active: boolean;
   search: string;

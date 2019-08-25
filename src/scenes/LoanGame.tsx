@@ -38,7 +38,7 @@ import {
 } from "../components";
 import { Props } from "../interfaces";
 import { withScanner } from "../components/withScanner";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {

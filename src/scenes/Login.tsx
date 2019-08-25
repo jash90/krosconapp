@@ -32,7 +32,7 @@ import Toast from "react-native-simple-toast";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
-import { Scenes } from "../scenes";
+import Scenes from"../Scenes";
 interface State {
   email: string;
   password: string;
