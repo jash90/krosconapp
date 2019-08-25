@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, GameHeader, UserHeader } from "../components";
 import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore.js.js";
+import AuthStore from "../stores/AuthStore";
 import { View } from "react-native";
 import {
   Spacer,

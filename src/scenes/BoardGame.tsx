@@ -13,6 +13,7 @@ const Icon = createIconSetFromIcoMoon(selection);
 import StarRating from "react-native-star-rating";
 import Color from "../Color";
 import { Container, GameHeader, Button } from "../components";
+import { Scenes } from "../scenes";
 interface Props {
   item: any;
 }
@@ -121,7 +122,7 @@ export default class Item extends Component<Props, State> {
             primary
             color={Color.accentColor}
             colorText={"white"}
-            onPress={() => this.props.navigation.navigate("LoanGame")}
+            onPress={() => this.props.navigation.navigate(Scenes.LoanGame)}
             text={"LoanGame"}
           />
         </View>

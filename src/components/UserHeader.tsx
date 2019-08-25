@@ -14,6 +14,7 @@ import StarRating from "react-native-star-rating";
 import { withNavigation } from "react-navigation";
 import { Spacer } from "./StyledComponent";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { Scenes } from "../scenes";
 interface User {
   firstname: string;
   lastname: string;
@@ -88,7 +89,7 @@ export default class UserHeader extends Component<Props> {
   }
 
   goToEdit = () => {
-    this.props.navigation.navigate("EditProfile");
+    this.props.navigation.navigate(Scenes.EditProfile);
   }
 
 }

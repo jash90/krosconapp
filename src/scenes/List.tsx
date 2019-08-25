@@ -18,6 +18,7 @@ import Color from "../Color";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
+import { Scenes } from "../scenes";
 interface State {
   active: boolean;
   search: string;
@@ -76,7 +77,7 @@ class List extends Component<Props, State> {
               backgroundColor: Color.accentColor
             }}
             position="bottomRight"
-            onPress={() => this.props.navigation.navigate("QR")}>
+            onPress={() => this.props.navigation.navigate(Scenes.QR)}>
             <Image
               style={{ width: 20, height: 20 }}
               source={require("../assets/qr.png")}
@@ -105,9 +106,9 @@ class List extends Component<Props, State> {
   };
   openProfile = () => {
     if (this.props.authStore.token) {
-      this.props.navigation.navigate("Admin");
+      this.props.navigation.navigate(Scenes.Panel);
     } else {
-      this.props.navigation.navigate("Login");
+      this.props.navigation.navigate(Scenes.Login);
     }
   };
 }

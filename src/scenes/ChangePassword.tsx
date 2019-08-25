@@ -16,6 +16,7 @@ import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Item, Label, Input } from "native-base";
 import { Spacer, RCText, RCView } from "../components/StyledComponent";
 import { Props } from "../interfaces";
+import { Scenes } from "../scenes";
 const Icon = createIconSetFromIcoMoon(selection);
 
 interface State {
@@ -58,7 +59,7 @@ export default class ChangePassword extends Component<Props, State> {
     );
   }
   save = () => {
-    this.props.navigation.navigate("List");
+    this.props.navigation.navigate(Scenes.List);
   };
 
 }

@@ -1,22 +1,25 @@
-import React, { Component } from "react";
-import LoadingScreen from "./src/scenes/LoadingScreen";
-import List from "./src/scenes/List";
-import BoardGame from "./src/scenes/BoardGame";
-import Camera from "./src/scenes/Camera";
-import AddBoardGame from "./src/scenes/AddBoardGame";
-import AddItem from "./src/scenes/AddItem";
-import Login from "./src/scenes/Login";
-import Register from "./src/scenes/Register";
-import LoanGame from "./src/scenes/LoanGame";
-import Admin from "./src/scenes/Admin";
-import QR from "./src/scenes/QR";
-import LoanStatus from "./src/scenes/LoanStatus";
-import Privilege from "./src/scenes/Privilege";
-import EditProfile from "./src/scenes/EditProfile";
-import ChangePassword from "./src/scenes/ChangePassword";
-
-import { createStackNavigator, createAppContainer } from "react-navigation";
 import { Provider } from "mobx-react";
+import React from "react";
+import { MenuProvider } from "react-native-popup-menu";
+import { createAppContainer, createStackNavigator } from "react-navigation";
+import {
+  AddBoardGame,
+  AddItem,
+  BoardGame,
+  Camera,
+  ChangePassword,
+  EditProfile,
+  List,
+  LoadingScreen,
+  LoanGame,
+  LoanStatus,
+  Login,
+  Panel,
+  Privilege,
+  QR,
+  Register
+} from "./src/scenes";
+import store from "./src/stores";
 
 const AppNavigator = createStackNavigator(
   {
@@ -29,7 +32,7 @@ const AppNavigator = createStackNavigator(
     Login,
     Register,
     LoanGame,
-    Admin,
+    Panel,
     QR,
     LoanStatus,
     Privilege,
@@ -40,8 +43,6 @@ const AppNavigator = createStackNavigator(
     headerMode: "none"
   }
 );
-import store from "./src/stores";
-import { MenuProvider } from "react-native-popup-menu";
 
 const RootNavigator = createAppContainer(AppNavigator);
 

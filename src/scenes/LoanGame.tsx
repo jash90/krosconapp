@@ -38,6 +38,7 @@ import {
 } from "../components";
 import { Props } from "../interfaces";
 import { withScanner } from "../components/withScanner";
+import { Scenes } from "../scenes";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
@@ -119,7 +120,7 @@ export default class LoanGame extends Component<Props, State> {
     );
   }
   success = () => {
-    this.props.navigation.navigate("LoanStatus");
+    this.props.navigation.navigate(Scenes.LoanStatus);
   };
 }
 

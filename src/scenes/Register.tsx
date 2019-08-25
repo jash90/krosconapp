@@ -9,6 +9,7 @@ import { RCView } from "../components/StyledComponent";
 import AuthApi from "../api/AuthApi";
 import Toast from "react-native-simple-toast";
 import { observer, inject } from "mobx-react";
+import { Scenes } from "../scenes";
 interface State {
   email: string;
   password: string;
@@ -95,7 +96,7 @@ class Register extends Component<Props, State> {
     }
     if (data.item) {
       Toast.show(`Utworzyłeś konto ${this.state.email}.`);
-      this.props.navigation.navigate("Login");
+      this.props.navigation.navigate(Scenes.Login);
     }
     console.log(response);
   }

@@ -1,5 +1,3 @@
-import { string, any } from "prop-types";
-
 interface Props { };
 
 interface TextProps extends Props {

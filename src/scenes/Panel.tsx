@@ -5,6 +5,7 @@ import { Container, Button, UserHeader } from "../components";
 import AuthStore from "../stores/AuthStore";
 import Toast from "react-native-simple-toast";
 import { inject, observer } from "mobx-react";
+import { Scenes } from "../scenes";
 interface State {
   password: string;
   repeatPassword: string;
@@ -12,7 +13,7 @@ interface State {
 interface Props {
   authStore: AuthStore;
 }
-class Admin extends Component<Props, State> {
+class Panel extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -28,7 +29,7 @@ class Admin extends Component<Props, State> {
         back={false}
         left={true}
         leftIcon={"arrow-back"}
-        leftPress={() => this.props.navigation.navigate("List")}
+        leftPress={() => this.props.navigation.navigate(Scenes.List)}
         right
         scrollView
         text={"Panel"}
@@ -103,34 +104,34 @@ class Admin extends Component<Props, State> {
   }
 
   addBoardGame = () => {
-    this.props.navigation.navigate("AddBoardGame");
+    this.props.navigation.navigate(Scenes.AddBoardGame);
   };
 
   loanGame = () => {
-    this.props.navigation.navigate("LoanGame");
+    this.props.navigation.navigate(Scenes.LoanGame);
   };
 
   setPrivileges = () => {
-    this.props.navigation.navigate("Privilege");
+    this.props.navigation.navigate(Scenes.Privilege);
   };
 
   changePassword = () => {
-    this.props.navigation.navigate("ChangePassword");
+    this.props.navigation.navigate(Scenes.ChangePassword);
   };
 
   addItem = () => {
-    this.props.navigation.navigate("AddItem");
+    this.props.navigation.navigate(Scenes.AddItem);
   };
 
   logout = async () => {
     try {
       this.props.authStore.clearUser();
       await AsyncStorage.removeItem("User");
-      this.props.navigation.navigate("List");
+      this.props.navigation.navigate(Scenes.List);
     } catch (error) {
       Toast.show(error);
     }
   };
 }
 
-export default inject("authStore")(observer(Admin));
+export default inject("authStore")(observer(Panel));

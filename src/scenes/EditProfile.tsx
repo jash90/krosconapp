@@ -15,6 +15,7 @@ import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Item, Label, Input } from "native-base";
 import { Spacer, RCText, RCView } from "../components/StyledComponent";
+import { Scenes } from "../scenes";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   data: any;
@@ -81,7 +82,7 @@ export default class EditProfile extends Component<Props, State> {
     );
   }
   save = () => {
-    this.props.navigation.navigate("List");
+    this.props.navigation.navigate(Scenes.List);
   };
 
   renderImage() {

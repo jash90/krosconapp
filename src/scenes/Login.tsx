@@ -32,6 +32,7 @@ import Toast from "react-native-simple-toast";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
+import { Scenes } from "../scenes";
 interface State {
   email: string;
   password: string;
@@ -57,7 +58,7 @@ class Login extends Component<Props, State> {
         scrollView
         icon={"person-add"}
         text={Language.get("sign")}
-        onPress={() => this.props.navigation.navigate("Register")}>
+        onPress={() => this.props.navigation.navigate(Scenes.Register)}>
         <View>
           <Logo size={150} />
           <RCView>
@@ -104,7 +105,7 @@ class Login extends Component<Props, State> {
       this.props.authStore.setUser(data.item);
       console.log(data.item);
       await AsyncStorage.setItem("User", JSON.stringify(data.item));
-      this.props.navigation.navigate("List");
+      this.props.navigation.navigate(Scenes.List);
     }
     console.log(response);
     //

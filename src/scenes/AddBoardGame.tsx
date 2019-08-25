@@ -19,6 +19,7 @@ import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
+import { Scenes } from "../scenes";
 const WithScannerText = withScanner(ViewText);
 interface Props {
   data: any;
@@ -77,7 +78,7 @@ export default class AddBoardGame extends Component<Props, State> {
           text={this.state.uuid}
           value={this.state.value}
           onPress={() => {
-            this.props.navigation.navigate("Camera", {
+            this.props.navigation.navigate(Scenes.Camera, {
               changeUuid: this.changeUuid,
               routeName: "AddBoardGame"
             });
@@ -178,7 +179,7 @@ export default class AddBoardGame extends Component<Props, State> {
     );
   }
   save = () => {
-    this.props.navigation.navigate("List");
+    this.props.navigation.navigate(Scenes.List);
   };
 
   renderImage() {

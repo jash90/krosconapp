@@ -5,6 +5,7 @@ import { Actions } from "react-native-router-flux";
 import Toast from "react-native-simple-toast";
 import AuthStore from "../stores/AuthStore";
 import { observer, inject } from "mobx-react";
+import { Scenes } from "../scenes";
 interface Props {
   authStore: AuthStore;
 }
@@ -28,7 +29,7 @@ class LoadingScreen extends Component {
       minAge: 5,
       publisher:"Rebel"
     });
-    this.props.navigation.navigate("List", { listgame });
+    this.props.navigation.navigate(Scenes.List, { listgame });
   };
 
   render() {
