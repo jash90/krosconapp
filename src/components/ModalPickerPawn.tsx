@@ -22,7 +22,7 @@ class ModalPickerPawn extends Component<Props, State> {
   }
   render() {
     return (
-      <View>
+      <View style={{ width: "100%" }}>
           <ViewText
             label={"Min/Max graczy"}
             text={`${this.props.minPlayers}/${this.props.maxPlayers}`}

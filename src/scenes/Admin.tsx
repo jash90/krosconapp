@@ -28,7 +28,7 @@ class Admin extends Component<Props, State> {
         back={false}
         left={true}
         leftIcon={"arrow-back"}
-        leftPress={()=>this.props.navigation.navigate("List")}
+        leftPress={() => this.props.navigation.navigate("List")}
         right
         scrollView
         text={"Panel"}
@@ -76,6 +76,15 @@ class Admin extends Component<Props, State> {
               outline
               color={`${Color.accentColor}`}
               text={"Dodaj grę"}
+              onPress={this.addBoardGame}
+            />
+          )}
+
+          {this.props.authStore.privilegeId > 1 && (
+            <Button
+              outline
+              color={`${Color.accentColor}`}
+              text={"Dodaj inne"}
               onPress={this.addItem}
             />
           )}
@@ -93,8 +102,8 @@ class Admin extends Component<Props, State> {
     );
   }
 
-  addItem = () => {
-    this.props.navigation.navigate("AddItem");
+  addBoardGame = () => {
+    this.props.navigation.navigate("AddBoardGame");
   };
 
   loanGame = () => {
@@ -107,6 +116,10 @@ class Admin extends Component<Props, State> {
 
   changePassword = () => {
     this.props.navigation.navigate("ChangePassword");
+  };
+
+  addItem = () => {
+    this.props.navigation.navigate("AddItem");
   };
 
   logout = async () => {

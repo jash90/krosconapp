@@ -17,4 +17,5 @@ import Dropdown from "./Dropdown";
 import ModalMultiList from "./ModalMultiList";
 import ModalPickerPawn from "./ModalPickerPawn";
 import ModalSingleList from "./ModalSingleList";
-export { Separator, PickerIcon, Logo, Input, Head, GoogleButton, FacebookButton, Fab, Container, Button, GameHeader, UserHeader, ScannerComponent, ViewText, PickerPawn, Dropdown, ModalMultiList, ModalPickerPawn, ModalSingleList };
+import Filter from "./Filter";
+export { Separator, PickerIcon, Logo, Input, Head, GoogleButton, FacebookButton, Fab, Container, Button, GameHeader, UserHeader, ScannerComponent, ViewText, PickerPawn, Dropdown, ModalMultiList, ModalPickerPawn, ModalSingleList, Filter };

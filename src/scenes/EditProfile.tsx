@@ -26,7 +26,7 @@ interface State {
   city: string;
   age: number;
 }
-export default class AddItem extends Component<Props, State> {
+export default class EditProfile extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

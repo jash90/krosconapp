@@ -15,7 +15,7 @@ interface Props {
   onChangeValue: (value: string) => void;
   value: string;
   list: string[];
-  placeholder:string;
+  placeholder: string;
 }
 interface State {
   modal: boolean;
@@ -31,7 +31,7 @@ class ModalSingleList extends Component<Props, State> {
   }
   render() {
     return (
-      <View>
+      <View style={{ width: "100%" }}>
         <ViewText
           label={"Wydawca"}
           text={`${this.props.value}`}
@@ -68,7 +68,7 @@ class ModalSingleList extends Component<Props, State> {
                   <TextInput
                     value={this.state.value}
                     placeholder={this.props.placeholder}
-                    style={{ fontSize: 16, flex: 1 }}
+                    style={{ fontSize: 16, flex: 1, }}
                     onChangeText={publisher =>
                       this.setState({ value: publisher })
                     }

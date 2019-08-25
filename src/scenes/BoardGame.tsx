@@ -45,7 +45,7 @@ export default class Item extends Component<Props, State> {
             backgroundColor: "white",
             borderRadius: 20,
             padding: 20,
-            margin: 10,
+            marginBottom: 10,
             marginHorizontal: 20
           }}>
           <Text>{this.loremtext()}</Text>
@@ -116,13 +116,15 @@ export default class Item extends Component<Props, State> {
             )}
           />
         </View>
-        <Button
-          primary
-          color={Color.accentColor}
-          colorText={"white"}
-          onPress={() => this.props.navigation.navigate("LoanGame")}
-          text={"LoanGame"}
-        />
+        <View style={{ paddingHorizontal: 20 }}>
+          <Button
+            primary
+            color={Color.accentColor}
+            colorText={"white"}
+            onPress={() => this.props.navigation.navigate("LoanGame")}
+            text={"LoanGame"}
+          />
+        </View>
       </Container>
     );
   }

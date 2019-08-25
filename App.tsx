@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import LoadingScreen from "./src/scenes/LoadingScreen";
 import List from "./src/scenes/List";
-import Item from "./src/scenes/Item";
+import BoardGame from "./src/scenes/BoardGame";
 import Camera from "./src/scenes/Camera";
+import AddBoardGame from "./src/scenes/AddBoardGame";
 import AddItem from "./src/scenes/AddItem";
 import Login from "./src/scenes/Login";
 import Register from "./src/scenes/Register";
@@ -21,8 +22,9 @@ const AppNavigator = createStackNavigator(
   {
     LoadingScreen,
     List,
-    Item,
+    BoardGame,
     Camera,
+    AddBoardGame,
     AddItem,
     Login,
     Register,

@@ -20,6 +20,17 @@ border-radius:20px;
 justify-content:flex-start;
 align-items:center;
 ` 
+const RCViewFlex = styled.View`
+display:flex;
+flex-direction:row;
+background-color:white;
+margin: 10px 0px;
+padding:0px 20px;
+border-radius:20px;
+justify-content:flex-start;
+align-items:center;
+` 
+
 const RCViewCenter = styled.View`
 align-self:center;
 justify-content:center;
@@ -30,4 +41,4 @@ border-radius: 20px;
 `
 
 
-export {Spacer, RCText, RCView, RCViewCenter};
+export {Spacer, RCText, RCView, RCViewCenter, RCViewFlex};

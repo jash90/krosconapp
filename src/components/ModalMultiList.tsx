@@ -33,20 +33,22 @@ class ModalMultiList extends Component<Props, State> {
   render() {
     const length = this.props.value.length;
     return (
-      <View>
+      <View style={{ width: "100%" }}>
         {!!length && (
-          <TouchableOpacity
-            onPress={() => this.setState({ modal: true })}
+          <View
             style={{
               width: "100%",
               backgroundColor: "white",
               borderRadius: 20,
               paddingHorizontal: 20,
-              marginVertical: 10,
+              marginVertical: 10
             }}>
-            <View style={{ margin: 5, backgroundColor: "White" }}>
-              <Text>{this.props.placeholder}</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => this.setState({ modal: true })}>
+              <View style={{ margin: 5, backgroundColor: "White" }}>
+                <Text>{this.props.placeholder}</Text>
+              </View>
+            </TouchableOpacity>
             <FlatList
               horizontal
               data={this.props.value}
@@ -56,12 +58,12 @@ class ModalMultiList extends Component<Props, State> {
               }}
               renderItem={this.renderTag}
             />
-          </TouchableOpacity>
+          </View>
         )}
         {!length && (
           <TouchableOpacity
             onPress={() => this.setState({ modal: true })}
-            style={{ flex: 1 }}>
+            style={{}}>
             <View
               style={{
                 backgroundColor: "white",
@@ -107,7 +109,7 @@ class ModalMultiList extends Component<Props, State> {
                   <TextInput
                     value={this.state.value}
                     placeholder={this.props.placeholder}
-                    style={{ fontSize: 16, flex: 1 }}
+                    style={{ fontSize: 16 }}
                     onChangeText={value => this.setState({ value })}
                   />
                 </RCView>
@@ -118,7 +120,7 @@ class ModalMultiList extends Component<Props, State> {
                 />
               </View>
             </RCView>
-            <View style={{ width: "90%" }}>
+            <View style={{ width: "100%" }}>
               <Button
                 color="black"
                 colorText="white"
