@@ -16,19 +16,19 @@ import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Item, Label, Input } from "native-base";
 import { Spacer, RCText, RCView } from "../components/StyledComponent";
 import { Props } from "../interfaces";
-import Scenes from"../Scenes";
+import Scenes from "../Scenes";
 const Icon = createIconSetFromIcoMoon(selection);
 
 interface State {
   password: string;
-  repeatPassword:string;
+  repeatPassword: string;
 }
 export default class ChangePassword extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       password: "",
-      repeatPassword:""
+      repeatPassword: ""
     };
   }
   render() {
@@ -43,7 +43,7 @@ export default class ChangePassword extends Component<Props, State> {
           <TextInput
             value={this.state.password}
             placeholder={"Hasło"}
-            style={{ fontSize: 16 }}
+            style={{ flex: 1, fontSize: 16 }}
             onChangeText={password => this.setState({ password })}
           />
         </RCView>
@@ -61,5 +61,4 @@ export default class ChangePassword extends Component<Props, State> {
   save = () => {
     this.props.navigation.navigate(Scenes.List);
   };
-
 }

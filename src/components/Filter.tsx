@@ -220,8 +220,10 @@ class Filter extends Component<Props, State> {
                   <TextInput
                     value={this.props.value}
                     placeholder={this.props.placeholder}
-                    style={{ fontSize: 16 }}
-                    onChangeText={(search: any) => this.props.onChangeValue(search)}
+                    style={{ flex: 1, fontSize: 16 }}
+                    onChangeText={(search: any) =>
+                      this.props.onChangeValue(search)
+                    }
                   />
                 </RCView>
                 <ModalPickerPawn
@@ -233,7 +235,12 @@ class Filter extends Component<Props, State> {
                 <RCView style={{ width: "100%" }} flexDirection="row">
                   <Text style={{ color: "black", fontSize: 16 }}>Wiek</Text>
                   <TextInput
-                    style={{ textAlign: "right", fontSize: 16, width: 25 }}
+                    style={{
+                      flex: 1,
+                      textAlign: "right",
+                      fontSize: 16,
+                      width: 25
+                    }}
                     keyboardType="phone-pad"
                     value={this.state.age}
                     maxLength={2}
@@ -248,7 +255,12 @@ class Filter extends Component<Props, State> {
                   width="100%">
                   <Text style={{ color: "black", fontSize: 16 }}>Czas gry</Text>
                   <TextInput
-                    style={{ textAlign: "right", fontSize: 16, width: 35 }}
+                    style={{
+                      flex: 1,
+                      textAlign: "right",
+                      fontSize: 16,
+                      width: 35
+                    }}
                     keyboardType="phone-pad"
                     value={this.state.time}
                     maxLength={3}
@@ -271,7 +283,7 @@ class Filter extends Component<Props, State> {
                   onChangeValue={publisher => this.setState({ publisher })}
                 />
 
-                <ModalMultiList
+                {/* <ModalMultiList
                   placeholder={"Typy gry"}
                   value={this.state.types}
                   list={[
@@ -298,8 +310,25 @@ class Filter extends Component<Props, State> {
                     "publisher7"
                   ]}
                   onChangeValue={mechanics => this.setState({ mechanics })}
-                />
+                /> */}
               </ScrollView>
+              <Button
+                outline
+                color="black"
+                text="Wyczyść"
+                onPress={() =>
+                  this.setState({
+                    name: "",
+                    minPlayers: 0,
+                    maxPlayers: 0,
+                    age: "",
+                    time: "",
+                    publisher: "",
+                    types: [],
+                    mechanics: []
+                  })
+                }
+              />
               <Button
                 color="black"
                 colorText="white"

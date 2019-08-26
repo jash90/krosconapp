@@ -32,7 +32,7 @@ import Toast from "react-native-simple-toast";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
-import Scenes from"../Scenes";
+import Scenes from "../Scenes";
 interface State {
   email: string;
   password: string;
@@ -66,7 +66,7 @@ class Login extends Component<Props, State> {
               autoCapitalize={"none"}
               value={this.state.email}
               placeholder={"Email"}
-              style={{ fontSize: 16 }}
+              style={{ flex: 1, fontSize: 16 }}
               onChangeText={(email: any) => this.setState({ email })}
             />
           </RCView>
@@ -76,7 +76,7 @@ class Login extends Component<Props, State> {
               value={this.state.password}
               placeholder={"Hasło"}
               secureTextEntry={true}
-              style={{ fontSize: 16 }}
+              style={{ flex: 1, fontSize: 16 }}
               onChangeText={(password: any) => this.setState({ password })}
             />
           </RCView>
@@ -109,7 +109,7 @@ class Login extends Component<Props, State> {
     }
     console.log(response);
     //
-  }
+  };
 }
 
 var styles = StyleSheet.create({

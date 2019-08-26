@@ -21,7 +21,7 @@ class QR extends Component<Props> {
   render() {
     return (
       <Container
-      text={"Kod QR"}
+        text={"Kod QR"}
         navigation={this.props.navigation}
         styleContent={{
           flex: 1,
@@ -30,7 +30,7 @@ class QR extends Component<Props> {
         }}>
         <RCViewCenter>
           <QRCode
-            value={"dfgdfgdf"}
+            value={this.props.authStore.email}
             size={300}
             bgColor="black"
             fgColor="white"

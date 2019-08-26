@@ -1,21 +1,10 @@
-import React from "react";
-import { Component } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  TextInput,
-  ScrollView,
-  Text,
-  FlatList
-} from "react-native";
-import ImagePicker from "react-native-image-picker";
-import { Container, Button } from "../components";
+import React, { Component } from "react";
+import { Image, TextInput, TouchableOpacity, View } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
-import { Item, Label, Input } from "native-base";
-import { Spacer, RCText, RCView } from "../components/StyledComponent";
-import Scenes from"../Scenes";
+import { Container } from "../components";
+import { RCView } from "../components/StyledComponent";
+import Scenes from "../Scenes";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   data: any;
@@ -50,7 +39,7 @@ export default class EditProfile extends Component<Props, State> {
           <TextInput
             value={this.state.firstname}
             placeholder={"Imię"}
-            style={{ fontSize: 16 }}
+            style={{ flex: 1, fontSize: 16 }}
             onChangeText={firstname => this.setState({ firstname })}
           />
         </RCView>
@@ -58,7 +47,7 @@ export default class EditProfile extends Component<Props, State> {
           <TextInput
             value={this.state.lastname}
             placeholder={"Nazwisko"}
-            style={{ fontSize: 16 }}
+            style={{ flex: 1, fontSize: 16 }}
             onChangeText={lastname => this.setState({ lastname })}
           />
         </RCView>
@@ -66,7 +55,7 @@ export default class EditProfile extends Component<Props, State> {
           <TextInput
             value={this.state.city}
             placeholder={"Miasto"}
-            style={{ fontSize: 16 }}
+            style={{ flex: 1, fontSize: 16 }}
             onChangeText={city => this.setState({ city })}
           />
         </RCView>
@@ -74,7 +63,7 @@ export default class EditProfile extends Component<Props, State> {
           <TextInput
             value={String(this.state.age)}
             placeholder={"Wiek"}
-            style={{ fontSize: 16 }}
+            style={{ flex: 1, fontSize: 16 }}
             onChangeText={age => this.setState({ age: Number(age) })}
           />
         </RCView>
@@ -85,33 +74,6 @@ export default class EditProfile extends Component<Props, State> {
     this.props.navigation.navigate(Scenes.List);
   };
 
-  renderImage() {
-    if (this.state.image != null) {
-      return (
-        <Image
-          source={this.state.image}
-          style={{
-            width: "100%",
-            height: 200
-          }}
-          resizeMode={"contain"}
-        />
-      );
-    } else {
-      return (
-        <TouchableOpacity onPress={() => this.selectImage()}>
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              backgroundColor: "grey"
-            }}
-          />
-        </TouchableOpacity>
-      );
-    }
-  }
-  selectImage() {}
   createArray(count: number, max: number) {
     let active: any[] = new Array(count).fill(true);
     let disactive: any[] = new Array(max - count).fill(false);

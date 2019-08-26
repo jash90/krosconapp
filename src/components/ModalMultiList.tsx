@@ -109,7 +109,7 @@ class ModalMultiList extends Component<Props, State> {
                   <TextInput
                     value={this.state.value}
                     placeholder={this.props.placeholder}
-                    style={{ fontSize: 16 }}
+                    style={{ flex:1,fontSize: 16 }}
                     onChangeText={value => this.setState({ value })}
                   />
                 </RCView>

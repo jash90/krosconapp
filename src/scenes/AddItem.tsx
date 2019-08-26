@@ -32,7 +32,7 @@ export default class AddItem extends Component<{}, State> {
           <TextInput
             value={this.state.name}
             placeholder={"Nazwa"}
-            style={{ fontSize: 16 }}
+            style={{ flex:1,fontSize: 16 }}
             onChangeText={name => this.setState({ name })}
           />
         </RCView>

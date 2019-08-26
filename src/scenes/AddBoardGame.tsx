@@ -88,7 +88,7 @@ export default class AddBoardGame extends Component<Props, State> {
           <TextInput
             value={this.state.name}
             placeholder={"Nazwa gry"}
-            style={{ fontSize: 16 }}
+            style={{ flex:1,fontSize: 16 }}
             onChangeText={name => this.setState({ name })}
           />
         </RCView>
@@ -182,32 +182,6 @@ export default class AddBoardGame extends Component<Props, State> {
     this.props.navigation.navigate(Scenes.List);
   };
 
-  renderImage() {
-    if (this.state.image != null) {
-      return (
-        <Image
-          source={this.state.image}
-          style={{
-            width: "100%",
-            height: 200
-          }}
-          resizeMode={"contain"}
-        />
-      );
-    } else {
-      return (
-        <TouchableOpacity onPress={() => this.selectImage()}>
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              backgroundColor: "grey"
-            }}
-          />
-        </TouchableOpacity>
-      );
-    }
-  }
   changeUuid = (uuid: string) => {
     this.setState({ uuid });
     this.setState({ value: true });

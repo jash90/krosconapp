@@ -65,7 +65,7 @@ class List extends Component<Props, State> {
                 minPlayers={item.minPlayers}
                 maxPlayers={item.maxPlayers}
                 playingTime={item.playingTime}
-                publisher={item.publisher}
+                publisher={item.publisher.name}
               />
             </TouchableOpacity>
           )}

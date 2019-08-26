@@ -1,44 +1,10 @@
 import React, { Component } from "react";
-import {
-  Platform,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Modal,
-  TextInput,
-  Image
-} from "react-native";
-
-import {
-  Header,
-  Title,
-  Content,
-  Left,
-  Right,
-  Body,
-  Icon,
-  Text
-} from "native-base";
-
-import { Actions } from "react-native-router-flux";
-
-import Language from "../Language";
-
-import {
-  Separator,
-  Logo,
-  Input,
-  Head,
-  Button,
-  GameHeader,
-  Container,
-  UserHeader,
-  ScannerComponent
-} from "../components";
-import { Props } from "../interfaces";
+import { StyleSheet } from "react-native";
+import { Button, Container, GameHeader, UserHeader } from "../components";
 import { withScanner } from "../components/withScanner";
-import Scenes from"../Scenes";
+import { Props } from "../interfaces";
+import Scenes from "../Scenes";
+
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {

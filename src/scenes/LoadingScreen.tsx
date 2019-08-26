@@ -4,7 +4,8 @@ import Color from "../Color";
 import Toast from "react-native-simple-toast";
 import AuthStore from "../stores/AuthStore";
 import { observer, inject } from "mobx-react";
-import Scenes from"../Scenes";
+import Scenes from "../Scenes";
+import { BoardGameApi } from "../api";
 interface Props {
   authStore: AuthStore;
 }
@@ -19,16 +20,17 @@ class LoadingScreen extends Component {
     } catch (error) {
       Toast.show(error);
     }
-    const listgame: any[] = [];
-    listgame.push({
-      name: "Game",
-      minPlayers: 2,
-      maxPlayers: 4,
-      playingTime: 60,
-      minAge: 5,
-      publisher:"Rebel"
-    });
-    this.props.navigation.navigate(Scenes.List, { listgame });
+    let listgame: any[] = [];
+    BoardGameApi.all()
+      .then(response => {
+        listgame = response.data.items;
+        console.log(listgame);
+        this.props.navigation.navigate(Scenes.List, { listgame });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
   };
 
   render() {
