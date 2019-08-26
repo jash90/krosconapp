@@ -1,17 +1,9 @@
 import React, { Component } from "react";
-import {
-  View,
-  Image,
-  Text,
-  TouchableHighlight,
-  StyleSheet
-} from "react-native";
+import { Text, View } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 const Icon = createIconSetFromIcoMoon(selection);
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
-import StarRating from "react-native-star-rating";
-import { withNavigation } from "react-navigation";
 interface Game {
   name: string;
   minPlayers: number;
@@ -27,6 +19,7 @@ interface Props {
 }
 export default class GameHeader extends Component<Props> {
   render() {
+    console.log(this.props.game);
     return (
       <View
         style={{

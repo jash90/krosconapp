@@ -43,15 +43,8 @@ class Panel extends Component<Props, State> {
           }}>
           <UserHeader
             navigation={this.props.navigation}
-            firstname={this.props.authStore.firstname}
-            lastname={this.props.authStore.lastname}
-            email={this.props.authStore.email}
-            city={this.props.authStore.city}
-            age={this.props.authStore.age}
             edit
-            privilegeId={this.props.authStore.privilegeId}
-            allLoan={9}
-            countLoan={1}
+            user={this.props.authStore}
           />
 
           <Button

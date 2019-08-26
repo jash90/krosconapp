@@ -8,14 +8,14 @@ import { Props } from "../interfaces";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
-  value: boolean;
+  user: any;
   game: any;
 }
 export default class LoanGame extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      value: false,
+      user: null,
       game: null
     };
   }
@@ -27,6 +27,13 @@ export default class LoanGame extends Component<Props, State> {
         ? this.props.navigation.state.params.game
         : null;
     if (!!game) this.setState({ game });
+
+    const user =
+      this.props.navigation.state.params &&
+      this.props.navigation.state.params.user
+        ? this.props.navigation.state.params.user
+        : null;
+    if (!!user) this.setState({ user });
   }
 
   render() {
@@ -39,25 +46,21 @@ export default class LoanGame extends Component<Props, State> {
           onPress={() =>
             this.props.navigation.navigate(Scenes.Camera, {
               changeCode: (game: any) => this.setState({ game }),
-              routeName: Scenes.LoanGame
+              routeName: Scenes.LoanGame,
+              typeItem: 1
             })
           }
         />
         <WithScannerUser
           navigation={this.props.navigation}
-          firstname={"Bartłomiej"}
-          lastname={"Zimny"}
-          email={"bartekziimny90@gmail.com"}
-          allLoan={9}
-          age={25}
-          city={"Strzyżów"}
-          countLoan={1}
-          value={this.state.value}
-          loading={false}
+          user={this.state.user}
+          value={!!this.state.user}
           onPress={() =>
-            setTimeout(() => {
-              this.setState({ value: true });
-            }, 3000)
+            this.props.navigation.navigate(Scenes.Camera, {
+              changeCode: (user: any) => this.setState({ user }),
+              routeName: Scenes.LoanGame,
+              typeItem: 2
+            })
           }
         />
         <Button

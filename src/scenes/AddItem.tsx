@@ -15,7 +15,8 @@ import selection from "../../android/app/src/main/assets/style/selection.json";
 import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
 import Scenes from "../Scenes";
-import { PublisherApi } from "../api";
+import { PublisherApi, BoardGameApi } from "../api";
+import Toast from "react-native-simple-toast";
 const WithScannerText = withScanner(ViewText);
 interface Props {
   data: any;
@@ -63,7 +64,7 @@ export default class AddItem extends Component<Props, State> {
       types: [],
       description: "",
       publishers: [],
-      items: ["Wydawca", "Typ", "Mechanika", "Gra"]
+      items: ["Wydawca", "Gra"]
     };
   }
 
@@ -95,12 +96,14 @@ export default class AddItem extends Component<Props, State> {
         />
         {this.state.selected === "Gra" && (
           <WithScannerText
+            label={"UUID"}
             text={this.state.uuid}
-            value={this.state.value}
+            value={!!this.state.uuid}
             onPress={() => {
               this.props.navigation.navigate(Scenes.Camera, {
-                changeUuid: this.changeUuid,
-                routeName: Scenes.AddItem
+                changeCode: (uuid: any) => this.setState({ uuid }),
+                routeName: Scenes.AddItem,
+                typeItem: 3
               });
             }}
           />
@@ -206,12 +209,47 @@ export default class AddItem extends Component<Props, State> {
     );
   }
   save = () => {
-    this.props.navigation.navigate(Scenes.List);
+    const {
+      name,
+      uuid,
+      minPlayers,
+      maxPlayers,
+      time,
+      age,
+      publisher
+    } = this.state;
+    if (this.state.selected === "Gra") {
+      BoardGameApi.add(
+        name,
+        uuid,
+        minPlayers,
+        maxPlayers,
+        Number(time),
+        Number(age),
+        publisher.id
+      )
+        .then(item => {
+          console.log(item);
+          Toast.show("Zapisano");
+        })
+        .catch(error => {});
+    }
+    if (this.state.selected === "Wydawca") {
+      PublisherApi.add(name)
+        .then(item => {
+          console.log(item);
+          Toast.show("Zapisano");
+        })
+        .catch(error => {});
+    }
   };
 
   changeUuid = (uuid: string) => {
-    this.setState({ uuid });
-    this.setState({ value: true });
+    this.props.navigation.navigate(Scenes.Camera, {
+      changeCode: (user: any) => this.setState({ uuid }),
+      routeName: Scenes.LoanGame,
+      typeItem: 2
+    });
   };
   createArray(count: number, max: number) {
     let active: any[] = new Array(count).fill(true);

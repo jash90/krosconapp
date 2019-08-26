@@ -21,20 +21,14 @@ interface User {
   email: string | null;
   age: number | null;
   city: string | null;
-  countLoan: number;
-  allLoan: number;
+  // countLoan: number;
+  // allLoan: number;
+  edit?:boolean;
+  privilegeId:number;
 }
 
 interface Props {
-  firstname: string;
-  lastname: string;
-  email: string | null;
-  age: number | null;
-  city: string | null;
-  countLoan: number;
-  allLoan: number;
-  edit?:boolean;
-  privilegeId:number;
+ user:User;
   navigation: any;
 }
 export default class UserHeader extends Component<Props> {
@@ -45,11 +39,11 @@ export default class UserHeader extends Component<Props> {
       email,
       age,
       city,
-      countLoan,
-      allLoan,
+      // countLoan,
+      // allLoan,
       edit,
       privilegeId
-    } = this.props;
+    } = this.props.user;
     return (
       <View
         style={{
@@ -76,13 +70,10 @@ export default class UserHeader extends Component<Props> {
             <TouchableOpacity onPress={this.goToEdit}>
             <Icon name={"edit"} size={30} style={{ padding: 5 }} />
           </TouchableOpacity>
-          </View>)}
+        </View>)}
         </View>
         <Text style={{ fontSize: 16 }}>{`${age ? age : "-"} lat`}</Text>
         <Text style={{ fontSize: 16 }}>{`Miasto: ${city ? city : "-"}`}</Text>
-        <Text style={{ fontSize: 16 }}>
-          {`Liczba wypożyczonych gier: ${this.props.countLoan}`}
-        </Text>
         {this.props.children}
       </View>
     );

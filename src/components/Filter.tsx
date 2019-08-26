@@ -87,7 +87,7 @@ class Filter extends Component<Props, State> {
               returnKeyType={"search"}
             />
 
-            <TouchableOpacity onPress={() => this.setState({ modal: true })}>
+            <TouchableOpacity onPress={() => this.setState({ modal: true })} style={{justifyContent:"center"}}>
               <Icon name={"filter-list"} size={30} color="grey" />
             </TouchableOpacity>
           </View>

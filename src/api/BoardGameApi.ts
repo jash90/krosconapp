@@ -7,10 +7,7 @@ export default class BoardGameApi {
         maxPlayers: number,
         playingTime: number,
         minAge: number,
-        publisherId: number,
-        createdAt: Date,
-        types: number[],
-        mechanic: number[]) {
+        publisherId: number) {
         return await axios.post(`/${this.apiName}/add`, {
             name,
             uuid,
@@ -18,10 +15,7 @@ export default class BoardGameApi {
             maxPlayers,
             playingTime,
             minAge,
-            publisherId,
-            createdAt,
-            types,
-            mechanic
+            publisherId
         });
     }
     public static async all() {
@@ -42,10 +36,7 @@ export default class BoardGameApi {
         maxPlayers: number,
         playingTime: number,
         minAge: number,
-        publisherId: number,
-        createdAt: Date,
-        types: number[],
-        mechanic: number[]) {
+        publisherId: number) {
         return await axios.post(`/${this.apiName}/edit`, {
             name,
             uuid,
@@ -53,22 +44,20 @@ export default class BoardGameApi {
             maxPlayers,
             playingTime,
             minAge,
-            publisherId,
-            createdAt,
-            types,
-            mechanic
+            publisherId
         });
     }
     public static async remove(boardGameId: number) {
         return await axios.delete(`/${this.apiName}/remove/${boardGameId}`)
     }
 
-    public static async search(name: string,
-        minPlayers: number,
-        maxPlayers: number,
-        playingTime: number,
-        minAge: number,
-        publisherId: number,
+    public static async search(name: string | null = null,
+        minPlayers: number | null = null,
+        maxPlayers: number | null = null,
+        playingTime: number | null = null,
+        minAge: number | null = null,
+        publisherId: number | null = null,
+        uuid: string | null = null
     ) {
         return await axios.post(`/${this.apiName}/search`, {
             name,
@@ -77,6 +66,7 @@ export default class BoardGameApi {
             playingTime,
             minAge,
             publisherId,
+            uuid
         })
     }
 }

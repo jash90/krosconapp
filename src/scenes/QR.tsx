@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, GameHeader, UserHeader } from "../components";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 import {
   Spacer,
   RCText,
@@ -10,15 +10,11 @@ import {
   RCViewCenter
 } from "../components/StyledComponent";
 import QRCode from "react-native-qrcode";
-interface Props {
-  code:string
-}
-class QR extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
 
+class QR extends Component<{}> {
   render() {
+    const code = this.props.navigation.state.params.code;
+    console.log(code);
     return (
       <Container
         text={"Kod QR"}
@@ -26,16 +22,16 @@ class QR extends Component<Props> {
         styleContent={{
           flex: 1,
           justifyContent: "center",
-          alignItems: "center",
-          backgroundColor:"red"
+          alignItems: "center"
         }}>
- 
+        <RCViewCenter>
           <QRCode
-            value={this.props.code}
+            value={code}
             bgColor="black"
             fgColor="white"
+            size={Dimensions.get("window").width * 0.8}
           />
-   
+        </RCViewCenter>
       </Container>
     );
   }

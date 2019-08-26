@@ -3,7 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { Props } from "../interfaces";
 import { RNCamera } from "react-native-camera";
-import { UserApi } from "../api";
+import { UserApi, BoardGameApi } from "../api";
+import Toast from "react-native-simple-toast";
+import _ from "underscore";
 interface CameraProps extends Props {
   changeCode: Function;
   routeName: string;
@@ -37,14 +39,42 @@ export default class Camera extends Component<CameraProps, State> {
     );
   }
   onBarCodeRead(data: any, type: any) {
-    const { routeName, changeCode } = this.props.navigation.state.params;
-    UserApi.search(data.data).then(item=>{
-      console.log(item);
-      console.log(data);
-      // changeCode(data.data);
-      // this.props.navigation.navigate(routeName);
-    })
-
+    const {
+      routeName,
+      changeCode,
+      typeItem
+    } = this.props.navigation.state.params;
+    if (typeItem === 1) {
+      BoardGameApi.search(null, null, null, null, null, null, data.data).then(
+        response => {
+          console.log(response);
+          if (response.data.item) {
+            const item = response.data.item;
+            console.log(item);
+            changeCode(item);
+            this.props.navigation.navigate(routeName);
+          } else {
+            Toast.show("Nie znaleziono w bazie.");
+          }
+        }
+      );
+    }
+    if (typeItem === 2) {
+      UserApi.search(data.data).then(response => {
+        console.log(response);
+        if (response.data.item) {
+          const item = response.data.item;
+          changeCode(item);
+          this.props.navigation.navigate(routeName);
+        } else {
+          Toast.show("Nie znaleziono w bazie.");
+        }
+      });
+    }
+    if (typeItem === 3) {
+      changeCode(data.data);
+      this.props.navigation.navigate(routeName);
+    }
   }
 }
 

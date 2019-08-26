@@ -33,14 +33,7 @@ export default class Privilege extends Component<{}, State> {
           renderItem={({ item }) => (
             <UserHeader
               navigation={this.props.navigation}
-              firstname={item.firstname}
-              lastname={item.lastname}
-              email={item.email}
-              city={item.city}
-              age={item.age}
-              privilegeId={item.privilegeId}
-              allLoan={9}
-              countLoan={1}>
+              user={item}>
               <View
                 style={{
                   flex: 1,
