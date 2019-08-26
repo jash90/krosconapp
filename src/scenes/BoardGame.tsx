@@ -14,30 +14,22 @@ import StarRating from "react-native-star-rating";
 import Color from "../Color";
 import { Container, GameHeader, Button } from "../components";
 import Scenes from "../Scenes";
+import { inject, observer } from "mobx-react";
+import AuthStore from "../stores/AuthStore";
 interface Props {
   item: any;
+  authStore: AuthStore;
 }
-interface State {}
-export default class Item extends Component<Props, State> {
+class BoardGame extends Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
   }
-  componentWillMount() {}
 
   render() {
     const item = this.props.navigation.state.params.item;
-     return (
+    return (
       <Container scrollView={true} navigation={this.props.navigation}>
-        <GameHeader
-          navigation={this.props.navigation}
-          name={item.name}
-          minAge={item.minAge}
-          minPlayers={item.minPlayers}
-          maxPlayers={item.maxPlayers}
-          playingTime={item.playingTime}
-          publisher={item.publisher.name}
-        />
+        <GameHeader navigation={this.props.navigation} game={item} />
         {!!item.description && (
           <View
             style={{
@@ -52,7 +44,7 @@ export default class Item extends Component<Props, State> {
             <Text>{item.description}</Text>
           </View>
         )}
-        {!!item.boardGameTypes.length && (
+        {false && !!item.boardGameTypes.length && (
           <View
             style={{
               flex: 1,
@@ -87,7 +79,7 @@ export default class Item extends Component<Props, State> {
             />
           </View>
         )}
-        {!!item.boardGameMechanics.length && (
+        {false && !!item.boardGameMechanics.length && (
           <View
             style={{
               flex: 1,
@@ -127,11 +119,20 @@ export default class Item extends Component<Props, State> {
             primary
             color={Color.accentColor}
             colorText={"white"}
-            onPress={() => this.props.navigation.navigate(Scenes.LoanGame)}
+            onPress={this.loanGame}
             text={"LoanGame"}
           />
         </View>
       </Container>
     );
   }
+  loanGame = () => {
+    const item = this.props.navigation.state.params.item;
+    if (this.props.authStore.privilegeId === 1) {
+      this.props.navigation.navigate(Scenes.QR, { code: item.uuid });
+    } else {
+      this.props.navigation.navigate(Scenes.LoanGame, { game: item });
+    }
+  };
 }
+export default inject("authStore")(observer(BoardGame));

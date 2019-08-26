@@ -76,17 +76,8 @@ class Panel extends Component<Props, State> {
             <Button
               outline
               color={`${Color.accentColor}`}
-              text={"Dodaj grę"}
+              text={"Dodaj"}
               onPress={this.addBoardGame}
-            />
-          )}
-
-          {this.props.authStore.privilegeId > 1 && (
-            <Button
-              outline
-              color={`${Color.accentColor}`}
-              text={"Dodaj inne"}
-              onPress={this.addItem}
             />
           )}
 
@@ -104,7 +95,7 @@ class Panel extends Component<Props, State> {
   }
 
   addBoardGame = () => {
-    this.props.navigation.navigate(Scenes.AddBoardGame);
+    this.props.navigation.navigate(Scenes.AddItem);
   };
 
   loanGame = () => {
@@ -117,10 +108,6 @@ class Panel extends Component<Props, State> {
 
   changePassword = () => {
     this.props.navigation.navigate(Scenes.ChangePassword);
-  };
-
-  addItem = () => {
-    this.props.navigation.navigate(Scenes.AddItem);
   };
 
   logout = async () => {

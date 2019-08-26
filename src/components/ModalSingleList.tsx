@@ -12,9 +12,9 @@ import { RCView } from "../components/StyledComponent";
 import { ViewText, PickerPawn, Button } from "./index";
 
 interface Props {
-  onChangeValue: (value: string) => void;
-  value: string;
-  list: string[];
+  onChangeValue: (value: any) => void;
+  value: any;
+  list: any[];
   placeholder: string;
 }
 interface State {
@@ -34,7 +34,7 @@ class ModalSingleList extends Component<Props, State> {
       <View style={{ width: "100%" }}>
         <ViewText
           label={"Wydawca"}
-          text={`${this.props.value}`}
+          text={`${this.props.value.name ? this.props.value.name: ""}`}
           onPress={() => this.setState({ modal: true })}
         />
         <Modal
@@ -78,8 +78,8 @@ class ModalSingleList extends Component<Props, State> {
                   data={this.props.list.filter(text => {
                     if (this.state.value) {
                       return (
-                        text.includes(this.state.value) ||
-                        text === this.props.value
+                        text.name.includes(this.state.value) ||
+                        text.name === this.props.value.name
                       );
                     }
                     return true;
@@ -94,7 +94,7 @@ class ModalSingleList extends Component<Props, State> {
       </View>
     );
   }
-  renderItem(item: string) {
+  renderItem(item: any) {
     const selected = item === this.props.value;
     return (
       <TouchableOpacity
@@ -107,7 +107,7 @@ class ModalSingleList extends Component<Props, State> {
             borderWidth: 1,
             backgroundColor: selected ? "black" : "white"
           }}>
-          <Text style={{ color: selected ? "white" : "black" }}>{item}</Text>
+          <Text style={{ color: selected ? "white" : "black" }}>{item.name}</Text>
         </RCView>
       </TouchableOpacity>
     );

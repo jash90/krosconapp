@@ -14,25 +14,19 @@ import StarRating from "react-native-star-rating";
 import { withNavigation } from "react-navigation";
 interface Game {
   name: string;
-  thumbnail: string;
-  averageRating: number;
-  minPlayers: number;
-  maxPlayers: number;
-  playingTime: number;
-}
-
-interface Props {
-  name: string;
   minPlayers: number;
   maxPlayers: number;
   playingTime: number;
   minAge: number;
-  publisher:string;
+  publisher: any;
+}
+
+interface Props {
+  game: Game;
   navigation: any;
 }
 export default class GameHeader extends Component<Props> {
   render() {
-    const { name, minPlayers, maxPlayers, playingTime, minAge, publisher } = this.props;
     return (
       <View
         style={{
@@ -44,63 +38,66 @@ export default class GameHeader extends Component<Props> {
           justifyContent: "center",
           alignItems: "center"
         }}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "flex-start",
-            alignItems: "flex-start"
-          }}>
-          <View style={{ paddingVertical: 5 }}>
-            <Text
-              style={{
-                width: "100%",
-                fontSize: 18,
-                textAlign: "left"
-              }}>
-              {name}
-            </Text>
-          </View>
+        {!!this.props.game && (
           <View
             style={{
-              flexDirection: "row", paddingVertical:5
+              flex: 1,
+              justifyContent: "flex-start",
+              alignItems: "flex-start"
             }}>
+            <View style={{ paddingVertical: 5 }}>
+              <Text
+                style={{
+                  width: "100%",
+                  fontSize: 18,
+                  textAlign: "left"
+                }}>
+                {this.props.game.name}
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                paddingVertical: 5
+              }}>
               <View>
                 <Text>{"Graczy:"}</Text>
               </View>
-            {this.renderPawn(minPlayers, maxPlayers)}
+              {this.renderPawn(this.props.game.minPlayers, this.props.game.maxPlayers)}
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingVertical: 5,
+                marginLeft: -2
+              }}>
+              <Icon name={"time"} size={20} />
+              <Text>{`${this.props.game.playingTime} min`}</Text>
+            </View>
+            <View
+              style={{
+                paddingVertical: 5,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center"
+              }}>
+              <MaterialIcon name={"cake"} size={20} />
+              <Text>{`${this.props.game.minAge} lat`}</Text>
+            </View>
+            <View
+              style={{
+                paddingVertical: 5,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center"
+              }}>
+              <MaterialIcon name={"casino"} size={20} />
+              <Text>{this.props.game.publisher.name}</Text>
+            </View>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              paddingVertical:5,
-              marginLeft:-2,
-            }}>
-            <Icon name={"time"} size={20} />
-            <Text>{`${playingTime} min`}</Text>
-          </View>
-          <View
-            style={{
-              paddingVertical:5,
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center"
-            }}>
-            <MaterialIcon name={"cake"} size={20} />
-            <Text>{`${minAge} lat`}</Text>
-          </View>
-          <View
-            style={{
-              paddingVertical:5,
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center"
-            }}>
-            <MaterialIcon name={"casino"} size={20} />
-            <Text>{publisher}</Text>
-          </View>
-        </View>
+        )}
       </View>
     );
   }

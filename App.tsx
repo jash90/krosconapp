@@ -3,7 +3,6 @@ import React from "react";
 import { MenuProvider } from "react-native-popup-menu";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 import {
-  AddBoardGame,
   AddItem,
   BoardGame,
   Camera,
@@ -27,7 +26,6 @@ const AppNavigator = createStackNavigator(
     List,
     BoardGame,
     Camera,
-    AddBoardGame,
     AddItem,
     Login,
     Register,

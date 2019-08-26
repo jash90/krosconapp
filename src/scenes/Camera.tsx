@@ -3,8 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { Props } from "../interfaces";
 import { RNCamera } from "react-native-camera";
+import { UserApi } from "../api";
 interface CameraProps extends Props {
-  changeUuid: Function;
+  changeCode: Function;
   routeName: string;
 }
 interface State {}
@@ -36,10 +37,14 @@ export default class Camera extends Component<CameraProps, State> {
     );
   }
   onBarCodeRead(data: any, type: any) {
-    const { routeName, changeUuid } = this.props.navigation.state.params;
-    console.log(data);
-    changeUuid(data.data);
-    this.props.navigation.navigate(routeName);
+    const { routeName, changeCode } = this.props.navigation.state.params;
+    UserApi.search(data.data).then(item=>{
+      console.log(item);
+      console.log(data);
+      // changeCode(data.data);
+      // this.props.navigation.navigate(routeName);
+    })
+
   }
 }
 

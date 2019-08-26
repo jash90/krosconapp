@@ -27,4 +27,7 @@ export default class LoanGameApi {
     public static async remove(userId: number) {
         return await axios.delete(`/${this.apiName}/remove/${userId}`)
     }
+    public static async search(email: string) {
+        return await axios.post(`/${this.apiName}/search`, { email })
+    }
 }

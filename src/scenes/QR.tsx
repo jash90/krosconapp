@@ -11,7 +11,7 @@ import {
 } from "../components/StyledComponent";
 import QRCode from "react-native-qrcode";
 interface Props {
-  authStore: AuthStore;
+  code:string
 }
 class QR extends Component<Props> {
   constructor(props: Props) {
@@ -26,19 +26,19 @@ class QR extends Component<Props> {
         styleContent={{
           flex: 1,
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          backgroundColor:"red"
         }}>
-        <RCViewCenter>
+ 
           <QRCode
-            value={this.props.authStore.email}
-            size={300}
+            value={this.props.code}
             bgColor="black"
             fgColor="white"
           />
-        </RCViewCenter>
+   
       </Container>
     );
   }
 }
 
-export default inject("authStore")(observer(QR));
+export default QR;

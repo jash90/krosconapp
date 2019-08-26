@@ -2,61 +2,46 @@ import React, { Component } from "react";
 import { StyleSheet } from "react-native";
 import { Button, Container, GameHeader, UserHeader } from "../components";
 import { withScanner } from "../components/withScanner";
-import { Props } from "../interfaces";
 import Scenes from "../Scenes";
+import { Props } from "../interfaces";
 
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
   value: boolean;
+  game: any;
 }
 export default class LoanGame extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      value: false
+      value: false,
+      game: null
     };
   }
 
+  componentWillMount() {
+    const game =
+      this.props.navigation.state.params &&
+      this.props.navigation.state.params.game
+        ? this.props.navigation.state.params.game
+        : null;
+    if (!!game) this.setState({ game });
+  }
+
   render() {
-    const game = {
-      averageRating: 6.56234,
-      bggRating: 0,
-      forTrade: false,
-      gameId: 7865,
-      image:
-        "https://cf.geekdo-images.com/original/img/k0YHQxddSd7-fTmuamxpZiwI1Xs=/0x0/pic1229634.jpg",
-      isExpansion: false,
-      maxPlayers: 4,
-      minPlayers: 2,
-      name: "10 Days in Africa",
-      numPlays: 4,
-      owned: false,
-      playingTime: 30,
-      preOrdered: false,
-      previousOwned: false,
-      rank: 1820,
-      rating: -1,
-      thumbnail:
-        "https://cf.geekdo-images.com/thumb/img/Kk309UtSrQu3flO3Rs_Vxuumvd4=/fit-in/200x150/pic1229634.jpg",
-      userComment: "",
-      want: false,
-      wantToBuy: false,
-      wantToPlay: false,
-      wishList: false,
-      yearPublished: 2003
-    };
     return (
       <Container text={"Wypożycz grę"} navigation={this.props.navigation}>
         <WithScannerGame
           navigation={this.props.navigation}
-          name={game.name}
-          thumbnail={game.thumbnail}
-          averageRating={game.averageRating}
-          minPlayers={game.minPlayers}
-          maxPlayers={game.maxPlayers}
-          playingTime={game.playingTime}
-          value={true}
+          value={!!this.state.game}
+          game={this.state.game}
+          onPress={() =>
+            this.props.navigation.navigate(Scenes.Camera, {
+              changeCode: (game: any) => this.setState({ game }),
+              routeName: Scenes.LoanGame
+            })
+          }
         />
         <WithScannerUser
           navigation={this.props.navigation}
