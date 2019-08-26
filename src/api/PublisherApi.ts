@@ -8,7 +8,7 @@ export default class PublisherApi {
         });
     }
     public static async all() {
-        return await axios.get(`/${this.apiName}/all`);
+        return await axios.get(`/${this.apiName}s`);
     }
     public static async get(publisherId: number) {
         return await axios.get(`/${this.apiName}/${publisherId}`)

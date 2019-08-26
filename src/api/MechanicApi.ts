@@ -8,7 +8,7 @@ export default class MechanicApi {
         });
     }
     public static async all() {
-        return await axios.get(`/${this.apiName}/all`);
+        return await axios.get(`/${this.apiName}s`);
     }
     public static async get(mechanicId: number) {
         return await axios.get(`/${this.apiName}/${mechanicId}`)

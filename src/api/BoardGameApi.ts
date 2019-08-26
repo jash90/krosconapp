@@ -25,7 +25,7 @@ export default class BoardGameApi {
         });
     }
     public static async all() {
-        return await axios.get(`/${this.apiName}/all`);
+        return await axios.get(`/${this.apiName}s`);
     }
     public static async available() {
         return await axios.get(`/${this.apiName}/available`);
@@ -61,5 +61,22 @@ export default class BoardGameApi {
     }
     public static async remove(boardGameId: number) {
         return await axios.delete(`/${this.apiName}/remove/${boardGameId}`)
+    }
+
+    public static async search(name: string,
+        minPlayers: number,
+        maxPlayers: number,
+        playingTime: number,
+        minAge: number,
+        publisherId: number,
+    ) {
+        return await axios.post(`/${this.apiName}/search`, {
+            name,
+            minPlayers,
+            maxPlayers,
+            playingTime,
+            minAge,
+            publisherId,
+        })
     }
 }

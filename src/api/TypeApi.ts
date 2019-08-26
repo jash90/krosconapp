@@ -8,7 +8,7 @@ export default class TypeApi {
         });
     }
     public static async all() {
-        return await axios.get(`/${this.apiName}/all`);
+        return await axios.get(`/${this.apiName}s`);
     }
     public static async get(typeId: number) {
         return await axios.get(`/${this.apiName}/${typeId}`)

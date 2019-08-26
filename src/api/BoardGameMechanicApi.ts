@@ -10,7 +10,7 @@ export default class BoardGameMechanicApi {
         });
     }
     public static async all() {
-        return await axios.get(`/${this.apiName}/all`);
+        return await axios.get(`/${this.apiName}s`);
     }
     public static async get(boardGameMechanicId: number) {
         return await axios.get(`/${this.apiName}/${boardGameMechanicId}`)

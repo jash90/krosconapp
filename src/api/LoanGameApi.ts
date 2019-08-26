@@ -12,7 +12,7 @@ export default class LoanGameApi {
         });
     }
     public static async all() {
-        return await axios.get(`/${this.apiName}/all`);
+        return await axios.get(`/${this.apiName}s`);
     }
     public static async get(loanGameId: number) {
         return await axios.get(`/${this.apiName}/${loanGameId}`)

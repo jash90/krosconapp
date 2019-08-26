@@ -10,7 +10,7 @@ export default class BoardGameTypeApi {
         });
     }
     public static async all() {
-        return await axios.get(`/${this.apiName}/all`);
+        return await axios.get(`/${this.apiName}s`);
     }
     public static async get(boardGameTypeId: number) {
         return await axios.get(`/${this.apiName}/${boardGameTypeId}`)
