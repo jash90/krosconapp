@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
+import Scenes from "../Scenes";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Game {
   name: string;
@@ -38,15 +39,25 @@ export default class GameHeader extends Component<Props> {
               justifyContent: "flex-start",
               alignItems: "flex-start"
             }}>
-            <View style={{ paddingVertical: 5 }}>
+            <View
+              style={{
+                width: "100%",
+                paddingVertical: 5,
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}>
               <Text
                 style={{
-                  width: "100%",
                   fontSize: 18,
-                  textAlign: "left"
+                  textAlign: "left",
+                  textAlignVertical:"center",
+                  alignSelf: 'center',
                 }}>
                 {this.props.game.name}
               </Text>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate(Scenes.AddItem,{game:this.props.game})}>
+              <MaterialIcon name="edit" size={26} />
+              </TouchableOpacity>
             </View>
             <View
               style={{
@@ -56,7 +67,10 @@ export default class GameHeader extends Component<Props> {
               <View>
                 <Text>{"Graczy:"}</Text>
               </View>
-              {this.renderPawn(this.props.game.minPlayers, this.props.game.maxPlayers)}
+              {this.renderPawn(
+                this.props.game.minPlayers,
+                this.props.game.maxPlayers
+              )}
             </View>
             <View
               style={{

@@ -17,13 +17,18 @@ import { Item, Label, Input } from "native-base";
 import { Spacer, RCText, RCView } from "../components/StyledComponent";
 import { Props } from "../interfaces";
 import Scenes from "../Scenes";
+import { AuthApi } from "../api";
+import { observer, inject } from "mobx-react";
+import AuthStore from "../stores/AuthStore";
 const Icon = createIconSetFromIcoMoon(selection);
-
+interface Props {
+  authStore:AuthStore
+}
 interface State {
   password: string;
   repeatPassword: string;
 }
-export default class ChangePassword extends Component<Props, State> {
+class ChangePassword extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -59,6 +64,10 @@ export default class ChangePassword extends Component<Props, State> {
     );
   }
   save = () => {
-    this.props.navigation.navigate(Scenes.List);
+    AuthApi.changePassword(this.props.authStore.id,this.state.password).then(item=>{
+      console.log(item);
+      this.props.navigation.navigate(Scenes.List);
+    })
   };
 }
+export default inject("authStore")(observer(ChangePassword));

@@ -5,28 +5,46 @@ import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Container } from "../components";
 import { RCView } from "../components/StyledComponent";
 import Scenes from "../Scenes";
+import { UserApi } from "../api/index";
+import { observer, inject } from "mobx-react";
+import AuthStore from "../stores/AuthStore";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
-  data: any;
+  authStore:AuthStore
 }
 interface State {
   firstname: string;
   lastname: string;
-  password: string;
   city: string;
   age: number;
+  id:number;
 }
-export default class EditProfile extends Component<Props, State> {
+class EditProfile extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       firstname: "",
       lastname: "",
-      password: "",
       city: "",
-      age: 0
+      age: 0,
+      id:0
     };
   }
+
+  componentDidMount() {
+    const user = this.props.navigation.state.params.user;
+    console.log(user);
+    if (user) {
+      this.setState({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        city: user.city,
+        age: Number(user.age),
+        id:user.id
+      });
+    }
+  }
+
   render() {
     return (
       <Container
@@ -71,7 +89,15 @@ export default class EditProfile extends Component<Props, State> {
     );
   }
   save = () => {
-    this.props.navigation.navigate(Scenes.List);
+    const {firstname,lastname, city, age, id} = this.state;
+    UserApi.edit(firstname,lastname,city,age,id).then(item=>{
+      this.props.authStore.setFirstname(firstname);
+      this.props.authStore.setLastname(lastname);
+      this.props.authStore.setCity(city);
+      this.props.authStore.setAge(age);
+      this.props.navigation.navigate(Scenes.List);
+    })
+   
   };
 
   createArray(count: number, max: number) {
@@ -80,3 +106,4 @@ export default class EditProfile extends Component<Props, State> {
     return active.concat(disactive);
   }
 }
+export default inject("authStore")(observer(EditProfile));
