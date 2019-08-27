@@ -3,6 +3,8 @@ import { User } from "../models";
 
 export default class AuthStore {
   @observable
+  id:number = 0;
+  @observable
   token: string = "";
   @observable
   email: string = "";
@@ -52,6 +54,10 @@ export default class AuthStore {
     this.lastname = lastname;
   }
 
+  setId(id:number){
+    this.id = id;
+  }
+
   setUser(user:User){
     this.firstname = user.firstname;
     this.lastname = user.lastname;
@@ -61,6 +67,7 @@ export default class AuthStore {
     this.token = user.token;
     this.tokenExpired = user.tokenExpired;
     this.privilegeId = user.privilegeId;
+    this.id = user.id;
   }
 
   clearUser(){
@@ -72,6 +79,7 @@ export default class AuthStore {
     this.token = "";
     this.tokenExpired = new Date();
     this.privilegeId = 0;
+    this.id = 0;
   }
 
 }

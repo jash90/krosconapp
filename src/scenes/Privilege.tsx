@@ -23,6 +23,7 @@ export default class Privilege extends Component<{}, State> {
     }
   }
   render() {
+    console.log(this.state.users);
     return (
       <Container
         text={"Lista użytkowników"}
@@ -31,9 +32,7 @@ export default class Privilege extends Component<{}, State> {
         <FlatList
           data={this.state.users}
           renderItem={({ item }) => (
-            <UserHeader
-              navigation={this.props.navigation}
-              user={item}>
+            <UserHeader navigation={this.props.navigation} user={item}>
               <View
                 style={{
                   flex: 1,
@@ -46,27 +45,45 @@ export default class Privilege extends Component<{}, State> {
                     padding: 5,
                     paddingHorizontal: 10,
                     borderRadius: 20,
-                    borderWidth: 1
+                    borderWidth: 1,
+                    backgroundColor: item.privilegeId === 1 ? "black" : "white"
                   }}>
-                  <Text>{"użytkownik"}</Text>
+                  <Text
+                    style={{
+                      color: item.privilegeId === 1 ? "white" : "black"
+                    }}>
+                    {"użytkownik"}
+                  </Text>
                 </View>
                 <View
                   style={{
                     padding: 5,
                     paddingHorizontal: 10,
                     borderRadius: 20,
-                    borderWidth: 1
+                    borderWidth: 1,
+                    backgroundColor: item.privilegeId === 2 ? "black" : "white"
                   }}>
-                  <Text>{"obsługa"}</Text>
+                  <Text
+                    style={{
+                      color: item.privilegeId === 2 ? "white" : "black"
+                    }}>
+                    {"obsługa"}
+                  </Text>
                 </View>
                 <View
                   style={{
                     padding: 5,
                     paddingHorizontal: 10,
                     borderRadius: 20,
-                    borderWidth: 1
+                    borderWidth: 1,
+                    backgroundColor: item.privilegeId === 3 ? "black" : "white"
                   }}>
-                  <Text>{"admin"}</Text>
+                  <Text
+                    style={{
+                      color: item.privilegeId === 3 ? "white" : "black"
+                    }}>
+                    {"admin"}
+                  </Text>
                 </View>
               </View>
             </UserHeader>
