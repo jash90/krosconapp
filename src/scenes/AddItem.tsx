@@ -17,26 +17,20 @@ import { withScanner } from "../components/withScanner";
 import Scenes from "../Scenes";
 import { PublisherApi, BoardGameApi } from "../api";
 import Toast from "react-native-simple-toast";
+import { Props } from "../interfaces";
 const WithScannerText = withScanner(ViewText);
-interface Props {
-  data: any;
-}
 interface State {
-  image: any;
-  age: string;
-  minPlayers: number;
   name: string;
-  time: string;
+  minPlayers: number;
+  maxPlayers: number;
+  playingTime: string;
+  minAge: string;
   publisher: any;
   type: string;
   mechanic: string;
   uuid: string;
   value: boolean;
-  modalVisible: boolean;
-  maxPlayers: number;
-  listDrop: string[];
   selected: string;
-  modalVisible2: boolean;
   types: string[];
   description: string;
   publishers: any[];
@@ -46,21 +40,17 @@ export default class AddItem extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      image: null,
-      age: "",
+      minAge: "",
       minPlayers: 2,
       maxPlayers: 5,
       name: "",
-      time: "0",
+      playingTime: "",
       publisher: {},
       type: "",
       mechanic: "",
       uuid: "",
       value: false,
-      modalVisible: false,
-      listDrop: ["test"],
       selected: "Gra",
-      modalVisible2: false,
       types: [],
       description: "",
       publishers: [],
@@ -72,11 +62,33 @@ export default class AddItem extends Component<Props, State> {
     PublisherApi.all()
       .then(response => {
         this.setState({ publishers: response.data.items });
-        console.log(response.data);
       })
       .catch(error => {
         console.log(error);
       });
+    if (this.props.navigation.state.params) {
+      const game = this.props.navigation.state.params.game;
+      if (game) {
+        const {
+          name,
+          minPlayers,
+          maxPlayers,
+          playingTime,
+          minAge,
+          publisher,
+          uuid
+        } = game;
+        this.setState({
+          name,
+          minPlayers,
+          maxPlayers,
+          playingTime: String(playingTime),
+          minAge: String(minAge),
+          publisher,
+          uuid
+        });
+      }
+    }
   };
 
   render() {
@@ -87,24 +99,28 @@ export default class AddItem extends Component<Props, State> {
         right
         icon={"save"}
         onPress={() => this.save()}>
-        <Dropdown
-          items={this.state.items}
-          value={this.state.selected}
-          onSelect={(item: any) => {
-            this.setState({ selected: item });
-          }}
-        />
+        {!this.props.navigation.state.params && (
+          <Dropdown
+            items={this.state.items}
+            value={this.state.selected}
+            onSelect={(item: any) => {
+              this.setState({ selected: item });
+            }}
+          />
+        )}
         {this.state.selected === "Gra" && (
           <WithScannerText
             label={"UUID"}
             text={this.state.uuid}
             value={!!this.state.uuid}
             onPress={() => {
-              this.props.navigation.navigate(Scenes.Camera, {
-                changeCode: (uuid: any) => this.setState({ uuid }),
-                routeName: Scenes.AddItem,
-                typeItem: 3
-              });
+              if (!this.props.navigation.state.params.game) {
+                this.props.navigation.navigate(Scenes.Camera, {
+                  changeCode: (uuid: any) => this.setState({ uuid }),
+                  routeName: Scenes.AddItem,
+                  typeItem: 3
+                });
+              }
             }}
           />
         )}
@@ -142,9 +158,9 @@ export default class AddItem extends Component<Props, State> {
             <TextInput
               style={{ textAlign: "right", fontSize: 16, width: 25 }}
               keyboardType="phone-pad"
-              value={this.state.age}
+              value={this.state.minAge}
               maxLength={2}
-              onChangeText={text => this.setState({ age: text })}
+              onChangeText={text => this.setState({ minAge: text })}
             />
             <Text style={{ color: "black", fontSize: 16 }}>lat +</Text>
           </RCView>
@@ -158,9 +174,9 @@ export default class AddItem extends Component<Props, State> {
             <TextInput
               style={{ textAlign: "right", fontSize: 16, width: 35 }}
               keyboardType="phone-pad"
-              value={this.state.time}
+              value={this.state.playingTime}
               maxLength={3}
-              onChangeText={time => this.setState({ time })}
+              onChangeText={playingTime => this.setState({ playingTime })}
             />
             <Text style={{ color: "black", fontSize: 16 }}>min</Text>
           </RCView>
@@ -214,19 +230,38 @@ export default class AddItem extends Component<Props, State> {
       uuid,
       minPlayers,
       maxPlayers,
-      time,
-      age,
+      playingTime,
+      minAge,
       publisher
     } = this.state;
-    if (this.state.selected === "Gra") {
+
+    const game = this.props.navigation.state.params.game;
+
+    if (this.state.selected === "Gra" && !game) {
       BoardGameApi.add(
         name,
         uuid,
         minPlayers,
         maxPlayers,
-        Number(time),
-        Number(age),
+        Number(playingTime),
+        Number(minAge),
         publisher.id
+      )
+        .then(item => {
+          console.log(item);
+          Toast.show("Zapisano");
+        })
+        .catch(error => {});
+    } else {
+      BoardGameApi.edit(
+        name,
+        uuid,
+        minPlayers,
+        maxPlayers,
+        Number(playingTime),
+        Number(minAge),
+        publisher.id,
+        game.id
       )
         .then(item => {
           console.log(item);
@@ -246,7 +281,7 @@ export default class AddItem extends Component<Props, State> {
 
   changeUuid = (uuid: string) => {
     this.props.navigation.navigate(Scenes.Camera, {
-      changeCode: (user: any) => this.setState({ uuid }),
+      changeCode: () => this.setState({ uuid }),
       routeName: Scenes.LoanGame,
       typeItem: 2
     });

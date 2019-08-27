@@ -14,7 +14,7 @@ import StarRating from "react-native-star-rating";
 import { withNavigation } from "react-navigation";
 import { Spacer } from "./StyledComponent";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import Scenes from"../Scenes";
+import Scenes from "../Scenes";
 interface User {
   firstname: string;
   lastname: string;
@@ -23,12 +23,12 @@ interface User {
   city: string | null;
   // countLoan: number;
   // allLoan: number;
-  edit?:boolean;
-  privilegeId:number;
+  privilegeId: number;
 }
 
 interface Props {
- user:User;
+  user: User;
+  edit?: boolean;
   navigation: any;
 }
 export default class UserHeader extends Component<Props> {
@@ -39,9 +39,6 @@ export default class UserHeader extends Component<Props> {
       email,
       age,
       city,
-      // countLoan,
-      // allLoan,
-      edit,
       privilegeId
     } = this.props.user;
     return (
@@ -49,28 +46,30 @@ export default class UserHeader extends Component<Props> {
         style={{
           backgroundColor: "white",
           padding: 10,
-          paddingHorizontal:20,
+          paddingHorizontal: 20,
           margin: 10,
-          marginHorizontal:20,
+          marginHorizontal: 20,
           borderRadius: 20
         }}>
         <View style={{ flexDirection: "row" }}>
           <View style={{ flexDirection: "column" }}>
             <Text style={{ fontWeight: "bold", fontSize: 18 }}>
-              {`${firstname?firstname:"-"} ${lastname?lastname:"-"}`}
+              {`${firstname ? firstname : "-"} ${lastname ? lastname : "-"}`}
             </Text>
             <Text style={{ fontSize: 16 }}>{`${email}`}</Text>
           </View>
-        {edit && (<View
-            style={{
-              flex: 1,
-              flexDirection: "column",
-              alignItems: "flex-end"
-            }}>
-            <TouchableOpacity onPress={this.goToEdit}>
-            <Icon name={"edit"} size={30} style={{ padding: 5 }} />
-          </TouchableOpacity>
-        </View>)}
+          {this.props.edit && (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                alignItems: "flex-end"
+              }}>
+              <TouchableOpacity onPress={this.goToEdit}>
+                <Icon name={"edit"} size={30} style={{ padding: 5 }} />
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
         <Text style={{ fontSize: 16 }}>{`${age ? age : "-"} lat`}</Text>
         <Text style={{ fontSize: 16 }}>{`Miasto: ${city ? city : "-"}`}</Text>
@@ -80,7 +79,8 @@ export default class UserHeader extends Component<Props> {
   }
 
   goToEdit = () => {
-    this.props.navigation.navigate(Scenes.EditProfile);
-  }
-
+    this.props.navigation.navigate(Scenes.EditProfile, {
+      user: this.props.user
+    });
+  };
 }
