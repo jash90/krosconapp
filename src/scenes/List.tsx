@@ -18,10 +18,13 @@ import Color from "../Color";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
-import Scenes from"../Scenes";
+import Scenes from "../Scenes";
+import { BoardGameApi } from "../api/index";
 interface State {
   active: boolean;
   search: string;
+  listgame: any[];
+  refresh: boolean;
 }
 interface Props {
   listgame: any[];
@@ -32,7 +35,9 @@ class List extends Component<Props, State> {
     super(props);
     this.state = {
       active: false,
-      search: ""
+      search: "",
+      refresh: false,
+      listgame: props.navigation.state.params.listgame
     };
   }
 
@@ -52,18 +57,17 @@ class List extends Component<Props, State> {
           placeholder={"Nazwa gry planszowej"}
         />
         <FlatList
-          data={this.props.navigation.state.params.listgame}
+          data={this.state.listgame}
           renderItem={({ item }: any) => (
             <TouchableOpacity
               onPress={() => {
                 this.openItem(item);
               }}>
-              <GameHeader
-                navigation={this.props.navigation}
-                game={item}
-              />
+              <GameHeader navigation={this.props.navigation} game={item} />
             </TouchableOpacity>
           )}
+          refreshing={this.state.refresh}
+          onRefresh={this.onRefresh}
         />
         {this.props.authStore.privilegeId === 1 && (
           <Fab
@@ -72,7 +76,11 @@ class List extends Component<Props, State> {
               backgroundColor: Color.accentColor
             }}
             position="bottomRight"
-            onPress={() => this.props.navigation.navigate(Scenes.QR,{code : this.props.authStore.email})}>
+            onPress={() =>
+              this.props.navigation.navigate(Scenes.QR, {
+                code: this.props.authStore.email
+              })
+            }>
             <Image
               style={{ width: 20, height: 20 }}
               source={require("../assets/qr.png")}
@@ -105,6 +113,18 @@ class List extends Component<Props, State> {
     } else {
       this.props.navigation.navigate(Scenes.Login);
     }
+  };
+  onRefresh = () => {
+    this.setState({ refresh: true });
+    BoardGameApi.all()
+      .then(response => {
+        const listgame = response.data.items;
+        this.setState({ listgame });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    this.setState({ refresh: false });
   };
 }
 

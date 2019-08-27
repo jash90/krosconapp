@@ -36,7 +36,8 @@ export default class BoardGameApi {
         maxPlayers: number,
         playingTime: number,
         minAge: number,
-        publisherId: number) {
+        publisherId: number,
+        boardGameId: number) {
         return await axios.post(`/${this.apiName}/edit`, {
             name,
             uuid,
@@ -44,7 +45,8 @@ export default class BoardGameApi {
             maxPlayers,
             playingTime,
             minAge,
-            publisherId
+            publisherId,
+            boardGameId
         });
     }
     public static async remove(boardGameId: number) {
