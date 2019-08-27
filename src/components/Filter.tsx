@@ -19,6 +19,7 @@ import {
   Button,
   ViewText
 } from ".";
+import { PublisherApi } from "../api";
 
 interface Props {
   onChangeValue: (value: string) => void;
@@ -36,6 +37,7 @@ interface State {
   publisher: string;
   types: string[];
   mechanics: string[];
+  publishers:any[]
 }
 class Filter extends Component<Props, State> {
   constructor(props: Props) {
@@ -50,9 +52,21 @@ class Filter extends Component<Props, State> {
       time: "",
       publisher: "",
       types: [],
-      mechanics: []
+      mechanics: [],
+      publishers:[]
     };
   }
+
+componentDidMount(){
+  PublisherApi.all()
+  .then(response => {
+    this.setState({ publishers: response.data.items });
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
+
   render() {
     const {
       minPlayers,
@@ -271,15 +285,7 @@ class Filter extends Component<Props, State> {
                 <ModalSingleList
                   placeholder={"Wydawca"}
                   value={this.state.publisher}
-                  list={[
-                    "publisher1",
-                    "publisher2",
-                    "publisher3",
-                    "publisher4",
-                    "publisher5",
-                    "publisher6",
-                    "publisher7"
-                  ]}
+                  list={this.state.publishers}
                   onChangeValue={publisher => this.setState({ publisher })}
                 />
 
