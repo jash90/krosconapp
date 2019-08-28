@@ -18,6 +18,8 @@ import {
   Register
  } from "./src/scenes/index";
 import store from "./src/stores";
+import { NetInfo } from "react-native";
+import { Props } from "./src/interfaces";
 
 const AppNavigator = createStackNavigator(
   {
@@ -43,11 +45,30 @@ const AppNavigator = createStackNavigator(
 const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      isConnected:false
+    };
+  }
+  componentDidMount() {
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  handleConnectivityChange = (isConnected:any) => {
+      this.setState({ isConnected });
+  };
+
   render() {
     return (
       <MenuProvider>
         <Provider {...store}>
-          <RootNavigator />
+          <RootNavigator screenProps={{isConnected: this.state.isConnected}}/>
         </Provider>
       </MenuProvider>
     );

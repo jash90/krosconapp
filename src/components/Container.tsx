@@ -5,7 +5,8 @@ import {
   ScrollView,
   findNodeHandle,
   Image,
-  Text
+  Text,
+  NetInfo
 } from "react-native";
 import { Container as NContainer, Content } from "native-base";
 
@@ -15,6 +16,7 @@ import { Head } from ".";
 import { ContainerProps } from "./interfaces";
 interface State {
   viewRef: any;
+  isConnected: boolean;
 }
 class Container extends Component<ContainerProps, State> {
   public backgroundImage: any;
@@ -36,9 +38,17 @@ class Container extends Component<ContainerProps, State> {
   constructor(props: ContainerProps) {
     super(props);
     this.state = {
-      viewRef: null
+      viewRef: null,
+      isConnected: false
     };
   }
+
+  componentWillReceiveProps() {
+    this.setState({
+      isConnected: this.props.navigation.getScreenProps().isConnected
+    });
+  }
+
   render() {
     return (
       <NContainer>
@@ -53,9 +63,19 @@ class Container extends Component<ContainerProps, State> {
           icon={this.props.icon}
           onPress={this.props.onPress}
         />
-        <View style={{ backgroundColor: "red" }}>
-          <Text>{"Brak połączenia z internetem"}</Text>
-        </View>
+        {!this.state.isConnected && (
+          <View
+            style={{
+              backgroundColor: "red",
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              alignItems: "center"
+            }}>
+            <Text style={{ color: "white" }}>
+              {"Brak połączenia z internetem"}
+            </Text>
+          </View>
+        )}
         {this.renderChildren()}
       </NContainer>
     );
@@ -65,7 +85,9 @@ class Container extends Component<ContainerProps, State> {
       return (
         <ScrollView
           style={
-            this.props.styleContent ? [this.props.styleContent, styles.fullStyle] : styles.fullStyle
+            this.props.styleContent
+              ? [this.props.styleContent, styles.fullStyle]
+              : styles.fullStyle
           }>
           {this.props.children}
         </ScrollView>

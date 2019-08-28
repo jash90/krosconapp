@@ -9,6 +9,7 @@ import Toast from "react-native-simple-toast";
 import { StackActions, NavigationActions } from "react-navigation";
 import ErrorUtil from "../ErrorUtil";
 import Color from "../Color";
+import { View } from "react-native";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
@@ -63,32 +64,34 @@ class LoanGame extends Component<Props, State> {
       <Container
         text={loan ? "Wypożycz grę" : "Oddaj grę"}
         navigation={this.props.navigation}>
-        <WithScannerGame
-          navigation={this.props.navigation}
-          value={!!this.state.game}
-          game={this.state.game}
-          onPress={() =>
-            this.props.navigation.navigate(Scenes.Camera, {
-              changeCode: (game: any) => this.setState({ game }),
-              routeName: Scenes.LoanGame,
-              typeItem: 1
-            })
-          }
-        />
-        {loan && (
-          <WithScannerUser
+        <View style={{ marginHorizontal: 20 }}>
+          <WithScannerGame
             navigation={this.props.navigation}
-            user={this.state.user}
-            value={!!this.state.user}
+            value={!!this.state.game}
+            game={this.state.game}
             onPress={() =>
               this.props.navigation.navigate(Scenes.Camera, {
-                changeCode: (user: any) => this.setState({ user }),
+                changeCode: (game: any) => this.setState({ game }),
                 routeName: Scenes.LoanGame,
-                typeItem: 2
+                typeItem: 1
               })
             }
           />
-        )}
+          {loan && (
+            <WithScannerUser
+              navigation={this.props.navigation}
+              user={this.state.user}
+              value={!!this.state.user}
+              onPress={() =>
+                this.props.navigation.navigate(Scenes.Camera, {
+                  changeCode: (user: any) => this.setState({ user }),
+                  routeName: Scenes.LoanGame,
+                  typeItem: 2
+                })
+              }
+            />
+          )}
+        </View>
         <Button
           text={loan ? "Wypożycz grę" : "Oddaj grę"}
           primary

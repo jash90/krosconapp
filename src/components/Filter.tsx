@@ -54,7 +54,7 @@ class Filter extends Component<Props, State> {
     };
   }
 
-  componentDidMount() {
+  componentWillReceiveProps() {
     PublisherApi.all()
       .then(response => {
         this.setState({ publishers: response.data.items });
@@ -75,25 +75,30 @@ class Filter extends Component<Props, State> {
       mechanics
     } = this.state;
     return (
-      <View>
-        <RCViewFlex
+      <View style={{ width: "100%" }}>
+        <View
           style={{
-            marginLeft: 20,
-            marginRight: 20,
-            paddingVertical: 10,
-            flexDirection: "column"
+            marginHorizontal: 20,
+            marginVertical: 10,
+            paddingHorizontal: 16,
+            paddingVertical: 5,
+            flexDirection: "column",
+            backgroundColor: "white",
+            borderRadius: 20,
+            justifyContent: "center",
+            alignItems: "center"
           }}>
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "center",
+              justifyContent: "center"
             }}>
             <TextInput
               autoCapitalize={"none"}
               value={this.state.name}
               placeholder={"Nazwa gry planszowej"}
               style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(name:any)=>this.setState({name})}
+              onChangeText={(name: any) => this.setState({ name })}
               onEndEditing={this.onChangeValue}
               returnKeyType={"search"}
             />
@@ -104,106 +109,99 @@ class Filter extends Component<Props, State> {
               <Icon name={"filter-list"} size={30} color="grey" />
             </TouchableOpacity>
           </View>
-          <View style={{ width: "100%" }}>
-            {minPlayers > 0 && maxPlayers > 0 && (
-              <View style={{ paddingVertical: 10 }}>
-                <ViewText
-                  onlyText
-                  label={"Min/max graczy:"}
-                  text={`${minPlayers}/${maxPlayers}`}
-                />
-              </View>
-            )}
-          </View>
 
-          <View style={{ width: "100%" }}>
-            {Number(age) > 0 && (
-              <View style={{ paddingVertical: 10 }}>
-                <ViewText onlyText label={"Wiek:"} text={`${age}+`} />
-              </View>
-            )}
-          </View>
+          {minPlayers > 0 && maxPlayers > 0 && (
+      <View style={{ paddingVertical: 10, width:"100%" }}>
+              <ViewText
+                onlyText
+                label={"Min/max graczy:"}
+                text={`${minPlayers}/${maxPlayers}`}
+              />
+            </View>
+          )}
 
-          <View style={{ width: "100%" }}>
-            {Number(time) > 0 && (
-              <View style={{ paddingVertical: 10 }}>
-                <ViewText
-                  onlyText
-                  label={"Czas rozgrywki:"}
-                  text={`${time}min+`}
-                />
-              </View>
-            )}
-          </View>
+          {Number(age) > 0 && (
+            <View style={{ paddingVertical: 10, width:"100%" }}>
+              <ViewText onlyText label={"Wiek:"} text={`${age}+`} />
+            </View>
+          )}
 
-          <View style={{ width: "100%" }}>
-            {!!publisher.length && (
-              <View style={{ paddingVertical: 10 }}>
-                <ViewText onlyText label={"Wydawca:"} text={`${publisher}`} />
-              </View>
-            )}
-          </View>
+          {Number(time) > 0 && (
+            <View style={{ paddingVertical: 10, width:"100%" }}>
+              <ViewText
+                onlyText
+                label={"Czas rozgrywki:"}
+                text={`${time}min`}
+              />
+            </View>
+          )}
 
-          <View style={{ width: "100%" }}>
-            {!!mechanics.length && (
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ justifyContent: "center" }}>
-                  <Text>{"Mechaniki: "}</Text>
-                </View>
-                <FlatList
-                  horizontal
-                  data={mechanics}
-                  showsHorizontalScrollIndicator={false}
-                  renderItem={({ item }: any) => {
-                    return (
-                      <View
-                        style={{
-                          margin: 5,
-                          paddingLeft: 5,
-                          paddingRight: 5,
-                          borderRadius: 20,
-                          borderWidth: 1,
-                          borderColor: "black"
-                        }}>
-                        <Text>{item}</Text>
-                      </View>
-                    );
-                  }}
-                />
-              </View>
-            )}
-          </View>
+          {!!publisher.id && (
+            <View style={{ paddingVertical: 10, width:"100%" }}>
+              <ViewText
+                onlyText
+                label={"Wydawca:"}
+                text={`${publisher.name}`}
+              />
+            </View>
+          )}
 
-          <View style={{ width: "100%" }}>
-            {!!types.length && (
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ justifyContent: "center" }}>
-                  <Text>{"Typy: "}</Text>
-                </View>
-                <FlatList
-                  horizontal
-                  data={types}
-                  showsHorizontalScrollIndicator={false}
-                  renderItem={({ item }: any) => {
-                    return (
-                      <View
-                        style={{
-                          margin: 5,
-                          paddingLeft: 5,
-                          paddingRight: 5,
-                          borderRadius: 20,
-                          borderWidth: 1,
-                          borderColor: "black"
-                        }}>
-                        <Text>{item}</Text>
-                      </View>
-                    );
-                  }}
-                />
+          {!!mechanics.length && (
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ justifyContent: "center" }}>
+                <Text>{"Mechaniki: "}</Text>
               </View>
-            )}
-          </View>
-        </RCViewFlex>
+              <FlatList
+                horizontal
+                data={mechanics}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }: any) => {
+                  return (
+                    <View
+                      style={{
+                        margin: 5,
+                        paddingLeft: 5,
+                        paddingRight: 5,
+                        borderRadius: 20,
+                        borderWidth: 1,
+                        borderColor: "black"
+                      }}>
+                      <Text>{item}</Text>
+                    </View>
+                  );
+                }}
+              />
+            </View>
+          )}
+
+          {!!types.length && (
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ justifyContent: "center" }}>
+                <Text>{"Typy: "}</Text>
+              </View>
+              <FlatList
+                horizontal
+                data={types}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }: any) => {
+                  return (
+                    <View
+                      style={{
+                        margin: 5,
+                        paddingLeft: 5,
+                        paddingRight: 5,
+                        borderRadius: 20,
+                        borderWidth: 1,
+                        borderColor: "black"
+                      }}>
+                      <Text>{item}</Text>
+                    </View>
+                  );
+                }}
+              />
+            </View>
+          )}
+        </View>
         <Modal
           visible={this.state.modal}
           animationType={"slide"}
@@ -217,24 +215,26 @@ class Filter extends Component<Props, State> {
               justifyContent: "center",
               alignItems: "center"
             }}>
-            <RCView
+            <View
               style={{
-                width: Dimensions.get("window").width - 40,
+                width: "100%",
                 height: "90%",
                 flexDirection: "column",
                 alignItems: "flex-start",
                 justifyContent: "space-between",
-                backgroundColor: "#d2d2d2"
+                backgroundColor: "#d2d2d2",
+                borderRadius: 20,
+                marginVertical: 10
               }}>
               <ScrollView
-                style={{ flex: 1, width: "100%" }}
+                style={{ flex: 1, width: "100%", paddingHorizontal: 20 }}
                 showsVerticalScrollIndicator={false}>
                 <RCView style={{ width: "100%" }}>
                   <TextInput
                     value={this.state.name}
                     placeholder={"Nazwa gry planszowej"}
                     style={{ flex: 1, fontSize: 16 }}
-                    onChangeText={(name:any)=>this.setState({name})}
+                    onChangeText={(name: any) => this.setState({ name })}
                   />
                 </RCView>
                 <ModalPickerPawn
@@ -247,7 +247,6 @@ class Filter extends Component<Props, State> {
                   <Text style={{ color: "black", fontSize: 16 }}>Wiek</Text>
                   <TextInput
                     style={{
-                      flex: 1,
                       textAlign: "right",
                       fontSize: 16,
                       width: 25
@@ -267,7 +266,6 @@ class Filter extends Component<Props, State> {
                   <Text style={{ color: "black", fontSize: 16 }}>Czas gry</Text>
                   <TextInput
                     style={{
-                      flex: 1,
                       textAlign: "right",
                       fontSize: 16,
                       width: 35
@@ -315,30 +313,32 @@ class Filter extends Component<Props, State> {
                   onChangeValue={mechanics => this.setState({ mechanics })}
                 /> */}
               </ScrollView>
-              <Button
-                outline
-                color="black"
-                text="Wyczyść"
-                onPress={() =>
-                  this.setState({
-                    name: "",
-                    minPlayers: 0,
-                    maxPlayers: 0,
-                    minAge: "",
-                    playingTime: "",
-                    publisher: "",
-                    types: [],
-                    mechanics: []
-                  })
-                }
-              />
-              <Button
-                color="black"
-                colorText="white"
-                text="Filtruj"
-                onPress={this.filterBoardGame}
-              />
-            </RCView>
+              <View style={{ width: "100%" }}>
+                <Button
+                  outline
+                  color="black"
+                  text="Wyczyść"
+                  onPress={() =>
+                    this.setState({
+                      name: "",
+                      minPlayers: 0,
+                      maxPlayers: 0,
+                      minAge: "",
+                      playingTime: "",
+                      publisher: "",
+                      types: [],
+                      mechanics: []
+                    })
+                  }
+                />
+                <Button
+                  color="black"
+                  colorText="white"
+                  text="Filtruj"
+                  onPress={this.filterBoardGame}
+                />
+              </View>
+            </View>
           </View>
         </Modal>
       </View>

@@ -34,7 +34,7 @@ class ModalSingleList extends Component<Props, State> {
       <View style={{ width: "100%" }}>
         <ViewText
           label={"Wydawca"}
-          text={`${this.props.value.name ? this.props.value.name: ""}`}
+          text={`${this.props.value.name ? this.props.value.name : ""}`}
           onPress={() => this.setState({ modal: true })}
         />
         <Modal
@@ -49,46 +49,55 @@ class ModalSingleList extends Component<Props, State> {
               justifyContent: "center",
               alignItems: "center"
             }}>
-            <RCView
+            <TouchableOpacity
+              onPress={() => this.setState({ modal: false })}
               style={{
-                height: "60%",
-                width: "90%",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                justifyContent: "space-between"
+                width: "100%",
+                height: "100%",
+                alignItems: "center",
+                justifyContent: "center"
               }}>
-              <View
+              <RCView
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  paddingVertical: 10,
+                  height: "60%",
+                  width: "90%",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
                   justifyContent: "space-between"
                 }}>
-                <RCView style={{ borderWidth: 1 }}>
-                  <TextInput
-                    value={this.state.value}
-                    placeholder={this.props.placeholder}
-                    style={{ fontSize: 16, flex: 1, }}
-                    onChangeText={publisher =>
-                      this.setState({ value: publisher })
-                    }
+                <View
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    paddingVertical: 10,
+                    justifyContent: "space-between"
+                  }}>
+                  <RCView style={{ borderWidth: 1 }}>
+                    <TextInput
+                      value={this.state.value}
+                      placeholder={this.props.placeholder}
+                      style={{ fontSize: 16, flex: 1 }}
+                      onChangeText={publisher =>
+                        this.setState({ value: publisher })
+                      }
+                    />
+                  </RCView>
+                  <FlatList
+                    data={this.props.list.filter(text => {
+                      if (this.state.value) {
+                        return (
+                          text.name.includes(this.state.value) ||
+                          text.name === this.props.value.name
+                        );
+                      }
+                      return true;
+                    })}
+                    renderItem={({ item }) => this.renderItem(item)}
+                    showsVerticalScrollIndicator={false}
                   />
-                </RCView>
-                <FlatList
-                  data={this.props.list.filter(text => {
-                    if (this.state.value) {
-                      return (
-                        text.name.includes(this.state.value) ||
-                        text.name === this.props.value.name
-                      );
-                    }
-                    return true;
-                  })}
-                  renderItem={({ item }) => this.renderItem(item)}
-                  showsVerticalScrollIndicator={false}
-                />
-              </View>
-            </RCView>
+                </View>
+              </RCView>
+            </TouchableOpacity>
           </View>
         </Modal>
       </View>
@@ -107,7 +116,9 @@ class ModalSingleList extends Component<Props, State> {
             borderWidth: 1,
             backgroundColor: selected ? "black" : "white"
           }}>
-          <Text style={{ color: selected ? "white" : "black" }}>{item.name}</Text>
+          <Text style={{ color: selected ? "white" : "black" }}>
+            {item.name}
+          </Text>
         </RCView>
       </TouchableOpacity>
     );
