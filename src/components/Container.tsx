@@ -4,7 +4,8 @@ import {
   StyleSheet,
   ScrollView,
   findNodeHandle,
-  Image
+  Image,
+  Text
 } from "react-native";
 import { Container as NContainer, Content } from "native-base";
 
@@ -19,17 +20,17 @@ class Container extends Component<ContainerProps, State> {
   public backgroundImage: any;
 
   static defaultProps = {
-    back:true,
-    left:false,
-    leftIcon:'',
-    leftPress:()=>{},
-    right:false,
-    icon:'',
-    scrollView:false,
-    styleContent:null,
-    text:false,
-    children:null,
-    onPress:()=>{},
+    back: true,
+    left: false,
+    leftIcon: "",
+    leftPress: () => {},
+    right: false,
+    icon: "",
+    scrollView: false,
+    styleContent: null,
+    text: false,
+    children: null,
+    onPress: () => {}
   };
 
   constructor(props: ContainerProps) {
@@ -52,6 +53,9 @@ class Container extends Component<ContainerProps, State> {
           icon={this.props.icon}
           onPress={this.props.onPress}
         />
+        <View style={{ backgroundColor: "red" }}>
+          <Text>{"Brak połączenia z internetem"}</Text>
+        </View>
         {this.renderChildren()}
       </NContainer>
     );
@@ -61,35 +65,8 @@ class Container extends Component<ContainerProps, State> {
       return (
         <ScrollView
           style={
-            this.props.styleContent ? this.props.styleContent : styles.fullStyle
+            this.props.styleContent ? [this.props.styleContent, styles.fullStyle] : styles.fullStyle
           }>
-          <View
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center"
-            }}>
-            {/* <Image
-              ref={img => {
-                this.backgroundImage = img;
-              }}
-              resizeMode={"contain"}
-              source={require("../img/logo.png")}
-              style={{
-                width: "100%",
-                height: "100%"
-              }}
-              onLoadEnd={() => this.imageLoaded()}
-            /> */}
-          </View>
-          {/* <BlurView
-            style={styles.absolute}
-            viewRef={this.state.viewRef}
-            blurType="xlight"
-            blurAmount={100}
-          /> */}
           {this.props.children}
         </ScrollView>
       );
@@ -97,35 +74,10 @@ class Container extends Component<ContainerProps, State> {
       return (
         <View
           style={
-            this.props.styleContent ? [this.props.styleContent, styles.fullStyle] : styles.fullStyle
+            this.props.styleContent
+              ? [this.props.styleContent, styles.fullStyle]
+              : styles.fullStyle
           }>
-          {/* <View
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center"
-            }}> */}
-            {/* <Image
-              ref={img => {
-                this.backgroundImage = img;
-              }}
-              resizeMode={"contain"}
-              source={require("../img/logo.png")}
-              style={{
-                width: "100%",
-                height: "100%"
-              }}
-              onLoadEnd={() => this.imageLoaded()}
-            /> */}
-          {/* </View> */}
-          {/* <BlurView
-            style={styles.absolute}
-            viewRef={this.state.viewRef}
-            blurType="xlight"
-            blurAmount={100}
-          /> */}
           {this.props.children}
         </View>
       );

@@ -50,8 +50,8 @@ export default class Button extends Component<ColorButtonProps> {
     return (
       <TouchableOpacity
         style={{
-          width: "100%",
-          marginVertical:10
+          marginVertical:10,
+          marginHorizontal: 20,
         }}
         onPress={this.props.onPress}>
         {this.props.outline && this.renderOutline()}

@@ -28,7 +28,7 @@ class BoardGame extends Component<Props, {}> {
   render() {
     const item = this.props.navigation.state.params.item;
     return (
-      <Container scrollView={true} navigation={this.props.navigation}>
+      <Container scrollView navigation={this.props.navigation}>
         <GameHeader navigation={this.props.navigation} game={item} />
         {!!item.description && (
           <View
@@ -114,7 +114,6 @@ class BoardGame extends Component<Props, {}> {
             />
           </View>
         )}
-        <View style={{ paddingHorizontal: 20 }}>
           <Button
             primary
             color={Color.accentColor}
@@ -122,7 +121,6 @@ class BoardGame extends Component<Props, {}> {
             onPress={this.loanGame}
             text={"Wypożycz/Oddaj grę"}
           />
-        </View>
       </Container>
     );
   }

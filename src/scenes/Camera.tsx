@@ -6,6 +6,8 @@ import { RNCamera } from "react-native-camera";
 import { UserApi, BoardGameApi } from "../api";
 import Toast from "react-native-simple-toast";
 import _ from "underscore";
+import ErrorUtil from "../ErrorUtil";
+
 interface CameraProps extends Props {
   changeCode: Function;
   routeName: string;
@@ -57,7 +59,9 @@ export default class Camera extends Component<CameraProps, State> {
             Toast.show("Nie znaleziono w bazie.");
           }
         }
-      );
+      ).catch(error=>{
+        ErrorUtil.errorService(error);
+      })
     }
     if (typeItem === 2) {
       UserApi.search(data.data).then(response => {
@@ -69,7 +73,9 @@ export default class Camera extends Component<CameraProps, State> {
         } else {
           Toast.show("Nie znaleziono w bazie.");
         }
-      });
+      }).catch(error=>{
+        ErrorUtil.errorService(error);
+      })
     }
     if (typeItem === 3) {
       changeCode(data.data);

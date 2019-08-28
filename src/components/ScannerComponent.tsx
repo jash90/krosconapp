@@ -9,7 +9,7 @@ interface Props {
 class ScannerComponent extends Component<Props> {
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress}>
+      <TouchableOpacity onPress={this.props.onPress} style={{marginHorizontal:20}}>
         <RCView>
           <Text
             style={{

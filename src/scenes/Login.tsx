@@ -33,6 +33,7 @@ import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
 import Scenes from "../Scenes";
+import ErrorUtil from "../ErrorUtil";
 interface State {
   email: string;
   password: string;
@@ -59,7 +60,7 @@ class Login extends Component<Props, State> {
         icon={"person-add"}
         text={Language.get("sign")}
         onPress={() => this.props.navigation.navigate(Scenes.Register)}>
-        <View>
+        <View style={{ flex: 1, paddingHorizontal: 20 }}>
           <Logo size={150} />
           <RCView>
             <TextInput
@@ -81,7 +82,7 @@ class Login extends Component<Props, State> {
             />
           </RCView>
         </View>
-        <Content contentContainerStyle={styles.buttonContener}>
+
           <Button
             primary
             color={Color.accentColor}
@@ -89,25 +90,28 @@ class Login extends Component<Props, State> {
             text={"Zaloguj"}
             onPress={this.login}
           />
-        </Content>
       </Container>
     );
   }
 
   login = async () => {
-    const response = await AuthApi.login(this.state.email, this.state.password);
-    console.log(response);
-    const data = response.data;
-    if (data.error) {
-      Toast.show("Niepoprawny login lub hasło.");
-    }
-    if (data.item) {
-      this.props.authStore.setUser(data.item);
-      console.log(data.item);
-      await AsyncStorage.setItem("User", JSON.stringify(data.item));
-      this.props.navigation.navigate(Scenes.List);
-    }
-    console.log(response);
+    AuthApi.login(this.state.email, this.state.password)
+      .then(async response => {
+        console.log(response);
+        const data = response.data;
+        if (data.error) {
+          Toast.show("Niepoprawny login lub hasło.");
+        }
+        if (data.item) {
+          this.props.authStore.setUser(data.item);
+          console.log(data.item);
+          await AsyncStorage.setItem("User", JSON.stringify(data.item));
+          this.props.navigation.navigate(Scenes.List);
+        }
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
     //
   };
 }

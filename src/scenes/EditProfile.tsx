@@ -8,6 +8,7 @@ import Scenes from "../Scenes";
 import { UserApi } from "../api/index";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
+import ErrorUtil from "../ErrorUtil";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   authStore:AuthStore
@@ -52,6 +53,7 @@ class EditProfile extends Component<Props, State> {
         scrollView={true}
         right
         icon={"save"}
+        styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
         <RCView>
           <TextInput
@@ -96,6 +98,8 @@ class EditProfile extends Component<Props, State> {
       this.props.authStore.setCity(city);
       this.props.authStore.setAge(age);
       this.props.navigation.navigate(Scenes.List);
+    }).catch(error=>{
+      ErrorUtil.errorService(error);
     })
    
   };

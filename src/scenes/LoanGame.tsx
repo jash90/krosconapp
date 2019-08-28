@@ -7,6 +7,8 @@ import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import Toast from "react-native-simple-toast";
 import { StackActions, NavigationActions } from "react-navigation";
+import ErrorUtil from "../ErrorUtil";
+import Color from "../Color";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
@@ -83,7 +85,7 @@ class LoanGame extends Component<Props, State> {
         <Button
           text={loan ? "Wypożycz grę" : "Oddaj grę"}
           primary
-          color={"red"}
+          color={Color.accentColor}
           colorText={"white"}
           onPress={() => this.success(loan)}
         />
@@ -96,24 +98,32 @@ class LoanGame extends Component<Props, State> {
         this.state.user.id,
         this.props.authStore.id,
         this.state.game.id
-      ).then(item => {
-        Toast.show("Gra została wypożyczona.");
-        const resetAction = StackActions.reset({
-          index: 0,
-          actions: [NavigationActions.navigate({ routeName: Scenes.List})]
+      )
+        .then(item => {
+          Toast.show("Gra została wypożyczona.");
+          const resetAction = StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: Scenes.List })]
+          });
+          this.props.navigation.dispatch(resetAction);
+        })
+        .catch(error => {
+          ErrorUtil.errorService(error);
         });
-        this.props.navigation.dispatch(resetAction);
-      });
     } else {
       const loanGame = this.state.game.loanGames[0];
-      LoanGameApi.edit(loanGame.id, 1).then(item => {
-        Toast.show("Gra została oddana.");
-        const resetAction = StackActions.reset({
-          index: 0,
-          actions: [NavigationActions.navigate({ routeName: Scenes.List })]
+      LoanGameApi.edit(loanGame.id, 1)
+        .then(item => {
+          Toast.show("Gra została oddana.");
+          const resetAction = StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: Scenes.List })]
+          });
+          this.props.navigation.dispatch(resetAction);
+        })
+        .catch(error => {
+          ErrorUtil.errorService(error);
         });
-        this.props.navigation.dispatch(resetAction);
-      });
     }
   };
 }

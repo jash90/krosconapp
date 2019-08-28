@@ -5,6 +5,7 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import axios from "../Axios";
 import { AuthApi, UserApi } from "../api";
 import Toast from "react-native-simple-toast";
+import ErrorUtil from "../ErrorUtil";
 
 interface State {
   users: any[];
@@ -101,10 +102,14 @@ export default class Privilege extends Component<{}, State> {
   }
   changePrivilege(user: any, privilegeId: number) {
     if (user.privilegeId !== privilegeId) {
-      AuthApi.changePrivilege(user.id, privilegeId).then(async item => {
-        Toast.show("Zapisane");
-        this.fetchData();
-      });
+      AuthApi.changePrivilege(user.id, privilegeId)
+        .then(async item => {
+          Toast.show("Zapisane");
+          this.fetchData();
+        })
+        .catch(error => {
+          ErrorUtil.errorService(error);
+        });
     }
   }
 }

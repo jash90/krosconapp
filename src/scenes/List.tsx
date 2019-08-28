@@ -20,6 +20,7 @@ import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
 import Scenes from "../Scenes";
 import { BoardGameApi } from "../api/index";
+import ErrorUtil from "../ErrorUtil";
 interface State {
   active: boolean;
   search: string;
@@ -63,7 +64,7 @@ class List extends Component<Props, State> {
             });
           })
           .catch(error => {
-            console.log(error);
+            ErrorUtil.errorService(error);
           });
       }
     }
@@ -85,7 +86,11 @@ class List extends Component<Props, State> {
               onPress={() => {
                 this.openItem(item);
               }}>
-              <GameHeader navigation={this.props.navigation} game={item} edit={this.props.authStore.privilegeId >1}/>
+              <GameHeader
+                navigation={this.props.navigation}
+                game={item}
+                edit={this.props.authStore.privilegeId > 1}
+              />
             </TouchableOpacity>
           )}
           refreshing={this.state.refresh}
@@ -150,16 +155,21 @@ class List extends Component<Props, State> {
         });
       })
       .catch(error => {
-        console.log(error);
+        ErrorUtil.errorService(error);
       });
     this.setState({ refresh: false });
   };
 
   searchBoardGame(search: any) {
-    BoardGameApi.search(search).then(response => {
-      console.log(response);
-      this.setState({ listgame: response.data.items });
-    });
+    BoardGameApi.search(search)
+      .then(response => {
+        console.log(response);
+        this.setState({ listgame: response.data.items });
+      })
+      .catch(error => {
+        console.log(error);
+        ErrorUtil.errorService(error);
+      });
   }
   onEndReached = () => {
     console.log(this.state.page);
@@ -173,7 +183,7 @@ class List extends Component<Props, State> {
           });
         })
         .catch(error => {
-          console.log(error);
+          ErrorUtil.errorService(error);
         });
     }
   };

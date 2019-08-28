@@ -18,6 +18,7 @@ import Scenes from "../Scenes";
 import { PublisherApi, BoardGameApi } from "../api";
 import Toast from "react-native-simple-toast";
 import { Props } from "../interfaces";
+import ErrorUtil from "../ErrorUtil";
 const WithScannerText = withScanner(ViewText);
 interface State {
   name: string;
@@ -64,7 +65,7 @@ export default class AddItem extends Component<Props, State> {
         this.setState({ publishers: response.data.items });
       })
       .catch(error => {
-        console.log(error);
+       ErrorUtil.errorService(error);
       });
     if (this.props.navigation.state.params) {
       const game = this.props.navigation.state.params.game;
@@ -97,6 +98,7 @@ export default class AddItem extends Component<Props, State> {
         navigation={this.props.navigation}
         scrollView={true}
         right
+        styleContent={{ flex: 1, paddingHorizontal: 20 }}
         icon={"save"}
         onPress={() => this.save()}>
         {!this.props.navigation.state.params && (
@@ -251,7 +253,9 @@ export default class AddItem extends Component<Props, State> {
           console.log(item);
           Toast.show("Zapisano");
         })
-        .catch(error => {});
+        .catch(error => {
+          ErrorUtil.errorService(error);
+        });
     } else {
       BoardGameApi.edit(
         name,
@@ -267,7 +271,9 @@ export default class AddItem extends Component<Props, State> {
           console.log(item);
           Toast.show("Zapisano");
         })
-        .catch(error => {});
+        .catch(error => {
+          ErrorUtil.errorService(error);
+        });
     }
     if (this.state.selected === "Wydawca") {
       PublisherApi.add(name)
@@ -275,7 +281,9 @@ export default class AddItem extends Component<Props, State> {
           console.log(item);
           Toast.show("Zapisano");
         })
-        .catch(error => {});
+        .catch(error => {
+          ErrorUtil.errorService(error);
+        });
     }
   };
 

@@ -27,8 +27,10 @@ export default class GameHeader extends Component<Props> {
           flexDirection: "row",
           backgroundColor: "white",
           borderRadius: 20,
-          padding: 20,
-          margin: 20,
+          paddingHorizontal: 20,
+          paddingVertical:10,
+          marginHorizontal: 20,
+          marginVertical:10,
           justifyContent: "center",
           alignItems: "center"
         }}>

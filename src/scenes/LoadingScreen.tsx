@@ -6,6 +6,7 @@ import AuthStore from "../stores/AuthStore";
 import { observer, inject } from "mobx-react";
 import Scenes from "../Scenes";
 import { BoardGameApi } from "../api";
+import ErrorUtil from "../ErrorUtil";
 interface Props {
   authStore: AuthStore;
 }
@@ -30,7 +31,11 @@ class LoadingScreen extends Component {
         });
       })
       .catch(error => {
-        console.log(error);
+        ErrorUtil.errorService(error);
+        this.props.navigation.navigate(Scenes.List, {
+          listgame: [],
+          count: 0
+        });
       });
   };
 

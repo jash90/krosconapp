@@ -20,6 +20,7 @@ import {
   ViewText
 } from ".";
 import { PublisherApi } from "../api";
+import ErrorUtil from "../ErrorUtil";
 
 interface Props {
   onChangeValue: (value: any) => void;
@@ -59,7 +60,7 @@ class Filter extends Component<Props, State> {
         this.setState({ publishers: response.data.items });
       })
       .catch(error => {
-        console.log(error);
+        ErrorUtil.errorService(error);
       });
   }
 
@@ -86,7 +87,6 @@ class Filter extends Component<Props, State> {
             style={{
               flexDirection: "row",
               justifyContent: "center",
-              paddingVertical: 10
             }}>
             <TextInput
               autoCapitalize={"none"}

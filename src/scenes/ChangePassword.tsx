@@ -15,14 +15,14 @@ import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import { Item, Label, Input } from "native-base";
 import { Spacer, RCText, RCView } from "../components/StyledComponent";
-import { Props } from "../interfaces";
 import Scenes from "../Scenes";
 import { AuthApi } from "../api";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
+import ErrorUtil from "../ErrorUtil";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
-  authStore:AuthStore
+  authStore: AuthStore;
 }
 interface State {
   password: string;
@@ -43,6 +43,7 @@ class ChangePassword extends Component<Props, State> {
         scrollView={true}
         right
         icon={"save"}
+        styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
         <RCView>
           <TextInput
@@ -64,10 +65,14 @@ class ChangePassword extends Component<Props, State> {
     );
   }
   save = () => {
-    AuthApi.changePassword(this.props.authStore.id,this.state.password).then(item=>{
-      console.log(item);
-      this.props.navigation.navigate(Scenes.List);
-    })
+    AuthApi.changePassword(this.props.authStore.id, this.state.password)
+      .then(item => {
+        console.log(item);
+        this.props.navigation.navigate(Scenes.List);
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
   };
 }
 export default inject("authStore")(observer(ChangePassword));
