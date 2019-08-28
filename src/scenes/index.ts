@@ -6,11 +6,10 @@ import EditProfile from "./EditProfile";
 import List from "./List";
 import LoadingScreen from "./LoadingScreen";
 import LoanGame from "./LoanGame";
-import LoanStatus from "./LoanStatus";
 import Login from "./Login";
 import Panel from "./Panel";
 import Privilege from "./Privilege";
 import QR from "./QR";
 import Register from "./Register";
-export { AddItem, BoardGame, Camera, ChangePassword, EditProfile, List, LoadingScreen, LoanGame, LoanStatus, Login, Panel, Privilege, QR, Register };
+export { AddItem, BoardGame, Camera, ChangePassword, EditProfile, List, LoadingScreen, LoanGame, Login, Panel, Privilege, QR, Register };
 

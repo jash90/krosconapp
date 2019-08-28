@@ -11,7 +11,6 @@ import {
   List,
   LoadingScreen,
   LoanGame,
-  LoanStatus,
   Login,
   Panel,
   Privilege,
@@ -32,7 +31,6 @@ const AppNavigator = createStackNavigator(
     LoanGame,
     Panel,
     QR,
-    LoanStatus,
     Privilege,
     EditProfile,
     ChangePassword
