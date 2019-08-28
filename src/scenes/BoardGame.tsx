@@ -120,7 +120,7 @@ class BoardGame extends Component<Props, {}> {
             color={Color.accentColor}
             colorText={"white"}
             onPress={this.loanGame}
-            text={"LoanGame"}
+            text={"Wypożycz/Oddaj grę"}
           />
         </View>
       </Container>

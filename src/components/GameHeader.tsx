@@ -17,10 +17,10 @@ interface Game {
 interface Props {
   game: Game;
   navigation: any;
+  edit:boolean;
 }
 export default class GameHeader extends Component<Props> {
   render() {
-    console.log(this.props.game);
     return (
       <View
         style={{
@@ -50,14 +50,21 @@ export default class GameHeader extends Component<Props> {
                 style={{
                   fontSize: 18,
                   textAlign: "left",
-                  textAlignVertical:"center",
-                  alignSelf: 'center',
+                  textAlignVertical: "center",
+                  alignSelf: "center"
                 }}>
                 {this.props.game.name}
               </Text>
-              <TouchableOpacity onPress={()=>this.props.navigation.navigate(Scenes.AddItem,{game:this.props.game})}>
-              <MaterialIcon name="edit" size={26} />
-              </TouchableOpacity>
+              {this.props.edit && (
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate(Scenes.AddItem, {
+                      game: this.props.game
+                    })
+                  }>
+                  <MaterialIcon name="edit" size={26} />
+                </TouchableOpacity>
+              )}
             </View>
             <View
               style={{

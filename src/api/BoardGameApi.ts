@@ -27,7 +27,7 @@ export default class BoardGameApi {
     public static async get(boardGameId: number) {
         return await axios.get(`/${this.apiName}/${boardGameId}`)
     }
-    public static async offset(id: number) {
+    public static async offset(id: number = 0) {
         return await axios.get(`/${this.apiName}/offset/${id}`)
     }
     public static async edit(name: string,
@@ -53,22 +53,12 @@ export default class BoardGameApi {
         return await axios.delete(`/${this.apiName}/remove/${boardGameId}`)
     }
 
-    public static async search(name: string | null = null,
-        minPlayers: number | null = null,
-        maxPlayers: number | null = null,
-        playingTime: number | null = null,
-        minAge: number | null = null,
-        publisherId: number | null = null,
-        uuid: string | null = null
-    ) {
-        return await axios.post(`/${this.apiName}/search`, {
-            name,
-            minPlayers,
-            maxPlayers,
-            playingTime,
-            minAge,
-            publisherId,
-            uuid
-        })
+    public static async search(search: any) {
+        console.log(search);
+        return await axios.post(`/${this.apiName}/search`, search)
+    }
+
+    public static async searchByUUID(uuid: string) {
+        return await axios.get(`/${this.apiName}/search/uuid/${uuid}`)
     }
 }

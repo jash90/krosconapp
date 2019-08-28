@@ -20,17 +20,18 @@ class LoadingScreen extends Component {
     } catch (error) {
       Toast.show(error);
     }
-    let listgame: any[] = [];
-    BoardGameApi.all()
+    BoardGameApi.offset()
       .then(response => {
-        listgame = response.data.items;
-        console.log(listgame);
-        this.props.navigation.navigate(Scenes.List, { listgame });
+        const data = response.data;
+        console.log(data);
+        this.props.navigation.navigate(Scenes.List, {
+          listgame: data.items,
+          count: data.count
+        });
       })
       .catch(error => {
         console.log(error);
       });
-
   };
 
   render() {

@@ -24,11 +24,14 @@ interface State {
   active: boolean;
   search: string;
   listgame: any[];
+  count: number;
+  page: number;
   refresh: boolean;
 }
 interface Props {
   listgame: any[];
   authStore: AuthStore;
+  reset: boolean;
 }
 class List extends Component<Props, State> {
   constructor(props: Props) {
@@ -37,11 +40,34 @@ class List extends Component<Props, State> {
       active: false,
       search: "",
       refresh: false,
-      listgame: props.navigation.state.params.listgame
+      listgame: [], //props.navigation.state.params.listgame,
+      count: 0, //Math.ceil(props.navigation.state.params.count / 10),
+      page: 0
     };
   }
 
-  componentWillMount() {}
+  componentDidMount() {
+    console.log(this.props.navigation.state.params);
+    if (this.props.navigation.state.params) {
+      const params = this.props.navigation.state.params;
+      if (params && params.listgame && params.count) {
+        this.setState({ listgame: params.listgame, count: params.count });
+      } else {
+        BoardGameApi.offset()
+          .then(response => {
+            const data = response.data;
+            this.setState({
+              listgame: data.items,
+              count: data.count,
+              page: 0
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    }
+  }
 
   render() {
     return (
@@ -51,11 +77,7 @@ class List extends Component<Props, State> {
         right
         icon={"person"}
         onPress={this.openProfile}>
-        <Filter
-          value={this.state.search}
-          onChangeValue={search => this.setState({ search })}
-          placeholder={"Nazwa gry planszowej"}
-        />
+        <Filter onChangeValue={search => this.searchBoardGame(search)} />
         <FlatList
           data={this.state.listgame}
           renderItem={({ item }: any) => (
@@ -63,11 +85,13 @@ class List extends Component<Props, State> {
               onPress={() => {
                 this.openItem(item);
               }}>
-              <GameHeader navigation={this.props.navigation} game={item} />
+              <GameHeader navigation={this.props.navigation} game={item} edit={this.props.authStore.privilegeId >1}/>
             </TouchableOpacity>
           )}
           refreshing={this.state.refresh}
           onRefresh={this.onRefresh}
+          onEndReached={this.onEndReached}
+          onEndReachedThreshold={3000}
         />
         {this.props.authStore.privilegeId === 1 && (
           <Fab
@@ -116,15 +140,42 @@ class List extends Component<Props, State> {
   };
   onRefresh = () => {
     this.setState({ refresh: true });
-    BoardGameApi.all()
+    BoardGameApi.offset()
       .then(response => {
-        const listgame = response.data.items;
-        this.setState({ listgame });
+        const data = response.data;
+        this.setState({
+          listgame: data.items,
+          count: data.count,
+          page: 0
+        });
       })
       .catch(error => {
         console.log(error);
       });
     this.setState({ refresh: false });
+  };
+
+  searchBoardGame(search: any) {
+    BoardGameApi.search(search).then(response => {
+      console.log(response);
+      this.setState({ listgame: response.data.items });
+    });
+  }
+  onEndReached = () => {
+    console.log(this.state.page);
+    if (this.state.page + 1 < this.state.count) {
+      BoardGameApi.offset(this.state.page + 1)
+        .then(response => {
+          const data = response.data;
+          this.setState({
+            listgame: this.state.listgame.concat(data.items),
+            page: this.state.page + 1
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
 }
 

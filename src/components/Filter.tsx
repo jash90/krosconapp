@@ -22,57 +22,53 @@ import {
 import { PublisherApi } from "../api";
 
 interface Props {
-  onChangeValue: (value: string) => void;
-  value: string;
-  placeholder: string;
+  onChangeValue: (value: any) => void;
 }
 interface State {
   modal: boolean;
-  value: string;
   name: string;
   minPlayers: number;
   maxPlayers: number;
-  age: string;
-  time: string;
-  publisher: string;
+  minAge: string;
+  playingTime: string;
+  publisher: any;
   types: string[];
   mechanics: string[];
-  publishers:any[]
+  publishers: any[];
 }
 class Filter extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       modal: false,
-      value: "",
       name: "",
       minPlayers: 0,
       maxPlayers: 0,
-      age: "",
-      time: "",
+      minAge: "",
+      playingTime: "",
       publisher: "",
       types: [],
       mechanics: [],
-      publishers:[]
+      publishers: []
     };
   }
 
-componentDidMount(){
-  PublisherApi.all()
-  .then(response => {
-    this.setState({ publishers: response.data.items });
-  })
-  .catch(error => {
-    console.log(error);
-  });
-}
+  componentDidMount() {
+    PublisherApi.all()
+      .then(response => {
+        this.setState({ publishers: response.data.items });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   render() {
     const {
       minPlayers,
       maxPlayers,
-      age,
-      time,
+      minAge: age,
+      playingTime: time,
       publisher,
       types,
       mechanics
@@ -94,14 +90,17 @@ componentDidMount(){
             }}>
             <TextInput
               autoCapitalize={"none"}
-              value={this.props.value}
-              placeholder={this.props.placeholder}
+              value={this.state.name}
+              placeholder={"Nazwa gry planszowej"}
               style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(search: any) => this.props.onChangeValue(search)}
+              onChangeText={(name:any)=>this.setState({name})}
+              onEndEditing={this.onChangeValue}
               returnKeyType={"search"}
             />
 
-            <TouchableOpacity onPress={() => this.setState({ modal: true })} style={{justifyContent:"center"}}>
+            <TouchableOpacity
+              onPress={() => this.setState({ modal: true })}
+              style={{ justifyContent: "center" }}>
               <Icon name={"filter-list"} size={30} color="grey" />
             </TouchableOpacity>
           </View>
@@ -232,12 +231,10 @@ componentDidMount(){
                 showsVerticalScrollIndicator={false}>
                 <RCView style={{ width: "100%" }}>
                   <TextInput
-                    value={this.props.value}
-                    placeholder={this.props.placeholder}
+                    value={this.state.name}
+                    placeholder={"Nazwa gry planszowej"}
                     style={{ flex: 1, fontSize: 16 }}
-                    onChangeText={(search: any) =>
-                      this.props.onChangeValue(search)
-                    }
+                    onChangeText={(name:any)=>this.setState({name})}
                   />
                 </RCView>
                 <ModalPickerPawn
@@ -256,9 +253,9 @@ componentDidMount(){
                       width: 25
                     }}
                     keyboardType="phone-pad"
-                    value={this.state.age}
+                    value={this.state.minAge}
                     maxLength={2}
-                    onChangeText={text => this.setState({ age: text })}
+                    onChangeText={text => this.setState({ minAge: text })}
                   />
                   <Text style={{ color: "black", fontSize: 16 }}>lat +</Text>
                 </RCView>
@@ -276,9 +273,9 @@ componentDidMount(){
                       width: 35
                     }}
                     keyboardType="phone-pad"
-                    value={this.state.time}
+                    value={this.state.playingTime}
                     maxLength={3}
-                    onChangeText={time => this.setState({ time })}
+                    onChangeText={time => this.setState({ playingTime: time })}
                   />
                   <Text style={{ color: "black", fontSize: 16 }}>min</Text>
                 </RCView>
@@ -327,8 +324,8 @@ componentDidMount(){
                     name: "",
                     minPlayers: 0,
                     maxPlayers: 0,
-                    age: "",
-                    time: "",
+                    minAge: "",
+                    playingTime: "",
                     publisher: "",
                     types: [],
                     mechanics: []
@@ -339,7 +336,7 @@ componentDidMount(){
                 color="black"
                 colorText="white"
                 text="Filtruj"
-                onPress={() => this.setState({ modal: false })}
+                onPress={this.filterBoardGame}
               />
             </RCView>
           </View>
@@ -347,6 +344,56 @@ componentDidMount(){
       </View>
     );
   }
+  onChangeValue = () => {
+    const {
+      name,
+      minPlayers,
+      maxPlayers,
+      minAge,
+      playingTime,
+      publisher
+    } = this.state;
+    let game: any = {
+      name: null,
+      minPlayers: null,
+      maxPlayers: null,
+      minAge: null,
+      playingTime: null,
+      publisherId: null
+    };
+    if (name && name.length && name.length > 0) {
+      game.name = name;
+    }
+    if (minPlayers && minPlayers > 0) {
+      game.minPlayers = minPlayers;
+    }
+    if (maxPlayers && maxPlayers > 0) {
+      game.maxPlayers = maxPlayers;
+    }
+    if (minAge && minAge.length && minAge.length > 0 && Number(minAge) > 0) {
+      game.minAge = minAge;
+    }
+    if (
+      playingTime &&
+      playingTime.length &&
+      playingTime.length > 0 &&
+      Number(playingTime) > 0
+    ) {
+      game.playingTime = playingTime;
+    }
+    if (publisher && publisher.id && publisher.id > 0) {
+      game.publisherId = publisher.id;
+    }
+
+    console.log(game);
+
+    this.props.onChangeValue(game);
+  };
+
+  filterBoardGame = () => {
+    this.onChangeValue();
+    this.setState({ modal: false });
+  };
 }
 
 export default Filter;

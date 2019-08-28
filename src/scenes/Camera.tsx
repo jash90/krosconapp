@@ -45,7 +45,7 @@ export default class Camera extends Component<CameraProps, State> {
       typeItem
     } = this.props.navigation.state.params;
     if (typeItem === 1) {
-      BoardGameApi.search(null, null, null, null, null, null, data.data).then(
+      BoardGameApi.searchByUUID(data.data).then(
         response => {
           console.log(response);
           if (response.data.item) {

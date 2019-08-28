@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, TouchableOpacity } from "react-native";
 import { ScannerComponent } from "../components";
 
 interface Props {
@@ -25,7 +25,7 @@ export const withScanner = (WrappedComponent: any) => {
         <>
           {!value && <ScannerComponent {...this.props} />}
 
-          {value && <WrappedComponent {...this.props} />}
+          {value && <TouchableOpacity {...this.props} ><WrappedComponent {...this.props} /></TouchableOpacity>}
         </>
       );
     }
