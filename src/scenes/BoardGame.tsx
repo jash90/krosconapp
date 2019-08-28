@@ -127,6 +127,7 @@ class BoardGame extends Component<Props, {}> {
   loanGame = () => {
     const item = this.props.navigation.state.params.item;
     if (this.props.authStore.privilegeId === 0) {
+      this.props.navigation.navigate(Scenes.Login);
     } else if (this.props.authStore.privilegeId === 1) {
       this.props.navigation.navigate(Scenes.QR, { code: item.uuid });
     } else if (this.props.authStore.privilegeId > 1) {

@@ -110,6 +110,7 @@ class Panel extends Component<Props, State> {
       await AsyncStorage.removeItem("User");
       axios.defaults.headers.common['authorization'] = null;
       this.props.navigation.navigate(Scenes.List);
+      Toast.show("Wylogowano");
     } catch (error) {
       Toast.show(error);
     }

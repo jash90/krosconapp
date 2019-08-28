@@ -9,6 +9,7 @@ import { UserApi } from "../api/index";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import ErrorUtil from "../ErrorUtil";
+import Toast from "react-native-simple-toast";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   authStore:AuthStore
@@ -98,6 +99,7 @@ class EditProfile extends Component<Props, State> {
       this.props.authStore.setCity(city);
       this.props.authStore.setAge(age);
       this.props.navigation.navigate(Scenes.List);
+      Toast.show("Zapisano");
     }).catch(error=>{
       ErrorUtil.errorService(error);
     })
