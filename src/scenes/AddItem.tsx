@@ -65,7 +65,7 @@ export default class AddItem extends Component<Props, State> {
         this.setState({ publishers: response.data.items });
       })
       .catch(error => {
-       ErrorUtil.errorService(error);
+        ErrorUtil.errorService(error);
       });
     if (this.props.navigation.state.params) {
       const game = this.props.navigation.state.params.game;
@@ -98,7 +98,7 @@ export default class AddItem extends Component<Props, State> {
         navigation={this.props.navigation}
         scrollView={true}
         right
-        styleContent={{ flex: 1, paddingHorizontal: 20 }}
+        styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
         {!this.props.navigation.state.params && (
@@ -126,103 +126,105 @@ export default class AddItem extends Component<Props, State> {
             }}
           />
         )}
-        <RCView>
-          <TextInput
-            value={this.state.name}
-            placeholder={"Nazwa"}
-            style={{ flex: 1, fontSize: 16 }}
-            onChangeText={name => this.setState({ name })}
-          />
-        </RCView>
-        {this.state.selected === "Gra" && (
-          <RCView
-            style={{ height: 100, alignItems: "flex-start", paddingTop: 5 }}>
+        <View style={{width:"100%", paddingHorizontal:20}}>
+          <RCView>
             <TextInput
-              value={this.state.description}
-              placeholder={"Opis gry"}
-              multiline
+              value={this.state.name}
+              placeholder={"Nazwa"}
               style={{ flex: 1, fontSize: 16 }}
-              onChangeText={description => this.setState({ description })}
+              onChangeText={name => this.setState({ name })}
             />
           </RCView>
-        )}
-        {this.state.selected === "Gra" && (
-          <ModalPickerPawn
-            minPlayers={this.state.minPlayers}
-            maxPlayers={this.state.maxPlayers}
-            onChangeMin={minPlayers => this.setState({ minPlayers })}
-            onChangeMax={maxPlayers => this.setState({ maxPlayers })}
-          />
-        )}
-        {this.state.selected === "Gra" && (
-          <RCView flexDirection="row">
-            <Text style={{ color: "black", fontSize: 16 }}>Wiek</Text>
-            <TextInput
-              style={{ textAlign: "right", fontSize: 16, width: 25 }}
-              keyboardType="phone-pad"
-              value={this.state.minAge}
-              maxLength={2}
-              onChangeText={text => this.setState({ minAge: text })}
+          {this.state.selected === "Gra" && (
+            <RCView
+              style={{ height: 100, alignItems: "flex-start", paddingTop: 5 }}>
+              <TextInput
+                value={this.state.description}
+                placeholder={"Opis gry"}
+                multiline
+                style={{ flex: 1, fontSize: 16 }}
+                onChangeText={description => this.setState({ description })}
+              />
+            </RCView>
+          )}
+          {this.state.selected === "Gra" && (
+            <ModalPickerPawn
+              minPlayers={this.state.minPlayers}
+              maxPlayers={this.state.maxPlayers}
+              onChangeMin={minPlayers => this.setState({ minPlayers })}
+              onChangeMax={maxPlayers => this.setState({ maxPlayers })}
             />
-            <Text style={{ color: "black", fontSize: 16 }}>lat +</Text>
-          </RCView>
-        )}
-        {this.state.selected === "Gra" && (
-          <RCView
-            flexDirection="row"
-            justifyContent="flex-start"
-            alignItems="center">
-            <Text style={{ color: "black", fontSize: 16 }}>Czas gry</Text>
-            <TextInput
-              style={{ textAlign: "right", fontSize: 16, width: 35 }}
-              keyboardType="phone-pad"
-              value={this.state.playingTime}
-              maxLength={3}
-              onChangeText={playingTime => this.setState({ playingTime })}
+          )}
+          {this.state.selected === "Gra" && (
+            <RCView flexDirection="row">
+              <Text style={{ color: "black", fontSize: 16 }}>Wiek</Text>
+              <TextInput
+                style={{ textAlign: "right", fontSize: 16, width: 25 }}
+                keyboardType="phone-pad"
+                value={this.state.minAge}
+                maxLength={2}
+                onChangeText={text => this.setState({ minAge: text })}
+              />
+              <Text style={{ color: "black", fontSize: 16 }}>lat +</Text>
+            </RCView>
+          )}
+          {this.state.selected === "Gra" && (
+            <RCView
+              flexDirection="row"
+              justifyContent="flex-start"
+              alignItems="center">
+              <Text style={{ color: "black", fontSize: 16 }}>Czas gry</Text>
+              <TextInput
+                style={{ textAlign: "right", fontSize: 16, width: 35 }}
+                keyboardType="phone-pad"
+                value={this.state.playingTime}
+                maxLength={3}
+                onChangeText={playingTime => this.setState({ playingTime })}
+              />
+              <Text style={{ color: "black", fontSize: 16 }}>min</Text>
+            </RCView>
+          )}
+          {this.state.selected === "Gra" && (
+            <ModalSingleList
+              placeholder={"Wydawca"}
+              value={this.state.publisher}
+              list={this.state.publishers}
+              onChangeValue={publisher => this.setState({ publisher })}
             />
-            <Text style={{ color: "black", fontSize: 16 }}>min</Text>
-          </RCView>
-        )}
-        {this.state.selected === "Gra" && (
-          <ModalSingleList
-            placeholder={"Wydawca"}
-            value={this.state.publisher}
-            list={this.state.publishers}
-            onChangeValue={publisher => this.setState({ publisher })}
-          />
-        )}
-        {false && (
-          <ModalMultiList
-            placeholder={"Typy gry"}
-            value={this.state.types}
-            list={[
-              "publisher1dfgdfgdfgdfgdfgdfgdfg",
-              "publisher2dfgdfg",
-              "publisher3",
-              "publisher4",
-              "publisher5",
-              "publisher6",
-              "publisher7"
-            ]}
-            onChangeValue={types => this.setState({ types })}
-          />
-        )}
-        {false && (
-          <ModalMultiList
-            placeholder={"Mechaniki gry"}
-            value={this.state.mechanic}
-            list={[
-              "publisher1dfgdfgdfgdfgdfgdfgdfg",
-              "publisher2dfgdfg",
-              "publisher3",
-              "publisher4",
-              "publisher5",
-              "publisher6",
-              "publisher7"
-            ]}
-            onChangeValue={mechanic => this.setState({ mechanic })}
-          />
-        )}
+          )}
+          {false && (
+            <ModalMultiList
+              placeholder={"Typy gry"}
+              value={this.state.types}
+              list={[
+                "publisher1dfgdfgdfgdfgdfgdfgdfg",
+                "publisher2dfgdfg",
+                "publisher3",
+                "publisher4",
+                "publisher5",
+                "publisher6",
+                "publisher7"
+              ]}
+              onChangeValue={types => this.setState({ types })}
+            />
+          )}
+          {false && (
+            <ModalMultiList
+              placeholder={"Mechaniki gry"}
+              value={this.state.mechanic}
+              list={[
+                "publisher1dfgdfgdfgdfgdfgdfgdfg",
+                "publisher2dfgdfg",
+                "publisher3",
+                "publisher4",
+                "publisher5",
+                "publisher6",
+                "publisher7"
+              ]}
+              onChangeValue={mechanic => this.setState({ mechanic })}
+            />
+          )}
+        </View>
       </Container>
     );
   }
@@ -236,10 +238,10 @@ export default class AddItem extends Component<Props, State> {
       minAge,
       publisher
     } = this.state;
-    
+
     let game = null;
-    if (this.props.navigation.state.params){
-     game = this.props.navigation.state.params.game;
+    if (this.props.navigation.state.params) {
+      game = this.props.navigation.state.params.game;
     }
 
     if (this.state.selected === "Gra" && !game) {
@@ -259,8 +261,8 @@ export default class AddItem extends Component<Props, State> {
         .catch(error => {
           ErrorUtil.errorService(error);
         });
-    } 
-    
+    }
+
     if (this.state.selected === "Gra" && !!game) {
       BoardGameApi.edit(
         name,

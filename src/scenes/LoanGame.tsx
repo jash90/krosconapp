@@ -46,7 +46,7 @@ class LoanGame extends Component<Props, State> {
   }
 
   render() {
-    let loan = false;
+    let loan = this.state.game === null;
     if (this.state.game && this.state.game.loanGames) {
       loan = this.state.game.loanGames.length === 0;
     }
@@ -57,41 +57,38 @@ class LoanGame extends Component<Props, State> {
     ) {
       loan = this.state.game.loanGames[0].endLoan != null;
     }
-    loan = this.state.game === null;
     console.log(this.state.game);
     console.log(loan);
     return (
       <Container
         text={loan ? "Wypożycz grę" : "Oddaj grę"}
         navigation={this.props.navigation}>
-        <View style={{ marginHorizontal: 20 }}>
-          <WithScannerGame
+        <WithScannerGame
+          navigation={this.props.navigation}
+          value={!!this.state.game}
+          game={this.state.game}
+          onPress={() =>
+            this.props.navigation.navigate(Scenes.Camera, {
+              changeCode: (game: any) => this.setState({ game }),
+              routeName: Scenes.LoanGame,
+              typeItem: 1
+            })
+          }
+        />
+        {loan && (
+          <WithScannerUser
             navigation={this.props.navigation}
-            value={!!this.state.game}
-            game={this.state.game}
+            user={this.state.user}
+            value={!!this.state.user}
             onPress={() =>
               this.props.navigation.navigate(Scenes.Camera, {
-                changeCode: (game: any) => this.setState({ game }),
+                changeCode: (user: any) => this.setState({ user }),
                 routeName: Scenes.LoanGame,
-                typeItem: 1
+                typeItem: 2
               })
             }
           />
-          {loan && (
-            <WithScannerUser
-              navigation={this.props.navigation}
-              user={this.state.user}
-              value={!!this.state.user}
-              onPress={() =>
-                this.props.navigation.navigate(Scenes.Camera, {
-                  changeCode: (user: any) => this.setState({ user }),
-                  routeName: Scenes.LoanGame,
-                  typeItem: 2
-                })
-              }
-            />
-          )}
-        </View>
+        )}
         <Button
           text={loan ? "Wypożycz grę" : "Oddaj grę"}
           primary
@@ -122,7 +119,7 @@ class LoanGame extends Component<Props, State> {
         });
     } else {
       const loanGame = this.state.game.loanGames[0];
-      LoanGameApi.edit(loanGame.id, 1)
+      LoanGameApi.edit(loanGame.id, this.props.authStore.id)
         .then(item => {
           Toast.show("Gra została oddana.");
           const resetAction = StackActions.reset({

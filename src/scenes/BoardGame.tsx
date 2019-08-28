@@ -114,21 +114,22 @@ class BoardGame extends Component<Props, {}> {
             />
           </View>
         )}
-          <Button
-            primary
-            color={Color.accentColor}
-            colorText={"white"}
-            onPress={this.loanGame}
-            text={"Wypożycz/Oddaj grę"}
-          />
+        <Button
+          primary
+          color={Color.accentColor}
+          colorText={"white"}
+          onPress={this.loanGame}
+          text={"Wypożycz/Oddaj grę"}
+        />
       </Container>
     );
   }
   loanGame = () => {
     const item = this.props.navigation.state.params.item;
-    if (this.props.authStore.privilegeId === 1) {
+    if (this.props.authStore.privilegeId === 0) {
+    } else if (this.props.authStore.privilegeId === 1) {
       this.props.navigation.navigate(Scenes.QR, { code: item.uuid });
-    } else {
+    } else if (this.props.authStore.privilegeId > 1) {
       this.props.navigation.navigate(Scenes.LoanGame, { game: item });
     }
   };

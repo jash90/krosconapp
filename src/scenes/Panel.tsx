@@ -56,7 +56,7 @@ class Panel extends Component<Props, State> {
             onPress={this.changePassword}
           />
 
-          {this.props.authStore.privilegeId === 2 && (
+          {this.props.authStore.privilegeId > 1 && (
             <Button
               primary
               color={`${Color.accentColor}`}

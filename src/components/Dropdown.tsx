@@ -33,7 +33,7 @@ class DropDown extends PureComponent<Props> {
     let { value, items, onSelect, styleTitle, styleItem } = this.props;
 
     return (
-      <Menu renderer={CustomMenu}>
+      <Menu renderer={CustomMenu} style={{paddingHorizontal: 20,}}>
         <MenuTrigger>
           <Card>
             <View style={styles.containerTrigger}>
