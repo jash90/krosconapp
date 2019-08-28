@@ -61,6 +61,8 @@ export default class Camera extends Component<CameraProps, State> {
         }
       ).catch(error=>{
         ErrorUtil.errorService(error);
+        changeCode(null);
+        this.props.navigation.navigate(routeName);
       })
     }
     if (typeItem === 2) {
@@ -72,9 +74,12 @@ export default class Camera extends Component<CameraProps, State> {
           this.props.navigation.navigate(routeName);
         } else {
           Toast.show("Nie znaleziono w bazie.");
+          changeCode(null);
+          this.props.navigation.navigate(routeName);
         }
       }).catch(error=>{
         ErrorUtil.errorService(error);
+
       })
     }
     if (typeItem === 3) {

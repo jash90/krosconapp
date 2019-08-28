@@ -46,10 +46,17 @@ class LoanGame extends Component<Props, State> {
 
   render() {
     let loan = false;
-    loan = this.state.game.loanGames.length === 0;
-    if (this.state.game.loanGames && this.state.game.loanGames[0]) {
+    if (this.state.game && this.state.game.loanGames) {
+      loan = this.state.game.loanGames.length === 0;
+    }
+    if (
+      this.state.game &&
+      this.state.game.loanGames &&
+      this.state.game.loanGames[0]
+    ) {
       loan = this.state.game.loanGames[0].endLoan != null;
     }
+    loan = this.state.game === null;
     console.log(this.state.game);
     console.log(loan);
     return (
