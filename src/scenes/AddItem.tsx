@@ -236,8 +236,11 @@ export default class AddItem extends Component<Props, State> {
       minAge,
       publisher
     } = this.state;
-
-    const game = this.props.navigation.state.params.game;
+    
+    let game = null;
+    if (this.props.navigation.state.params){
+     game = this.props.navigation.state.params.game;
+    }
 
     if (this.state.selected === "Gra" && !game) {
       BoardGameApi.add(
@@ -256,7 +259,9 @@ export default class AddItem extends Component<Props, State> {
         .catch(error => {
           ErrorUtil.errorService(error);
         });
-    } else {
+    } 
+    
+    if (this.state.selected === "Gra" && !!game) {
       BoardGameApi.edit(
         name,
         uuid,

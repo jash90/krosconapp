@@ -4,12 +4,12 @@ export default class LoanGameApi {
     public static async add(
         userId: number,
         hireUserId: number,
-        boardGameId: number, ) {
+        boardGameId: number, config: any | undefined) {
         return await axios.post(`/${this.apiName}/add`, {
             userId,
             hireUserId,
             boardGameId
-        });
+        }, config);
     }
     public static async all() {
         return await axios.get(`/${this.apiName}s`);
@@ -21,7 +21,7 @@ export default class LoanGameApi {
         return await axios.get(`/${this.apiName}/offset/${id}`)
     }
     public static async edit(loanGameId: number, hireUserId: number) {
-        return await axios.get(`/${this.apiName}/edit/${loanGameId}/${hireUserId}`);
+        return await axios.post(`/${this.apiName}/edit`, { loanGameId, hireUserId });
     }
     public static async remove(loanGameId: number) {
         return await axios.delete(`/${this.apiName}/remove/${loanGameId}`)

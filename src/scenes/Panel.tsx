@@ -6,6 +6,7 @@ import AuthStore from "../stores/AuthStore";
 import Toast from "react-native-simple-toast";
 import { inject, observer } from "mobx-react";
 import Scenes from"../Scenes";
+import axios from "../Axios";
 interface State {
   password: string;
   repeatPassword: string;
@@ -107,6 +108,7 @@ class Panel extends Component<Props, State> {
     try {
       this.props.authStore.clearUser();
       await AsyncStorage.removeItem("User");
+      axios.defaults.headers.common['authorization'] = null;
       this.props.navigation.navigate(Scenes.List);
     } catch (error) {
       Toast.show(error);

@@ -45,30 +45,11 @@ const AppNavigator = createStackNavigator(
 const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isConnected:false
-    };
-  }
-  componentDidMount() {
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
-  }
-
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-  }
-
-  handleConnectivityChange = (isConnected:any) => {
-      this.setState({ isConnected });
-  };
-
   render() {
     return (
       <MenuProvider>
         <Provider {...store}>
-          <RootNavigator screenProps={{isConnected: this.state.isConnected}}/>
+          <RootNavigator />
         </Provider>
       </MenuProvider>
     );

@@ -104,6 +104,8 @@ class Login extends Component<Props, State> {
         }
         if (data.item) {
           this.props.authStore.setUser(data.item);
+          console.log(data.item.token);
+          axios.defaults.headers.common['authorization'] = String(data.item.token);
           console.log(data.item);
           await AsyncStorage.setItem("User", JSON.stringify(data.item));
           this.props.navigation.navigate(Scenes.List);

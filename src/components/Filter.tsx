@@ -104,14 +104,14 @@ class Filter extends Component<Props, State> {
             />
 
             <TouchableOpacity
-              onPress={() => this.setState({ modal: true })}
+              onPress={this.openModal}
               style={{ justifyContent: "center" }}>
               <Icon name={"filter-list"} size={30} color="grey" />
             </TouchableOpacity>
           </View>
 
           {minPlayers > 0 && maxPlayers > 0 && (
-      <View style={{ paddingVertical: 10, width:"100%" }}>
+            <View style={{ paddingVertical: 10, width: "100%" }}>
               <ViewText
                 onlyText
                 label={"Min/max graczy:"}
@@ -121,13 +121,13 @@ class Filter extends Component<Props, State> {
           )}
 
           {Number(age) > 0 && (
-            <View style={{ paddingVertical: 10, width:"100%" }}>
+            <View style={{ paddingVertical: 10, width: "100%" }}>
               <ViewText onlyText label={"Wiek:"} text={`${age}+`} />
             </View>
           )}
 
           {Number(time) > 0 && (
-            <View style={{ paddingVertical: 10, width:"100%" }}>
+            <View style={{ paddingVertical: 10, width: "100%" }}>
               <ViewText
                 onlyText
                 label={"Czas rozgrywki:"}
@@ -137,7 +137,7 @@ class Filter extends Component<Props, State> {
           )}
 
           {!!publisher.id && (
-            <View style={{ paddingVertical: 10, width:"100%" }}>
+            <View style={{ paddingVertical: 10, width: "100%" }}>
               <ViewText
                 onlyText
                 label={"Wydawca:"}
@@ -393,6 +393,17 @@ class Filter extends Component<Props, State> {
   filterBoardGame = () => {
     this.onChangeValue();
     this.setState({ modal: false });
+  };
+
+  openModal = () => {
+    PublisherApi.all()
+    .then(response => {
+      this.setState({ publishers: response.data.items });
+    })
+    .catch(error => {
+      ErrorUtil.errorService(error);
+    });
+    this.setState({ modal: true });
   };
 }
 

@@ -16,7 +16,6 @@ import { Head } from ".";
 import { ContainerProps } from "./interfaces";
 interface State {
   viewRef: any;
-  isConnected: boolean;
 }
 class Container extends Component<ContainerProps, State> {
   public backgroundImage: any;
@@ -39,14 +38,7 @@ class Container extends Component<ContainerProps, State> {
     super(props);
     this.state = {
       viewRef: null,
-      isConnected: false
     };
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      isConnected: this.props.navigation.getScreenProps().isConnected
-    });
   }
 
   render() {
@@ -63,7 +55,7 @@ class Container extends Component<ContainerProps, State> {
           icon={this.props.icon}
           onPress={this.props.onPress}
         />
-        {!this.state.isConnected && (
+        {false && (
           <View
             style={{
               backgroundColor: "red",

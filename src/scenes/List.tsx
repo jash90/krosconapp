@@ -41,8 +41,8 @@ class List extends Component<Props, State> {
       active: false,
       search: "",
       refresh: false,
-      listgame: [], //props.navigation.state.params.listgame,
-      count: 0, //Math.ceil(props.navigation.state.params.count / 10),
+      listgame: [],
+      count: 0,
       page: 0
     };
   }
@@ -52,14 +52,17 @@ class List extends Component<Props, State> {
     if (this.props.navigation.state.params) {
       const params = this.props.navigation.state.params;
       if (params && params.listgame && params.count) {
-        this.setState({ listgame: params.listgame, count: params.count });
+        this.setState({
+          listgame: params.listgame,
+          count: Math.ceil(params.count / 10)
+        });
       } else {
         BoardGameApi.offset()
           .then(response => {
             const data = response.data;
             this.setState({
               listgame: data.items,
-              count: data.count,
+              count: Math.ceil(data.count / 10),
               page: 0
             });
           })
@@ -150,7 +153,7 @@ class List extends Component<Props, State> {
         const data = response.data;
         this.setState({
           listgame: data.items,
-          count: data.count,
+          count: Math.ceil(data.count / 10),
           page: 0
         });
       })
