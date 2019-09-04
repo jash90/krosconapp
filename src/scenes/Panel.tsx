@@ -7,6 +7,7 @@ import Toast from "react-native-simple-toast";
 import { inject, observer } from "mobx-react";
 import Scenes from"../Scenes";
 import axios from "../Axios";
+import NavigationService from "../NavigationService";
 interface State {
   password: string;
   repeatPassword: string;
@@ -26,11 +27,10 @@ class Panel extends Component<Props, State> {
   render() {
     return (
       <Container
-        navigation={this.props.navigation}
         back={false}
         left={true}
         leftIcon={"arrow-back"}
-        leftPress={() => this.props.navigation.navigate(Scenes.List)}
+        leftPress={() => NavigationService.navigate(Scenes.List)}
         right
         scrollView
         text={"Panel"}
@@ -43,7 +43,6 @@ class Panel extends Component<Props, State> {
             justifyContent: "flex-start"
           }}>
           <UserHeader
-            navigation={this.props.navigation}
             edit
             user={this.props.authStore}
           />
@@ -89,19 +88,19 @@ class Panel extends Component<Props, State> {
   }
 
   addBoardGame = () => {
-    this.props.navigation.navigate(Scenes.AddItem);
+    NavigationService.navigate(Scenes.AddItem);
   };
 
   loanGame = () => {
-    this.props.navigation.navigate(Scenes.LoanGame);
+    NavigationService.navigate(Scenes.LoanGame);
   };
 
   setPrivileges = () => {
-    this.props.navigation.navigate(Scenes.Privilege);
+    NavigationService.navigate(Scenes.Privilege);
   };
 
   changePassword = () => {
-    this.props.navigation.navigate(Scenes.ChangePassword);
+    NavigationService.navigate(Scenes.ChangePassword);
   };
 
   logout = async () => {
@@ -109,7 +108,7 @@ class Panel extends Component<Props, State> {
       this.props.authStore.clearUser();
       await AsyncStorage.removeItem("User");
       axios.defaults.headers.common['authorization'] = null;
-      this.props.navigation.navigate(Scenes.List);
+      NavigationService.navigate(Scenes.List);
       Toast.show("Wylogowano");
     } catch (error) {
       Toast.show(error);

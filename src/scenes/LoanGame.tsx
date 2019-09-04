@@ -10,6 +10,7 @@ import { StackActions, NavigationActions } from "react-navigation";
 import ErrorUtil from "../ErrorUtil";
 import Color from "../Color";
 import { View } from "react-native";
+import NavigationService from "../NavigationService";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
@@ -62,13 +63,13 @@ class LoanGame extends Component<Props, State> {
     return (
       <Container
         text={loan ? "Wypożycz grę" : "Oddaj grę"}
-        navigation={this.props.navigation}>
+        >
         <WithScannerGame
-          navigation={this.props.navigation}
+          
           value={!!this.state.game}
           game={this.state.game}
           onPress={() =>
-            this.props.navigation.navigate(Scenes.Camera, {
+            NavigationService.navigate(Scenes.Camera, {
               changeCode: (game: any) => this.setState({ game }),
               routeName: Scenes.LoanGame,
               typeItem: 1
@@ -76,12 +77,11 @@ class LoanGame extends Component<Props, State> {
           }
         />
         {loan && (
-          <WithScannerUser
-            navigation={this.props.navigation}
+          <WithScannerUser     
             user={this.state.user}
             value={!!this.state.user}
             onPress={() =>
-              this.props.navigation.navigate(Scenes.Camera, {
+              NavigationService.navigate(Scenes.Camera, {
                 changeCode: (user: any) => this.setState({ user }),
                 routeName: Scenes.LoanGame,
                 typeItem: 2
@@ -115,11 +115,7 @@ class LoanGame extends Component<Props, State> {
       )
         .then(item => {
           Toast.show("Gra została wypożyczona.");
-          const resetAction = StackActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: Scenes.List })]
-          });
-          this.props.navigation.dispatch(resetAction);
+          NavigationService.reset(Scenes.List);
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -135,11 +131,7 @@ class LoanGame extends Component<Props, State> {
       LoanGameApi.edit(loanGame.id, this.props.authStore.id)
         .then(item => {
           Toast.show("Gra została oddana.");
-          const resetAction = StackActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: Scenes.List })]
-          });
-          this.props.navigation.dispatch(resetAction);
+          NavigationService.reset(Scenes.List);
         })
         .catch(error => {
           ErrorUtil.errorService(error);

@@ -11,10 +11,10 @@ import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 const SIcon = createIconSetFromIcoMoon(selection);
 import StarRating from "react-native-star-rating";
-import { withNavigation } from "react-navigation";
 import { Spacer } from "./StyledComponent";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Scenes from "../Scenes";
+import NavigationService from "../NavigationService";
 interface User {
   firstname: string;
   lastname: string;
@@ -29,7 +29,6 @@ interface User {
 interface Props {
   user: User;
   edit?: boolean;
-  navigation: any;
 }
 export default class UserHeader extends Component<Props> {
   render() {
@@ -79,7 +78,7 @@ export default class UserHeader extends Component<Props> {
   }
 
   goToEdit = () => {
-    this.props.navigation.navigate(Scenes.EditProfile, {
+    NavigationService.navigate(Scenes.EditProfile, {
       user: this.props.user
     });
   };

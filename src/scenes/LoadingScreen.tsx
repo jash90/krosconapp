@@ -8,6 +8,7 @@ import Scenes from "../Scenes";
 import { BoardGameApi } from "../api";
 import ErrorUtil from "../ErrorUtil";
 import axios from "../Axios";
+import NavigationService from "../NavigationService";
 interface Props {
   authStore: AuthStore;
 }
@@ -28,14 +29,14 @@ class LoadingScreen extends Component<Props> {
       .then(response => {
         const data = response.data;
         console.log(data);
-        this.props.navigation.navigate(Scenes.List, {
+        NavigationService.navigate(Scenes.List, {
           listgame: data.items,
           count: data.count
         });
       })
       .catch(error => {
         ErrorUtil.errorService(error);
-        this.props.navigation.navigate(Scenes.List, {
+        NavigationService.navigate(Scenes.List, {
           listgame: [],
           count: 0
         });

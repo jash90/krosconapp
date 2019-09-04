@@ -19,6 +19,7 @@ import { Actions } from "react-native-router-flux";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Color from "../Color";
 import { HeadProps } from "../interfaces";
+import NavigationService from "../NavigationService";
 
 export default class Head extends Component<HeadProps> {
   static defaultProps = {
@@ -58,7 +59,7 @@ export default class Head extends Component<HeadProps> {
   renderLeft() {
     if (this.props.back) {
       return (
-        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+        <TouchableOpacity onPress={() => NavigationService.goBack()}>
           <Icon name="arrow-back" style={styles.iconLeftHeader} />
         </TouchableOpacity>
       );

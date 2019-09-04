@@ -11,6 +11,7 @@ import { observer, inject } from "mobx-react";
 import Scenes from "../Scenes";
 import ErrorUtil from "../ErrorUtil";
 import AuthStore from "../stores/AuthStore";
+import NavigationService from "../NavigationService";
 interface State {
   email: string;
   password: string;
@@ -35,7 +36,7 @@ class Register extends Component<Props, State> {
 
   render() {
     return (
-      <Container scrollView navigation={this.props.navigation}>
+      <Container scrollView>
         <Logo size={50} />
         <View style={{ flex: 1, paddingHorizontal: 20 }}>
           <RCView>
@@ -104,7 +105,7 @@ class Register extends Component<Props, State> {
         const data = response.data;
         if (data.item) {
           Toast.show(`Utworzyłeś konto ${this.state.email}.`);
-          this.props.navigation.navigate(Scenes.Login);
+          NavigationService.navigate(Scenes.Login);
         }
       })
       .catch(error => {

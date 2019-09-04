@@ -11,6 +11,7 @@
     "@emotion/is-prop-valid": "^0.8.2",
     "@emotion/native": "^10.0.14",
     "@types/react-native-material-dropdown": "^0.11.0",
+    "@types/react-native-qrcode": "^0.2.2",
     "@types/react-native-star-rating": "^1.1.0",
     "@types/react-native-vector-icons": "^6.4.1",
     "axios": "^0.19.0",
