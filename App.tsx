@@ -1,7 +1,11 @@
 import { Provider } from "mobx-react";
 import React from "react";
 import { MenuProvider } from "react-native-popup-menu";
-import { createAppContainer, createStackNavigator } from "react-navigation";
+import {
+  createAppContainer,
+  createStackNavigator,
+  NavigationContainerComponent
+} from "react-navigation";
 import {
   AddItem,
   BoardGame,
@@ -20,6 +24,7 @@ import {
 import store from "./src/stores";
 import { NetInfo } from "react-native";
 import { Props } from "./src/interfaces";
+import NavigationService from "./src/NavigationService";
 
 const AppNavigator = createStackNavigator(
   {
@@ -49,7 +54,11 @@ export default class App extends React.Component {
     return (
       <MenuProvider>
         <Provider {...store}>
-          <RootNavigator />
+          <RootNavigator
+            ref={(navigatorRef: NavigationContainerComponent) => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
+          />
         </Provider>
       </MenuProvider>
     );
