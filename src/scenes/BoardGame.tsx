@@ -1,25 +1,13 @@
-import React, { Component } from "react";
-import {
-  View,
-  Image,
-  FlatList,
-  Text,
-  ScrollView,
-  TouchableOpacity
-} from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection";
-const Icon = createIconSetFromIcoMoon(selection);
-import StarRating from "react-native-star-rating";
-import Color from "../Color";
-import { Container, GameHeader, Button } from "../components";
-import Scenes from "../Scenes";
 import { inject, observer } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
+import React, { Component } from "react";
+import { FlatList, Text, View } from "react-native";
+import Color from "../Color";
+import { Button, Container, GameHeader } from "../components";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
-interface Props {
+import Scenes from "../Scenes";
+interface Props extends SceneProps{
   item: any;
-  authStore: AuthStore;
 }
 class BoardGame extends Component<Props, {}> {
   constructor(props: Props) {
@@ -136,4 +124,4 @@ class BoardGame extends Component<Props, {}> {
     }
   };
 }
-export default inject("authStore")(observer(BoardGame));
+export default inject("authStore","propsStore")(observer(BoardGame));

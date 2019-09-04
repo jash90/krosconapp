@@ -1,24 +1,17 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import Color from "../Color";
-import { Button, Container, UserHeader } from "../components";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import axios from "../Axios";
-import { AuthApi, UserApi } from "../api";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import Toast from "react-native-simple-toast";
+import { AuthApi, UserApi } from "../api";
+import { Container, UserHeader } from "../components";
 import ErrorUtil from "../ErrorUtil";
-import AuthStore from "../stores/AuthStore";
-import { observer, inject } from "mobx-react";
+import { SceneProps } from "../interfaces";
 
 interface State {
   users: any[];
   refreshing: boolean;
 }
-
-interface Props{
-  authStore:AuthStore;
-}
-
-class Privilege extends Component<Props, State> {
+class Privilege extends Component<SceneProps, State> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -123,4 +116,4 @@ class Privilege extends Component<Props, State> {
     }
   }
 }
-export default inject("authStore")(observer(Privilege));
+export default inject("authStore","propsStore")(observer(Privilege));

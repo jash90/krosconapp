@@ -1,20 +1,16 @@
-import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Actions } from "react-native-router-flux";
-import { Props } from "../interfaces";
-import { RNCamera } from "react-native-camera";
-import { UserApi, BoardGameApi } from "../api";
-import Toast from "react-native-simple-toast";
-import _ from "underscore";
-import ErrorUtil from "../ErrorUtil";
-import AuthStore from "../stores/AuthStore";
 import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import { RNCamera } from "react-native-camera";
+import Toast from "react-native-simple-toast";
+import { BoardGameApi, UserApi } from "../api";
+import ErrorUtil from "../ErrorUtil";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 
-interface CameraProps extends Props {
+interface CameraProps extends SceneProps {
   changeCode: Function;
   routeName: string;
-  authStore:AuthStore;
 }
 interface State {}
 class Camera extends Component<CameraProps, State> {
@@ -101,7 +97,7 @@ class Camera extends Component<CameraProps, State> {
     }
   }
 }
-export default inject("authStore")(observer(Camera));
+export default inject("authStore","propsStore")(observer(Camera));
 
 const styles = StyleSheet.create({
   container: {

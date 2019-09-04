@@ -1,36 +1,20 @@
-import React from "react";
-import { Component } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  TextInput,
-  ScrollView,
-  Text,
-  FlatList
-} from "react-native";
-import ImagePicker from "react-native-image-picker";
-import { Container, Button } from "../components";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
-import { Item, Label, Input, Toast } from "native-base";
-import { Spacer, RCText, RCView } from "../components/StyledComponent";
-import Scenes from "../Scenes";
+import { inject, observer } from "mobx-react";
+import { Toast } from "native-base";
+import React, { Component } from "react";
+import { TextInput } from "react-native";
 import { AuthApi } from "../api";
-import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
+import { Container } from "../components";
+import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
-const Icon = createIconSetFromIcoMoon(selection);
-interface Props {
-  authStore: AuthStore;
-}
+import Scenes from "../Scenes";
 interface State {
   password: string;
   repeatPassword: string;
 }
-class ChangePassword extends Component<Props, State> {
-  constructor(props: Props) {
+class ChangePassword extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       password: "",
@@ -80,4 +64,4 @@ class ChangePassword extends Component<Props, State> {
       });
   };
 }
-export default inject("authStore")(observer(ChangePassword));
+export default inject("authStore","propsStore")(observer(ChangePassword));

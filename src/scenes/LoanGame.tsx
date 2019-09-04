@@ -1,28 +1,23 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import Toast from "react-native-simple-toast";
+import { LoanGameApi } from "../api";
+import Color from "../Color";
 import { Button, Container, GameHeader, UserHeader } from "../components";
 import { withScanner } from "../components/withScanner";
-import Scenes from "../Scenes";
-import { LoanGameApi } from "../api";
-import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
-import Toast from "react-native-simple-toast";
-import { StackActions, NavigationActions } from "react-navigation";
 import ErrorUtil from "../ErrorUtil";
-import Color from "../Color";
-import { View } from "react-native";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
   user: any;
   game: any;
 }
-interface Props {
-  authStore: AuthStore;
-}
 
-class LoanGame extends Component<Props, State> {
-  constructor(props: Props) {
+class LoanGame extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       user: null,
@@ -140,4 +135,4 @@ class LoanGame extends Component<Props, State> {
   };
 }
 
-export default inject("authStore")(observer(LoanGame));
+export default inject("authStore","propsStore")(observer(LoanGame));

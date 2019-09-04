@@ -1,22 +1,19 @@
 import React, { Component } from "react";
-import { StyleSheet, View, AsyncStorage } from "react-native";
+import { View, AsyncStorage } from "react-native";
 import Color from "../Color";
 import { Container, Button, UserHeader } from "../components";
-import AuthStore from "../stores/AuthStore";
 import Toast from "react-native-simple-toast";
 import { inject, observer } from "mobx-react";
 import Scenes from"../Scenes";
 import axios from "../Axios";
 import NavigationService from "../NavigationService";
+import { SceneProps } from "../interfaces";
 interface State {
   password: string;
   repeatPassword: string;
 }
-interface Props {
-  authStore: AuthStore;
-}
-class Panel extends Component<Props, State> {
-  constructor(props: Props) {
+class Panel extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       password: "",
@@ -116,4 +113,4 @@ class Panel extends Component<Props, State> {
   };
 }
 
-export default inject("authStore")(observer(Panel));
+export default inject("authStore","propsStore")(observer(Panel));

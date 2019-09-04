@@ -22,6 +22,8 @@ import Scenes from "../Scenes";
 import { BoardGameApi } from "../api/index";
 import ErrorUtil from "../ErrorUtil";
 import NavigationService from "../NavigationService";
+import { SceneProps } from "../interfaces";
+import Game from "../models/Game";
 interface State {
   active: boolean;
   search: string;
@@ -30,10 +32,8 @@ interface State {
   page: number;
   refresh: boolean;
 }
-interface Props {
-  listgame: any[];
-  authStore: AuthStore;
-  reset: boolean;
+interface Props extends SceneProps{
+  listgame: Game[];
 }
 class List extends Component<Props, State> {
   constructor(props: Props) {
@@ -184,4 +184,4 @@ class List extends Component<Props, State> {
   };
 }
 
-export default inject("authStore")(observer(List));
+export default inject("authStore","propsStore")(observer(List));

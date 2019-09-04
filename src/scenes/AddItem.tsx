@@ -1,26 +1,15 @@
-import React from "react";
-import { Component } from "react";
-import { View, TouchableOpacity, Image, TextInput, Text } from "react-native";
-import ImagePicker from "react-native-image-picker";
-import {
-  Container,
-  ViewText,
-  ModalPickerPawn,
-  ModalSingleList,
-  ModalMultiList,
-  Dropdown
-} from "../components";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { Text, TextInput, View } from "react-native";
+import Toast from "react-native-simple-toast";
+import { BoardGameApi, PublisherApi } from "../api";
+import { Container, Dropdown, ModalMultiList, ModalPickerPawn, ModalSingleList, ViewText } from "../components";
 import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
-import Scenes from "../Scenes";
-import { PublisherApi, BoardGameApi } from "../api";
-import Toast from "react-native-simple-toast";
-import { Props } from "../interfaces";
 import ErrorUtil from "../ErrorUtil";
-import { inject, observer } from "mobx-react";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
 const WithScannerText = withScanner(ViewText);
 interface State {
   name: string;
@@ -32,15 +21,14 @@ interface State {
   type: string;
   mechanic: string;
   uuid: string;
-  value: boolean;
   selected: string;
   types: string[];
   description: string;
   publishers: any[];
   items: string[];
 }
-class AddItem extends Component<Props, State> {
-  constructor(props: Props) {
+class AddItem extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       minAge: "",
@@ -52,7 +40,6 @@ class AddItem extends Component<Props, State> {
       type: "",
       mechanic: "",
       uuid: "",
-      value: false,
       selected: "Gra",
       types: [],
       description: "",
@@ -309,4 +296,4 @@ class AddItem extends Component<Props, State> {
     return active.concat(disactive);
   }
 }
-export default inject("authStore")(observer(AddItem));
+export default inject("authStore","propsStore")(observer(AddItem));

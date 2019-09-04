@@ -1,20 +1,14 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { Image, TextInput, TouchableOpacity, View } from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
+import { TextInput } from "react-native";
+import Toast from "react-native-simple-toast";
+import { UserApi } from "../api/index";
 import { Container } from "../components";
 import { RCView } from "../components/StyledComponent";
-import Scenes from "../Scenes";
-import { UserApi } from "../api/index";
-import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
 import ErrorUtil from "../ErrorUtil";
-import Toast from "react-native-simple-toast";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
-const Icon = createIconSetFromIcoMoon(selection);
-interface Props {
-  authStore:AuthStore
-}
+import Scenes from "../Scenes";
 interface State {
   firstname: string;
   lastname: string;
@@ -22,8 +16,8 @@ interface State {
   age: number;
   id:number;
 }
-class EditProfile extends Component<Props, State> {
-  constructor(props: Props) {
+class EditProfile extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       firstname: "",
@@ -112,4 +106,4 @@ class EditProfile extends Component<Props, State> {
     return active.concat(disactive);
   }
 }
-export default inject("authStore")(observer(EditProfile));
+export default inject("authStore","propsStore")(observer(EditProfile));

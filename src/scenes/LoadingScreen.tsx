@@ -1,18 +1,15 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { View, Image, AsyncStorage } from "react-native";
-import Color from "../Color";
+import { AsyncStorage, Image, View } from "react-native";
 import Toast from "react-native-simple-toast";
-import AuthStore from "../stores/AuthStore";
-import { observer, inject } from "mobx-react";
-import Scenes from "../Scenes";
 import { BoardGameApi } from "../api";
-import ErrorUtil from "../ErrorUtil";
 import axios from "../Axios";
+import Color from "../Color";
+import ErrorUtil from "../ErrorUtil";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
-interface Props {
-  authStore: AuthStore;
-}
-class LoadingScreen extends Component<Props> {
+import Scenes from "../Scenes";
+class LoadingScreen extends Component<SceneProps> {
   componentDidMount = async () => {
     try {
       const value = await AsyncStorage.getItem("User");
@@ -76,4 +73,4 @@ class LoadingScreen extends Component<Props> {
     );
   }
 }
-export default inject("authStore")(observer(LoadingScreen));
+export default inject("authStore","propsStore")(observer(LoadingScreen));
