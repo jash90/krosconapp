@@ -22,8 +22,6 @@ import {
   Register
 } from "./src/scenes/index";
 import store from "./src/stores";
-import { NetInfo } from "react-native";
-import { Props } from "./src/interfaces";
 import NavigationService from "./src/NavigationService";
 
 const AppNavigator = createStackNavigator(

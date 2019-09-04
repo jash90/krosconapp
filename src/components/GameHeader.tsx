@@ -17,7 +17,7 @@ interface Game {
 
 interface Props {
   game: Game;
-  edit:boolean;
+  edit: boolean | null;
 }
 export default class GameHeader extends Component<Props> {
   render() {
@@ -28,9 +28,9 @@ export default class GameHeader extends Component<Props> {
           backgroundColor: "white",
           borderRadius: 20,
           paddingHorizontal: 20,
-          paddingVertical:10,
+          paddingVertical: 10,
           marginHorizontal: 20,
-          marginVertical:10,
+          marginVertical: 10,
           justifyContent: "center",
           alignItems: "center"
         }}>
