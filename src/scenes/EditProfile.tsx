@@ -10,6 +10,7 @@ import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import ErrorUtil from "../ErrorUtil";
 import Toast from "react-native-simple-toast";
+import NavigationService from "../NavigationService";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   authStore:AuthStore
@@ -50,8 +51,7 @@ class EditProfile extends Component<Props, State> {
   render() {
     return (
       <Container
-        navigation={this.props.navigation}
-        scrollView={true}
+        scrollView
         right
         icon={"save"}
         styleContent={{ flex: 1, paddingHorizontal: 20 }}
@@ -98,7 +98,7 @@ class EditProfile extends Component<Props, State> {
       this.props.authStore.setLastname(lastname);
       this.props.authStore.setCity(city);
       this.props.authStore.setAge(age);
-      this.props.navigation.navigate(Scenes.List);
+      NavigationService.navigate(Scenes.List);
       Toast.show("Zapisano");
     }).catch(error=>{
       ErrorUtil.errorService(error);

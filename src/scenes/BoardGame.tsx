@@ -16,6 +16,7 @@ import { Container, GameHeader, Button } from "../components";
 import Scenes from "../Scenes";
 import { inject, observer } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
+import NavigationService from "../NavigationService";
 interface Props {
   item: any;
   authStore: AuthStore;
@@ -28,8 +29,8 @@ class BoardGame extends Component<Props, {}> {
   render() {
     const item = this.props.navigation.state.params.item;
     return (
-      <Container scrollView navigation={this.props.navigation}>
-        <GameHeader navigation={this.props.navigation} game={item} />
+      <Container scrollView >
+        <GameHeader  game={item} />
         {!!item.description && (
           <View
             style={{
@@ -127,11 +128,11 @@ class BoardGame extends Component<Props, {}> {
   loanGame = () => {
     const item = this.props.navigation.state.params.item;
     if (this.props.authStore.privilegeId === 0) {
-      this.props.navigation.navigate(Scenes.Login);
+      NavigationService.navigate(Scenes.Login);
     } else if (this.props.authStore.privilegeId === 1) {
-      this.props.navigation.navigate(Scenes.QR, { code: item.uuid });
+      NavigationService.navigate(Scenes.QR, { code: item.uuid });
     } else if (this.props.authStore.privilegeId > 1) {
-      this.props.navigation.navigate(Scenes.LoanGame, { game: item });
+      NavigationService.navigate(Scenes.LoanGame, { game: item });
     }
   };
 }

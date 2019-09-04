@@ -53,14 +53,13 @@ class Privilege extends Component<Props, State> {
     return (
       <Container
         text={"Lista użytkowników"}
-        navigation={this.props.navigation}
-        styleContent={{}}>
+        >
         <FlatList
           data={this.state.users.sort((a, b) => {
             return a.id - b.id;
           })}
           renderItem={({ item }) => (
-            <UserHeader navigation={this.props.navigation} user={item}>
+            <UserHeader user={item}>
               {this.renderPrivilege(item)}
             </UserHeader>
           )}

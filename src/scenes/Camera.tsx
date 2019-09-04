@@ -9,6 +9,7 @@ import _ from "underscore";
 import ErrorUtil from "../ErrorUtil";
 import AuthStore from "../stores/AuthStore";
 import { inject, observer } from "mobx-react";
+import NavigationService from "../NavigationService";
 
 interface CameraProps extends Props {
   changeCode: Function;
@@ -57,11 +58,11 @@ class Camera extends Component<CameraProps, State> {
             const item = response.data.item;
             console.log(item);
             changeCode(item);
-            this.props.navigation.navigate(routeName);
+            NavigationService.navigate(routeName);
           } else {
             if (!response.data.error) {
               changeCode(null);
-              this.props.navigation.navigate(routeName);
+              NavigationService.navigate(routeName);
               Toast.show("Nie znaleziono w bazie.");
             } else if (response.data.error)
               ErrorUtil.errorService(response.data.error);
@@ -70,7 +71,7 @@ class Camera extends Component<CameraProps, State> {
         .catch(error => {
           ErrorUtil.errorService(error);
           changeCode(null);
-          this.props.navigation.navigate(routeName);
+          NavigationService.navigate(routeName);
         });
     }
     if (typeItem === 2) {
@@ -80,11 +81,11 @@ class Camera extends Component<CameraProps, State> {
           if (response.data.item) {
             const item = response.data.item;
             changeCode(item);
-            this.props.navigation.navigate(routeName);
+            NavigationService.navigate(routeName);
           } else {
             if (!response.data.error) {
               changeCode(null);
-              this.props.navigation.navigate(routeName);
+              NavigationService.navigate(routeName);
               Toast.show("Nie znaleziono w bazie.");
             } else if (response.data.error)
               ErrorUtil.errorService(response.data.error);
@@ -96,7 +97,7 @@ class Camera extends Component<CameraProps, State> {
     }
     if (typeItem === 3) {
       changeCode(data.data);
-      this.props.navigation.navigate(routeName);
+      NavigationService.navigate(routeName);
     }
   }
 }

@@ -13,13 +13,14 @@ import ImagePicker from "react-native-image-picker";
 import { Container, Button } from "../components";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
-import { Item, Label, Input } from "native-base";
+import { Item, Label, Input, Toast } from "native-base";
 import { Spacer, RCText, RCView } from "../components/StyledComponent";
 import Scenes from "../Scenes";
 import { AuthApi } from "../api";
 import { observer, inject } from "mobx-react";
 import AuthStore from "../stores/AuthStore";
 import ErrorUtil from "../ErrorUtil";
+import NavigationService from "../NavigationService";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   authStore: AuthStore;
@@ -39,7 +40,7 @@ class ChangePassword extends Component<Props, State> {
   render() {
     return (
       <Container
-        navigation={this.props.navigation}
+        
         scrollView={true}
         right
         icon={"save"}
@@ -69,7 +70,7 @@ class ChangePassword extends Component<Props, State> {
       .then(response => {
         if (!response.data.error) {
           Toast.show("Zmieniono");
-          this.props.navigation.navigate(Scenes.List);
+          NavigationService.navigate(Scenes.List);
         } else {
           if (response.data.error) ErrorUtil.errorService(response.data.error);
         }

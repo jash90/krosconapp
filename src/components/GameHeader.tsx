@@ -4,6 +4,7 @@ import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import Scenes from "../Scenes";
+import NavigationService from "../NavigationService";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Game {
   name: string;
@@ -16,7 +17,6 @@ interface Game {
 
 interface Props {
   game: Game;
-  navigation: any;
   edit:boolean;
 }
 export default class GameHeader extends Component<Props> {
@@ -60,7 +60,7 @@ export default class GameHeader extends Component<Props> {
               {this.props.edit && (
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate(Scenes.AddItem, {
+                    NavigationService.navigate(Scenes.AddItem, {
                       game: this.props.game
                     })
                   }>

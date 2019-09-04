@@ -18,7 +18,6 @@ class QR extends Component<{}> {
     return (
       <Container
         text={"Kod QR"}
-        navigation={this.props.navigation}
         styleContent={{
           flex: 1,
           justifyContent: "center",

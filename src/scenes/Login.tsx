@@ -34,6 +34,7 @@ import AuthStore from "../stores/AuthStore";
 import { RCView } from "../components/StyledComponent";
 import Scenes from "../Scenes";
 import ErrorUtil from "../ErrorUtil";
+import NavigationService from "../NavigationService";
 interface State {
   email: string;
   password: string;
@@ -54,12 +55,11 @@ class Login extends Component<Props, State> {
   render() {
     return (
       <Container
-        navigation={this.props.navigation}
         right={true}
         scrollView
         icon={"person-add"}
         text={Language.get("sign")}
-        onPress={() => this.props.navigation.navigate(Scenes.Register)}>
+        onPress={() => NavigationService.navigate(Scenes.Register)}>
         <View style={{ flex: 1, paddingHorizontal: 20 }}>
           <Logo size={150} />
           <RCView>
@@ -121,7 +121,7 @@ class Login extends Component<Props, State> {
           );
           console.log(data.item);
           await AsyncStorage.setItem("User", JSON.stringify(data.item));
-          this.props.navigation.navigate(Scenes.List);
+          NavigationService.navigate(Scenes.List);
         }
       })
       .catch(error => {

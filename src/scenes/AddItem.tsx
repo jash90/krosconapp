@@ -20,6 +20,7 @@ import Toast from "react-native-simple-toast";
 import { Props } from "../interfaces";
 import ErrorUtil from "../ErrorUtil";
 import { inject, observer } from "mobx-react";
+import NavigationService from "../NavigationService";
 const WithScannerText = withScanner(ViewText);
 interface State {
   name: string;
@@ -96,7 +97,7 @@ class AddItem extends Component<Props, State> {
   render() {
     return (
       <Container
-        navigation={this.props.navigation}
+        
         scrollView={true}
         right
         styleContent={{ flex: 1 }}
@@ -118,7 +119,7 @@ class AddItem extends Component<Props, State> {
             value={!!this.state.uuid}
             onPress={() => {
               if (!this.props.navigation.state.params.game) {
-                this.props.navigation.navigate(Scenes.Camera, {
+                NavigationService.navigate(Scenes.Camera, {
                   changeCode: (uuid: any) => this.setState({ uuid }),
                   routeName: Scenes.AddItem,
                   typeItem: 3
@@ -296,7 +297,7 @@ class AddItem extends Component<Props, State> {
   };
 
   changeUuid = (uuid: string) => {
-    this.props.navigation.navigate(Scenes.Camera, {
+    NavigationService.navigate(Scenes.Camera, {
       changeCode: () => this.setState({ uuid }),
       routeName: Scenes.LoanGame,
       typeItem: 2

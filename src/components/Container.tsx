@@ -45,7 +45,6 @@ class Container extends Component<ContainerProps, State> {
     return (
       <NContainer>
         <Head
-          navigation={this.props.navigation}
           back={this.props.back == undefined ? true : this.props.back}
           left={this.props.left}
           leftIcon={this.props.leftIcon}

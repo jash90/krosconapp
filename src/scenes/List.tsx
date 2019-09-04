@@ -21,6 +21,7 @@ import { RCView } from "../components/StyledComponent";
 import Scenes from "../Scenes";
 import { BoardGameApi } from "../api/index";
 import ErrorUtil from "../ErrorUtil";
+import NavigationService from "../NavigationService";
 interface State {
   active: boolean;
   search: string;
@@ -75,12 +76,7 @@ class List extends Component<Props, State> {
 
   render() {
     return (
-      <Container
-        navigation={this.props.navigation}
-        back={false}
-        right
-        icon={"person"}
-        onPress={this.openProfile}>
+      <Container back={false} right icon={"person"} onPress={this.openProfile}>
         <Filter onChangeValue={search => this.searchBoardGame(search)} />
         <FlatList
           data={this.state.listgame}
@@ -90,7 +86,6 @@ class List extends Component<Props, State> {
                 this.openItem(item);
               }}>
               <GameHeader
-                navigation={this.props.navigation}
                 game={item}
                 edit={this.props.authStore.privilegeId > 1}
               />
@@ -109,7 +104,7 @@ class List extends Component<Props, State> {
             }}
             position="bottomRight"
             onPress={() =>
-              this.props.navigation.navigate(Scenes.QR, {
+              NavigationService.navigate(Scenes.QR, {
                 code: this.props.authStore.email
               })
             }>
@@ -134,16 +129,13 @@ class List extends Component<Props, State> {
     return table;
   }
   openItem = (item: any) => {
-    this.props.navigation.navigate({
-      routeName: "BoardGame",
-      params: { item }
-    });
+    NavigationService.navigate(Scenes.BoardGame, { item });
   };
   openProfile = () => {
     if (this.props.authStore.token) {
-      this.props.navigation.navigate(Scenes.Panel);
+      NavigationService.navigate(Scenes.Panel);
     } else {
-      this.props.navigation.navigate(Scenes.Login);
+      NavigationService.navigate(Scenes.Login);
     }
   };
   onRefresh = () => {
