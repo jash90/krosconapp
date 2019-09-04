@@ -19,6 +19,7 @@ import { PublisherApi, BoardGameApi } from "../api";
 import Toast from "react-native-simple-toast";
 import { Props } from "../interfaces";
 import ErrorUtil from "../ErrorUtil";
+import { inject, observer } from "mobx-react";
 const WithScannerText = withScanner(ViewText);
 interface State {
   name: string;
@@ -37,7 +38,7 @@ interface State {
   publishers: any[];
   items: string[];
 }
-export default class AddItem extends Component<Props, State> {
+class AddItem extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -307,3 +308,4 @@ export default class AddItem extends Component<Props, State> {
     return active.concat(disactive);
   }
 }
+export default inject("authStore")(observer(AddItem));

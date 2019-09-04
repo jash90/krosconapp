@@ -101,6 +101,13 @@ class LoanGame extends Component<Props, State> {
   }
   success = (loan: boolean) => {
     if (loan) {
+      const { game, user } = this.state;
+      if (!game || !user) {
+        Toast.show(
+          "Musisz zeskanować kod qr użytkownika i/lub kod gry, żeby wypożyczyć grę."
+        );
+        return;
+      }
       LoanGameApi.add(
         this.state.user.id,
         this.props.authStore.id,
@@ -118,6 +125,12 @@ class LoanGame extends Component<Props, State> {
           ErrorUtil.errorService(error);
         });
     } else {
+      const { game } = this.state;
+      if (!game) {
+        Toast.show(
+          "Musisz zeskanować kod qr użytkownika i/lub kod gry, żeby wypożyczyć grę."
+        );
+      }
       const loanGame = this.state.game.loanGames[0];
       LoanGameApi.edit(loanGame.id, this.props.authStore.id)
         .then(item => {

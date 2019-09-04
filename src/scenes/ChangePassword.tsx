@@ -66,9 +66,13 @@ class ChangePassword extends Component<Props, State> {
   }
   save = () => {
     AuthApi.changePassword(this.props.authStore.id, this.state.password)
-      .then(item => {
-        console.log(item);
-        this.props.navigation.navigate(Scenes.List);
+      .then(response => {
+        if (!response.data.error) {
+          Toast.show("Zmieniono");
+          this.props.navigation.navigate(Scenes.List);
+        } else {
+          if (response.data.error) ErrorUtil.errorService(response.data.error);
+        }
       })
       .catch(error => {
         ErrorUtil.errorService(error);

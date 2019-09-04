@@ -6,13 +6,19 @@ import axios from "../Axios";
 import { AuthApi, UserApi } from "../api";
 import Toast from "react-native-simple-toast";
 import ErrorUtil from "../ErrorUtil";
+import AuthStore from "../stores/AuthStore";
+import { observer, inject } from "mobx-react";
 
 interface State {
   users: any[];
   refreshing: boolean;
 }
 
-export default class Privilege extends Component<{}, State> {
+interface Props{
+  authStore:AuthStore;
+}
+
+class Privilege extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -26,18 +32,19 @@ export default class Privilege extends Component<{}, State> {
   }
 
   async fetchData() {
-    const response = await UserApi.all();
-    if (response.data.items) {
-      this.setState({ users: response.data.items });
-    }
+    UserApi.all()
+      .then(response => {
+        if (response.data.items) this.setState({ users: response.data.items });
+        if (response.data.error) ErrorUtil.errorService(response.data.error);
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
   }
 
   onRefresh = async () => {
     this.setState({ refreshing: true });
-    const response = await UserApi.all();
-    if (response.data.items) {
-      this.setState({ users: response.data.items });
-    }
+    this.fetchData();
     this.setState({ refreshing: false });
   };
 
@@ -103,9 +110,13 @@ export default class Privilege extends Component<{}, State> {
   changePrivilege(user: any, privilegeId: number) {
     if (user.privilegeId !== privilegeId) {
       AuthApi.changePrivilege(user.id, privilegeId)
-        .then(async item => {
-          Toast.show("Zapisane");
-          this.fetchData();
+        .then(async response => {
+          if (!response.data.error) {
+            Toast.show("Zapisane");
+            this.fetchData();
+          } else {
+            ErrorUtil.errorService(response.data.error);
+          }
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -113,3 +124,4 @@ export default class Privilege extends Component<{}, State> {
     }
   }
 }
+export default inject("authStore")(observer(Privilege));

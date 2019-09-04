@@ -7,20 +7,23 @@ import { observer, inject } from "mobx-react";
 import Scenes from "../Scenes";
 import { BoardGameApi } from "../api";
 import ErrorUtil from "../ErrorUtil";
+import axios from "../Axios";
 interface Props {
   authStore: AuthStore;
 }
-class LoadingScreen extends Component {
+class LoadingScreen extends Component<Props> {
   componentDidMount = async () => {
     try {
       const value = await AsyncStorage.getItem("User");
       if (value !== null) {
         let user = JSON.parse(value);
         this.props.authStore.setUser(user);
+        axios.defaults.headers.common['authorization'] = String(user.token);
       }
     } catch (error) {
       Toast.show(error);
     }
+    console.log(this.props.authStore)
     BoardGameApi.offset()
       .then(response => {
         const data = response.data;

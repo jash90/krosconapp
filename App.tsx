@@ -16,7 +16,7 @@ import {
   Privilege,
   QR,
   Register
- } from "./src/scenes/index";
+} from "./src/scenes/index";
 import store from "./src/stores";
 import { NetInfo } from "react-native";
 import { Props } from "./src/interfaces";

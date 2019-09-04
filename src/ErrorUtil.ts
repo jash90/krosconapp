@@ -8,7 +8,7 @@ export default class ErroUtil {
             Toast.show("Brak połączenia z internetem",Toast.LONG);
         }
         else if (error) {
-            Toast.show("Coś poszło nie tak skontaktuj się z obsługą, bądź administratorem.",Toast.LONG);
+            Toast.show(`Coś poszło nie tak skontaktuj się z obsługą, bądź administratorem.`,Toast.LONG);
         }
     }
 }

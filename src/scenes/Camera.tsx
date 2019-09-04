@@ -7,13 +7,16 @@ import { UserApi, BoardGameApi } from "../api";
 import Toast from "react-native-simple-toast";
 import _ from "underscore";
 import ErrorUtil from "../ErrorUtil";
+import AuthStore from "../stores/AuthStore";
+import { inject, observer } from "mobx-react";
 
 interface CameraProps extends Props {
   changeCode: Function;
   routeName: string;
+  authStore:AuthStore;
 }
 interface State {}
-export default class Camera extends Component<CameraProps, State> {
+class Camera extends Component<CameraProps, State> {
   public camera: any;
   constructor(props: CameraProps) {
     super(props);
@@ -47,8 +50,8 @@ export default class Camera extends Component<CameraProps, State> {
       typeItem
     } = this.props.navigation.state.params;
     if (typeItem === 1) {
-      BoardGameApi.searchByUUID(data.data).then(
-        response => {
+      BoardGameApi.searchByUUID(data.data)
+        .then(response => {
           console.log(response);
           if (response.data.item) {
             const item = response.data.item;
@@ -56,31 +59,40 @@ export default class Camera extends Component<CameraProps, State> {
             changeCode(item);
             this.props.navigation.navigate(routeName);
           } else {
-            Toast.show("Nie znaleziono w bazie.");
+            if (!response.data.error) {
+              changeCode(null);
+              this.props.navigation.navigate(routeName);
+              Toast.show("Nie znaleziono w bazie.");
+            } else if (response.data.error)
+              ErrorUtil.errorService(response.data.error);
           }
-        }
-      ).catch(error=>{
-        ErrorUtil.errorService(error);
-        changeCode(null);
-        this.props.navigation.navigate(routeName);
-      })
-    }
-    if (typeItem === 2) {
-      UserApi.search(data.data).then(response => {
-        console.log(response);
-        if (response.data.item) {
-          const item = response.data.item;
-          changeCode(item);
-          this.props.navigation.navigate(routeName);
-        } else {
-          Toast.show("Nie znaleziono w bazie.");
+        })
+        .catch(error => {
+          ErrorUtil.errorService(error);
           changeCode(null);
           this.props.navigation.navigate(routeName);
-        }
-      }).catch(error=>{
-        ErrorUtil.errorService(error);
-
-      })
+        });
+    }
+    if (typeItem === 2) {
+      UserApi.search(data.data)
+        .then(response => {
+          console.log(response);
+          if (response.data.item) {
+            const item = response.data.item;
+            changeCode(item);
+            this.props.navigation.navigate(routeName);
+          } else {
+            if (!response.data.error) {
+              changeCode(null);
+              this.props.navigation.navigate(routeName);
+              Toast.show("Nie znaleziono w bazie.");
+            } else if (response.data.error)
+              ErrorUtil.errorService(response.data.error);
+          }
+        })
+        .catch(error => {
+          ErrorUtil.errorService(error);
+        });
     }
     if (typeItem === 3) {
       changeCode(data.data);
@@ -88,6 +100,7 @@ export default class Camera extends Component<CameraProps, State> {
     }
   }
 }
+export default inject("authStore")(observer(Camera));
 
 const styles = StyleSheet.create({
   container: {

@@ -99,7 +99,7 @@ class List extends Component<Props, State> {
           refreshing={this.state.refresh}
           onRefresh={this.onRefresh}
           onEndReached={this.onEndReached}
-          onEndReachedThreshold={3000}
+          onEndReachedThreshold={0.5}
         />
         {this.props.authStore.privilegeId === 1 && (
           <Fab

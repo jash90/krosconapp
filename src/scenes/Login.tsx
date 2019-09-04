@@ -83,18 +83,29 @@ class Login extends Component<Props, State> {
           </RCView>
         </View>
 
-          <Button
-            primary
-            color={Color.accentColor}
-            colorText={"white"}
-            text={"Zaloguj"}
-            onPress={this.login}
-          />
+        <Button
+          primary
+          color={Color.accentColor}
+          colorText={"white"}
+          text={"Zaloguj"}
+          onPress={this.login}
+        />
       </Container>
     );
   }
 
   login = async () => {
+    const { email, password } = this.state;
+    if (!email || !password) {
+      if (!email && !email) {
+        Toast.show("Podaj email i hasło!");
+      } else if (!email) {
+        Toast.show("Podaj email!");
+      } else {
+        Toast.show("Podaj hasło!");
+      }
+      return;
+    }
     AuthApi.login(this.state.email, this.state.password)
       .then(async response => {
         console.log(response);
@@ -105,7 +116,9 @@ class Login extends Component<Props, State> {
         if (data.item) {
           this.props.authStore.setUser(data.item);
           console.log(data.item.token);
-          axios.defaults.headers.common['authorization'] = String(data.item.token);
+          axios.defaults.headers.common["authorization"] = String(
+            data.item.token
+          );
           console.log(data.item);
           await AsyncStorage.setItem("User", JSON.stringify(data.item));
           this.props.navigation.navigate(Scenes.List);
