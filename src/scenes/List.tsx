@@ -1,29 +1,18 @@
+import { inject, observer } from "mobx-react";
+import { Fab } from "native-base";
 import React, { Component } from "react";
-import {
-  View,
-  Image,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  TextInput,
-  Modal
-} from "react-native";
+import { FlatList, Image, TouchableOpacity } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import { Fab, Button, Icon as NIcon } from "native-base";
 import selection from "../../android/app/src/main/assets/style/selection.json";
-const Icon = createIconSetFromIcoMoon(selection);
-import { Container, GameHeader, Filter } from "../components";
-import Color from "../Color";
-import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
-import { RCView } from "../components/StyledComponent";
-import Scenes from "../Scenes";
 import { BoardGameApi } from "../api/index";
+import Color from "../Color";
+import { Container, Filter, GameHeader } from "../components";
 import ErrorUtil from "../ErrorUtil";
-import NavigationService from "../NavigationService";
 import { SceneProps } from "../interfaces";
 import Game from "../models/Game";
+import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
+const Icon = createIconSetFromIcoMoon(selection);
 interface State {
   active: boolean;
   search: string;
