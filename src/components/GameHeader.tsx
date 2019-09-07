@@ -102,7 +102,7 @@ export default class GameHeader extends Component<Props> {
               <MaterialIcon name={"cake"} size={20} />
               <Text>{`${this.props.game.minAge} lat`}</Text>
             </View>
-            <View
+         {this.props.game.publisher &&   <View
               style={{
                 paddingVertical: 5,
                 flexDirection: "row",
@@ -111,7 +111,7 @@ export default class GameHeader extends Component<Props> {
               }}>
               <MaterialIcon name={"casino"} size={20} />
               <Text>{this.props.game.publisher.name}</Text>
-            </View>
+            </View>}
           </View>
         )}
       </View>

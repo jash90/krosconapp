@@ -25,6 +25,7 @@ interface Props extends SceneProps {
   listgame: Game[];
 }
 class List extends Component<Props, State> {
+  public filter: Filter | undefined;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -43,7 +44,7 @@ class List extends Component<Props, State> {
       BoardGameApi.offset()
         .then(response => {
           const data = response.data;
-          this.props.propsStore.listgame = response.data.items;
+          this.props.propsStore.setListGame(response.data.items);
           this.setState({
             count: Math.ceil(data.count / 10),
             page: 0
@@ -58,7 +59,7 @@ class List extends Component<Props, State> {
   render() {
     return (
       <Container back={false} right icon={"person"} onPress={this.openProfile}>
-        <Filter onChangeValue={search => this.searchBoardGame(search)} />
+        <Filter ref={ref =>this.filter = ref} onChangeValue={search => this.searchBoardGame(search)} />
         <FlatList
           data={this.props.propsStore.listgame}
           renderItem={({ item }: any) => (
@@ -121,6 +122,8 @@ class List extends Component<Props, State> {
     }
   };
   onRefresh = () => {
+    if (this.filter)
+    this.filter.clearFilter();
     this.setState({ refresh: true });
     BoardGameApi.offset()
       .then(response => {
@@ -141,7 +144,7 @@ class List extends Component<Props, State> {
     BoardGameApi.search(search)
       .then(response => {
         console.log(response);
-        this.props.propsStore.listgame = response.data.items;
+        this.props.propsStore.setListGame(response.data.items);
       })
       .catch(error => {
         console.log(error);
