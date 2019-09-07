@@ -1,15 +1,14 @@
-import React from "react";
-import { Component } from "react";
+import React, { Component } from "react";
 import {
-  View,
-  Text,
-  Modal,
   FlatList,
+  Modal,
+  Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from "react-native";
 import { RCView } from "../components/StyledComponent";
-import { ViewText, PickerPawn, Button } from "./index";
+import { ViewText } from "./index";
 
 interface Props {
   onChangeValue: (value: any) => void;
@@ -40,7 +39,7 @@ class ModalSingleList extends Component<Props, State> {
         <Modal
           visible={this.state.modal}
           animationType={"slide"}
-          transparent={true}
+          transparent
           onRequestClose={() => this.setState({ modal: false })}>
           <View
             style={{

@@ -9,15 +9,12 @@ import Scenes from "../Scenes";
 interface Props extends SceneProps {
   item: any;
 }
-class BoardGame extends Component<Props, {}> {
-  constructor(props: Props) {
-    super(props);
-  }
+class BoardGame extends Component<Props> {
 
   render() {
     const item = this.props.propsStore.game;
     return (
-      <Container scrollView>
+      <Container scrollView text={String(item.name)}>
         <GameHeader game={item} />
         {!!item && !!item.description && (
           <View
@@ -47,7 +44,7 @@ class BoardGame extends Component<Props, {}> {
             <Text>Typ</Text>
             <FlatList
               data={item.boardGameTypes.map((bgt: any) => bgt.type.name)}
-              horizontal={true}
+              horizontal
               contentContainerStyle={{
                 flex: 1,
                 flexWrap: "wrap"
@@ -82,7 +79,7 @@ class BoardGame extends Component<Props, {}> {
             <Text>Mechanika</Text>
             <FlatList
               data={item.boardGameMechanics.map((bgt: any) => bgt.type.name)}
-              horizontal={true}
+              horizontal
               contentContainerStyle={{
                 flex: 1,
                 flexWrap: "wrap"
@@ -103,13 +100,15 @@ class BoardGame extends Component<Props, {}> {
             />
           </View>
         )}
-        <Button
-          primary
-          color={Color.accentColor}
-          colorText={"white"}
-          onPress={this.loanGame}
-          text={"Wypożycz/Oddaj grę"}
-        />
+        {this.props.authStore.privilegeId > 1 && (
+          <Button
+            primary
+            color={Color.accentColor}
+            colorText={"white"}
+            onPress={this.loanGame}
+            text={"Wypożycz/Oddaj grę"}
+          />
+        )}
       </Container>
     );
   }

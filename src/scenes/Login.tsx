@@ -8,11 +8,9 @@ import Color from "../Color";
 import { Button, Container, Logo } from "../components";
 import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
-import Language from "../Language";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import { SceneProps } from "../interfaces";
-
 
 interface State {
   email: string;
@@ -26,15 +24,13 @@ class Login extends Component<SceneProps, State> {
       password: ""
     };
   }
-  componentWillMount = () => {};
-
   render() {
     return (
       <Container
-        right={true}
+        right
         scrollView
         icon={"person-add"}
-        text={Language.get("sign")}
+        text={"Zaloguj"}
         onPress={() => NavigationService.navigate(Scenes.Register)}>
         <View style={{ flex: 1, paddingHorizontal: 20 }}>
           <Logo size={150} />
@@ -52,7 +48,7 @@ class Login extends Component<SceneProps, State> {
               autoCapitalize={"none"}
               value={this.state.password}
               placeholder={"Hasło"}
-              secureTextEntry={true}
+              secureTextEntry
               style={{ flex: 1, fontSize: 16 }}
               onChangeText={(password: any) => this.setState({ password })}
             />
@@ -119,4 +115,4 @@ var styles = StyleSheet.create({
     alignItems: "center"
   }
 });
-export default inject("authStore","propsStore")(observer(Login));
+export default inject("authStore", "propsStore")(observer(Login));

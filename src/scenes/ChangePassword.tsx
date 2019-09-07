@@ -24,8 +24,8 @@ class ChangePassword extends Component<SceneProps, State> {
   render() {
     return (
       <Container
-        
-        scrollView={true}
+        text={"Zmiana hasła"}
+        scrollView
         right
         icon={"save"}
         styleContent={{ flex: 1, paddingHorizontal: 20 }}

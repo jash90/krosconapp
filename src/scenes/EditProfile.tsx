@@ -46,6 +46,7 @@ class EditProfile extends Component<SceneProps, State> {
     return (
       <Container
         scrollView
+        text={"Edycja Profilu"}
         right
         icon={"save"}
         styleContent={{ flex: 1, paddingHorizontal: 20 }}

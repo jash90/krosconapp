@@ -12,6 +12,11 @@ interface ButtonProps extends TextProps {
     onPress: () => any;
 };
 
+interface FabProps {
+    onPress: () => any;
+    icon:string;
+}
+
 interface PickerIconProps {
     onChange: (item: any) => any;
     select: string;
@@ -36,4 +41,4 @@ interface SceneProps extends Props{
     propsStore:PropsStore;
 }
 
-export { Props, TextProps, ButtonProps, PickerIconProps, HeadProps, ContainerProps, SceneProps };
+export { Props, TextProps, ButtonProps, PickerIconProps, HeadProps, ContainerProps, SceneProps, FabProps };

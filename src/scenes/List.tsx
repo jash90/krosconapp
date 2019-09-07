@@ -2,8 +2,6 @@ import { inject, observer } from "mobx-react";
 import { Fab } from "native-base";
 import React, { Component } from "react";
 import { FlatList, Image, TouchableOpacity } from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
 import { BoardGameApi } from "../api/index";
 import Color from "../Color";
 import { Container, Filter, GameHeader } from "../components";
@@ -12,7 +10,6 @@ import { SceneProps } from "../interfaces";
 import Game from "../models/Game";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
-const Icon = createIconSetFromIcoMoon(selection);
 interface State {
   active: boolean;
   search: string;

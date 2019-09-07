@@ -1,8 +1,7 @@
-import React from "react";
-import { Component } from "react";
-import { View, Text, Modal } from "react-native";
+import React, { Component } from "react";
+import { Modal, Text, View } from "react-native";
 import { RCView } from "../components/StyledComponent";
-import { ViewText, PickerPawn, Button } from "./index";
+import { Button, PickerPawn, ViewText } from "./index";
 
 interface Props {
   onChangeMin: (value: number) => void;
@@ -11,27 +10,27 @@ interface Props {
   maxPlayers: number;
 }
 interface State {
-    modal:boolean;
+  modal: boolean;
 }
 class ModalPickerPawn extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      modal:false
+      modal: false
     };
   }
   render() {
     return (
       <View style={{ width: "100%" }}>
-          <ViewText
-            label={"Min/Max graczy"}
-            text={`${this.props.minPlayers}/${this.props.maxPlayers}`}
-            onPress={() => this.setState({ modal: true })}
-          />
+        <ViewText
+          label={"Min/Max graczy"}
+          text={`${this.props.minPlayers}/${this.props.maxPlayers}`}
+          onPress={() => this.setState({ modal: true })}
+        />
         <Modal
           visible={this.state.modal}
           animationType={"slide"}
-          transparent={true}
+          transparent
           onRequestClose={() => this.setState({ modal: false })}>
           <View
             style={{
@@ -66,7 +65,9 @@ class ModalPickerPawn extends Component<Props, State> {
                   <PickerPawn
                     initPlayers={this.props.minPlayers}
                     maxPlayers={10}
-                    onValueChange={minPlayers => this.props.onChangeMin(minPlayers)}
+                    onValueChange={minPlayers =>
+                      this.props.onChangeMin(minPlayers)
+                    }
                   />
                 </View>
                 <Text>Max graczy</Text>
@@ -80,7 +81,9 @@ class ModalPickerPawn extends Component<Props, State> {
                   <PickerPawn
                     initPlayers={this.props.maxPlayers}
                     maxPlayers={10}
-                    onValueChange={maxPlayers => this.props.onChangeMax(maxPlayers)}
+                    onValueChange={maxPlayers =>
+                      this.props.onChangeMax(maxPlayers)
+                    }
                   />
                 </View>
                 <Button

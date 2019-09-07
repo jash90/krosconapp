@@ -1,14 +1,13 @@
-import React from "react";
-import { Component } from "react";
-import { View, TouchableOpacity, Text, FlatList } from "react-native";
+import React, { Component } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import { RCView } from "../components/StyledComponent";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   onValueChange: (value: number) => void;
-  maxPlayers:number
-  initPlayers:number
+  maxPlayers: number;
+  initPlayers: number;
 }
 interface State {
   minPlayers: number;
@@ -17,7 +16,7 @@ class PickerPawn extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      minPlayers: props.initPlayers,
+      minPlayers: props.initPlayers
     };
   }
   render() {
@@ -31,7 +30,7 @@ class PickerPawn extends Component<Props, State> {
           extraData={this.state.minPlayers}
           data={this.createArray(this.state.minPlayers, this.props.maxPlayers)}
           keyExtractor={(item, index) => String(index)}
-          horizontal={true}
+          horizontal
           renderItem={(item: any) => (
             <TouchableOpacity
               onPress={() => {

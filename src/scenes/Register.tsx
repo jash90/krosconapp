@@ -29,7 +29,7 @@ class Register extends Component<SceneProps, State> {
 
   render() {
     return (
-      <Container scrollView>
+      <Container scrollView text={"Zarejestruj"}>
         <Logo size={50} />
         <View style={{ flex: 1, paddingHorizontal: 20 }}>
           <RCView>
@@ -65,7 +65,7 @@ class Register extends Component<SceneProps, State> {
               autoCapitalize={"none"}
               value={this.state.password}
               placeholder={"Hasło"}
-              secureTextEntry={true}
+              secureTextEntry
               style={{ flex: 1, fontSize: 16 }}
               onChangeText={(password: any) => this.setState({ password })}
             />

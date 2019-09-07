@@ -1,14 +1,19 @@
+import { Card, Icon } from "native-base";
 import React, { PureComponent } from "react";
-import { View, FlatList, Text, StyleSheet } from "react-native";
-import { Menu, MenuTrigger, MenuOptions, MenuOption } from "react-native-popup-menu";
-import { Icon, Card } from "native-base";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Menu,
+  MenuOption,
+  MenuOptions,
+  MenuTrigger
+} from "react-native-popup-menu";
 
-const CustomMenu = (props:any) => {
+const CustomMenu = (props: any) => {
   let { style, children, layouts, ...other } = props;
   let { x, y, width, height } = layouts.triggerLayout;
 
   let position = {
-    top: y + ((height - 42) / 2),
+    top: y + (height - 42) / 2,
     left: x,
     width: width - 56
   };
@@ -20,12 +25,12 @@ const CustomMenu = (props:any) => {
   );
 };
 
-interface Props{
-    value: any,
-    items: any[],
-    onSelect: any,
-    styleTitle?: any,
-    styleItem?: any,
+interface Props {
+  value: any;
+  items: any[];
+  onSelect: any;
+  styleTitle?: any;
+  styleItem?: any;
 }
 
 class DropDown extends PureComponent<Props> {
@@ -33,7 +38,7 @@ class DropDown extends PureComponent<Props> {
     let { value, items, onSelect, styleTitle, styleItem } = this.props;
 
     return (
-      <Menu renderer={CustomMenu} style={{paddingHorizontal: 20,}}>
+      <Menu renderer={CustomMenu} style={{ paddingHorizontal: 20 }}>
         <MenuTrigger>
           <Card>
             <View style={styles.containerTrigger}>
@@ -48,8 +53,15 @@ class DropDown extends PureComponent<Props> {
             contentContainerStyle={styles.contentFlatList}
             data={items}
             renderItem={({ item }) => (
-              <MenuOption style={styles.menuOption} onSelect={() => onSelect(item)}>
-                <Text allowFontScaling numberOfLines={1} style={[styleItem, styles.textItem]}>{item}</Text>
+              <MenuOption
+                style={styles.menuOption}
+                onSelect={() => onSelect(item)}>
+                <Text
+                  allowFontScaling
+                  numberOfLines={1}
+                  style={[styleItem, styles.textItem]}>
+                  {item}
+                </Text>
               </MenuOption>
             )}
             keyExtractor={(_item, index) => index.toString()}

@@ -1,19 +1,17 @@
+import { Container as NContainer } from "native-base";
 import React, { Component } from "react";
 import {
-  View,
-  StyleSheet,
-  ScrollView,
   findNodeHandle,
-  Image,
+  ScrollView,
+  StyleSheet,
   Text,
-  NetInfo
+  View
 } from "react-native";
-import { Container as NContainer, Content } from "native-base";
-
-import Color from "../Color";
-import Language from "../Language";
 import { Head } from ".";
-import { ContainerProps } from "./interfaces";
+import Color from "../Color";
+import { ContainerProps } from "../interfaces";
+import Language from "../Language";
+
 interface State {
   viewRef: any;
 }
@@ -37,7 +35,7 @@ class Container extends Component<ContainerProps, State> {
   constructor(props: ContainerProps) {
     super(props);
     this.state = {
-      viewRef: null,
+      viewRef: null
     };
   }
 

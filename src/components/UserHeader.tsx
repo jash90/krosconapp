@@ -1,20 +1,8 @@
 import React, { Component } from "react";
-import {
-  View,
-  Image,
-  Text,
-  TouchableHighlight,
-  TouchableOpacity,
-  StyleSheet
-} from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
-const SIcon = createIconSetFromIcoMoon(selection);
-import StarRating from "react-native-star-rating";
-import { Spacer } from "./StyledComponent";
+import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import Scenes from "../Scenes";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
 interface User {
   firstname: string;
   lastname: string;

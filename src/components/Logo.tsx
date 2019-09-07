@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Image, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 interface Props {
   size: number;
 }
 export default class Logo extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     return (
       <View

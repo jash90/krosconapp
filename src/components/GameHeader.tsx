@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
-import Scenes from "../Scenes";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Game {
   name: string;

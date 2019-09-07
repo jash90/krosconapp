@@ -1,21 +1,6 @@
+import { Body, Header, Icon, Left, Right, Title } from "native-base";
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, StatusBar } from "react-native";
-
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Fab,
-  FooterTab,
-  Left,
-  Right,
-  Body,
-  Icon,
-  Text
-} from "native-base";
-
-import { Actions } from "react-native-router-flux";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Color from "../Color";
 import { HeadProps } from "../interfaces";
@@ -25,12 +10,12 @@ export default class Head extends Component<HeadProps> {
   static defaultProps = {
     back: true,
     left: false,
-    leftIcon: '',
-    leftPress: () => { },
+    leftIcon: "",
+    leftPress: () => {},
     right: false,
-    icon: '',
+    icon: "",
     text: false,
-    onPress: () => { },
+    onPress: () => {}
   };
   render() {
     return (
@@ -67,7 +52,10 @@ export default class Head extends Component<HeadProps> {
     if (this.props.left) {
       return (
         <TouchableOpacity onPress={this.props.leftPress}>
-          <Icon name={this.props.leftIcon ? this.props.leftIcon : ""} style={styles.iconLeftHeader} />
+          <Icon
+            name={this.props.leftIcon ? this.props.leftIcon : ""}
+            style={styles.iconLeftHeader}
+          />
         </TouchableOpacity>
       );
     }

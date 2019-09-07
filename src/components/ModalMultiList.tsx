@@ -1,16 +1,14 @@
-import React from "react";
-import { Component } from "react";
+import React, { Component } from "react";
 import {
-  View,
-  Text,
-  Modal,
   FlatList,
+  Modal,
+  Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from "react-native";
-import { RCView, RCText } from "../components/StyledComponent";
-import { ViewText, PickerPawn, Button } from "./index";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { RCText, RCView } from "../components/StyledComponent";
+import { Button } from "./index";
 
 interface Props {
   onChangeValue: (value: string[]) => void;
@@ -43,8 +41,7 @@ class ModalMultiList extends Component<Props, State> {
               paddingHorizontal: 20,
               marginVertical: 10
             }}>
-            <TouchableOpacity
-              onPress={() => this.setState({ modal: true })}>
+            <TouchableOpacity onPress={() => this.setState({ modal: true })}>
               <View style={{ margin: 5, backgroundColor: "White" }}>
                 <Text>{this.props.placeholder}</Text>
               </View>
@@ -61,9 +58,7 @@ class ModalMultiList extends Component<Props, State> {
           </View>
         )}
         {!length && (
-          <TouchableOpacity
-            onPress={() => this.setState({ modal: true })}
-            style={{}}>
+          <TouchableOpacity onPress={() => this.setState({ modal: true })}>
             <View
               style={{
                 backgroundColor: "white",
@@ -81,7 +76,7 @@ class ModalMultiList extends Component<Props, State> {
         <Modal
           visible={this.state.modal}
           animationType={"slide"}
-          transparent={true}
+          transparent
           onRequestClose={() => this.setState({ modal: false })}>
           <View
             style={{
@@ -109,7 +104,7 @@ class ModalMultiList extends Component<Props, State> {
                   <TextInput
                     value={this.state.value}
                     placeholder={this.props.placeholder}
-                    style={{ flex:1,fontSize: 16 }}
+                    style={{ flex: 1, fontSize: 16 }}
                     onChangeText={value => this.setState({ value })}
                   />
                 </RCView>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import { TextInput, StyleSheet } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 
 interface Props {
   placeholder?: string;
@@ -22,7 +21,7 @@ export default class Input extends Component<Props> {
         secureTextEntry={this.props.secureTextEntry}
         onChangeText={(text: string) => this.props.onChangeText(text)}
         value={this.props.value}
-        autoCapitalize='none'
+        autoCapitalize="none"
         style={styles.textInputStyle}
       />
     );

@@ -89,8 +89,9 @@ class AddItem extends Component<SceneProps, State> {
   render() {
     return (
       <Container
-        scrollView={true}
+        scrollView
         right
+        text={"Dodaj"}
         styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>

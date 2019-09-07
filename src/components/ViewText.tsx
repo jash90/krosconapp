@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { TouchableHighlight, Dimensions, View } from "react-native";
-import { RCView, RCText } from "./StyledComponent";
+import { TouchableHighlight, View } from "react-native";
+import { RCText, RCView } from "./StyledComponent";
 interface Props {
   label: string;
   text: string;
@@ -9,30 +9,17 @@ interface Props {
   withOutClick?: boolean;
 }
 export default class ViewText extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
   render() {
     if (this.props.onlyText) {
-      return (
-        <View>
-        {this.renderText()}
-        </View>
-      );
+      return <View>{this.renderText()}</View>;
     }
     if (this.props.withOutClick) {
-      return (
-        <RCView>
-        {this.renderText()}
-        </RCView>
-      );
+      return <RCView>{this.renderText()}</RCView>;
     }
     if (!this.props.onlyText && !this.props.withOutClick) {
       return (
         <TouchableHighlight onPress={this.props.onPress}>
-          <RCView>
-         {this.renderText()}
-          </RCView>
+          <RCView>{this.renderText()}</RCView>
         </TouchableHighlight>
       );
     }

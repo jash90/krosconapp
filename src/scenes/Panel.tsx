@@ -25,7 +25,7 @@ class Panel extends Component<SceneProps, State> {
     return (
       <Container
         back={false}
-        left={true}
+        left
         leftIcon={"arrow-back"}
         leftPress={() => NavigationService.navigate(Scenes.List)}
         right

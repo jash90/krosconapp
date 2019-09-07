@@ -1,25 +1,17 @@
-import React from "react";
-import { Component } from "react";
+import React, { Component } from "react";
 import {
-  View,
-  Text,
-  Modal,
   FlatList,
+  Modal,
+  ScrollView,
+  Text,
   TextInput,
   TouchableOpacity,
-  Dimensions,
-  ScrollView
+  View
 } from "react-native";
-import { RCView, RCViewFlex } from "../components/StyledComponent";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import {
-  ModalPickerPawn,
-  ModalMultiList,
-  ModalSingleList,
-  Button,
-  ViewText
-} from ".";
+import { Button, ModalPickerPawn, ModalSingleList, ViewText } from ".";
 import { PublisherApi } from "../api";
+import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
 
 interface Props {
@@ -205,7 +197,7 @@ class Filter extends Component<Props, State> {
         <Modal
           visible={this.state.modal}
           animationType={"slide"}
-          transparent={true}
+          transparent
           onRequestClose={() => this.setState({ modal: false })}>
           <View
             style={{

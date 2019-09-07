@@ -13,14 +13,8 @@ interface CameraProps extends SceneProps {
   changeCode: Function;
   routeName: string;
 }
-interface State {}
-class Camera extends Component<CameraProps, State> {
+class Camera extends Component<CameraProps> {
   public camera: any;
-  constructor(props: CameraProps) {
-    super(props);
-    this.state = {};
-  }
-  componentWillMount() {}
 
   render() {
     return (

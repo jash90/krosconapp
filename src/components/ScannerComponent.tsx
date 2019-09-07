@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text } from "react-native";
-import { Icon } from "native-base";
+import { Text, TouchableOpacity } from "react-native";
 import { RCView } from "./StyledComponent";
 interface Props {
   value: any[];
@@ -9,11 +8,13 @@ interface Props {
 class ScannerComponent extends Component<Props> {
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress} style={{ marginHorizontal: 20 }}>
+      <TouchableOpacity
+        onPress={this.props.onPress}
+        style={{ marginHorizontal: 20 }}>
         <RCView>
           <Text
             style={{
-              fontSize: 16,
+              fontSize: 16
             }}>
             {"Skanuj kod QR"}
           </Text>

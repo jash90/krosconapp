@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, Text, TouchableOpacity } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Color from "../Color";
 import { ButtonProps } from "../interfaces";
 export default class GoogleButton extends Component<ButtonProps> {
@@ -12,16 +12,14 @@ export default class GoogleButton extends Component<ButtonProps> {
           height: 60,
           justifyContent: "center",
           backgroundColor: "white"
-        }}
-      >
+        }}>
         <TouchableOpacity
           style={{
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center"
           }}
-          onPress={this.props.onPress}
-        >
+          onPress={this.props.onPress}>
           <Image
             source={require("../img/google.jpg")}
             style={{ width: 20, height: 20 }}
