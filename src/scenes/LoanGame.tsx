@@ -1,28 +1,23 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import Toast from "react-native-simple-toast";
+import { LoanGameApi } from "../api";
+import Color from "../Color";
 import { Button, Container, GameHeader, UserHeader } from "../components";
 import { withScanner } from "../components/withScanner";
-import Scenes from "../Scenes";
-import { LoanGameApi } from "../api";
-import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
-import Toast from "react-native-simple-toast";
-import { StackActions, NavigationActions } from "react-navigation";
 import ErrorUtil from "../ErrorUtil";
-import Color from "../Color";
-import { View } from "react-native";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
   user: any;
   game: any;
 }
-interface Props {
-  authStore: AuthStore;
-}
 
-class LoanGame extends Component<Props, State> {
-  constructor(props: Props) {
+class LoanGame extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       user: null,
@@ -31,18 +26,10 @@ class LoanGame extends Component<Props, State> {
   }
 
   componentWillMount() {
-    const game =
-      this.props.navigation.state.params &&
-      this.props.navigation.state.params.game
-        ? this.props.navigation.state.params.game
-        : null;
+    const game = this.props.propsStore.game;
     if (!!game) this.setState({ game });
 
-    const user =
-      this.props.navigation.state.params &&
-      this.props.navigation.state.params.user
-        ? this.props.navigation.state.params.user
-        : null;
+    const user = this.props.propsStore.user;
     if (!!user) this.setState({ user });
   }
 
@@ -61,32 +48,25 @@ class LoanGame extends Component<Props, State> {
     console.log(this.state.game);
     console.log(loan);
     return (
-      <Container
-        text={loan ? "Wypożycz grę" : "Oddaj grę"}
-        >
+      <Container text={loan ? "Wypożycz grę" : "Oddaj grę"}>
         <WithScannerGame
-          
           value={!!this.state.game}
           game={this.state.game}
-          onPress={() =>
-            NavigationService.navigate(Scenes.Camera, {
-              changeCode: (game: any) => this.setState({ game }),
-              routeName: Scenes.LoanGame,
-              typeItem: 1
-            })
-          }
+          onPress={() => {
+            this.props.propsStore.setTypeItem(1);
+            this.props.propsStore.setRouteName(Scenes.LoanGame);
+            NavigationService.navigate(Scenes.Camera);
+          }}
         />
         {loan && (
-          <WithScannerUser     
+          <WithScannerUser
             user={this.state.user}
             value={!!this.state.user}
-            onPress={() =>
-              NavigationService.navigate(Scenes.Camera, {
-                changeCode: (user: any) => this.setState({ user }),
-                routeName: Scenes.LoanGame,
-                typeItem: 2
-              })
-            }
+            onPress={() => {
+              this.props.propsStore.setTypeItem(2);
+              this.props.propsStore.setRouteName(Scenes.LoanGame);
+              NavigationService.navigate(Scenes.Camera);
+            }}
           />
         )}
         <Button
@@ -139,5 +119,4 @@ class LoanGame extends Component<Props, State> {
     }
   };
 }
-
-export default inject("authStore")(observer(LoanGame));
+export default inject("authStore", "propsStore")(observer(LoanGame));

@@ -16,7 +16,7 @@ interface Game {
 }
 
 interface Props {
-  game: Game;
+  game: Game | null;
   edit: boolean | null;
 }
 export default class GameHeader extends Component<Props> {
@@ -102,16 +102,18 @@ export default class GameHeader extends Component<Props> {
               <MaterialIcon name={"cake"} size={20} />
               <Text>{`${this.props.game.minAge} lat`}</Text>
             </View>
-            <View
-              style={{
-                paddingVertical: 5,
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center"
-              }}>
-              <MaterialIcon name={"casino"} size={20} />
-              <Text>{this.props.game.publisher.name}</Text>
-            </View>
+            {this.props.game.publisher && (
+              <View
+                style={{
+                  paddingVertical: 5,
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}>
+                <MaterialIcon name={"casino"} size={20} />
+                <Text>{this.props.game.publisher.name}</Text>
+              </View>
+            )}
           </View>
         )}
       </View>

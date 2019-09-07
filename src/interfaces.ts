@@ -1,3 +1,7 @@
+import AuthStore from "./stores/AuthStore";
+
+import PropsStore from "./stores/PropsStore";
+
 interface Props { };
 
 interface TextProps extends Props {
@@ -27,4 +31,9 @@ interface ContainerProps extends HeadProps{
     scrollView: boolean;
 };
 
-export { Props, TextProps, ButtonProps, PickerIconProps, HeadProps, ContainerProps };
+interface SceneProps extends Props{
+    authStore:AuthStore;
+    propsStore:PropsStore;
+}
+
+export { Props, TextProps, ButtonProps, PickerIconProps, HeadProps, ContainerProps, SceneProps };

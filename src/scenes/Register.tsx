@@ -1,30 +1,23 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { StyleSheet, View, TextInput } from "react-native";
-
-import Color from "../Color";
-import Language from "../Language";
-import { Container, Logo, Input, Button } from "../components";
-import { RCView } from "../components/StyledComponent";
-import AuthApi from "../api/AuthApi";
+import { TextInput, View } from "react-native";
 import Toast from "react-native-simple-toast";
-import { observer, inject } from "mobx-react";
-import Scenes from "../Scenes";
+import AuthApi from "../api/AuthApi";
+import { Button, Container, Logo } from "../components";
+import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
-import AuthStore from "../stores/AuthStore";
+import { SceneProps } from "../interfaces";
+import Language from "../Language";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
 interface State {
   email: string;
   password: string;
   firstname: string;
   lastname: string;
 }
-
-interface Props{
-  authStore:AuthStore;
-}
-
-class Register extends Component<Props, State> {
-  constructor(props: Props) {
+class Register extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       email: "",
@@ -113,4 +106,4 @@ class Register extends Component<Props, State> {
       });
   }
 }
-export default inject("authStore")(observer(Register));
+export default inject("authStore","propsStore")(observer(Register));

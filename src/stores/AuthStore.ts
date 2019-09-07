@@ -3,7 +3,7 @@ import { User } from "../models";
 
 export default class AuthStore {
   @observable
-  id:number = 0;
+  id: number = 0;
   @observable
   token: string = "";
   @observable
@@ -22,43 +22,43 @@ export default class AuthStore {
   age: number = 0;
 
 
-  setToken(token: string) {
+  @action setToken(token: string) {
     this.token = token;
   }
 
-  setTokenExpired(tokenExpired: Date) {
+  @action setTokenExpired(tokenExpired: Date) {
     this.tokenExpired = tokenExpired;
   }
 
-  setEmail(email: string) {
+  @action setEmail(email: string) {
     this.email = email;
   }
 
-  setPrivilegeId(privilegeId: number) {
+  @action setPrivilegeId(privilegeId: number) {
     this.privilegeId = privilegeId;
   }
 
-  setAge(age: number) {
+  @action setAge(age: number) {
     this.age = age;
   }
 
-  setCity(city: string) {
+  @action setCity(city: string) {
     this.city = city;
   }
 
-  setFirstname(firstname: string) {
+  @action setFirstname(firstname: string) {
     this.firstname = firstname;
   }
 
-  setLastname(lastname: string) {
+  @action setLastname(lastname: string) {
     this.lastname = lastname;
   }
 
-  setId(id:number){
+  @action setId(id: number) {
     this.id = id;
   }
 
-  setUser(user:User){
+  @action setUser(user: User) {
     this.firstname = user.firstname;
     this.lastname = user.lastname;
     this.age = user.age;
@@ -70,7 +70,7 @@ export default class AuthStore {
     this.id = user.id;
   }
 
-  clearUser(){
+  @action clearUser() {
     this.firstname = "";
     this.lastname = "";
     this.age = 0;

@@ -1,25 +1,13 @@
-import React, { Component } from "react";
-import {
-  View,
-  Image,
-  FlatList,
-  Text,
-  ScrollView,
-  TouchableOpacity
-} from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection";
-const Icon = createIconSetFromIcoMoon(selection);
-import StarRating from "react-native-star-rating";
-import Color from "../Color";
-import { Container, GameHeader, Button } from "../components";
-import Scenes from "../Scenes";
 import { inject, observer } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
+import React, { Component } from "react";
+import { FlatList, Text, View } from "react-native";
+import Color from "../Color";
+import { Button, Container, GameHeader } from "../components";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
-interface Props {
+import Scenes from "../Scenes";
+interface Props extends SceneProps {
   item: any;
-  authStore: AuthStore;
 }
 class BoardGame extends Component<Props, {}> {
   constructor(props: Props) {
@@ -27,11 +15,11 @@ class BoardGame extends Component<Props, {}> {
   }
 
   render() {
-    const item = this.props.navigation.state.params.item;
+    const item = this.props.propsStore.game;
     return (
-      <Container scrollView >
-        <GameHeader  game={item} />
-        {!!item.description && (
+      <Container scrollView>
+        <GameHeader game={item} />
+        {!!item && !!item.description && (
           <View
             style={{
               flex: 1,
@@ -126,14 +114,10 @@ class BoardGame extends Component<Props, {}> {
     );
   }
   loanGame = () => {
-    const item = this.props.navigation.state.params.item;
-    if (this.props.authStore.privilegeId === 0) {
-      NavigationService.navigate(Scenes.Login);
-    } else if (this.props.authStore.privilegeId === 1) {
-      NavigationService.navigate(Scenes.QR, { code: item.uuid });
-    } else if (this.props.authStore.privilegeId > 1) {
+    const item = this.props.propsStore.game;
+    if (this.props.authStore.privilegeId > 1) {
       NavigationService.navigate(Scenes.LoanGame, { game: item });
     }
   };
 }
-export default inject("authStore")(observer(BoardGame));
+export default inject("authStore", "propsStore")(observer(BoardGame));

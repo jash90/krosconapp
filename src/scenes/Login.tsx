@@ -1,49 +1,25 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import {
-  Platform,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Modal,
-  Image,
-  ToastAndroid,
-  AsyncStorage,
-  Alert,
-  TextInput
-} from "react-native";
-
-import { Content } from "native-base";
-
-import { Actions } from "react-native-router-flux";
-import Color from "../Color";
-import Language from "../Language";
-import {
-  Container,
-  Logo,
-  GoogleButton,
-  FacebookButton,
-  Button,
-  Input
-} from "../components";
-import axios from "../Axios";
-import AuthApi from "../api/AuthApi";
+import { AsyncStorage, StyleSheet, TextInput, View } from "react-native";
 import Toast from "react-native-simple-toast";
-import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
+import AuthApi from "../api/AuthApi";
+import axios from "../Axios";
+import Color from "../Color";
+import { Button, Container, Logo } from "../components";
 import { RCView } from "../components/StyledComponent";
-import Scenes from "../Scenes";
 import ErrorUtil from "../ErrorUtil";
+import Language from "../Language";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
+import { SceneProps } from "../interfaces";
+
+
 interface State {
   email: string;
   password: string;
 }
-interface Props {
-  authStore: AuthStore;
-}
-class Login extends Component<Props, State> {
-  constructor(props: Props) {
+class Login extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       email: "",
@@ -143,4 +119,4 @@ var styles = StyleSheet.create({
     alignItems: "center"
   }
 });
-export default inject("authStore")(observer(Login));
+export default inject("authStore","propsStore")(observer(Login));

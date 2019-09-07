@@ -1,26 +1,22 @@
-import React from "react";
-import { Component } from "react";
-import { View, TouchableOpacity, Image, TextInput, Text } from "react-native";
-import ImagePicker from "react-native-image-picker";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { Text, TextInput, View } from "react-native";
+import Toast from "react-native-simple-toast";
+import { BoardGameApi, PublisherApi } from "../api";
 import {
   Container,
-  ViewText,
+  Dropdown,
+  ModalMultiList,
   ModalPickerPawn,
   ModalSingleList,
-  ModalMultiList,
-  Dropdown
+  ViewText
 } from "../components";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
 import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
-import Scenes from "../Scenes";
-import { PublisherApi, BoardGameApi } from "../api";
-import Toast from "react-native-simple-toast";
-import { Props } from "../interfaces";
 import ErrorUtil from "../ErrorUtil";
-import { inject, observer } from "mobx-react";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
+import Scenes from "../Scenes";
 const WithScannerText = withScanner(ViewText);
 interface State {
   name: string;
@@ -32,15 +28,14 @@ interface State {
   type: string;
   mechanic: string;
   uuid: string;
-  value: boolean;
   selected: string;
   types: string[];
   description: string;
   publishers: any[];
   items: string[];
 }
-class AddItem extends Component<Props, State> {
-  constructor(props: Props) {
+class AddItem extends Component<SceneProps, State> {
+  constructor(props: SceneProps) {
     super(props);
     this.state = {
       minAge: "",
@@ -52,7 +47,6 @@ class AddItem extends Component<Props, State> {
       type: "",
       mechanic: "",
       uuid: "",
-      value: false,
       selected: "Gra",
       types: [],
       description: "",
@@ -69,41 +63,38 @@ class AddItem extends Component<Props, State> {
       .catch(error => {
         ErrorUtil.errorService(error);
       });
-    if (this.props.navigation.state.params) {
-      const game = this.props.navigation.state.params.game;
-      if (game) {
-        const {
-          name,
-          minPlayers,
-          maxPlayers,
-          playingTime,
-          minAge,
-          publisher,
-          uuid
-        } = game;
-        this.setState({
-          name,
-          minPlayers,
-          maxPlayers,
-          playingTime: String(playingTime),
-          minAge: String(minAge),
-          publisher,
-          uuid
-        });
-      }
+    const game = this.props.propsStore.game;
+    if (game) {
+      const {
+        name,
+        minPlayers,
+        maxPlayers,
+        playingTime,
+        minAge,
+        publisher,
+        uuid
+      } = game;
+      this.setState({
+        name,
+        minPlayers,
+        maxPlayers,
+        playingTime: String(playingTime),
+        minAge: String(minAge),
+        publisher,
+        uuid
+      });
     }
   };
 
   render() {
     return (
       <Container
-        
         scrollView={true}
         right
         styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
-        {!this.props.navigation.state.params && (
+        {!this.props.propsStore.game && (
           <Dropdown
             items={this.state.items}
             value={this.state.selected}
@@ -115,20 +106,18 @@ class AddItem extends Component<Props, State> {
         {this.state.selected === "Gra" && (
           <WithScannerText
             label={"UUID"}
-            text={this.state.uuid}
-            value={!!this.state.uuid}
+            text={this.props.propsStore.code}
+            value={!!this.props.propsStore.code}
             onPress={() => {
-              if (!this.props.navigation.state.params.game) {
-                NavigationService.navigate(Scenes.Camera, {
-                  changeCode: (uuid: any) => this.setState({ uuid }),
-                  routeName: Scenes.AddItem,
-                  typeItem: 3
-                });
+              if (!this.props.propsStore.game) {
+                this.props.propsStore.setTypeItem(3);
+                this.props.propsStore.setRouteName(Scenes.AddItem);
+                NavigationService.navigate(Scenes.Camera);
               }
             }}
           />
         )}
-        <View style={{width:"100%", paddingHorizontal:20}}>
+        <View style={{ width: "100%", paddingHorizontal: 20 }}>
           <RCView>
             <TextInput
               value={this.state.name}
@@ -242,9 +231,7 @@ class AddItem extends Component<Props, State> {
     } = this.state;
 
     let game = null;
-    if (this.props.navigation.state.params) {
-      game = this.props.navigation.state.params.game;
-    }
+    game = this.props.propsStore.game;
 
     if (this.state.selected === "Gra" && !game) {
       BoardGameApi.add(
@@ -259,6 +246,7 @@ class AddItem extends Component<Props, State> {
         .then(item => {
           console.log(item);
           Toast.show("Zapisano");
+          this.props.propsStore.setCode("");
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -279,6 +267,7 @@ class AddItem extends Component<Props, State> {
         .then(item => {
           console.log(item);
           Toast.show("Zapisano");
+          this.props.propsStore.setCode("");
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -295,18 +284,10 @@ class AddItem extends Component<Props, State> {
         });
     }
   };
-
-  changeUuid = (uuid: string) => {
-    NavigationService.navigate(Scenes.Camera, {
-      changeCode: () => this.setState({ uuid }),
-      routeName: Scenes.LoanGame,
-      typeItem: 2
-    });
-  };
   createArray(count: number, max: number) {
     let active: any[] = new Array(count).fill(true);
     let disactive: any[] = new Array(max - count).fill(false);
     return active.concat(disactive);
   }
 }
-export default inject("authStore")(observer(AddItem));
+export default inject("authStore", "propsStore")(observer(AddItem));

@@ -1,20 +1,17 @@
-import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Actions } from "react-native-router-flux";
-import { Props } from "../interfaces";
-import { RNCamera } from "react-native-camera";
-import { UserApi, BoardGameApi } from "../api";
-import Toast from "react-native-simple-toast";
-import _ from "underscore";
-import ErrorUtil from "../ErrorUtil";
-import AuthStore from "../stores/AuthStore";
 import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import { RNCamera } from "react-native-camera";
+import Toast from "react-native-simple-toast";
+import { BoardGameApi, UserApi } from "../api";
+import ErrorUtil from "../ErrorUtil";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
+import TypeItem from "../TypeItem";
 
-interface CameraProps extends Props {
+interface CameraProps extends SceneProps {
   changeCode: Function;
   routeName: string;
-  authStore:AuthStore;
 }
 interface State {}
 class Camera extends Component<CameraProps, State> {
@@ -45,24 +42,20 @@ class Camera extends Component<CameraProps, State> {
     );
   }
   onBarCodeRead(data: any, type: any) {
-    const {
-      routeName,
-      changeCode,
-      typeItem
-    } = this.props.navigation.state.params;
-    if (typeItem === 1) {
+    const typeItem = this.props.propsStore.typeItem;
+    if (typeItem === TypeItem.Game) {
       BoardGameApi.searchByUUID(data.data)
         .then(response => {
           console.log(response);
           if (response.data.item) {
             const item = response.data.item;
             console.log(item);
-            changeCode(item);
-            NavigationService.navigate(routeName);
+            this.props.propsStore.setGame(item);
+            NavigationService.navigate(this.props.propsStore.routeName);
           } else {
             if (!response.data.error) {
-              changeCode(null);
-              NavigationService.navigate(routeName);
+              this.props.propsStore.clearGame();
+              NavigationService.navigate(this.props.propsStore.routeName);
               Toast.show("Nie znaleziono w bazie.");
             } else if (response.data.error)
               ErrorUtil.errorService(response.data.error);
@@ -70,38 +63,42 @@ class Camera extends Component<CameraProps, State> {
         })
         .catch(error => {
           ErrorUtil.errorService(error);
-          changeCode(null);
-          NavigationService.navigate(routeName);
+          this.props.propsStore.clearGame();
+          NavigationService.navigate(this.props.propsStore.routeName);
         });
     }
-    if (typeItem === 2) {
+    if (typeItem === TypeItem.User) {
       UserApi.search(data.data)
         .then(response => {
           console.log(response);
           if (response.data.item) {
             const item = response.data.item;
-            changeCode(item);
-            NavigationService.navigate(routeName);
+            this.props.propsStore.setUser(item);
+            NavigationService.navigate(this.props.propsStore.routeName);
           } else {
             if (!response.data.error) {
-              changeCode(null);
-              NavigationService.navigate(routeName);
+              this.props.propsStore.clearUser();
+              NavigationService.navigate(this.props.propsStore.routeName);
               Toast.show("Nie znaleziono w bazie.");
             } else if (response.data.error)
               ErrorUtil.errorService(response.data.error);
+              this.props.propsStore.clearUser();
+              NavigationService.navigate(this.props.propsStore.routeName);
           }
         })
         .catch(error => {
           ErrorUtil.errorService(error);
+          this.props.propsStore.clearUser();
+          NavigationService.navigate(this.props.propsStore.routeName);
         });
     }
-    if (typeItem === 3) {
-      changeCode(data.data);
-      NavigationService.navigate(routeName);
+    if (typeItem === TypeItem.Code) {
+      this.props.propsStore.setCode(data.data);
+      NavigationService.navigate(this.props.propsStore.routeName);
     }
   }
 }
-export default inject("authStore")(observer(Camera));
+export default inject("authStore", "propsStore")(observer(Camera));
 
 const styles = StyleSheet.create({
   container: {

@@ -1,20 +1,13 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { Container, GameHeader, UserHeader } from "../components";
-import { observer, inject } from "mobx-react";
-import AuthStore from "../stores/AuthStore";
-import { View, Dimensions } from "react-native";
-import {
-  Spacer,
-  RCText,
-  RCView,
-  RCViewCenter
-} from "../components/StyledComponent";
+import { Dimensions } from "react-native";
 import QRCode from "react-native-qrcode";
-
-class QR extends Component<{}> {
+import { Container } from "../components";
+import { RCViewCenter } from "../components/StyledComponent";
+import { SceneProps } from "../interfaces";
+class QR extends Component<SceneProps> {
   render() {
-    const code = this.props.navigation.state.params.code;
-    console.log(code);
+    const code = this.props.authStore.id.toString();
     return (
       <Container
         text={"Kod QR"}
@@ -35,5 +28,4 @@ class QR extends Component<{}> {
     );
   }
 }
-
-export default QR;
+export default inject("authStore","propsStore")(observer(QR));

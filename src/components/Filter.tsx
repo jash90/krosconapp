@@ -318,18 +318,7 @@ class Filter extends Component<Props, State> {
                   outline
                   color="black"
                   text="Wyczyść"
-                  onPress={() =>
-                    this.setState({
-                      name: "",
-                      minPlayers: 0,
-                      maxPlayers: 0,
-                      minAge: "",
-                      playingTime: "",
-                      publisher: "",
-                      types: [],
-                      mechanics: []
-                    })
-                  }
+                  onPress={this.clearFilter}
                 />
                 <Button
                   color="black"
@@ -397,13 +386,25 @@ class Filter extends Component<Props, State> {
 
   openModal = () => {
     PublisherApi.all()
-    .then(response => {
-      this.setState({ publishers: response.data.items });
-    })
-    .catch(error => {
-      ErrorUtil.errorService(error);
-    });
+      .then(response => {
+        this.setState({ publishers: response.data.items });
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
     this.setState({ modal: true });
+  };
+  clearFilter = () => {
+    this.setState({
+      name: "",
+      minPlayers: 0,
+      maxPlayers: 0,
+      minAge: "",
+      playingTime: "",
+      publisher: "",
+      types: [],
+      mechanics: []
+    });
   };
 }
 
