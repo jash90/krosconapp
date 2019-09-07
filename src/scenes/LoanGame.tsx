@@ -48,31 +48,25 @@ class LoanGame extends Component<SceneProps, State> {
     console.log(this.state.game);
     console.log(loan);
     return (
-      <Container
-        text={loan ? "Wypożycz grę" : "Oddaj grę"}
-        >
+      <Container text={loan ? "Wypożycz grę" : "Oddaj grę"}>
         <WithScannerGame
           value={!!this.state.game}
           game={this.state.game}
-          onPress={() =>
-            NavigationService.navigate(Scenes.Camera, {
-              changeCode: (game: any) => this.props.propsStore.setGame(game),
-              routeName: Scenes.LoanGame,
-              typeItem: 1
-            })
-          }
+          onPress={() => {
+            this.props.propsStore.setTypeItem(1);
+            this.props.propsStore.setRouteName(Scenes.LoanGame);
+            NavigationService.navigate(Scenes.Camera);
+          }}
         />
         {loan && (
-          <WithScannerUser     
+          <WithScannerUser
             user={this.state.user}
             value={!!this.state.user}
-            onPress={() =>
-              NavigationService.navigate(Scenes.Camera, {
-                changeCode: (user: any) => this.props.propsStore.setUser(user),
-                routeName: Scenes.LoanGame,
-                typeItem: 2
-              })
-            }
+            onPress={() => {
+              this.props.propsStore.setTypeItem(2);
+              this.props.propsStore.setRouteName(Scenes.LoanGame);
+              NavigationService.navigate(Scenes.Camera);
+            }}
           />
         )}
         <Button
@@ -125,4 +119,4 @@ class LoanGame extends Component<SceneProps, State> {
     }
   };
 }
-export default inject("authStore","propsStore")(observer(LoanGame));
+export default inject("authStore", "propsStore")(observer(LoanGame));

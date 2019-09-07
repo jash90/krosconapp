@@ -106,15 +106,13 @@ class AddItem extends Component<SceneProps, State> {
         {this.state.selected === "Gra" && (
           <WithScannerText
             label={"UUID"}
-            text={this.state.uuid}
-            value={!!this.state.uuid}
+            text={this.props.propsStore.code}
+            value={!!this.props.propsStore.code}
             onPress={() => {
               if (!this.props.propsStore.game) {
-                NavigationService.navigate(Scenes.Camera, {
-                  changeCode: (uuid: any) => this.setState({ uuid }),
-                  routeName: Scenes.AddItem,
-                  typeItem: 3
-                });
+                this.props.propsStore.setTypeItem(3);
+                this.props.propsStore.setRouteName(Scenes.AddItem);
+                NavigationService.navigate(Scenes.Camera);
               }
             }}
           />
@@ -248,6 +246,7 @@ class AddItem extends Component<SceneProps, State> {
         .then(item => {
           console.log(item);
           Toast.show("Zapisano");
+          this.props.propsStore.setCode("");
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -268,6 +267,7 @@ class AddItem extends Component<SceneProps, State> {
         .then(item => {
           console.log(item);
           Toast.show("Zapisano");
+          this.props.propsStore.setCode("");
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -283,14 +283,6 @@ class AddItem extends Component<SceneProps, State> {
           ErrorUtil.errorService(error);
         });
     }
-  };
-
-  changeUuid = (uuid: string) => {
-    NavigationService.navigate(Scenes.Camera, {
-      changeCode: () => this.setState({ uuid }),
-      routeName: Scenes.LoanGame,
-      typeItem: 2
-    });
   };
   createArray(count: number, max: number) {
     let active: any[] = new Array(count).fill(true);

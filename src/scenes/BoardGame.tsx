@@ -6,7 +6,7 @@ import { Button, Container, GameHeader } from "../components";
 import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
-interface Props extends SceneProps{
+interface Props extends SceneProps {
   item: any;
 }
 class BoardGame extends Component<Props, {}> {
@@ -17,9 +17,9 @@ class BoardGame extends Component<Props, {}> {
   render() {
     const item = this.props.propsStore.game;
     return (
-      <Container scrollView >
-        <GameHeader  game={item} />
-        {!!item.description && (
+      <Container scrollView>
+        <GameHeader game={item} />
+        {!!item && !!item.description && (
           <View
             style={{
               flex: 1,
@@ -115,13 +115,9 @@ class BoardGame extends Component<Props, {}> {
   }
   loanGame = () => {
     const item = this.props.propsStore.game;
-    if (this.props.authStore.privilegeId === 0) {
-      NavigationService.navigate(Scenes.Login);
-    } else if (this.props.authStore.privilegeId === 1) {
-      NavigationService.navigate(Scenes.QR, { code: item.uuid });
-    } else if (this.props.authStore.privilegeId > 1) {
+    if (this.props.authStore.privilegeId > 1) {
       NavigationService.navigate(Scenes.LoanGame, { game: item });
     }
   };
 }
-export default inject("authStore","propsStore")(observer(BoardGame));
+export default inject("authStore", "propsStore")(observer(BoardGame));

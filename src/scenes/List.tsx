@@ -99,17 +99,6 @@ class List extends Component<Props, State> {
       </Container>
     );
   }
-  renderPawn(min: number, max: number) {
-    var table = [];
-    for (var i = 0; i < max; i++) {
-      if (i < min) {
-        table.push(<Icon size={15} name={"pawn"} color={"black"} />);
-      } else {
-        table.push(<Icon size={15} name={"pawn"} color={"gray"} />);
-      }
-    }
-    return table;
-  }
   openItem = (item: any) => {
     this.props.propsStore.setGame(item);
     NavigationService.navigate(Scenes.BoardGame);
