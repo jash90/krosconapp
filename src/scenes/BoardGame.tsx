@@ -114,9 +114,8 @@ class BoardGame extends Component<Props, {}> {
     );
   }
   loanGame = () => {
-    const item = this.props.propsStore.game;
     if (this.props.authStore.privilegeId > 1) {
-      NavigationService.navigate(Scenes.LoanGame, { game: item });
+      NavigationService.navigate(Scenes.LoanGame);
     }
   };
 }

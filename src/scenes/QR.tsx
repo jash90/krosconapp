@@ -7,7 +7,7 @@ import { RCViewCenter } from "../components/StyledComponent";
 import { SceneProps } from "../interfaces";
 class QR extends Component<SceneProps> {
   render() {
-    const code = this.props.authStore.id.toString();
+    const code = this.props.authStore.email.toString();
     return (
       <Container
         text={"Kod QR"}

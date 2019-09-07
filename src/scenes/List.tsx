@@ -86,9 +86,7 @@ class List extends Component<Props, State> {
             }}
             position="bottomRight"
             onPress={() =>
-              NavigationService.navigate(Scenes.QR, {
-                code: this.props.authStore.email
-              })
+              NavigationService.navigate(Scenes.QR)
             }>
             <Image
               style={{ width: 20, height: 20 }}

@@ -78,8 +78,6 @@ export default class UserHeader extends Component<Props> {
   }
 
   goToEdit = () => {
-    NavigationService.navigate(Scenes.EditProfile, {
-      user: this.props.user
-    });
+    NavigationService.navigate(Scenes.EditProfile);
   };
 }
