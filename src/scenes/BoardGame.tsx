@@ -11,6 +11,10 @@ interface Props extends SceneProps {
 }
 class BoardGame extends Component<Props> {
 
+  componentWillUnmount(){
+    this.props.propsStore.clearGame();
+  }
+
   render() {
     const item = this.props.propsStore.game;
     return (
