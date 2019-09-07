@@ -47,6 +47,7 @@
 		5B92762DF5C245F9A8ECB7DB /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FF947D5D701482EAB888356 /* FontAwesome5_Brands.ttf */; };
 		5F95F217724A4ABEA2670EB4 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C47C1714AA754D75831446AA /* rubicon-icon-font.ttf */; };
 		668F020776E54C76BBEA7555 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D5C7BCDA29548D7ACD9FE16 /* AntDesign.ttf */; };
+		8096E3FB181C923DA1FBDE9D /* Pods_krosconApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998C1896C0F580FD4AA12FDF /* Pods_krosconApp.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		91FFECA441AF424189519B41 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA04964A7DAA454584EC67C6 /* MaterialCommunityIcons.ttf */; };
 		9CD64ACF0EF84E119EF322C9 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 490C0BA8C932416CBEEE68CC /* Fontisto.ttf */; };
@@ -60,6 +61,8 @@
 		C652A8368674499A930177EA /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 980A054EC8954FCABAB32774 /* libRNVectorIcons-tvOS.a */; };
 		C9B8D3E612F24FA593B0E22A /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B18E8DBEB44840BCAA97886A /* Roboto.ttf */; };
 		C9B8D68322CAB90800B721ED /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9B8D65222CAB90800B721ED /* icomoon.ttf */; };
+		C9F94E652323FCC500BB1FA5 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F94E642323FCC500BB1FA5 /* Crashlytics.framework */; };
+		C9F94E972323FCCB00BB1FA5 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F94E962323FCCB00BB1FA5 /* Fabric.framework */; };
 		D2C37497F0F149DCAA4185C1 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 091611A54FAB4525A44C0883 /* libRNDeviceInfo.a */; };
 		DC01F7404F45498381EBBD15 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5282A49AAD2142C29AF55166 /* FontAwesome5_Solid.ttf */; };
 		DD3CA9BDA81547EFBA6C62F5 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E1DE49E2F8C40C2876FBF08 /* EvilIcons.ttf */; };
@@ -472,6 +475,7 @@
 		8662280168FB46C384712E44 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		8CF8B062BD0E4335825961DE /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		980A054EC8954FCABAB32774 /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
+		998C1896C0F580FD4AA12FDF /* Pods_krosconApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_krosconApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D5C7BCDA29548D7ACD9FE16 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B18E8DBEB44840BCAA97886A /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
@@ -479,8 +483,11 @@
 		B6B9A53DCAA549E9AB9D560B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		B7DFC7627DDE403F800ADEDD /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; };
 		C47C1714AA754D75831446AA /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
+		C624B846D3D59C07EAD99D4A /* Pods-krosconApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-krosconApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-krosconApp/Pods-krosconApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C7D23CA56E584BB9B030D725 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		C9B8D65222CAB90800B721ED /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
+		C9F94E642323FCC500BB1FA5 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Pods/Crashlytics/iOS/Crashlytics.framework; sourceTree = "<group>"; };
+		C9F94E962323FCCB00BB1FA5 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Pods/Fabric/iOS/Fabric.framework; sourceTree = "<group>"; };
 		CA04964A7DAA454584EC67C6 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		DE839EBEC5BD4D47B8B2A85B /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		E713A7C482CE43ED84042122 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -489,6 +496,7 @@
 		ECC389E2EB874BAEBBBB620D /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F12D1BA0927CA64ABA7AEFF8 /* Pods-krosconApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-krosconApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-krosconApp/Pods-krosconApp.release.xcconfig"; sourceTree = "<group>"; };
 		F1B6025421944D8F8EECA47D /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		F2564D6CC5D946B0B3336DB1 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libLRDRCTSimpleToast.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -506,6 +514,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9F94E972323FCCB00BB1FA5 /* Fabric.framework in Frameworks */,
+				C9F94E652323FCC500BB1FA5 /* Crashlytics.framework in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -526,6 +536,7 @@
 				B361D95307424EC29E7B4274 /* libLRDRCTSimpleToast.a in Frameworks */,
 				114629AF7605484E857A8237 /* libRNVectorIcons.a in Frameworks */,
 				3BE49C8EB7534CCD84B73ADD /* libRNGestureHandler.a in Frameworks */,
+				8096E3FB181C923DA1FBDE9D /* Pods_krosconApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,11 +690,23 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9F94E642323FCC500BB1FA5 /* Crashlytics.framework */,
+				C9F94E962323FCCB00BB1FA5 /* Fabric.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				998C1896C0F580FD4AA12FDF /* Pods_krosconApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2DD0F6A94EB7A3FE165EDF9E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C624B846D3D59C07EAD99D4A /* Pods-krosconApp.debug.xcconfig */,
+				F12D1BA0927CA64ABA7AEFF8 /* Pods-krosconApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -775,6 +798,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				7FE8FD6082E94C2F82B38308 /* Resources */,
 				C95D6E2B22C80BE800F06FDF /* Recovered References */,
+				2DD0F6A94EB7A3FE165EDF9E /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -903,10 +927,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "krosconApp" */;
 			buildPhases = (
+				BC668EBFD90B11ED1474CAEE /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				C9F94DDD2323F81C00BB1FA5 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -1499,6 +1525,46 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		BC668EBFD90B11ED1474CAEE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-krosconApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9F94DDD2323F81C00BB1FA5 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3ef8cadd51195dffa2d744483f1c57ac37ea323e b208fc30c4a534120dac7eb5b8ecc96b37fe73273371e9ef8ff7738af12ea43e\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1603,7 +1669,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = krosconApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/krosconApp.app/krosconApp";
 			};
@@ -1645,7 +1711,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = krosconApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/krosconApp.app/krosconApp";
 			};
@@ -1653,10 +1719,16 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C624B846D3D59C07EAD99D4A /* Pods-krosconApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Pods/Fabric/iOS",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
@@ -1674,7 +1746,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krosconapp;
 				PRODUCT_NAME = krosconApp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1682,9 +1754,15 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F12D1BA0927CA64ABA7AEFF8 /* Pods-krosconApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Pods/Fabric/iOS",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
@@ -1702,7 +1780,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krosconapp;
 				PRODUCT_NAME = krosconApp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

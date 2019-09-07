@@ -55,3 +55,4 @@ buck-out/
 *.jsbundle
 *.keystore
 .vscode/
+ios/Pods
