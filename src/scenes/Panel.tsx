@@ -112,5 +112,4 @@ class Panel extends Component<SceneProps, State> {
     }
   };
 }
-
 export default inject("authStore","propsStore")(observer(Panel));

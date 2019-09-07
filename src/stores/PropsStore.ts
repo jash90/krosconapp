@@ -3,23 +3,33 @@ import { Game, User } from "../models";
 
 export default class PropsStore {
     @observable
-    game: Game = new Game();
+    game: Game|null = null;
     @observable
-    user: User = new User();
+    listgame = observable<Game>([])
+    @observable
+    user: User|null = null;
 
-    setGame(game: Game) {
-        this.game.setGame(game);
+    @action setGame(game: Game|null) {
+        this.game = game;
     }
 
-    setUser(user: User) {
-        this.user.setUser(user);
+    @action setListGame(listGame: any) {
+        this.listgame = listGame;
     }
 
-    clearUser() {
-        this.user.clear();
+    @action setUser(user: User) {
+        this.user = user;
     }
-    clearGame() {
-        this.game.clear();
+
+    @action clearUser() {
+        this.user = null;
+    }
+    @action clearGame() {
+        this.game = null;
+    }
+
+    @action clearListGame() {
+        this.listgame = observable([]);
     }
 
 }

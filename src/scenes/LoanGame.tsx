@@ -26,18 +26,10 @@ class LoanGame extends Component<SceneProps, State> {
   }
 
   componentWillMount() {
-    const game =
-      this.props.navigation.state.params &&
-      this.props.navigation.state.params.game
-        ? this.props.navigation.state.params.game
-        : null;
+    const game = this.props.propsStore.game;
     if (!!game) this.setState({ game });
 
-    const user =
-      this.props.navigation.state.params &&
-      this.props.navigation.state.params.user
-        ? this.props.navigation.state.params.user
-        : null;
+    const user = this.props.propsStore.user;
     if (!!user) this.setState({ user });
   }
 
@@ -60,12 +52,11 @@ class LoanGame extends Component<SceneProps, State> {
         text={loan ? "Wypożycz grę" : "Oddaj grę"}
         >
         <WithScannerGame
-          
           value={!!this.state.game}
           game={this.state.game}
           onPress={() =>
             NavigationService.navigate(Scenes.Camera, {
-              changeCode: (game: any) => this.setState({ game }),
+              changeCode: (game: any) => this.props.propsStore.setGame(game),
               routeName: Scenes.LoanGame,
               typeItem: 1
             })
@@ -77,7 +68,7 @@ class LoanGame extends Component<SceneProps, State> {
             value={!!this.state.user}
             onPress={() =>
               NavigationService.navigate(Scenes.Camera, {
-                changeCode: (user: any) => this.setState({ user }),
+                changeCode: (user: any) => this.props.propsStore.setUser(user),
                 routeName: Scenes.LoanGame,
                 typeItem: 2
               })
@@ -134,5 +125,4 @@ class LoanGame extends Component<SceneProps, State> {
     }
   };
 }
-
 export default inject("authStore","propsStore")(observer(LoanGame));

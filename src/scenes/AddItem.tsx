@@ -3,7 +3,14 @@ import React, { Component } from "react";
 import { Text, TextInput, View } from "react-native";
 import Toast from "react-native-simple-toast";
 import { BoardGameApi, PublisherApi } from "../api";
-import { Container, Dropdown, ModalMultiList, ModalPickerPawn, ModalSingleList, ViewText } from "../components";
+import {
+  Container,
+  Dropdown,
+  ModalMultiList,
+  ModalPickerPawn,
+  ModalSingleList,
+  ViewText
+} from "../components";
 import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
 import ErrorUtil from "../ErrorUtil";
@@ -56,41 +63,38 @@ class AddItem extends Component<SceneProps, State> {
       .catch(error => {
         ErrorUtil.errorService(error);
       });
-    if (this.props.navigation.state.params) {
-      const game = this.props.navigation.state.params.game;
-      if (game) {
-        const {
-          name,
-          minPlayers,
-          maxPlayers,
-          playingTime,
-          minAge,
-          publisher,
-          uuid
-        } = game;
-        this.setState({
-          name,
-          minPlayers,
-          maxPlayers,
-          playingTime: String(playingTime),
-          minAge: String(minAge),
-          publisher,
-          uuid
-        });
-      }
+    const game = this.props.propsStore.game;
+    if (game) {
+      const {
+        name,
+        minPlayers,
+        maxPlayers,
+        playingTime,
+        minAge,
+        publisher,
+        uuid
+      } = game;
+      this.setState({
+        name,
+        minPlayers,
+        maxPlayers,
+        playingTime: String(playingTime),
+        minAge: String(minAge),
+        publisher,
+        uuid
+      });
     }
   };
 
   render() {
     return (
       <Container
-        
         scrollView={true}
         right
         styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
-        {!this.props.navigation.state.params && (
+        {!this.props.propsStore.game && (
           <Dropdown
             items={this.state.items}
             value={this.state.selected}
@@ -105,7 +109,7 @@ class AddItem extends Component<SceneProps, State> {
             text={this.state.uuid}
             value={!!this.state.uuid}
             onPress={() => {
-              if (!this.props.navigation.state.params.game) {
+              if (!this.props.propsStore.game) {
                 NavigationService.navigate(Scenes.Camera, {
                   changeCode: (uuid: any) => this.setState({ uuid }),
                   routeName: Scenes.AddItem,
@@ -115,7 +119,7 @@ class AddItem extends Component<SceneProps, State> {
             }}
           />
         )}
-        <View style={{width:"100%", paddingHorizontal:20}}>
+        <View style={{ width: "100%", paddingHorizontal: 20 }}>
           <RCView>
             <TextInput
               value={this.state.name}
@@ -229,9 +233,7 @@ class AddItem extends Component<SceneProps, State> {
     } = this.state;
 
     let game = null;
-    if (this.props.navigation.state.params) {
-      game = this.props.navigation.state.params.game;
-    }
+    game = this.props.propsStore.game;
 
     if (this.state.selected === "Gra" && !game) {
       BoardGameApi.add(
@@ -296,4 +298,4 @@ class AddItem extends Component<SceneProps, State> {
     return active.concat(disactive);
   }
 }
-export default inject("authStore","propsStore")(observer(AddItem));
+export default inject("authStore", "propsStore")(observer(AddItem));

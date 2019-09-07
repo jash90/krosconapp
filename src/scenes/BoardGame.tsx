@@ -15,7 +15,7 @@ class BoardGame extends Component<Props, {}> {
   }
 
   render() {
-    const item = this.props.navigation.state.params.item;
+    const item = this.props.propsStore.game;
     return (
       <Container scrollView >
         <GameHeader  game={item} />
@@ -114,7 +114,7 @@ class BoardGame extends Component<Props, {}> {
     );
   }
   loanGame = () => {
-    const item = this.props.navigation.state.params.item;
+    const item = this.props.propsStore.game;
     if (this.props.authStore.privilegeId === 0) {
       NavigationService.navigate(Scenes.Login);
     } else if (this.props.authStore.privilegeId === 1) {

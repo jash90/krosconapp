@@ -29,7 +29,7 @@ class EditProfile extends Component<SceneProps, State> {
   }
 
   componentDidMount() {
-    const user = this.props.navigation.state.params.user;
+    const user = this.props.propsStore.user;
     console.log(user);
     if (user) {
       this.setState({

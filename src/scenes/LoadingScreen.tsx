@@ -26,6 +26,7 @@ class LoadingScreen extends Component<SceneProps> {
       .then(response => {
         const data = response.data;
         console.log(data);
+        this.props.propsStore.setListGame(data.items);
         NavigationService.navigate(Scenes.List, {
           listgame: data.items,
           count: data.count
