@@ -53,11 +53,12 @@ Aplikacja KrosconApp ma służy do obsługi wydarzeń z planszówkami, przede ws
 3. Komunikaty
 4. Okna zatwierdzania przy logowaniu
 5. Poprawa autoryzacji
-6. Dodawanie zdjęć gier
-7. Dodanie obsługi za pomocą strony
-8. Dodanie statystyk odnośnie wypożyczenia
-9. Dodanie informacji na temat konwentu
-10. Informacja od kiedy gra jest zarezerwowana
-11. Historia rezerwacji dla użytkownika
-12. Informacja na jakim stoliku znajduje się gra
-13. Wyszukiwanie ludzi do grania
+6. Dodać mechniki i typy
+7. Dodawanie zdjęć gier
+8. Dodanie obsługi za pomocą strony
+9. Dodanie statystyk odnośnie wypożyczenia
+10. Dodanie informacji na temat konwentu
+11. Informacja od kiedy gra jest zarezerwowana
+12. Historia rezerwacji dla użytkownika
+13. Informacja na jakim stoliku znajduje się gra
+14. Wyszukiwanie ludzi do grania

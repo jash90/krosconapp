@@ -224,6 +224,7 @@ class AddItem extends Component<SceneProps, State> {
     const {
       name,
       uuid,
+      description,
       minPlayers,
       maxPlayers,
       playingTime,
@@ -235,9 +236,38 @@ class AddItem extends Component<SceneProps, State> {
     game = this.props.propsStore.game;
 
     if (this.state.selected === "Gra" && !game) {
+      if (!uuid && uuid.length < 1) {
+        Toast.show("Uzupełnij kod gry");
+        return;
+      }
+      if (!name && name.length < 1) {
+        Toast.show("Uzupełnij nazwę");
+        return;
+      }
+      if (minPlayers <= 0) {
+        Toast.show("Uzupełnij minimalną liczbę graczy");
+        return;
+      }
+      if (maxPlayers <= 0) {
+        Toast.show("Uzupełnij maksymalną liczbę graczy");
+        return;
+      }
+      if (Number(playingTime) <= 0) {
+        Toast.show("Uzupełnij czas trwania gry");
+        return;
+      }
+      if (Number(minAge) <= 0) {
+        Toast.show("Uzupełnij minimalny wiek");
+        return;
+      }
+      if (publisher && publisher.id && publisher.id <= 0) {
+        Toast.show("Wybierz wydawcę");
+        return;
+      }
       BoardGameApi.add(
         name,
         uuid,
+        description,
         minPlayers,
         maxPlayers,
         Number(playingTime),
@@ -255,9 +285,38 @@ class AddItem extends Component<SceneProps, State> {
     }
 
     if (this.state.selected === "Gra" && !!game) {
+      if (!uuid && uuid.length < 1) {
+        Toast.show("Uzupełnij kod gry");
+        return;
+      }
+      if (!name && name.length < 1) {
+        Toast.show("Uzupełnij nazwę");
+        return;
+      }
+      if (minPlayers <= 0) {
+        Toast.show("Uzupełnij minimalną liczbę graczy");
+        return;
+      }
+      if (maxPlayers <= 0) {
+        Toast.show("Uzupełnij maksymalną liczbę graczy");
+        return;
+      }
+      if (Number(playingTime) <= 0) {
+        Toast.show("Uzupełnij czas trwania gry");
+        return;
+      }
+      if (Number(minAge) <= 0) {
+        Toast.show("Uzupełnij minimalny wiek");
+        return;
+      }
+      if (publisher && publisher.id && publisher.id <= 0) {
+        Toast.show("Wybierz wydawcę");
+        return;
+      }
       BoardGameApi.edit(
         name,
         uuid,
+        description,
         minPlayers,
         maxPlayers,
         Number(playingTime),
@@ -275,6 +334,10 @@ class AddItem extends Component<SceneProps, State> {
         });
     }
     if (this.state.selected === "Wydawca") {
+      if (!name && name.length < 1) {
+        Toast.show("Uzupełnij nazwę");
+        return;
+      }
       PublisherApi.add(name)
         .then(item => {
           console.log(item);

@@ -5,21 +5,15 @@ import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+import { SceneProps } from "../interfaces";
+import { observer, inject } from "mobx-react";
+import Game from "../models/Game";
 const Icon = createIconSetFromIcoMoon(selection);
-interface Game {
-  name: string;
-  minPlayers: number;
-  maxPlayers: number;
-  playingTime: number;
-  minAge: number;
-  publisher: any;
-}
-
-interface Props {
-  game: Game | null;
+interface Props extends SceneProps{
+  game: Game|null;
   edit: boolean | null;
 }
-export default class GameHeader extends Component<Props> {
+class GameHeader extends Component<Props> {
   render() {
     return (
       <View
@@ -59,11 +53,10 @@ export default class GameHeader extends Component<Props> {
               </Text>
               {this.props.edit && (
                 <TouchableOpacity
-                  onPress={() =>
-                    NavigationService.navigate(Scenes.AddItem, {
-                      game: this.props.game
-                    })
-                  }>
+                  onPress={() => {
+                    this.props.propsStore.setGame(this.props.game);
+                    NavigationService.navigate(Scenes.AddItem);
+                  }}>
                   <MaterialIcon name="edit" size={26} />
                 </TouchableOpacity>
               )}
@@ -131,3 +124,4 @@ export default class GameHeader extends Component<Props> {
     return table;
   }
 }
+export default inject("authStore", "propsStore")(observer(GameHeader));
