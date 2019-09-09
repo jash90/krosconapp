@@ -9,12 +9,14 @@ import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+import Store from "../stores";
+
 interface State {
   firstname: string;
   lastname: string;
   city: string;
   age: number;
-  id:number;
+  id: number;
 }
 class EditProfile extends Component<SceneProps, State> {
   constructor(props: SceneProps) {
@@ -24,20 +26,19 @@ class EditProfile extends Component<SceneProps, State> {
       lastname: "",
       city: "",
       age: 0,
-      id:0
+      id: 0
     };
   }
 
   componentDidMount() {
-    const user = this.props.authStore;
-    console.log(user);
+    const user = Store.authStore;
     if (user) {
       this.setState({
         firstname: user.firstname,
         lastname: user.lastname,
         city: user.city,
         age: Number(user.age),
-        id:user.id
+        id: user.id
       });
     }
   }
@@ -87,18 +88,31 @@ class EditProfile extends Component<SceneProps, State> {
     );
   }
   save = () => {
-    const {firstname,lastname, city, age, id} = this.state;
-    UserApi.edit(firstname,lastname,city,age,id).then(item=>{
-      this.props.authStore.setFirstname(firstname);
-      this.props.authStore.setLastname(lastname);
-      this.props.authStore.setCity(city);
-      this.props.authStore.setAge(age);
-      NavigationService.navigate(Scenes.List);
-      Toast.show("Zapisano");
-    }).catch(error=>{
-      ErrorUtil.errorService(error);
-    })
-   
+    const { firstname, lastname, city, age, id } = this.state;
+    if (!firstname) {
+      Toast.show("Wpisz imię");
+      return;
+    }
+    if (!lastname) {
+      Toast.show("Wpisz nazwisko");
+      return;
+    }
+    UserApi.edit(firstname, lastname, city, age, id)
+      .then(response => {
+        if (response.data.item) {
+          Store.authStore.setFirstname(firstname);
+          Store.authStore.setLastname(lastname);
+          Store.authStore.setCity(city);
+          Store.authStore.setAge(age);
+          NavigationService.navigate(Scenes.List);
+          Toast.show("Zapisano");
+        } else if (response.data.error) {
+          ErrorUtil.errorService(response.data.error);
+        }
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
   };
 
   createArray(count: number, max: number) {
@@ -107,4 +121,4 @@ class EditProfile extends Component<SceneProps, State> {
     return active.concat(disactive);
   }
 }
-export default inject("authStore","propsStore")(observer(EditProfile));
+export default inject("authStore", "propsStore")(observer(EditProfile));

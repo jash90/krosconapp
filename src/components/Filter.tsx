@@ -366,8 +366,6 @@ class Filter extends Component<Props, State> {
       game.publisherId = publisher.id;
     }
 
-    console.log(game);
-
     this.props.onChangeValue(game);
   };
 

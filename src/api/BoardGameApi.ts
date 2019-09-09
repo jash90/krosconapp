@@ -58,7 +58,6 @@ export default class BoardGameApi {
     }
 
     public static async search(search: any) {
-        console.log(search);
         return await axios.post(`/${this.apiName}/search`, search)
     }
 

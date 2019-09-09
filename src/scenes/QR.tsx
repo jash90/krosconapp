@@ -5,9 +5,11 @@ import QRCode from "react-native-qrcode";
 import { Container } from "../components";
 import { RCViewCenter } from "../components/StyledComponent";
 import { SceneProps } from "../interfaces";
+import Store from "../stores";
+
 class QR extends Component<SceneProps> {
   render() {
-    const code = this.props.authStore.email.toString();
+    const code = Store.authStore.email.toString();
     return (
       <Container
         text={"Kod QR"}

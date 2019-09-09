@@ -1,5 +1,4 @@
 import { inject, observer } from "mobx-react";
-import { Toast } from "native-base";
 import React, { Component } from "react";
 import { TextInput } from "react-native";
 import { AuthApi } from "../api";
@@ -9,6 +8,9 @@ import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+import Toast from "react-native-simple-toast";
+import Store from "../stores";
+
 interface State {
   password: string;
   repeatPassword: string;
@@ -50,18 +52,17 @@ class ChangePassword extends Component<SceneProps, State> {
     );
   }
   save = () => {
-    AuthApi.changePassword(this.props.authStore.id, this.state.password)
+    AuthApi.changePassword(Store.authStore.id, this.state.password)
       .then(response => {
-        if (!response.data.error) {
+        if (response.data.item) {
           Toast.show("Zmieniono");
           NavigationService.navigate(Scenes.List);
-        } else {
-          if (response.data.error) ErrorUtil.errorService(response.data.error);
-        }
+        } else if (response.data.error)
+          ErrorUtil.errorService(response.data.error);
       })
       .catch(error => {
         ErrorUtil.errorService(error);
       });
   };
 }
-export default inject("authStore","propsStore")(observer(ChangePassword));
+export default inject("authStore", "propsStore")(observer(ChangePassword));

@@ -42,7 +42,6 @@ class Privilege extends Component<SceneProps, State> {
   };
 
   render() {
-    console.log(this.state.users);
     return (
       <Container
         text={"Lista użytkowników"}
@@ -103,10 +102,10 @@ class Privilege extends Component<SceneProps, State> {
     if (user.privilegeId !== privilegeId) {
       AuthApi.changePrivilege(user.id, privilegeId)
         .then(async response => {
-          if (!response.data.error) {
+          if (response.data.item) {
             Toast.show("Zapisane");
             this.fetchData();
-          } else {
+          } else if (response.data.error){
             ErrorUtil.errorService(response.data.error);
           }
         })

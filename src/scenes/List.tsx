@@ -10,6 +10,8 @@ import { SceneProps } from "../interfaces";
 import Game from "../models/Game";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+import Store from "../stores";
+
 interface State {
   active: boolean;
   search: string;
@@ -36,12 +38,11 @@ class List extends Component<Props, State> {
   }
 
   componentDidMount() {
-    console.log({ list: this.props.propsStore });
-    if (this.props.propsStore.listgame.length === 0) {
+    if (Store.propsStore.listgame.length === 0) {
       BoardGameApi.offset()
         .then(response => {
           const data = response.data;
-          this.props.propsStore.setListGame(response.data.items);
+          Store.propsStore.setListGame(response.data.items);
           this.setState({
             count: Math.ceil(data.count / 10),
             page: 0
@@ -58,7 +59,7 @@ class List extends Component<Props, State> {
       <Container back={false} right icon={"person"} onPress={this.openProfile}>
         <Filter ref={ref =>this.filter = ref} onChangeValue={search => this.searchBoardGame(search)} />
         <FlatList
-          data={this.props.propsStore.listgame}
+          data={Store.propsStore.listgame}
           renderItem={({ item }: any) => (
             <TouchableOpacity
               onPress={() => {
@@ -66,7 +67,6 @@ class List extends Component<Props, State> {
               }}>
               <GameHeader
                 game={item}
-                edit={this.props.authStore.privilegeId > 1}
               />
             </TouchableOpacity>
           )}
@@ -75,7 +75,7 @@ class List extends Component<Props, State> {
           onEndReached={this.onEndReached}
           onEndReachedThreshold={0.5}
         />
-        {this.props.authStore.privilegeId === 1 && (
+        {Store.authStore.privilegeId === 1 && (
           <Fab
             active={this.state.active}
             style={{
@@ -95,11 +95,11 @@ class List extends Component<Props, State> {
     );
   }
   openItem = (item: any) => {
-    this.props.propsStore.setGame(item);
+    Store.propsStore.setGame(item);
     NavigationService.navigate(Scenes.BoardGame);
   };
   openProfile = () => {
-    if (this.props.authStore.token) {
+    if (Store.authStore.token) {
       NavigationService.navigate(Scenes.Panel);
     } else {
       NavigationService.navigate(Scenes.Login);
@@ -112,7 +112,7 @@ class List extends Component<Props, State> {
     BoardGameApi.offset()
       .then(response => {
         const data = response.data;
-        this.props.propsStore.setListGame(data.items);
+        Store.propsStore.setListGame(data.items);
         this.setState({
           count: Math.ceil(data.count / 10),
           page: 0
@@ -127,21 +127,18 @@ class List extends Component<Props, State> {
   searchBoardGame(search: any) {
     BoardGameApi.search(search)
       .then(response => {
-        console.log(response);
-        this.props.propsStore.setListGame(response.data.items);
+        Store.propsStore.setListGame(response.data.items);
       })
       .catch(error => {
-        console.log(error);
         ErrorUtil.errorService(error);
       });
   }
   onEndReached = () => {
-    console.log(this.state.page);
     if (this.state.page + 1 < this.state.count) {
       BoardGameApi.offset(this.state.page + 1)
         .then(response => {
           const data = response.data;
-          this.props.propsStore.listgame.push(data.items);
+          Store.propsStore.listgame.push(data.items);
           this.setState({
             page: this.state.page + 1
           });

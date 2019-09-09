@@ -9,24 +9,24 @@ import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+import Store from "../stores";
+
 class LoadingScreen extends Component<SceneProps> {
   componentDidMount = async () => {
     try {
       const value = await AsyncStorage.getItem("User");
       if (value !== null) {
         let user = JSON.parse(value);
-        this.props.authStore.setUser(user);
+        Store.authStore.setUser(user);
         axios.defaults.headers.common['authorization'] = String(user.token);
       }
     } catch (error) {
       Toast.show(error);
     }
-    console.log(this.props.authStore)
     BoardGameApi.offset()
       .then(response => {
         const data = response.data;
-        console.log(data);
-        this.props.propsStore.setListGame(data.items);
+        Store.propsStore.setListGame(data.items);
         NavigationService.navigate(Scenes.List, {
           listgame: data.items,
           count: data.count

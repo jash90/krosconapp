@@ -95,10 +95,12 @@ class Register extends Component<SceneProps, State> {
       this.state.lastname
     )
       .then(response => {
-        const data = response.data;
-        if (data.item) {
+        if (response.data.item) {
           Toast.show(`Utworzyłeś konto ${this.state.email}.`);
           NavigationService.navigate(Scenes.Login);
+        }else if (response.data.error){
+          Toast.show(`Nie udało się utworzyć konta`);
+          ErrorUtil.errorService(response.data.error);
         }
       })
       .catch(error => {

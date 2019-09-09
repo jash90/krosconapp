@@ -8,6 +8,7 @@ import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import TypeItem from "../TypeItem";
+import Store from "../stores";
 
 interface CameraProps extends SceneProps {
   changeCode: Function;
@@ -36,20 +37,18 @@ class Camera extends Component<CameraProps> {
     );
   }
   onBarCodeRead(data: any, type: any) {
-    const typeItem = this.props.propsStore.typeItem;
+    const typeItem = Store.propsStore.typeItem;
     if (typeItem === TypeItem.Game) {
       BoardGameApi.searchByUUID(data.data)
         .then(response => {
-          console.log(response);
           if (response.data.item) {
             const item = response.data.item;
-            console.log(item);
-            this.props.propsStore.setGame(item);
-            NavigationService.navigate(this.props.propsStore.routeName);
+            Store.propsStore.setGame(item);
+            NavigationService.navigate(Store.propsStore.routeName);
           } else {
             if (!response.data.error) {
-              this.props.propsStore.clearGame();
-              NavigationService.navigate(this.props.propsStore.routeName);
+              Store.propsStore.clearGame();
+              NavigationService.navigate(Store.propsStore.routeName);
               Toast.show("Nie znaleziono w bazie.");
             } else if (response.data.error)
               ErrorUtil.errorService(response.data.error);
@@ -57,38 +56,37 @@ class Camera extends Component<CameraProps> {
         })
         .catch(error => {
           ErrorUtil.errorService(error);
-          this.props.propsStore.clearGame();
-          NavigationService.navigate(this.props.propsStore.routeName);
+          Store.propsStore.clearGame();
+          NavigationService.navigate(Store.propsStore.routeName);
         });
     }
     if (typeItem === TypeItem.User) {
       UserApi.search(data.data)
         .then(response => {
-          console.log(response);
           if (response.data.item) {
             const item = response.data.item;
-            this.props.propsStore.setUser(item);
-            NavigationService.navigate(this.props.propsStore.routeName);
+            Store.propsStore.setUser(item);
+            NavigationService.navigate(Store.propsStore.routeName);
           } else {
             if (!response.data.error) {
-              this.props.propsStore.clearUser();
-              NavigationService.navigate(this.props.propsStore.routeName);
+              Store.propsStore.clearUser();
+              NavigationService.navigate(Store.propsStore.routeName);
               Toast.show("Nie znaleziono w bazie.");
             } else if (response.data.error)
               ErrorUtil.errorService(response.data.error);
-              this.props.propsStore.clearUser();
-              NavigationService.navigate(this.props.propsStore.routeName);
+              Store.propsStore.clearUser();
+              NavigationService.navigate(Store.propsStore.routeName);
           }
         })
         .catch(error => {
           ErrorUtil.errorService(error);
-          this.props.propsStore.clearUser();
-          NavigationService.navigate(this.props.propsStore.routeName);
+          Store.propsStore.clearUser();
+          NavigationService.navigate(Store.propsStore.routeName);
         });
     }
     if (typeItem === TypeItem.Code) {
-      this.props.propsStore.setCode(data.data);
-      NavigationService.navigate(this.props.propsStore.routeName);
+      Store.propsStore.setCode(data.data);
+      NavigationService.navigate(Store.propsStore.routeName);
     }
   }
 }

@@ -18,6 +18,7 @@ import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 const WithScannerText = withScanner(ViewText);
+import Store from "../stores";
 interface State {
   name: string;
   minPlayers: number;
@@ -63,7 +64,7 @@ class AddItem extends Component<SceneProps, State> {
       .catch(error => {
         ErrorUtil.errorService(error);
       });
-    const game = this.props.propsStore.game;
+    const game = Store.propsStore.game;
     if (game) {
       const {
         name,
@@ -95,7 +96,7 @@ class AddItem extends Component<SceneProps, State> {
         styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
-        {!this.props.propsStore.game && (
+        {!Store.propsStore.game && (
           <Dropdown
             items={this.state.items}
             value={this.state.selected}
@@ -107,12 +108,12 @@ class AddItem extends Component<SceneProps, State> {
         {this.state.selected === "Gra" && (
           <WithScannerText
             label={"UUID"}
-            text={this.props.propsStore.code}
-            value={!!this.props.propsStore.code}
+            text={Store.propsStore.code}
+            value={!!Store.propsStore.code}
             onPress={() => {
-              if (!this.props.propsStore.game) {
-                this.props.propsStore.setTypeItem(3);
-                this.props.propsStore.setRouteName(Scenes.AddItem);
+              if (!Store.propsStore.game) {
+                Store.propsStore.setTypeItem(3);
+                Store.propsStore.setRouteName(Scenes.AddItem);
                 NavigationService.navigate(Scenes.Camera);
               }
             }}
@@ -233,8 +234,7 @@ class AddItem extends Component<SceneProps, State> {
     } = this.state;
 
     let game = null;
-    game = this.props.propsStore.game;
-
+    game = Store.propsStore.game;
     if (this.state.selected === "Gra" && !game) {
       if (!uuid && uuid.length < 1) {
         Toast.show("Uzupełnij kod gry");
@@ -274,10 +274,13 @@ class AddItem extends Component<SceneProps, State> {
         Number(minAge),
         publisher.id
       )
-        .then(item => {
-          console.log(item);
-          Toast.show("Zapisano");
-          this.props.propsStore.setCode("");
+        .then(response => {
+          if (response.data.item) {
+            Toast.show("Zapisano");
+          } else if (response.data.error) {
+            ErrorUtil.errorService(response.data.error);
+          }
+          Store.propsStore.setCode("");
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -324,10 +327,13 @@ class AddItem extends Component<SceneProps, State> {
         publisher.id,
         game.id
       )
-        .then(item => {
-          console.log(item);
-          Toast.show("Zapisano");
-          this.props.propsStore.setCode("");
+        .then(response => {
+          if (response.data.item) {
+            Toast.show("Zapisano");
+          } else if (response.data.error) {
+            ErrorUtil.errorService(response.data.error);
+          }
+          Store.propsStore.setCode("");
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -339,9 +345,12 @@ class AddItem extends Component<SceneProps, State> {
         return;
       }
       PublisherApi.add(name)
-        .then(item => {
-          console.log(item);
-          Toast.show("Zapisano");
+        .then(response => {
+          if (response.data.item) {
+            Toast.show("Zapisano");
+          } else if (response.data.error) {
+            ErrorUtil.errorService(response.data.error);
+          }
         })
         .catch(error => {
           ErrorUtil.errorService(error);

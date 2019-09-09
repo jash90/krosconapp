@@ -8,6 +8,8 @@ import Scenes from"../Scenes";
 import axios from "../Axios";
 import NavigationService from "../NavigationService";
 import { SceneProps } from "../interfaces";
+import Store from "../stores";
+
 interface State {
   password: string;
   repeatPassword: string;
@@ -41,7 +43,7 @@ class Panel extends Component<SceneProps, State> {
           }}>
           <UserHeader
             edit
-            user={this.props.authStore}
+            user={Store.authStore}
           />
 
           <Button
@@ -52,7 +54,7 @@ class Panel extends Component<SceneProps, State> {
             onPress={this.changePassword}
           />
 
-          {this.props.authStore.privilegeId > 1 && (
+          {Store.authStore.privilegeId > 1 && (
             <Button
               primary
               color={`${Color.accentColor}`}
@@ -62,7 +64,7 @@ class Panel extends Component<SceneProps, State> {
             />
           )}
 
-          {this.props.authStore.privilegeId > 1 && (
+          {Store.authStore.privilegeId > 1 && (
             <Button
               outline
               color={`${Color.accentColor}`}
@@ -71,7 +73,7 @@ class Panel extends Component<SceneProps, State> {
             />
           )}
 
-          {this.props.authStore.privilegeId === 3 && (
+          {Store.authStore.privilegeId === 3 && (
             <Button
               outline
               color={Color.secondaryColor}
@@ -102,10 +104,10 @@ class Panel extends Component<SceneProps, State> {
 
   logout = async () => {
     try {
-      this.props.authStore.clearUser();
+      NavigationService.reset(Scenes.List);
+      Store.authStore.clearUser();
       await AsyncStorage.removeItem("User");
       axios.defaults.headers.common['authorization'] = null;
-      NavigationService.navigate(Scenes.List);
       Toast.show("Wylogowano");
     } catch (error) {
       Toast.show(error);

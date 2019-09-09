@@ -11,6 +11,7 @@ import ErrorUtil from "../ErrorUtil";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import { SceneProps } from "../interfaces";
+import Store from "../stores";
 
 interface State {
   email: string;
@@ -27,6 +28,9 @@ class Login extends Component<SceneProps, State> {
   render() {
     return (
       <Container
+        left
+        leftIcon={"arrow-back"}
+        leftPress={() => NavigationService.reset(Scenes.List)}
         right
         scrollView
         icon={"person-add"}
@@ -80,20 +84,16 @@ class Login extends Component<SceneProps, State> {
     }
     AuthApi.login(this.state.email, this.state.password)
       .then(async response => {
-        console.log(response);
         const data = response.data;
-        if (data.error) {
-          Toast.show("Niepoprawny login lub hasło.");
-        }
         if (data.item) {
-          this.props.authStore.setUser(data.item);
-          console.log(data.item.token);
+          Store.authStore.setUser(data.item);
           axios.defaults.headers.common["authorization"] = String(
             data.item.token
           );
-          console.log(data.item);
           await AsyncStorage.setItem("User", JSON.stringify(data.item));
-          NavigationService.navigate(Scenes.List);
+          NavigationService.reset(Scenes.List);
+        } else if (data.error) {
+          Toast.show("Niepoprawny login lub hasło.");
         }
       })
       .catch(error => {

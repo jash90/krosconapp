@@ -6,17 +6,18 @@ import { Button, Container, GameHeader } from "../components";
 import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+import Store from "../stores";
 interface Props extends SceneProps {
   item: any;
 }
 class BoardGame extends Component<Props> {
 
   componentWillUnmount(){
-    this.props.propsStore.clearGame();
+    Store.propsStore.clearGame();
   }
 
   render() {
-    const item = this.props.propsStore.game;
+    const item = Store.propsStore.game;
     return (
       <Container scrollView text={String(item.name)}>
         <GameHeader game={item} />
@@ -104,7 +105,7 @@ class BoardGame extends Component<Props> {
             />
           </View>
         )}
-        {this.props.authStore.privilegeId > 1 && (
+        {Store.authStore.privilegeId > 1 && (
           <Button
             primary
             color={Color.accentColor}
@@ -117,7 +118,7 @@ class BoardGame extends Component<Props> {
     );
   }
   loanGame = () => {
-    if (this.props.authStore.privilegeId > 1) {
+    if (Store.authStore.privilegeId > 1) {
       NavigationService.navigate(Scenes.LoanGame);
     }
   };

@@ -8,10 +8,10 @@ import Scenes from "../Scenes";
 import { SceneProps } from "../interfaces";
 import { observer, inject } from "mobx-react";
 import Game from "../models/Game";
+import Store from "../stores";
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props extends SceneProps{
   game: Game|null;
-  edit: boolean | null;
 }
 class GameHeader extends Component<Props> {
   render() {
@@ -51,10 +51,10 @@ class GameHeader extends Component<Props> {
                 }}>
                 {this.props.game.name}
               </Text>
-              {this.props.edit && (
+              {Store.authStore.privilegeId > 1 && (
                 <TouchableOpacity
                   onPress={() => {
-                    this.props.propsStore.setGame(this.props.game);
+                    Store.propsStore.setGame(this.props.game);
                     NavigationService.navigate(Scenes.AddItem);
                   }}>
                   <MaterialIcon name="edit" size={26} />

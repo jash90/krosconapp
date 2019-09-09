@@ -9,6 +9,8 @@ import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+import Store from "../stores";
+
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
 interface State {
@@ -26,10 +28,10 @@ class LoanGame extends Component<SceneProps, State> {
   }
 
   componentWillMount() {
-    const game = this.props.propsStore.game;
+    const game = Store.propsStore.game;
     if (!!game) this.setState({ game });
 
-    const user = this.props.propsStore.user;
+    const user = Store.propsStore.user;
     if (!!user) this.setState({ user });
   }
 
@@ -45,16 +47,14 @@ class LoanGame extends Component<SceneProps, State> {
     ) {
       loan = this.state.game.loanGames[0].endLoan != null;
     }
-    console.log(this.state.game);
-    console.log(loan);
     return (
       <Container text={loan ? "Wypożycz grę" : "Oddaj grę"}>
         <WithScannerGame
           value={!!this.state.game}
           game={this.state.game}
           onPress={() => {
-            this.props.propsStore.setTypeItem(1);
-            this.props.propsStore.setRouteName(Scenes.LoanGame);
+            Store.propsStore.setTypeItem(1);
+            Store.propsStore.setRouteName(Scenes.LoanGame);
             NavigationService.navigate(Scenes.Camera);
           }}
         />
@@ -63,8 +63,8 @@ class LoanGame extends Component<SceneProps, State> {
             user={this.state.user}
             value={!!this.state.user}
             onPress={() => {
-              this.props.propsStore.setTypeItem(2);
-              this.props.propsStore.setRouteName(Scenes.LoanGame);
+              Store.propsStore.setTypeItem(2);
+              Store.propsStore.setRouteName(Scenes.LoanGame);
               NavigationService.navigate(Scenes.Camera);
             }}
           />
@@ -90,12 +90,16 @@ class LoanGame extends Component<SceneProps, State> {
       }
       LoanGameApi.add(
         this.state.user.id,
-        this.props.authStore.id,
+        Store.authStore.id,
         this.state.game.id
       )
-        .then(item => {
-          Toast.show("Gra została wypożyczona.");
-          NavigationService.reset(Scenes.List);
+        .then(response => {
+          if (response.data.item) {
+            Toast.show("Gra została wypożyczona.");
+            NavigationService.reset(Scenes.List);
+          } else if (response.data.error) {
+            ErrorUtil.errorService(response.data.error);
+          }
         })
         .catch(error => {
           ErrorUtil.errorService(error);
@@ -108,10 +112,14 @@ class LoanGame extends Component<SceneProps, State> {
         );
       }
       const loanGame = this.state.game.loanGames[0];
-      LoanGameApi.edit(loanGame.id, this.props.authStore.id)
-        .then(item => {
-          Toast.show("Gra została oddana.");
-          NavigationService.reset(Scenes.List);
+      LoanGameApi.edit(loanGame.id, Store.authStore.id)
+        .then(response => {
+          if (response.data.item) {
+            Toast.show("Gra została oddana.");
+            NavigationService.reset(Scenes.List);
+          } else if (response.data.error) {
+            ErrorUtil.errorService(response.data.error);
+          }
         })
         .catch(error => {
           ErrorUtil.errorService(error);
