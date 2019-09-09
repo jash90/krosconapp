@@ -36,6 +36,7 @@ class ChangePassword extends Component<SceneProps, State> {
           <TextInput
             value={this.state.password}
             placeholder={"Hasło"}
+            secureTextEntry
             style={{ flex: 1, fontSize: 16 }}
             onChangeText={password => this.setState({ password })}
           />
@@ -44,6 +45,7 @@ class ChangePassword extends Component<SceneProps, State> {
           <TextInput
             value={this.state.repeatPassword}
             placeholder={"Powtórz hasło"}
+            secureTextEntry
             style={{ fontSize: 16 }}
             onChangeText={repeatPassword => this.setState({ repeatPassword })}
           />
