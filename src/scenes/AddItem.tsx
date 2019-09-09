@@ -96,30 +96,39 @@ class AddItem extends Component<SceneProps, State> {
         styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
-        {!Store.propsStore.game && (
-          <Dropdown
-            items={this.state.items}
-            value={this.state.selected}
-            onSelect={(item: any) => {
-              this.setState({ selected: item });
-            }}
-          />
-        )}
-        {this.state.selected === "Gra" && (
-          <WithScannerText
-            label={"UUID"}
-            text={Store.propsStore.code}
-            value={!!Store.propsStore.code}
-            onPress={() => {
-              if (!Store.propsStore.game) {
-                Store.propsStore.setTypeItem(3);
-                Store.propsStore.setRouteName(Scenes.AddItem);
-                NavigationService.navigate(Scenes.Camera);
-              }
-            }}
-          />
-        )}
         <View style={{ width: "100%", paddingHorizontal: 20 }}>
+          {!Store.propsStore.game && (
+            <Dropdown
+              items={this.state.items}
+              value={this.state.selected}
+              onSelect={(item: any) => {
+                this.setState({ selected: item });
+              }}
+            />
+          )}
+          {this.state.selected === "Gra" && (
+            <WithScannerText
+              label={"UUID"}
+              text={
+                Store.propsStore.game
+                  ? Store.propsStore.game.uuid
+                  : Store.propsStore.code
+              }
+              value={
+                Store.propsStore.game
+                  ? !!Store.propsStore.game.uuid
+                  : !!Store.propsStore.code
+              }
+              onPress={() => {
+                if (!Store.propsStore.game) {
+                  Store.propsStore.setTypeItem(3);
+                  Store.propsStore.setRouteName(Scenes.AddItem);
+                  NavigationService.navigate(Scenes.Camera);
+                }
+              }}
+            />
+          )}
+
           <RCView>
             <TextInput
               value={this.state.name}

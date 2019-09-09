@@ -20,9 +20,7 @@ export const withScanner = (WrappedComponent: any) => {
           {!value && <ScannerComponent {...this.props} />}
 
           {value && (
-            <TouchableOpacity {...this.props}>
               <WrappedComponent {...this.props} />
-            </TouchableOpacity>
           )}
         </>
       );

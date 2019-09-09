@@ -87,6 +87,7 @@ class Panel extends Component<SceneProps, State> {
   }
 
   addBoardGame = () => {
+    Store.propsStore.clearGame();
     NavigationService.navigate(Scenes.AddItem);
   };
 
