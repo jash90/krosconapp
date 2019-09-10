@@ -9,7 +9,7 @@ import {
   View
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { Button, ModalPickerPawn, ModalSingleList, ViewText } from ".";
+import { Button, ModalPickerPawn, ModalSingleList, ViewText, Input } from ".";
 import { PublisherApi } from "../api";
 import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
@@ -70,7 +70,6 @@ class Filter extends Component<Props, State> {
       <View style={{ width: "100%" }}>
         <View
           style={{
-            marginHorizontal: 20,
             marginVertical: 10,
             paddingHorizontal: 16,
             paddingVertical: 5,
@@ -203,6 +202,7 @@ class Filter extends Component<Props, State> {
             style={{
               width: "100%",
               height: "100%",
+       
               backgroundColor: "rgba(0,0,0,0.5)",
               justifyContent: "center",
               alignItems: "center"
@@ -216,19 +216,17 @@ class Filter extends Component<Props, State> {
                 justifyContent: "space-between",
                 backgroundColor: "#d2d2d2",
                 borderRadius: 20,
+                paddingHorizontal:20,
                 marginVertical: 10
               }}>
               <ScrollView
-                style={{ flex: 1, width: "100%", paddingHorizontal: 20 }}
+                style={{ flex: 1, width: "100%"}}
                 showsVerticalScrollIndicator={false}>
-                <RCView style={{ width: "100%" }}>
-                  <TextInput
-                    value={this.state.name}
-                    placeholder={"Nazwa gry planszowej"}
-                    style={{ flex: 1, fontSize: 16 }}
-                    onChangeText={(name: any) => this.setState({ name })}
-                  />
-                </RCView>
+                <Input
+                  value={this.state.name}
+                  placeholder={"Nazwa gry planszowej"}
+                  onChangeText={(name: any) => this.setState({ name })}
+                />
                 <ModalPickerPawn
                   minPlayers={this.state.minPlayers}
                   maxPlayers={this.state.maxPlayers}

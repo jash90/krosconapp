@@ -9,7 +9,7 @@ export default class PropsStore {
     @observable
     listgame = observable<Game>([])
     @observable
-    user: User | null = null;
+    user: User = new User();
     @observable
     code: string = "";
     @observable

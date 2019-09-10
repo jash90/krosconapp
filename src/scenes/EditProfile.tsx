@@ -1,9 +1,8 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { TextInput } from "react-native";
 import Toast from "react-native-simple-toast";
 import { UserApi } from "../api/index";
-import { Container } from "../components";
+import { Container, Input } from "../components";
 import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
@@ -52,38 +51,26 @@ class EditProfile extends Component<SceneProps, State> {
         icon={"save"}
         styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
-        <RCView>
-          <TextInput
-            value={this.state.firstname}
-            placeholder={"Imię"}
-            style={{ flex: 1, fontSize: 16 }}
-            onChangeText={firstname => this.setState({ firstname })}
-          />
-        </RCView>
-        <RCView>
-          <TextInput
-            value={this.state.lastname}
-            placeholder={"Nazwisko"}
-            style={{ flex: 1, fontSize: 16 }}
-            onChangeText={lastname => this.setState({ lastname })}
-          />
-        </RCView>
-        <RCView>
-          <TextInput
-            value={this.state.city}
-            placeholder={"Miasto"}
-            style={{ flex: 1, fontSize: 16 }}
-            onChangeText={city => this.setState({ city })}
-          />
-        </RCView>
-        <RCView>
-          <TextInput
-            value={String(this.state.age)}
-            placeholder={"Wiek"}
-            style={{ flex: 1, fontSize: 16 }}
-            onChangeText={age => this.setState({ age: Number(age) })}
-          />
-        </RCView>
+        <Input
+          value={this.state.firstname}
+          placeholder={"Imię"}
+          onChangeText={(firstname: any) => this.setState({ firstname })}
+        />
+        <Input
+          value={this.state.lastname}
+          placeholder={"Nazwisko"}
+          onChangeText={(lastname: any) => this.setState({ lastname })}
+        />
+        <Input
+          value={this.state.city}
+          placeholder={"Miasto"}
+          onChangeText={(city: any) => this.setState({ city })}
+        />
+        <Input
+          value={String(this.state.age)}
+          placeholder={"Wiek"}
+          onChangeText={(age: any) => this.setState({ age: Number(age) })}
+        />
       </Container>
     );
   }

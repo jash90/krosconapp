@@ -1,8 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { TextInput } from "react-native";
 import { AuthApi } from "../api";
-import { Container } from "../components";
+import { Container, Input } from "../components";
 import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
@@ -32,24 +31,18 @@ class ChangePassword extends Component<SceneProps, State> {
         icon={"save"}
         styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
-        <RCView>
-          <TextInput
+          <Input
             value={this.state.password}
             placeholder={"Hasło"}
             secureTextEntry
-            style={{ flex: 1, fontSize: 16 }}
             onChangeText={password => this.setState({ password })}
           />
-        </RCView>
-        <RCView>
-          <TextInput
+          <Input
             value={this.state.repeatPassword}
             placeholder={"Powtórz hasło"}
             secureTextEntry
-            style={{ fontSize: 16 }}
             onChangeText={repeatPassword => this.setState({ repeatPassword })}
           />
-        </RCView>
       </Container>
     );
   }

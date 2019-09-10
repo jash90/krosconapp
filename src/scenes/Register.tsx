@@ -1,9 +1,9 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { TextInput, View } from "react-native";
+import { View } from "react-native";
 import Toast from "react-native-simple-toast";
 import AuthApi from "../api/AuthApi";
-import { Button, Container, Logo } from "../components";
+import { Button, Container, Logo, Input } from "../components";
 import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
 import { SceneProps } from "../interfaces";
@@ -31,47 +31,29 @@ class Register extends Component<SceneProps, State> {
     return (
       <Container scrollView text={"Zarejestruj"}>
         <Logo size={50} />
-        <View style={{ flex: 1, paddingHorizontal: 20 }}>
-          <RCView>
-            <TextInput
-              value={this.state.firstname}
-              placeholder={"Imię"}
-              style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(firstname: any) => this.setState({ firstname })}
-            />
-          </RCView>
-
-          <RCView>
-            <TextInput
-              value={this.state.lastname}
-              placeholder={"Nazwisko"}
-              style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(lastname: any) => this.setState({ lastname })}
-            />
-          </RCView>
-
-          <RCView>
-            <TextInput
-              autoCapitalize={"none"}
-              value={this.state.email}
-              placeholder={"Email"}
-              style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(email: any) => this.setState({ email })}
-            />
-          </RCView>
-
-          <RCView>
-            <TextInput
-              autoCapitalize={"none"}
-              value={this.state.password}
-              placeholder={"Hasło"}
-              secureTextEntry
-              style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(password: any) => this.setState({ password })}
-            />
-          </RCView>
-        </View>
-
+          <Input
+            value={this.state.firstname}
+            placeholder={"Imię"}
+            onChangeText={(firstname: any) => this.setState({ firstname })}
+          />
+          <Input
+            value={this.state.lastname}
+            placeholder={"Nazwisko"}
+            onChangeText={(lastname: any) => this.setState({ lastname })}
+          />
+          <Input
+            autoCapitalize={"none"}
+            value={this.state.email}
+            placeholder={"Email"}
+            onChangeText={(email: any) => this.setState({ email })}
+          />
+          <Input
+            autoCapitalize={"none"}
+            value={this.state.password}
+            placeholder={"Hasło"}
+            secureTextEntry
+            onChangeText={(password: any) => this.setState({ password })}
+          />
         <Button
           primary
           color={"black"}
@@ -98,7 +80,7 @@ class Register extends Component<SceneProps, State> {
         if (response.data.item) {
           Toast.show(`Utworzyłeś konto ${this.state.email}.`);
           NavigationService.navigate(Scenes.Login);
-        }else if (response.data.error){
+        } else if (response.data.error) {
           Toast.show(`Nie udało się utworzyć konta`);
           ErrorUtil.errorService(response.data.error);
         }
@@ -108,4 +90,4 @@ class Register extends Component<SceneProps, State> {
       });
   }
 }
-export default inject("authStore","propsStore")(observer(Register));
+export default inject("authStore", "propsStore")(observer(Register));

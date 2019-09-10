@@ -9,7 +9,8 @@ import {
   ModalMultiList,
   ModalPickerPawn,
   ModalSingleList,
-  ViewText
+  ViewText,
+  Input
 } from "../components";
 import { RCView } from "../components/StyledComponent";
 import { withScanner } from "../components/withScanner";
@@ -96,8 +97,8 @@ class AddItem extends Component<SceneProps, State> {
         styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
-        <View style={{ width: "100%", paddingHorizontal: 20 }}>
-          {!Store.propsStore.game && (
+        <View style={{ width: "100%"}}>
+          {Store.propsStore.game.id === 0 && (
             <Dropdown
               items={this.state.items}
               value={this.state.selected}
@@ -129,25 +130,18 @@ class AddItem extends Component<SceneProps, State> {
             />
           )}
 
-          <RCView>
-            <TextInput
+            <Input
               value={this.state.name}
               placeholder={"Nazwa"}
-              style={{ flex: 1, fontSize: 16 }}
-              onChangeText={name => this.setState({ name })}
+              onChangeText={(name:any) => this.setState({ name })}
             />
-          </RCView>
           {this.state.selected === "Gra" && (
-            <RCView
-              style={{ height: 100, alignItems: "flex-start", paddingTop: 5 }}>
-              <TextInput
+              <Input
                 value={this.state.description}
                 placeholder={"Opis gry"}
                 multiline
-                style={{ flex: 1, fontSize: 16 }}
                 onChangeText={description => this.setState({ description })}
               />
-            </RCView>
           )}
           {this.state.selected === "Gra" && (
             <ModalPickerPawn

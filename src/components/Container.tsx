@@ -103,7 +103,8 @@ class Container extends Component<ContainerProps, State> {
 var styles = StyleSheet.create({
   fullStyle: {
     flex: 1,
-    backgroundColor: Color.primaryColor
+    backgroundColor: Color.primaryColor,
+    paddingHorizontal:20
   },
   absolute: {
     alignSelf: "center",

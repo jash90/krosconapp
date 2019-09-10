@@ -29,10 +29,10 @@ class LoanGame extends Component<SceneProps, State> {
 
   componentWillMount() {
     const game = Store.propsStore.game;
-    if (!!game) this.setState({ game });
+    if (Store.propsStore.game.id > 0) this.setState({ game });
 
     const user = Store.propsStore.user;
-    if (!!user) this.setState({ user });
+    if (Store.propsStore.user.id > 0) this.setState({ user });
   }
 
   render() {
@@ -48,7 +48,7 @@ class LoanGame extends Component<SceneProps, State> {
       loan = this.state.game.loanGames[0].endLoan != null;
     }
     return (
-      <Container text={loan ? "Wypożycz grę" : "Oddaj grę"}>
+      <Container text={loan ? "Wypożycz grę" : "Oddaj grę"} styleContent={{paddingHorizontal:20,}}>
         <WithScannerGame
           value={!!this.state.game}
           game={this.state.game}

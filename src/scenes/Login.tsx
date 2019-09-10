@@ -1,11 +1,11 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { AsyncStorage, StyleSheet, TextInput, View } from "react-native";
+import { AsyncStorage, StyleSheet, View } from "react-native";
 import Toast from "react-native-simple-toast";
 import AuthApi from "../api/AuthApi";
 import axios from "../Axios";
 import Color from "../Color";
-import { Button, Container, Logo } from "../components";
+import { Button, Container, Logo, Input } from "../components";
 import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
 import NavigationService from "../NavigationService";
@@ -16,13 +16,17 @@ import Store from "../stores";
 interface State {
   email: string;
   password: string;
+  errorPassword: boolean;
+  errorEmail: boolean;
 }
 class Login extends Component<SceneProps, State> {
   constructor(props: SceneProps) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errorPassword: false,
+      errorEmail: false
     };
   }
   render() {
@@ -36,29 +40,24 @@ class Login extends Component<SceneProps, State> {
         icon={"person-add"}
         text={"Zaloguj"}
         onPress={() => NavigationService.navigate(Scenes.Register)}>
-        <View style={{ flex: 1, paddingHorizontal: 20 }}>
-          <Logo size={150} />
-          <RCView>
-            <TextInput
-              autoCapitalize={"none"}
-              value={this.state.email}
-              placeholder={"Email"}
-              style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(email: any) => this.setState({ email })}
-            />
-          </RCView>
-          <RCView>
-            <TextInput
-              autoCapitalize={"none"}
-              value={this.state.password}
-              placeholder={"Hasło"}
-              secureTextEntry
-              style={{ flex: 1, fontSize: 16 }}
-              onChangeText={(password: any) => this.setState({ password })}
-            />
-          </RCView>
-        </View>
-
+        <Logo size={150} />
+        <Input
+          autoCapitalize={"none"}
+          value={this.state.email}
+          placeholder={"Email"}
+          error={this.state.errorEmail}
+          errorText={"Podaj email"}
+          onChangeText={(email: any) => this.setState({ email })}
+        />
+        <Input
+          autoCapitalize={"none"}
+          value={this.state.password}
+          placeholder={"Hasło"}
+          secureTextEntry
+          errorText={"Podaj hasło"}
+          error={this.state.errorPassword}
+          onChangeText={(password: any) => this.setState({ password })}
+        />
         <Button
           primary
           color={Color.accentColor}
@@ -72,8 +71,9 @@ class Login extends Component<SceneProps, State> {
 
   login = async () => {
     const { email, password } = this.state;
+    this.setState({ errorPassword: !password, errorEmail: !email });
     if (!email || !password) {
-      if (!email && !email) {
+      if (!email && !password) {
         Toast.show("Podaj email i hasło!");
       } else if (!email) {
         Toast.show("Podaj email!");

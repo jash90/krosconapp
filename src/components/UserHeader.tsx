@@ -32,10 +32,9 @@ export default class UserHeader extends Component<Props> {
       <View
         style={{
           backgroundColor: "white",
-          padding: 10,
-          paddingHorizontal: 20,
-          margin: 10,
-          marginHorizontal: 20,
+          paddingVertical: 10,
+          paddingHorizontal:20,
+          marginVertical:10,
           borderRadius: 20
         }}>
         <View style={{ flexDirection: "row" }}>
