@@ -9,6 +9,4 @@ target 'krosconApp' do
   pod 'Fabric'
   pod 'Crashlytics'
 
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
-
 end

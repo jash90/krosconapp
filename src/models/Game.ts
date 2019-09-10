@@ -1,4 +1,4 @@
-import { Publisher, Type, Mechanic } from ".";
+import { Publisher, Type, Mechanic, LoanGame } from ".";
 export default class Game {
     public id: number = 0;
     public uuid: string = "";
@@ -9,8 +9,9 @@ export default class Game {
     public minAge: number = 0;
     public description: string = "";
     public publisher: Publisher = new Publisher();
-    public types: Type[] | null = null;
-    public mechanics: Mechanic[] | null = null;
+    public loanGames: LoanGame[] = []; 
+    public types: Type[]  = [];
+    public mechanics: Mechanic[] = [];
 
     public Game() {
         this.id = 0;

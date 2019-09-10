@@ -7,21 +7,27 @@ import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
+import { Game } from "../models";
+import { RCView } from "../components/StyledComponent";
+//import Moment from "moment";
+import Moment from 'moment/min/moment-with-locales';
 interface Props extends SceneProps {
   item: any;
 }
 class BoardGame extends Component<Props> {
-
-  componentWillUnmount(){
+  componentWillUnmount() {
     Store.propsStore.clearGame();
   }
 
   render() {
-    const item = Store.propsStore.game;
+    const game: Game = Store.propsStore.game;
+    let loanGame = null;
+    if (game && game.loanGames && game.loanGames.length > 0)
+      loanGame = game.loanGames[0];
     return (
-      <Container scrollView text={String(item.name)}>
-        <GameHeader game={item} />
-        {!!item && !!item.description && (
+      <Container scrollView text={String(game.name)}>
+        <GameHeader game={game} />
+        {!!game && !!game.description && (
           <View
             style={{
               flex: 1,
@@ -32,10 +38,10 @@ class BoardGame extends Component<Props> {
               marginBottom: 10,
               marginHorizontal: 20
             }}>
-            <Text>{item.description}</Text>
+            <Text>{game.description}</Text>
           </View>
         )}
-        {false && !!item.boardGameTypes.length && (
+        {false && !!game.boardGameTypes.length && (
           <View
             style={{
               flex: 1,
@@ -48,7 +54,7 @@ class BoardGame extends Component<Props> {
             }}>
             <Text>Typ</Text>
             <FlatList
-              data={item.boardGameTypes.map((bgt: any) => bgt.type.name)}
+              data={game.boardGameTypes.map((bgt: any) => bgt.type.name)}
               horizontal
               contentContainerStyle={{
                 flex: 1,
@@ -70,7 +76,7 @@ class BoardGame extends Component<Props> {
             />
           </View>
         )}
-        {false && !!item.boardGameMechanics.length && (
+        {false && !!game.boardGameMechanics.length && (
           <View
             style={{
               flex: 1,
@@ -83,7 +89,7 @@ class BoardGame extends Component<Props> {
             }}>
             <Text>Mechanika</Text>
             <FlatList
-              data={item.boardGameMechanics.map((bgt: any) => bgt.type.name)}
+              data={game.boardGameMechanics.map((bgt: any) => bgt.type.name)}
               horizontal
               contentContainerStyle={{
                 flex: 1,
@@ -104,6 +110,11 @@ class BoardGame extends Component<Props> {
               )}
             />
           </View>
+        )}
+        {loanGame && !loanGame.endLoan && (
+          <RCView marginLeft={20} marginRight={20}>
+            <Text>Wypożyczona: {Moment(loanGame.startLoan).locale('pl').fromNow()}</Text>
+          </RCView>
         )}
         {Store.authStore.privilegeId > 1 && (
           <Button

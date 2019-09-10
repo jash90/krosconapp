@@ -10,6 +10,7 @@ import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
+import Moment from "moment";
 
 class LoadingScreen extends Component<SceneProps> {
   componentDidMount = async () => {
@@ -18,7 +19,7 @@ class LoadingScreen extends Component<SceneProps> {
       if (value !== null) {
         let user = JSON.parse(value);
         Store.authStore.setUser(user);
-        axios.defaults.headers.common['authorization'] = String(user.token);
+        axios.defaults.headers.common["authorization"] = String(user.token);
       }
     } catch (error) {
       Toast.show(error);
@@ -74,4 +75,4 @@ class LoadingScreen extends Component<SceneProps> {
     );
   }
 }
-export default inject("authStore","propsStore")(observer(LoadingScreen));
+export default inject("authStore", "propsStore")(observer(LoadingScreen));

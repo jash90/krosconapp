@@ -5,7 +5,7 @@ import TypeItem from "../TypeItem";
 
 export default class PropsStore {
     @observable
-    game: Game | null = null;
+    game: Game= new Game();
     @observable
     listgame = observable<Game>([])
     @observable
@@ -17,7 +17,7 @@ export default class PropsStore {
     @observable
     typeItem: TypeItem = TypeItem.User;
 
-    @action setGame(game: Game | null) {
+    @action setGame(game: Game) {
         this.game = game;
     }
 
@@ -34,7 +34,7 @@ export default class PropsStore {
     }
 
     @action clearGame() {
-        this.game = null;
+        this.game = new Game();
     }
 
     @action clearListGame() {
