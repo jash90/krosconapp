@@ -18,6 +18,8 @@ interface State {
   id: number;
 }
 class EditProfile extends Component<SceneProps, State> {
+  public firstname: any;
+  public lastname: any;
   constructor(props: SceneProps) {
     super(props);
     this.state = {
@@ -52,13 +54,19 @@ class EditProfile extends Component<SceneProps, State> {
         styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
         <Input
+          ref={ref => (this.firstname = ref)}
           value={this.state.firstname}
           placeholder={"Imię"}
+          error={this.state.firstname.length === 0}
+          errorText={"Podaj imię"}
           onChangeText={(firstname: any) => this.setState({ firstname })}
         />
         <Input
+          ref={ref => (this.lastname = ref)}
           value={this.state.lastname}
           placeholder={"Nazwisko"}
+          error={this.state.lastname.length === 0}
+          errorText={"Podaj nazwisko"}
           onChangeText={(lastname: any) => this.setState({ lastname })}
         />
         <Input
@@ -76,6 +84,7 @@ class EditProfile extends Component<SceneProps, State> {
   }
   save = () => {
     const { firstname, lastname, city, age, id } = this.state;
+    Input.validate([this.firstname, this.lastname]);
     if (!firstname) {
       Toast.show("Wpisz imię");
       return;

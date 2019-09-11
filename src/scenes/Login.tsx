@@ -20,6 +20,8 @@ interface State {
   errorEmail: boolean;
 }
 class Login extends Component<SceneProps, State> {
+  public loginInput: Input | null | undefined;
+  public passwordInput: Input | null | undefined;
   constructor(props: SceneProps) {
     super(props);
     this.state = {
@@ -42,14 +44,16 @@ class Login extends Component<SceneProps, State> {
         onPress={() => NavigationService.navigate(Scenes.Register)}>
         <Logo size={150} />
         <Input
+          ref={ref => (this.loginInput = ref)}
           autoCapitalize={"none"}
           value={this.state.email}
           placeholder={"Email"}
-          error={this.state.errorEmail}
+          error={this.state.email.length === 0}
           errorText={"Podaj email"}
           onChangeText={(email: any) => this.setState({ email })}
         />
         <Input
+          ref={ref => (this.passwordInput = ref)}
           autoCapitalize={"none"}
           value={this.state.password}
           placeholder={"Hasło"}
@@ -71,15 +75,13 @@ class Login extends Component<SceneProps, State> {
 
   login = async () => {
     const { email, password } = this.state;
-    this.setState({ errorPassword: !password, errorEmail: !email });
-    if (!email || !password) {
-      if (!email && !password) {
-        Toast.show("Podaj email i hasło!");
-      } else if (!email) {
-        Toast.show("Podaj email!");
-      } else {
-        Toast.show("Podaj hasło!");
-      }
+    Input.validate([this.loginInput, this.passwordInput]);
+    if (!email) {
+      Toast.show("Podaj email");
+      return;
+    }
+    if (!password) {
+      Toast.show("Podaj hasło");
       return;
     }
     AuthApi.login(this.state.email, this.state.password)

@@ -15,6 +15,8 @@ interface State {
   repeatPassword: string;
 }
 class ChangePassword extends Component<SceneProps, State> {
+  public password: any;
+  public repeatPassword: any;
   constructor(props: SceneProps) {
     super(props);
     this.state = {
@@ -31,22 +33,38 @@ class ChangePassword extends Component<SceneProps, State> {
         icon={"save"}
         styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
-          <Input
-            value={this.state.password}
-            placeholder={"Hasło"}
-            secureTextEntry
-            onChangeText={password => this.setState({ password })}
-          />
-          <Input
-            value={this.state.repeatPassword}
-            placeholder={"Powtórz hasło"}
-            secureTextEntry
-            onChangeText={repeatPassword => this.setState({ repeatPassword })}
-          />
+        <Input
+          ref={ref => (this.password = ref)}
+          value={this.state.password}
+          placeholder={"Hasło"}
+          secureTextEntry
+          error={this.state.password.length < 5}
+          errorText={"Hasło musi składać się z 5 znaków"}
+          onChangeText={password => this.setState({ password })}
+        />
+        <Input
+          ref={ref => (this.repeatPassword = ref)}
+          value={this.state.repeatPassword}
+          placeholder={"Powtórz hasło"}
+          secureTextEntry
+          error={this.state.repeatPassword.length < 5}
+          errorText={"Hasła muszą być takie same"}
+          onChangeText={repeatPassword => this.setState({ repeatPassword })}
+        />
       </Container>
     );
   }
   save = () => {
+    const { password, repeatPassword } = this.state;
+    Input.validate([this.password, this.repeatPassword]);
+    if (!password) {
+      Toast.show("Hasło musi składać się z 5 znaków");
+      return;
+    }
+    if (!repeatPassword) {
+      Toast.show("Hasła muszą być takie same");
+      return;
+    }
     AuthApi.changePassword(Store.authStore.id, this.state.password)
       .then(response => {
         if (response.data.item) {
