@@ -9,6 +9,7 @@ import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
+import { Alert } from "react-native";
 
 interface State {
   firstname: string;
@@ -93,23 +94,39 @@ class EditProfile extends Component<SceneProps, State> {
       Toast.show("Wpisz nazwisko");
       return;
     }
-    UserApi.edit(firstname, lastname, city, age, id)
-      .then(response => {
-        if (response.data.item) {
-          Store.authStore.setFirstname(firstname);
-          Store.authStore.setLastname(lastname);
-          Store.authStore.setCity(city);
-          Store.authStore.setAge(age);
-          NavigationService.navigate(Scenes.List);
-          Toast.show("Zapisano");
-        } else if (response.data.error) {
-          ErrorUtil.errorService(response.data.error);
-        }
-      })
-      .catch(error => {
-        ErrorUtil.errorService(error);
-      });
+    Alert.alert(
+      "Edycja użytkownika",
+      `Czy chcesz zmienić swoje dane ?`,
+      [
+        {
+          text: "Nie",
+          style: "cancel"
+        },
+        { text: "Tak", onPress: () => this.userEdit() }
+      ],
+      { cancelable: false }
+    );
   };
+
+  userEdit(){
+    const { firstname, lastname, city, age, id } = this.state;
+    UserApi.edit(firstname, lastname, city, age, id)
+    .then(response => {
+      if (response.data.item) {
+        Store.authStore.setFirstname(firstname);
+        Store.authStore.setLastname(lastname);
+        Store.authStore.setCity(city);
+        Store.authStore.setAge(age);
+        NavigationService.navigate(Scenes.List);
+        Toast.show("Zapisano");
+      } else if (response.data.error) {
+        ErrorUtil.errorService(response.data.error);
+      }
+    })
+    .catch(error => {
+      ErrorUtil.errorService(error);
+    });
+  }
 
   createArray(count: number, max: number) {
     let active: any[] = new Array(count).fill(true);

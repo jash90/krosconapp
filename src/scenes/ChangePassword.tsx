@@ -9,6 +9,7 @@ import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Toast from "react-native-simple-toast";
 import Store from "../stores";
+import { Alert } from "react-native";
 
 interface State {
   password: string;
@@ -65,6 +66,20 @@ class ChangePassword extends Component<SceneProps, State> {
       Toast.show("Hasła muszą być takie same");
       return;
     }
+    Alert.alert(
+      "Zmiana hasła użytkownika",
+      `Czy chcesz zmienić hasło ?`,
+      [
+        {
+          text: "Nie",
+          style: "cancel"
+        },
+        { text: "Tak", onPress: () => this.changePassword() }
+      ],
+      { cancelable: false }
+    );
+  };
+  changePassword() {
     AuthApi.changePassword(Store.authStore.id, this.state.password)
       .then(response => {
         if (response.data.item) {
@@ -76,6 +91,6 @@ class ChangePassword extends Component<SceneProps, State> {
       .catch(error => {
         ErrorUtil.errorService(error);
       });
-  };
+  }
 }
 export default inject("authStore", "propsStore")(observer(ChangePassword));

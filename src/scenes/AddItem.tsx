@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, Alert } from "react-native";
 import Toast from "react-native-simple-toast";
 import { BoardGameApi, PublisherApi } from "../api";
 import {
@@ -21,6 +21,7 @@ import Scenes from "../Scenes";
 const WithScannerText = withScanner(ViewText);
 import Store from "../stores";
 import TinyInput from "../components/TinyInput";
+import { Game, Publisher } from "../models";
 interface State {
   name: string;
   minPlayers: number;
@@ -250,8 +251,7 @@ class AddItem extends Component<SceneProps, State> {
       publisher
     } = this.state;
 
-    let game = null;
-    game = Store.propsStore.game;
+    let game = Store.propsStore.game;
     if (this.state.selected === "Gra" && !game) {
       ModalPickerPawn.validate(this.modalPickerPawn);
       ModalSingleList.validate(this.modalSingleList);
@@ -286,27 +286,18 @@ class AddItem extends Component<SceneProps, State> {
         Toast.show("Wybierz wydawcę");
         return;
       }
-      BoardGameApi.add(
-        name,
-        uuid,
-        description,
-        minPlayers,
-        maxPlayers,
-        Number(playingTime),
-        Number(minAge),
-        publisher.id
-      )
-        .then(response => {
-          if (response.data.item) {
-            Toast.show("Zapisano");
-          } else if (response.data.error) {
-            ErrorUtil.errorService(response.data.error);
-          }
-          Store.propsStore.setCode("");
-        })
-        .catch(error => {
-          ErrorUtil.errorService(error);
-        });
+      Alert.alert(
+        "Dodawanie Gry",
+        `Czy chcesz dodać grę ${name} ?`,
+        [
+          {
+            text: "Nie",
+            style: "cancel"
+          },
+          { text: "Tak", onPress: () => this.boardGameAdd() }
+        ],
+        { cancelable: false }
+      );
     }
 
     if (this.state.selected === "Gra" && !!game) {
@@ -343,51 +334,128 @@ class AddItem extends Component<SceneProps, State> {
         Toast.show("Wybierz wydawcę");
         return;
       }
-      BoardGameApi.edit(
-        name,
-        uuid,
-        description,
-        minPlayers,
-        maxPlayers,
-        Number(playingTime),
-        Number(minAge),
-        publisher.id,
-        game.id
-      )
-        .then(response => {
-          if (response.data.item) {
-            Toast.show("Zapisano");
-          } else if (response.data.error) {
-            ErrorUtil.errorService(response.data.error);
-          }
-          Store.propsStore.setCode("");
-        })
-        .catch(error => {
-          ErrorUtil.errorService(error);
-        });
+      Alert.alert(
+        "Edycja Gry",
+        `Czy chcesz zmienić grę ${name} ?`,
+        [
+          {
+            text: "Nie",
+            style: "cancel"
+          },
+          { text: "Tak", onPress: () => this.boardGameEdit() }
+        ],
+        { cancelable: false }
+      );
     }
     if (this.state.selected === "Wydawca") {
       if (!name && name.length < 1) {
         Toast.show("Uzupełnij nazwę");
         return;
       }
-      PublisherApi.add(name)
-        .then(response => {
-          if (response.data.item) {
-            Toast.show("Zapisano");
-          } else if (response.data.error) {
-            ErrorUtil.errorService(response.data.error);
-          }
-        })
-        .catch(error => {
-          ErrorUtil.errorService(error);
-        });
+      Alert.alert(
+        "Dodawanie Wydawcy",
+        `Czy chcesz dodać wydawcę ${name} ?`,
+        [
+          {
+            text: "Nie",
+            style: "cancel"
+          },
+          { text: "Tak", onPress: () => this.publisherAdd() }
+        ],
+        { cancelable: false }
+      );
     }
   };
+
   createArray(count: number, max: number) {
     let active: any[] = new Array(count).fill(true);
     let disactive: any[] = new Array(max - count).fill(false);
     return active.concat(disactive);
+  }
+
+  publisherAdd() {
+    const { name } = this.state;
+    PublisherApi.add(name)
+      .then(response => {
+        if (response.data.item) {
+          Toast.show("Zapisano");
+        } else if (response.data.error) {
+          ErrorUtil.errorService(response.data.error);
+        }
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
+  }
+
+  boardGameEdit = () => {
+    let game = Store.propsStore.game;
+    const {
+      name,
+      uuid,
+      description,
+      minPlayers,
+      maxPlayers,
+      playingTime,
+      minAge,
+      publisher
+    } = this.state;
+    BoardGameApi.edit(
+      name,
+      uuid,
+      description,
+      minPlayers,
+      maxPlayers,
+      Number(playingTime),
+      Number(minAge),
+      publisher.id,
+      game.id
+    )
+      .then(response => {
+        if (response.data.item) {
+          Toast.show("Zapisano");
+        } else if (response.data.error) {
+          ErrorUtil.errorService(response.data.error);
+        }
+        Store.propsStore.setCode("");
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
+  };
+
+  boardGameAdd() {
+    const {
+      name,
+      uuid,
+      description,
+      minPlayers,
+      maxPlayers,
+      playingTime,
+      minAge,
+      publisher
+    } = this.state;
+    BoardGameApi.add(
+      name,
+      uuid,
+      description,
+      minPlayers,
+      maxPlayers,
+      Number(playingTime),
+      Number(minAge),
+      publisher.id
+    )
+      .then(response => {
+        if (response.data.item) {
+          Toast.show("Zapisano");
+        } else if (response.data.error) {
+          ErrorUtil.errorService(response.data.error);
+        }
+        Store.propsStore.setCode("");
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
   }
 }
 export default inject("authStore", "propsStore")(observer(AddItem));

@@ -10,6 +10,7 @@ import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
+import { Alert } from "react-native";
 
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);
@@ -50,14 +51,14 @@ class LoanGame extends Component<SceneProps, State> {
       loan = this.state.game.loanGames[0].endLoan != null;
     }
     return (
-      <Container text={loan ? "Wypożycz grę" : "Oddaj grę"} styleContent={{paddingHorizontal:20,}}>
+      <Container
+        text={loan ? "Wypożycz grę" : "Oddaj grę"}
+        styleContent={{ paddingHorizontal: 20 }}>
         <WithScannerGame
-         ref={ref=>this.game=ref}
+          ref={ref => (this.game = ref)}
           value={!!this.state.game}
           game={this.state.game}
-          error={
-            !this.state.game
-          }
+          error={!this.state.game}
           onPress={() => {
             Store.propsStore.setTypeItem(1);
             Store.propsStore.setRouteName(Scenes.LoanGame);
@@ -66,12 +67,10 @@ class LoanGame extends Component<SceneProps, State> {
         />
         {loan && (
           <WithScannerUser
-          ref={ref=>this.user=ref}
+            ref={ref => (this.user = ref)}
             user={this.state.user}
             value={!!this.state.user}
-            error={
-              !this.state.user
-            }
+            error={!this.state.user}
             onPress={() => {
               Store.propsStore.setTypeItem(2);
               Store.propsStore.setRouteName(Scenes.LoanGame);
@@ -100,22 +99,18 @@ class LoanGame extends Component<SceneProps, State> {
         );
         return;
       }
-      LoanGameApi.add(
-        this.state.user.id,
-        Store.authStore.id,
-        this.state.game.id
-      )
-        .then(response => {
-          if (response.data.item) {
-            Toast.show("Gra została wypożyczona.");
-            NavigationService.reset(Scenes.List);
-          } else if (response.data.error) {
-            ErrorUtil.errorService(response.data.error);
-          }
-        })
-        .catch(error => {
-          ErrorUtil.errorService(error);
-        });
+      Alert.alert(
+        "Wypożycz/Oddaj grę",
+        `Czy chcesz wypożyczyć grę ?`,
+        [
+          {
+            text: "Nie",
+            style: "cancel"
+          },
+          { text: "Tak", onPress: () => this.loanGame() }
+        ],
+        { cancelable: false }
+      );
     } else {
       const { game } = this.state;
       if (!game) {
@@ -123,20 +118,50 @@ class LoanGame extends Component<SceneProps, State> {
           "Musisz zeskanować kod qr użytkownika i/lub kod gry, żeby wypożyczyć grę."
         );
       }
-      const loanGame = this.state.game.loanGames[0];
-      LoanGameApi.edit(loanGame.id, Store.authStore.id)
-        .then(response => {
-          if (response.data.item) {
-            Toast.show("Gra została oddana.");
-            NavigationService.reset(Scenes.List);
-          } else if (response.data.error) {
-            ErrorUtil.errorService(response.data.error);
-          }
-        })
-        .catch(error => {
-          ErrorUtil.errorService(error);
-        });
+      Alert.alert(
+        "Wypożycz/Oddaj grę",
+        `Czy chcesz wypożyczyć grę ?`,
+        [
+          {
+            text: "Nie",
+            style: "cancel"
+          },
+          { text: "Tak", onPress: () => this.takeGame() }
+        ],
+        { cancelable: false }
+      );
     }
   };
+
+  loanGame() {
+    LoanGameApi.add(this.state.user.id, Store.authStore.id, this.state.game.id)
+      .then(response => {
+        if (response.data.item) {
+          Toast.show("Gra została wypożyczona.");
+          NavigationService.reset(Scenes.List);
+        } else if (response.data.error) {
+          ErrorUtil.errorService(response.data.error);
+        }
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
+  }
+
+  takeGame() {
+    const loanGame = this.state.game.loanGames[0];
+    LoanGameApi.edit(loanGame.id, Store.authStore.id)
+      .then(response => {
+        if (response.data.item) {
+          Toast.show("Gra została oddana.");
+          NavigationService.reset(Scenes.List);
+        } else if (response.data.error) {
+          ErrorUtil.errorService(response.data.error);
+        }
+      })
+      .catch(error => {
+        ErrorUtil.errorService(error);
+      });
+  }
 }
 export default inject("authStore", "propsStore")(observer(LoanGame));
