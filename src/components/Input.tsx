@@ -65,12 +65,13 @@ export default class Input extends Component<Props, State> {
           onChangeText={this.onChangeText}
           value={this.props.value}
           multiline={this.props.multiline}
-          style={{
+          style={[this.props.style,{
+            flex:1,
             fontSize: 16,
             paddingTop:
               this.props.value && this.props.value.length > 0 ? 0 : 18.7,
             paddingBottom: this.props.error && this.state.validate ? 0 : 18.7
-          }}
+          }]}
         />
         {this.props.error && this.state.validate && (
           <Text style={{ fontSize: 12, color: "red", paddingVertical: 2 }}>
@@ -85,7 +86,3 @@ export default class Input extends Component<Props, State> {
     if (this.props.onChangeText) this.props.onChangeText(text);
   };
 }
-
-const styles = StyleSheet.create({
-  textInputStyle: {}
-});

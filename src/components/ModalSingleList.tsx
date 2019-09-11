@@ -19,20 +19,37 @@ interface Props {
 interface State {
   modal: boolean;
   value: string;
+  validate: boolean;
 }
 class ModalSingleList extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       modal: false,
-      value: ""
+      value: "",
+      validate: false
     };
   }
+
+  public validate() {
+    this.setState({ validate: true });
+  }
+
+  public static validate(ref: any) {
+    if (ref) ref.validate();
+  }
+
   render() {
     return (
       <View style={{ width: "100%" }}>
         <ViewText
           label={"Wydawca"}
+          error={
+            (!this.props.value ||
+              !this.props.value.name ||
+              this.props.value.name.length === 0) &&
+            this.state.validate
+          }
           text={`${this.props.value.name ? this.props.value.name : ""}`}
           onPress={() => this.setState({ modal: true })}
         />
@@ -108,7 +125,7 @@ class ModalSingleList extends Component<Props, State> {
       <TouchableOpacity
         onPress={() => {
           this.props.onChangeValue(item);
-          this.setState({ modal: false });
+          this.setState({ modal: false, validate: true });
         }}>
         <RCView
           style={{

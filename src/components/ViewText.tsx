@@ -4,6 +4,7 @@ import { RCText, RCView } from "./StyledComponent";
 interface Props {
   label: string;
   text: string;
+  error?: boolean;
   onPress?: any;
   onlyText?: boolean;
   withOutClick?: boolean;
@@ -11,15 +12,34 @@ interface Props {
 export default class ViewText extends Component<Props> {
   render() {
     if (this.props.onlyText) {
-      return <View>{this.renderText()}</View>;
+      return (
+        <View
+          style={
+            this.props.error ? { borderColor: "red", borderWidth: 1 } : {}
+          }>
+          {this.renderText()}
+        </View>
+      );
     }
     if (this.props.withOutClick) {
-      return <RCView>{this.renderText()}</RCView>;
+      return (
+        <RCView
+          style={
+            this.props.error ? { borderColor: "red", borderWidth: 1 } : {}
+          }>
+          {this.renderText()}
+        </RCView>
+      );
     }
     if (!this.props.onlyText && !this.props.withOutClick) {
       return (
         <TouchableHighlight onPress={this.props.onPress}>
-          <RCView>{this.renderText()}</RCView>
+          <RCView
+            style={
+              this.props.error ? { borderColor: "red", borderWidth: 1 } : {}
+            }>
+            {this.renderText()}
+          </RCView>
         </TouchableHighlight>
       );
     }

@@ -49,7 +49,7 @@ class Login extends Component<SceneProps, State> {
           value={this.state.email}
           placeholder={"Email"}
           error={this.state.email.length === 0}
-          errorText={"Podaj email"}
+          errorText={"Uzupełnij email"}
           onChangeText={(email: any) => this.setState({ email })}
         />
         <Input
@@ -58,7 +58,7 @@ class Login extends Component<SceneProps, State> {
           value={this.state.password}
           placeholder={"Hasło"}
           secureTextEntry
-          errorText={"Podaj hasło"}
+          errorText={"Uzupełnij hasło"}
           error={this.state.errorPassword}
           onChangeText={(password: any) => this.setState({ password })}
         />
@@ -77,11 +77,11 @@ class Login extends Component<SceneProps, State> {
     const { email, password } = this.state;
     Input.validate([this.loginInput, this.passwordInput]);
     if (!email) {
-      Toast.show("Podaj email");
+      Toast.show("Uzupełnij email");
       return;
     }
     if (!password) {
-      Toast.show("Podaj hasło");
+      Toast.show("Uzupełnij hasło");
       return;
     }
     AuthApi.login(this.state.email, this.state.password)

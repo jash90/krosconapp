@@ -58,7 +58,7 @@ class EditProfile extends Component<SceneProps, State> {
           value={this.state.firstname}
           placeholder={"Imię"}
           error={this.state.firstname.length === 0}
-          errorText={"Podaj imię"}
+          errorText={"Uzupełnij imię"}
           onChangeText={(firstname: any) => this.setState({ firstname })}
         />
         <Input
@@ -66,7 +66,7 @@ class EditProfile extends Component<SceneProps, State> {
           value={this.state.lastname}
           placeholder={"Nazwisko"}
           error={this.state.lastname.length === 0}
-          errorText={"Podaj nazwisko"}
+          errorText={"Uzupełnij nazwisko"}
           onChangeText={(lastname: any) => this.setState({ lastname })}
         />
         <Input

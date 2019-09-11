@@ -4,13 +4,16 @@ import { RCView } from "./StyledComponent";
 interface Props {
   value: any[];
   onPress: any;
+  error?:boolean;
 }
 class ScannerComponent extends Component<Props> {
   render() {
     return (
       <TouchableOpacity
         onPress={this.props.onPress}>
-        <RCView>
+        <RCView style={
+            this.props.error ? { borderColor: "red", borderWidth: 1 } : {}
+          }>
           <Text
             style={{
               fontSize: 16

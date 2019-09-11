@@ -20,6 +20,7 @@ import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 const WithScannerText = withScanner(ViewText);
 import Store from "../stores";
+import TinyInput from "../components/TinyInput";
 interface State {
   name: string;
   minPlayers: number;
@@ -37,6 +38,12 @@ interface State {
   items: string[];
 }
 class AddItem extends Component<SceneProps, State> {
+  public name: any;
+  public modalSingleList: any;
+  public modalPickerPawn: any;
+  public withScannerText: any;
+  public playingTime: any;
+  public minAge: any;
   constructor(props: SceneProps) {
     super(props);
     this.state = {
@@ -97,7 +104,7 @@ class AddItem extends Component<SceneProps, State> {
         styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
-        <View style={{ width: "100%"}}>
+        <View style={{ width: "100%" }}>
           {Store.propsStore.game.id === 0 && (
             <Dropdown
               items={this.state.items}
@@ -109,11 +116,17 @@ class AddItem extends Component<SceneProps, State> {
           )}
           {this.state.selected === "Gra" && (
             <WithScannerText
+              ref={ref => (this.withScannerText = ref)}
               label={"UUID"}
               text={
                 Store.propsStore.game
                   ? Store.propsStore.game.uuid
                   : Store.propsStore.code
+              }
+              error={
+                Store.propsStore.game
+                  ? !Store.propsStore.game.uuid
+                  : !Store.propsStore.code
               }
               value={
                 Store.propsStore.game
@@ -130,21 +143,26 @@ class AddItem extends Component<SceneProps, State> {
             />
           )}
 
-            <Input
-              value={this.state.name}
-              placeholder={"Nazwa"}
-              onChangeText={(name:any) => this.setState({ name })}
-            />
+          <Input
+            ref={ref => (this.name = ref)}
+            value={this.state.name}
+            placeholder={"Nazwa"}
+            error={this.state.name.length === 0}
+            errorText={"Uzupełnij nazwę"}
+            onChangeText={(name: any) => this.setState({ name })}
+          />
           {this.state.selected === "Gra" && (
-              <Input
-                value={this.state.description}
-                placeholder={"Opis gry"}
-                multiline
-                onChangeText={description => this.setState({ description })}
-              />
+            <Input
+              value={this.state.description}
+              placeholder={"Opis gry"}
+              multiline
+              style={{ flex: 1, height: 100 }}
+              onChangeText={description => this.setState({ description })}
+            />
           )}
           {this.state.selected === "Gra" && (
             <ModalPickerPawn
+              ref={ref => (this.modalPickerPawn = ref)}
               minPlayers={this.state.minPlayers}
               maxPlayers={this.state.maxPlayers}
               onChangeMin={minPlayers => this.setState({ minPlayers })}
@@ -152,36 +170,32 @@ class AddItem extends Component<SceneProps, State> {
             />
           )}
           {this.state.selected === "Gra" && (
-            <RCView flexDirection="row">
-              <Text style={{ color: "black", fontSize: 16 }}>Wiek</Text>
-              <TextInput
-                style={{ textAlign: "right", fontSize: 16, width: 25 }}
-                keyboardType="phone-pad"
-                value={this.state.minAge}
-                maxLength={2}
-                onChangeText={text => this.setState({ minAge: text })}
-              />
-              <Text style={{ color: "black", fontSize: 16 }}>lat +</Text>
-            </RCView>
+            <TinyInput
+              ref={ref => (this.minAge = ref)}
+              firstDescription={"Wiek"}
+              secondDescription={"lat+"}
+              error={Number(this.state.minAge) === 0}
+              keyboardType="phone-pad"
+              value={this.state.minAge}
+              maxLength={2}
+              onChangeText={text => this.setState({ minAge: text })}
+            />
           )}
           {this.state.selected === "Gra" && (
-            <RCView
-              flexDirection="row"
-              justifyContent="flex-start"
-              alignItems="center">
-              <Text style={{ color: "black", fontSize: 16 }}>Czas gry</Text>
-              <TextInput
-                style={{ textAlign: "right", fontSize: 16, width: 35 }}
-                keyboardType="phone-pad"
-                value={this.state.playingTime}
-                maxLength={3}
-                onChangeText={playingTime => this.setState({ playingTime })}
-              />
-              <Text style={{ color: "black", fontSize: 16 }}>min</Text>
-            </RCView>
+            <TinyInput
+              ref={ref => (this.playingTime = ref)}
+              firstDescription={"Czas gry"}
+              secondDescription={"min"}
+              keyboardType="phone-pad"
+              value={this.state.playingTime}
+              error={Number(this.state.playingTime) === 0}
+              maxLength={3}
+              onChangeText={text => this.setState({ playingTime: text })}
+            />
           )}
           {this.state.selected === "Gra" && (
             <ModalSingleList
+              ref={ref => (this.modalSingleList = ref)}
               placeholder={"Wydawca"}
               value={this.state.publisher}
               list={this.state.publishers}
@@ -239,6 +253,11 @@ class AddItem extends Component<SceneProps, State> {
     let game = null;
     game = Store.propsStore.game;
     if (this.state.selected === "Gra" && !game) {
+      ModalPickerPawn.validate(this.modalPickerPawn);
+      ModalSingleList.validate(this.modalSingleList);
+      WithScannerText.validate(this.withScannerText);
+      Input.validate(this.name);
+      TinyInput.validate([this.minAge, this.playingTime]);
       if (!uuid && uuid.length < 1) {
         Toast.show("Uzupełnij kod gry");
         return;
@@ -291,6 +310,11 @@ class AddItem extends Component<SceneProps, State> {
     }
 
     if (this.state.selected === "Gra" && !!game) {
+      ModalPickerPawn.validate(this.modalPickerPawn);
+      ModalSingleList.validate(this.modalSingleList);
+      WithScannerText.validate(this.withScannerText);
+      TinyInput.validate([this.minAge, this.playingTime]);
+      Input.validate([this.name]);
       if (!uuid && uuid.length < 1) {
         Toast.show("Uzupełnij kod gry");
         return;

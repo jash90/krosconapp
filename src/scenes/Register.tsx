@@ -40,7 +40,7 @@ class Register extends Component<SceneProps, State> {
           value={this.state.firstname}
           placeholder={"Imię"}
           error={this.state.firstname.length === 0}
-          errorText={"Podaj imię"}
+          errorText={"Uzupełnij imię"}
           onChangeText={(firstname: any) => this.setState({ firstname })}
         />
         <Input
@@ -48,7 +48,7 @@ class Register extends Component<SceneProps, State> {
           value={this.state.lastname}
           placeholder={"Nazwisko"}
           error={this.state.lastname.length === 0}
-          errorText={"Podaj nazwisko"}
+          errorText={"Uzupełnij nazwisko"}
           onChangeText={(lastname: any) => this.setState({ lastname })}
         />
         <Input
@@ -57,7 +57,7 @@ class Register extends Component<SceneProps, State> {
           value={this.state.email}
           placeholder={"Email"}
           error={this.state.email.length === 0}
-          errorText={"Podaj email"}
+          errorText={"Uzupełnij email"}
           onChangeText={(email: any) => this.setState({ email })}
         />
         <Input
@@ -84,7 +84,7 @@ class Register extends Component<SceneProps, State> {
     const { email, password, firstname, lastname } = this.state;
     Input.validate([this.firstname, this.lastname, this.email, this.password]);
     if (!email) {
-      Toast.show("Podaj email");
+      Toast.show("Uzupełnij email");
       return;
     }
     if (!password) {
@@ -92,11 +92,11 @@ class Register extends Component<SceneProps, State> {
       return;
     }
     if (!firstname) {
-      Toast.show("Podaj imię");
+      Toast.show("Uzupełnij imię");
       return;
     }
     if (!lastname) {
-      Toast.show("Podaj nazwisko");
+      Toast.show("Uzupełnij nazwisko");
       return;
     }
     AuthApi.register(

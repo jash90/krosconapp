@@ -11,19 +11,34 @@ interface Props {
 }
 interface State {
   modal: boolean;
+  validate: boolean;
 }
 class ModalPickerPawn extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      validate: false
     };
   }
+
+  public validate() {
+    this.setState({ validate: true });
+  }
+
+  public static validate(ref: any) {
+    if (ref) ref.validate();
+  }
+
   render() {
     return (
       <View style={{ width: "100%" }}>
         <ViewText
           label={"Min/Max graczy"}
+          error={
+            (this.props.minPlayers === 0 || this.props.maxPlayers === 0) &&
+            this.state.validate
+          }
           text={`${this.props.minPlayers}/${this.props.maxPlayers}`}
           onPress={() => this.setState({ modal: true })}
         />

@@ -19,6 +19,8 @@ interface State {
 }
 
 class LoanGame extends Component<SceneProps, State> {
+  public game: any;
+  public user: any;
   constructor(props: SceneProps) {
     super(props);
     this.state = {
@@ -50,8 +52,12 @@ class LoanGame extends Component<SceneProps, State> {
     return (
       <Container text={loan ? "Wypożycz grę" : "Oddaj grę"} styleContent={{paddingHorizontal:20,}}>
         <WithScannerGame
+         ref={ref=>this.game=ref}
           value={!!this.state.game}
           game={this.state.game}
+          error={
+            !this.state.game
+          }
           onPress={() => {
             Store.propsStore.setTypeItem(1);
             Store.propsStore.setRouteName(Scenes.LoanGame);
@@ -60,8 +66,12 @@ class LoanGame extends Component<SceneProps, State> {
         />
         {loan && (
           <WithScannerUser
+          ref={ref=>this.user=ref}
             user={this.state.user}
             value={!!this.state.user}
+            error={
+              !this.state.user
+            }
             onPress={() => {
               Store.propsStore.setTypeItem(2);
               Store.propsStore.setRouteName(Scenes.LoanGame);
@@ -82,6 +92,8 @@ class LoanGame extends Component<SceneProps, State> {
   success = (loan: boolean) => {
     if (loan) {
       const { game, user } = this.state;
+      WithScannerGame.validate(this.game);
+      WithScannerUser.validate(this.user);
       if (!game || !user) {
         Toast.show(
           "Musisz zeskanować kod qr użytkownika i/lub kod gry, żeby wypożyczyć grę."
