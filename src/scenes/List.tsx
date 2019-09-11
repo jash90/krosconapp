@@ -57,17 +57,19 @@ class List extends Component<Props, State> {
   render() {
     return (
       <Container back={false} right icon={"person"} onPress={this.openProfile}>
-        <Filter ref={ref =>this.filter = ref} onChangeValue={search => this.searchBoardGame(search)} />
+        <Filter
+          ref={ref => (this.filter = ref)}
+          onChangeValue={search => this.searchBoardGame(search)}
+        />
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={Store.propsStore.listgame}
           renderItem={({ item }: any) => (
             <TouchableOpacity
               onPress={() => {
                 this.openItem(item);
               }}>
-              <GameHeader
-                game={item}
-              />
+              <GameHeader game={item} />
             </TouchableOpacity>
           )}
           refreshing={this.state.refresh}
@@ -82,9 +84,7 @@ class List extends Component<Props, State> {
               backgroundColor: Color.accentColor
             }}
             position="bottomRight"
-            onPress={() =>
-              NavigationService.navigate(Scenes.QR)
-            }>
+            onPress={() => NavigationService.navigate(Scenes.QR)}>
             <Image
               style={{ width: 20, height: 20 }}
               source={require("../assets/qr.png")}
@@ -106,8 +106,7 @@ class List extends Component<Props, State> {
     }
   };
   onRefresh = () => {
-    if (this.filter)
-    this.filter.clearFilter();
+    if (this.filter) this.filter.clearFilter();
     this.setState({ refresh: true });
     BoardGameApi.offset()
       .then(response => {

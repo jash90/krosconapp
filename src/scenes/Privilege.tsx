@@ -43,17 +43,14 @@ class Privilege extends Component<SceneProps, State> {
 
   render() {
     return (
-      <Container
-        text={"Lista użytkowników"}
-        >
+      <Container text={"Lista użytkowników"}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={this.state.users.sort((a, b) => {
             return a.id - b.id;
           })}
           renderItem={({ item }) => (
-            <UserHeader user={item}>
-              {this.renderPrivilege(item)}
-            </UserHeader>
+            <UserHeader user={item}>{this.renderPrivilege(item)}</UserHeader>
           )}
           refreshing={this.state.refreshing}
           onRefresh={this.onRefresh}
@@ -105,7 +102,7 @@ class Privilege extends Component<SceneProps, State> {
           if (response.data.item) {
             Toast.show("Zapisane");
             this.fetchData();
-          } else if (response.data.error){
+          } else if (response.data.error) {
             ErrorUtil.errorService(response.data.error);
           }
         })
@@ -115,4 +112,4 @@ class Privilege extends Component<SceneProps, State> {
     }
   }
 }
-export default inject("authStore","propsStore")(observer(Privilege));
+export default inject("authStore", "propsStore")(observer(Privilege));

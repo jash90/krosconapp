@@ -59,7 +59,7 @@ class Login extends Component<SceneProps, State> {
           placeholder={"Hasło"}
           secureTextEntry
           errorText={"Uzupełnij hasło"}
-          error={this.state.errorPassword}
+          error={this.state.password.length === 0}
           onChangeText={(password: any) => this.setState({ password })}
         />
         <Button
