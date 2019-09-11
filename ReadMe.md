@@ -41,24 +41,15 @@ Aplikacja KrosconApp ma służy do obsługi wydarzeń z planszówkami, przede ws
 
 ## Błędy
 
-1. Brak walidacji w wielu miejscach
-2. Błędne komunikaty
-3. Brak zatwierdzania usuwania
-4. Brak wylogowania przy wygaśnięciu autoryzacji
-
 ## Do dodania
 
 1. Logowanie błędów do sentry
-2. Walidacja
-3. Komunikaty
-4. Okna zatwierdzania przy logowaniu
-5. Poprawa autoryzacji
-6. Dodać mechniki i typy
-7. Dodawanie zdjęć gier
-8. Dodanie obsługi za pomocą strony
-9. Dodanie statystyk odnośnie wypożyczenia
-10. Dodanie informacji na temat konwentu
-11. Informacja od kiedy gra jest zarezerwowana
-12. Historia rezerwacji dla użytkownika
-13. Informacja na jakim stoliku znajduje się gra
-14. Wyszukiwanie ludzi do grania
+2. Historia rezerwacji dla użytkownika
+3. Informacja na jakim stoliku znajduje się gra
+4. Dodanie informacji na temat konwentu
+5. Dodanie opcji refresh tokenu
+6. Dodanie statystyk odnośnie wypożyczenia
+7. Dodać mechniki i typy
+8. Dodawanie zdjęć gier
+9. Dodanie obsługi za pomocą strony
+10. Wyszukiwanie ludzi do grania

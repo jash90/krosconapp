@@ -18,14 +18,11 @@ class GameHeader extends Component<Props> {
     return (
       <View
         style={{
-          flexDirection: "row",
           backgroundColor: "white",
           borderRadius: 20,
           paddingHorizontal: 20,
           paddingVertical: 10,
           marginVertical: 10,
-          justifyContent: "center",
-          alignItems: "center"
         }}>
         {!!this.props.game && (
           <View
@@ -108,6 +105,7 @@ class GameHeader extends Component<Props> {
             )}
           </View>
         )}
+        {this.props.children}
       </View>
     );
   }

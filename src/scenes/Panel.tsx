@@ -4,7 +4,7 @@ import Color from "../Color";
 import { Container, Button, UserHeader } from "../components";
 import Toast from "react-native-simple-toast";
 import { inject, observer } from "mobx-react";
-import Scenes from"../Scenes";
+import Scenes from "../Scenes";
 import axios from "../Axios";
 import NavigationService from "../NavigationService";
 import { SceneProps } from "../interfaces";
@@ -41,10 +41,7 @@ class Panel extends Component<SceneProps, State> {
             flexDirection: "column",
             justifyContent: "flex-start"
           }}>
-          <UserHeader
-            edit
-            user={Store.authStore}
-          />
+          <UserHeader edit user={Store.authStore} />
 
           <Button
             primary
@@ -53,6 +50,16 @@ class Panel extends Component<SceneProps, State> {
             text={"Zmień hasło"}
             onPress={this.changePassword}
           />
+
+          {/* {Store.authStore.privilegeId === 1 && (
+            <Button
+              primary
+              color={`${Color.accentColor}`}
+              colorText="white"
+              text={"Historia wypożyczeń"}
+              onPress={this.history}
+            />
+          )} */}
 
           {Store.authStore.privilegeId > 1 && (
             <Button
@@ -103,16 +110,18 @@ class Panel extends Component<SceneProps, State> {
     NavigationService.navigate(Scenes.ChangePassword);
   };
 
+  history = () => {};
+
   logout = async () => {
     try {
       NavigationService.reset(Scenes.List);
       Store.authStore.clearUser();
       await AsyncStorage.removeItem("User");
-      axios.defaults.headers.common['authorization'] = null;
+      axios.defaults.headers.common["authorization"] = null;
       Toast.show("Wylogowano");
     } catch (error) {
       Toast.show(error);
     }
   };
 }
-export default inject("authStore","propsStore")(observer(Panel));
+export default inject("authStore", "propsStore")(observer(Panel));

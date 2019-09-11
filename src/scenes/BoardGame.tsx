@@ -26,20 +26,20 @@ class BoardGame extends Component<Props> {
       loanGame = game.loanGames[0];
     return (
       <Container scrollView text={String(game.name)}>
-        <GameHeader game={game} />
+        <GameHeader game={game}>
         {!!game && !!game.description && (
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "column",
-              backgroundColor: "white",
-              borderRadius: 20,
-              padding: 20,
-              marginBottom: 10,
-              marginHorizontal: 20
-            }}>
-            <Text>{game.description}</Text>
-          </View>
+          // <View
+          //   style={{
+          //     flex: 1,
+          //     flexDirection: "column",
+          //     backgroundColor: "white",
+          //     borderRadius: 20,
+          //     padding: 20,
+          //     marginBottom: 10,
+          //     marginHorizontal: 20
+          //   }}>
+            <Text>{`Opis: ${game.description}`}</Text>
+          // </View>
         )}
         {false && !!game.boardGameTypes.length && (
           <View
@@ -112,10 +112,11 @@ class BoardGame extends Component<Props> {
           </View>
         )}
         {loanGame && !loanGame.endLoan && (
-          <RCView marginLeft={20} marginRight={20}>
-            <Text>Wypożyczona: {Moment(loanGame.startLoan).locale('pl').fromNow()}</Text>
-          </RCView>
+          //<RCView marginLeft={20} marginRight={20}>
+            <Text>{`Wypożyczona: ${Moment(loanGame.startLoan).locale('pl').fromNow()}`}</Text>
+         // </RCView>
         )}
+        </GameHeader>
         {Store.authStore.privilegeId > 1 && (
           <Button
             primary
@@ -125,6 +126,7 @@ class BoardGame extends Component<Props> {
             text={"Wypożycz/Oddaj grę"}
           />
         )}
+        
       </Container>
     );
   }
