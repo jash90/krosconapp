@@ -24,7 +24,7 @@ interface Props extends SceneProps {
   listgame: Game[];
 }
 class List extends Component<Props, State> {
-  public filter: Filter | undefined;
+  public filter: any;
   constructor(props: Props) {
     super(props);
     this.state = {

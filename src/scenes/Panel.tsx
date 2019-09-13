@@ -52,7 +52,7 @@ class Panel extends Component<SceneProps, State> {
             onPress={this.changePassword}
           />
 
-          {/* {Store.authStore.privilegeId === 1 && (
+          {Store.authStore.privilegeId === 1 && (
             <Button
               primary
               color={`${Color.accentColor}`}
@@ -60,7 +60,7 @@ class Panel extends Component<SceneProps, State> {
               text={"Historia wypożyczeń"}
               onPress={this.history}
             />
-          )} */}
+          )}
 
           {Store.authStore.privilegeId > 1 && (
             <Button
@@ -111,7 +111,9 @@ class Panel extends Component<SceneProps, State> {
     NavigationService.navigate(Scenes.ChangePassword);
   };
 
-  history = () => {};
+  history = () => {
+    NavigationService.navigate(Scenes.HistoryLoan);
+  };
 
   logout = async () => {
     try {

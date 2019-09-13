@@ -19,7 +19,8 @@ import {
   Panel,
   Privilege,
   QR,
-  Register
+  Register,
+  HistoryLoan
 } from "./src/scenes/index";
 import store from "./src/stores";
 import NavigationService from "./src/NavigationService";
@@ -38,7 +39,8 @@ const AppNavigator = createStackNavigator(
     QR,
     Privilege,
     EditProfile,
-    ChangePassword
+    ChangePassword,
+    HistoryLoan
   },
   {
     headerMode: "none"

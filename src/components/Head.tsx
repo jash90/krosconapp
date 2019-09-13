@@ -61,10 +61,10 @@ export default class Head extends Component<HeadProps> {
               alignContent: "center",
               justifyContent: "center"
             }}>
-            <Icon
+            <MaterialIcons
               name="arrow-back"
               style={styles.iconLeftHeader}
-              fontSize={30}
+              size={30}
             />
           </View>
         </TouchableOpacity>

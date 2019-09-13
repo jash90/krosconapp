@@ -1,11 +1,11 @@
 import { observable, action } from "mobx";
-import { Game, User } from "../models";
+import { Game, User, LoanGame } from "../models";
 import Scenes from "../Scenes";
 import TypeItem from "../TypeItem";
 
 export default class PropsStore {
     @observable
-    game: Game= new Game();
+    game: Game = new Game();
     @observable
     listgame = observable<Game>([])
     @observable
@@ -16,6 +16,8 @@ export default class PropsStore {
     routeName: Scenes = Scenes.List;
     @observable
     typeItem: TypeItem = TypeItem.User;
+    @observable
+    historyLoan: LoanGame[] = [];
 
     @action setGame(game: Game) {
         this.game = game;
@@ -30,7 +32,7 @@ export default class PropsStore {
     }
 
     @action clearUser() {
-        this.user = null;
+        this.user = new User();
     }
 
     @action clearGame() {
@@ -48,8 +50,12 @@ export default class PropsStore {
     @action setRouteName(routeName: Scenes) {
         this.routeName = routeName;
     }
-    
-    @action setTypeItem(typeItem:TypeItem){
+
+    @action setTypeItem(typeItem: TypeItem) {
         this.typeItem = typeItem;
+    }
+    
+    @action setHistoryLoan(historyLoan: LoanGame[]) {
+        this.historyLoan = historyLoan;
     }
 }
