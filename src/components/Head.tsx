@@ -1,6 +1,6 @@
 import { Body, Header, Icon, Left, Right, Title } from "native-base";
 import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Color from "../Color";
 import { HeadProps } from "../interfaces";
@@ -22,19 +22,27 @@ export default class Head extends Component<HeadProps> {
       <Header
         androidStatusBarColor={Color.secondaryColor}
         style={styles.styleHeader}>
-        <Left style={styles.fullStyle}>{this.renderLeft()}</Left>
+        <Left>{this.renderLeft()}</Left>
         <Body style={styles.textHeader}>
           <Title style={{ color: Color.primaryColor }}>{this.props.text}</Title>
         </Body>
-        <Right style={styles.fullStyle}>
+        <Right>
           {this.props.right ? (
             <TouchableOpacity onPress={this.props.onPress}>
-              <MaterialIcons
-                name={this.props.icon ? this.props.icon : ""}
-                color="white"
-                size={30}
-                style={styles.iconRightHeader}
-              />
+              <View
+                style={{
+                  flexDirection: "column",
+                  width: 35,
+                  height: 35,
+                  alignContent: "center",
+                  justifyContent: "center"
+                }}>
+                <MaterialIcons
+                  name={this.props.icon ? this.props.icon : ""}
+                  color="white"
+                  size={30}
+                />
+              </View>
             </TouchableOpacity>
           ) : null}
         </Right>
@@ -45,17 +53,40 @@ export default class Head extends Component<HeadProps> {
     if (this.props.back) {
       return (
         <TouchableOpacity onPress={() => NavigationService.goBack()}>
-          <Icon name="arrow-back" style={styles.iconLeftHeader} />
+          <View
+            style={{
+              flexDirection: "column",
+              width: 35,
+              height: 35,
+              alignContent: "center",
+              justifyContent: "center"
+            }}>
+            <Icon
+              name="arrow-back"
+              style={styles.iconLeftHeader}
+              fontSize={30}
+            />
+          </View>
         </TouchableOpacity>
       );
     }
     if (this.props.left) {
       return (
         <TouchableOpacity onPress={this.props.leftPress}>
-          <Icon
-            name={this.props.leftIcon ? this.props.leftIcon : ""}
-            style={styles.iconLeftHeader}
-          />
+          <View
+            style={{
+              flexDirection: "column",
+              width: 35,
+              height: 35,
+              alignContent: "center",
+              justifyContent: "center"
+            }}>
+            <Icon
+              name={this.props.leftIcon ? this.props.leftIcon : ""}
+              style={styles.iconLeftHeader}
+              fontSize={30}
+            />
+          </View>
         </TouchableOpacity>
       );
     }
@@ -65,7 +96,6 @@ export default class Head extends Component<HeadProps> {
 const styles = StyleSheet.create({
   styleHeader: { backgroundColor: Color.secondaryColor },
   textHeader: { flex: 3, justifyContent: "center", alignItems: "center" },
-  iconLeftHeader: { color: "white", paddingHorizontal: 5 },
-  iconRightHeader: { paddingRight: 5 },
-  fullStyle: { flex: 1 }
+  iconLeftHeader: { color: "white", paddingLeft: 5, paddingRight:5 },
+  iconRightHeader: { paddingRight: 5 }
 });
