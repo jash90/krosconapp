@@ -5,6 +5,7 @@ interface Props {
   value: any[];
   onPress: any;
   error?:boolean;
+  scannerText?:string
 }
 class ScannerComponent extends Component<Props> {
   render() {
@@ -18,7 +19,7 @@ class ScannerComponent extends Component<Props> {
             style={{
               fontSize: 16
             }}>
-            {"Skanuj kod QR"}
+            {this.props.scannerText}
           </Text>
         </RCView>
       </TouchableOpacity>

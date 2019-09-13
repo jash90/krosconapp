@@ -59,6 +59,7 @@ class LoanGame extends Component<SceneProps, State> {
           value={!!this.state.game}
           game={this.state.game}
           error={!this.state.game}
+          scannerText={"Skanuj grę"}
           onPress={() => {
             Store.propsStore.setTypeItem(1);
             Store.propsStore.setRouteName(Scenes.LoanGame);
@@ -71,6 +72,7 @@ class LoanGame extends Component<SceneProps, State> {
             user={this.state.user}
             value={!!this.state.user}
             error={!this.state.user}
+            scannerText={"Skanuj użytkownika"}
             onPress={() => {
               Store.propsStore.setTypeItem(2);
               Store.propsStore.setRouteName(Scenes.LoanGame);

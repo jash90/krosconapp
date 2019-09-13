@@ -134,8 +134,9 @@ class AddItem extends Component<SceneProps, State> {
                   ? !!Store.propsStore.game.uuid
                   : !!Store.propsStore.code
               }
+              scannerText={"Skanuj grę"}
               onPress={() => {
-                if (!Store.propsStore.game) {
+                if (Store.propsStore.game.id === 0) {
                   Store.propsStore.setTypeItem(3);
                   Store.propsStore.setRouteName(Scenes.AddItem);
                   NavigationService.navigate(Scenes.Camera);
