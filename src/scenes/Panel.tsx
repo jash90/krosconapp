@@ -9,6 +9,7 @@ import axios from "../Axios";
 import NavigationService from "../NavigationService";
 import { SceneProps } from "../interfaces";
 import Store from "../stores";
+import { AuthApi } from "../api";
 
 interface State {
   password: string;
@@ -114,11 +115,12 @@ class Panel extends Component<SceneProps, State> {
 
   logout = async () => {
     try {
-      NavigationService.reset(Scenes.List);
-      Store.authStore.clearUser();
-      await AsyncStorage.removeItem("User");
+      await AuthApi.logout();
       axios.defaults.headers.common["authorization"] = null;
+      NavigationService.reset(Scenes.List);
       Toast.show("Wylogowano");
+      await AsyncStorage.removeItem("User");
+      Store.authStore.clearUser();
     } catch (error) {
       Toast.show(error);
     }
