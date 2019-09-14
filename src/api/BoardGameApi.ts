@@ -3,10 +3,11 @@ export default class BoardGameApi {
     public static apiName = "boardGame";
     public static async add(name: string,
         uuid: string,
-        description:string,
+        description: string,
         minPlayers: number,
         maxPlayers: number,
         playingTime: number,
+        image = null,
         minAge: number,
         publisherId: number) {
         return await axios.post(`/${this.apiName}/add`, {
@@ -16,6 +17,7 @@ export default class BoardGameApi {
             minPlayers,
             maxPlayers,
             playingTime,
+            image,
             minAge,
             publisherId
         });
@@ -34,10 +36,11 @@ export default class BoardGameApi {
     }
     public static async edit(name: string,
         uuid: string,
-        description:string,
+        description: string,
         minPlayers: number,
         maxPlayers: number,
         playingTime: number,
+        image = null,
         minAge: number,
         publisherId: number,
         boardGameId: number) {
@@ -48,6 +51,7 @@ export default class BoardGameApi {
             minPlayers,
             maxPlayers,
             playingTime,
+            image,
             minAge,
             publisherId,
             boardGameId

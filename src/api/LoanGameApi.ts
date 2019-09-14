@@ -4,11 +4,12 @@ export default class LoanGameApi {
     public static async add(
         userId: number,
         hireUserId: number,
-        boardGameId: number) {
+        boardGameId: number, tableId: number) {
         return await axios.post(`/${this.apiName}/add`, {
             userId,
             hireUserId,
-            boardGameId
+            boardGameId,
+            tableId
         });
     }
     public static async all() {
