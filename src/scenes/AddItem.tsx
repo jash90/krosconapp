@@ -408,6 +408,7 @@ class AddItem extends Component<SceneProps, State> {
       minPlayers,
       maxPlayers,
       Number(playingTime),
+      null,
       Number(minAge),
       publisher.id,
       game.id
@@ -443,6 +444,7 @@ class AddItem extends Component<SceneProps, State> {
       minPlayers,
       maxPlayers,
       Number(playingTime),
+      null,
       Number(minAge),
       publisher.id
     )
