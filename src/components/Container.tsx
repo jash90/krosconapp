@@ -104,7 +104,7 @@ var styles = StyleSheet.create({
   fullStyle: {
     flex: 1,
     backgroundColor: Color.primaryColor,
-  //  paddingHorizontal:20
+    paddingHorizontal:20
   },
   absolute: {
     alignSelf: "center",
