@@ -3,6 +3,7 @@
   "version": "1.1.4",
   "private": true,
   "scripts": {
+    "postinstall": "jetify",
     "patch": "yarn version --patch",
     "minor": "yarn version --minor",
     "major": "yarn version --major",
@@ -52,6 +53,7 @@
     "@types/react-native": "^0.57.64",
     "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
+    "jetifier": "^1.6.4",
     "metro-react-native-babel-preset": "^0.54.1",
     "react-native-typescript-transformer": "^1.2.12",
     "react-test-renderer": "16.8.3",

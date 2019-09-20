@@ -37,19 +37,12 @@ interface ColorButtonProps extends ButtonProps {
 }
 
 export default class Button extends Component<ColorButtonProps> {
-  public static defaultProps: ColorButtonProps = {
-    primary: true,
-    colorText: "white",
-    color: "black",
-    text: "",
-    onPress: () => {}
-  };
 
   render() {
     return (
       <TouchableOpacity
         style={{
-          marginVertical: 10,
+          marginVertical: 10
         }}
         onPress={this.props.onPress}>
         {this.props.outline && this.renderOutline()}
@@ -59,9 +52,10 @@ export default class Button extends Component<ColorButtonProps> {
   }
 
   renderOutline() {
+    console.log();
     return (
       <Outline color={this.props.color}>
-        <CText color={this.props.color}>{this.props.text}</CText>
+        <CText color={this.props.colorText ? this.props.colorText : this.props.color}>{this.props.text}</CText>
       </Outline>
     );
   }
