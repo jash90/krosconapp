@@ -80,5 +80,19 @@
 <string>Your message to user when the photo library is accessed for the first time</string>
 <key>NSPhotoLibraryAddUsageDescription</key>
 <string>Your message to user when the photo library is accessed for the first time</string>
+  <key>Fabric</key>
+  <dict>
+    <key>APIKey</key>
+    <string>3ef8cadd51195dffa2d744483f1c57ac37ea323e</string>
+    <key>Kits</key>
+    <array>
+      <dict>
+        <key>KitInfo</key>
+        <dict/>
+        <key>KitName</key>
+        <string>Crashlytics</string>
+      </dict>
+    </array>
+  </dict>
 </dict>
 </plist>
