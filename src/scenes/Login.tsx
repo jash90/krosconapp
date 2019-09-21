@@ -101,7 +101,6 @@ class Login extends Component<SceneProps, State> {
       .catch(error => {
         ErrorUtil.errorService(error);
       });
-    //
   };
 }
 
