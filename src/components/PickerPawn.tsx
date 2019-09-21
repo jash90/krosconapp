@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
+// import { createIconSetFromIcoMoon } from "react-native-vector-icons";
+// import selection from "../../android/app/src/main/assets/style/selection.json";
 import { RCView } from "../components/StyledComponent";
-const Icon = createIconSetFromIcoMoon(selection);
+// const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
   onValueChange: (value: number) => void;
   maxPlayers: number;
@@ -36,11 +36,11 @@ class PickerPawn extends Component<Props, State> {
               onPress={() => {
                 this.setValue(item.index + 1);
               }}>
-              <Icon
+              {/* <Icon
                 name={"pawn"}
                 size={16}
                 color={item.item ? "#c30000" : "black"}
-              />
+              /> */}
             </TouchableOpacity>
           )}
         />

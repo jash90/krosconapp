@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+// import Icon from "react-native-vector-icons/MaterialIcons";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 interface User {
@@ -52,7 +52,7 @@ export default class UserHeader extends Component<Props> {
                 alignItems: "flex-end"
               }}>
               <TouchableOpacity onPress={this.goToEdit}>
-                <Icon name={"edit"} size={30} style={{ padding: 5 }} />
+                {/* <Icon name={"edit"} size={30} style={{ padding: 5 }} /> */}
               </TouchableOpacity>
             </View>
           )}

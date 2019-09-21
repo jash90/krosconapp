@@ -1,6 +1,6 @@
 import { NetInfo, AsyncStorage } from "react-native";
 import Toast from "react-native-simple-toast";
-import { Crashlytics } from 'react-native-fabric';
+// import { Crashlytics } from 'react-native-fabric';
 import NavigationService from "./NavigationService";
 import Scenes from "./Scenes";
 import Stores from "./stores";
@@ -23,9 +23,9 @@ export default class ErroUtil {
             Toast.show(`Coś poszło nie tak skontaktuj się z obsługą, bądź administratorem.`, Toast.LONG);
         }
         console.log(error);
-        Crashlytics.recordError({
-            code: "123",
-            message: JSON.stringify(error),
-        });
+        // Crashlytics.recordError({
+        //     code: "123",
+        //     message: JSON.stringify(error),
+        // });
     }
 }

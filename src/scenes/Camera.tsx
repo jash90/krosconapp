@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { RNCamera } from "react-native-camera";
+//import { RNCamera } from "react-native-camera";
 import Toast from "react-native-simple-toast";
 import { BoardGameApi, UserApi } from "../api";
 import ErrorUtil from "../ErrorUtil";
@@ -20,7 +20,7 @@ class Camera extends Component<CameraProps> {
   render() {
     return (
       <View style={styles.container}>
-        <RNCamera
+        {/* <RNCamera
           ref={(ref: any) => {
             this.camera = ref;
           }}
@@ -32,7 +32,7 @@ class Camera extends Component<CameraProps> {
           onBarCodeRead={(data: any, type: any) =>
             this.onBarCodeRead(data, type)
           }
-        />
+        /> */}
       </View>
     );
   }

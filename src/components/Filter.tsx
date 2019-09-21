@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+// import Icon from "react-native-vector-icons/MaterialIcons";
 import { Button, ModalPickerPawn, ModalSingleList, ViewText, Input } from ".";
 import { PublisherApi } from "../api";
 import { RCView } from "../components/StyledComponent";
@@ -97,7 +97,7 @@ class Filter extends Component<Props, State> {
             <TouchableOpacity
               onPress={this.openModal}
               style={{ justifyContent: "center" }}>
-              <Icon name={"filter-list"} size={30} color="grey" />
+              {/* <Icon name={"filter-list"} size={30} color="grey" /> */}
             </TouchableOpacity>
           </View>
 

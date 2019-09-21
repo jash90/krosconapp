@@ -3,9 +3,9 @@ import React from "react";
 import { MenuProvider } from "react-native-popup-menu";
 import {
   createAppContainer,
-  createStackNavigator,
   NavigationContainerComponent
 } from "react-navigation";
+import { createStackNavigator } from 'react-navigation-stack';
 import {
   AddItem,
   BoardGame,
