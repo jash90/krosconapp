@@ -71,6 +71,8 @@ PODS:
     - React
   - react-native-image-picker (1.1.0):
     - React
+  - react-native-netinfo (4.2.2):
+    - React
   - react-native-simple-toast (0.1.1):
     - React
   - React-RCTActionSheet (0.60.5):
@@ -124,6 +126,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
+  - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-simple-toast (from `../node_modules/react-native-simple-toast`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -174,6 +177,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
+  react-native-netinfo:
+    :path: "../node_modules/@react-native-community/netinfo"
   react-native-simple-toast:
     :path: "../node_modules/react-native-simple-toast"
   React-RCTActionSheet:
@@ -224,6 +229,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 044105eea064aec81adc5e4d777a8f6589e7d094
   react-native-camera: 9c50d7def800895e7991ccda6203929553ceec9c
   react-native-image-picker: 02cc046cf072f1254fb6eba51990a3f25e138cb4
+  react-native-netinfo: a91b5cf92ed3ada997cfe2bf067633386eb19fd8
   react-native-simple-toast: 0c1ecf9acf373da44432204cbb612f7a033fc76f
   React-RCTActionSheet: 08864c609d9f959abf3d51fdd93f8bc6e91f21eb
   React-RCTAnimation: a4547e9fac2627ded3df9d302f5558b475faf819
