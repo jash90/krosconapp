@@ -1,7 +1,7 @@
 import { Body, Header, Icon, Left, Right, Title } from "native-base";
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-// import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Color from "../Color";
 import { HeadProps } from "../interfaces";
 import NavigationService from "../NavigationService";
@@ -37,11 +37,11 @@ export default class Head extends Component<HeadProps> {
                   alignContent: "center",
                   justifyContent: "center"
                 }}>
-                {/* <MaterialIcons
+                <MaterialIcons
                   name={this.props.icon ? this.props.icon : ""}
                   color="white"
                   size={30}
-                /> */}
+                />
               </View>
             </TouchableOpacity>
           ) : null}
@@ -61,11 +61,11 @@ export default class Head extends Component<HeadProps> {
               alignContent: "center",
               justifyContent: "center"
             }}>
-            {/* <MaterialIcons
+            <MaterialIcons
               name="arrow-back"
               style={styles.iconLeftHeader}
               size={30}
-            /> */}
+            />
           </View>
         </TouchableOpacity>
       );

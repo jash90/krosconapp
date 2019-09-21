@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 // import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-// import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 // import selection from "../../android/app/src/main/assets/style/selection.json";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
@@ -53,7 +53,7 @@ class GameHeader extends Component<Props> {
                     Store.propsStore.setGame(this.props.game);
                     NavigationService.navigate(Scenes.AddItem);
                   }}>
-                  {/* <MaterialIcon name="edit" size={26} /> */}
+                  <MaterialIcon name="edit" size={26} />
                 </TouchableOpacity>
               )}
             </View>
@@ -88,7 +88,7 @@ class GameHeader extends Component<Props> {
                 justifyContent: "center",
                 alignItems: "center"
               }}>
-              {/* <MaterialIcon name={"cake"} size={20} /> */}
+              <MaterialIcon name={"cake"} size={20} />
               <Text>{`${this.props.game.minAge} lat`}</Text>
             </View>
             {this.props.game.publisher && (
@@ -99,7 +99,7 @@ class GameHeader extends Component<Props> {
                   justifyContent: "center",
                   alignItems: "center"
                 }}>
-                {/* <MaterialIcon name={"casino"} size={20} /> */}
+                <MaterialIcon name={"casino"} size={20} />
                 <Text>{this.props.game.publisher.name}</Text>
               </View>
             )}
