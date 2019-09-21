@@ -34,6 +34,7 @@
 		C9EADB8223368EDA007133B8 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9EADB7223368ED8007133B8 /* AntDesign.ttf */; };
 		C9EADB8323368EDA007133B8 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9EADB7323368ED8007133B8 /* FontAwesome5_Solid.ttf */; };
 		C9EADB8423368EDA007133B8 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9EADB7423368ED9007133B8 /* Entypo.ttf */; };
+		C9EADB9B23369414007133B8 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9EADB9A23369413007133B8 /* icomoon.ttf */; };
 		CFCE9C762B41EDC1F537DD2C /* libPods-krosconApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663AAD6FB25D932A63893615 /* libPods-krosconApp-tvOSTests.a */; };
 		EDE825FE5AEFEE2FDD93D40B /* libPods-krosconApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A266422EA283952850E03D /* libPods-krosconApp.a */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,7 @@
 		C9EADB7223368ED8007133B8 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		C9EADB7323368ED8007133B8 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		C9EADB7423368ED9007133B8 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		C9EADB9A23369413007133B8 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = icomoon.ttf; path = ../android/app/src/main/assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		E647273A255F28A3D49DF53C /* Pods-krosconApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-krosconApp-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-krosconApp-tvOS/Pods-krosconApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -157,6 +159,7 @@
 		13B07FAE1A68108700A75B9A /* krosconApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9EADB992336938F007133B8 /* Fonts */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -206,22 +209,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C9EADB7223368ED8007133B8 /* AntDesign.ttf */,
-				C9EADB7423368ED9007133B8 /* Entypo.ttf */,
-				C9EADB6823368ED4007133B8 /* EvilIcons.ttf */,
-				C9EADB6C23368ED5007133B8 /* Feather.ttf */,
-				C9EADB6B23368ED5007133B8 /* FontAwesome.ttf */,
-				C9EADB6923368ED4007133B8 /* FontAwesome5_Brands.ttf */,
-				C9EADB6523368ED3007133B8 /* FontAwesome5_Regular.ttf */,
-				C9EADB7323368ED8007133B8 /* FontAwesome5_Solid.ttf */,
-				C9EADB6723368ED4007133B8 /* Fontisto.ttf */,
-				C9EADB6E23368ED6007133B8 /* Foundation.ttf */,
-				C9EADB6623368ED3007133B8 /* Ionicons.ttf */,
-				C9EADB7023368ED7007133B8 /* MaterialCommunityIcons.ttf */,
-				C9EADB6A23368ED5007133B8 /* MaterialIcons.ttf */,
-				C9EADB6D23368ED6007133B8 /* Octicons.ttf */,
-				C9EADB7123368ED7007133B8 /* SimpleLineIcons.ttf */,
-				C9EADB6F23368ED7007133B8 /* Zocial.ttf */,
 				13B07FAE1A68108700A75B9A /* krosconApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* krosconAppTests */,
@@ -243,6 +230,30 @@
 				2D02E4901E0B4A5D006451C7 /* krosconApp-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C9EADB992336938F007133B8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C9EADB9A23369413007133B8 /* icomoon.ttf */,
+				C9EADB7223368ED8007133B8 /* AntDesign.ttf */,
+				C9EADB7423368ED9007133B8 /* Entypo.ttf */,
+				C9EADB6823368ED4007133B8 /* EvilIcons.ttf */,
+				C9EADB6C23368ED5007133B8 /* Feather.ttf */,
+				C9EADB6B23368ED5007133B8 /* FontAwesome.ttf */,
+				C9EADB6923368ED4007133B8 /* FontAwesome5_Brands.ttf */,
+				C9EADB6523368ED3007133B8 /* FontAwesome5_Regular.ttf */,
+				C9EADB7323368ED8007133B8 /* FontAwesome5_Solid.ttf */,
+				C9EADB6723368ED4007133B8 /* Fontisto.ttf */,
+				C9EADB6E23368ED6007133B8 /* Foundation.ttf */,
+				C9EADB6623368ED3007133B8 /* Ionicons.ttf */,
+				C9EADB7023368ED7007133B8 /* MaterialCommunityIcons.ttf */,
+				C9EADB6A23368ED5007133B8 /* MaterialIcons.ttf */,
+				C9EADB6D23368ED6007133B8 /* Octicons.ttf */,
+				C9EADB7123368ED7007133B8 /* SimpleLineIcons.ttf */,
+				C9EADB6F23368ED7007133B8 /* Zocial.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9EADB9B23369414007133B8 /* icomoon.ttf in Resources */,
 				C9EADB7523368ED9007133B8 /* FontAwesome5_Regular.ttf in Resources */,
 				C9EADB7623368ED9007133B8 /* Ionicons.ttf in Resources */,
 				C9EADB7723368ED9007133B8 /* Fontisto.ttf in Resources */,

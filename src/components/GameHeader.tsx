@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-// import { createIconSetFromIcoMoon } from "react-native-vector-icons";
+import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
-// import selection from "../../android/app/src/main/assets/style/selection.json";
+import selection from "../../android/app/src/main/assets/style/selection.json";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import { SceneProps } from "../interfaces";
 import { observer, inject } from "mobx-react";
 import Game from "../models/Game";
 import Store from "../stores";
-// const Icon = createIconSetFromIcoMoon(selection);
+const Icon = createIconSetFromIcoMoon(selection);
 interface Props extends SceneProps{
   game: Game|null;
 }
@@ -78,7 +78,7 @@ class GameHeader extends Component<Props> {
                 paddingVertical: 5,
                 marginLeft: -2
               }}>
-              {/* <Icon name={"time"} size={20} /> */}
+              <Icon name={"time"} size={20} />
               <Text>{`${this.props.game.playingTime} min`}</Text>
             </View>
             <View
@@ -112,11 +112,11 @@ class GameHeader extends Component<Props> {
   renderPawn(min: number, max: number) {
     var table = [];
     for (var i = 0; i < max; i++) {
-      // if (i < min) {
-      //   table.push(<Icon size={15} name={"pawn"} color={"black"} />);
-      // } else {
-      //   table.push(<Icon size={15} name={"pawn"} color={"gray"} />);
-      // }
+      if (i < min) {
+        table.push(<Icon size={15} name={"pawn"} color={"black"} />);
+      } else {
+        table.push(<Icon size={15} name={"pawn"} color={"gray"} />);
+      }
     }
     return table;
   }
