@@ -35,6 +35,8 @@ target 'krosconApp' do
 
   pod 'react-native-camera', path: '../node_modules/react-native-camera'
 
+  pod 'ReactNativeFabric', :path => '../node_modules/react-native-fabric'
+
   target 'krosconAppTests' do
     inherit! :search_paths
     # Pods for testing

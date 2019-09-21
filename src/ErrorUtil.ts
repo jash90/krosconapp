@@ -1,6 +1,6 @@
 import { NetInfo, AsyncStorage } from "react-native";
 import Toast from "react-native-simple-toast";
-// import { Crashlytics } from 'react-native-fabric';
+import { Crashlytics } from 'react-native-fabric';
 import NavigationService from "./NavigationService";
 import Scenes from "./Scenes";
 import Stores from "./stores";
