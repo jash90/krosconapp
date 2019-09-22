@@ -5,7 +5,7 @@ import {
   createAppContainer,
   NavigationContainerComponent
 } from "react-navigation";
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator } from "react-navigation-stack";
 import {
   AddItem,
   BoardGame,
@@ -50,6 +50,7 @@ const AppNavigator = createStackNavigator(
 const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
+
   render() {
     return (
       <MenuProvider>

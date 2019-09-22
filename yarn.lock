@@ -4516,9 +4516,9 @@ minimist@~0.0.1:
   integrity sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8=
 
 minipass@^2.2.1, minipass@^2.6.0, minipass@^2.6.4:
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.6.5.tgz#1c245f9f2897f70fd4a219066261ce6c29f80b18"
-  integrity sha512-ewSKOPFH9blOLXx0YSE+mbrNMBFPS+11a2b03QZ+P4LVrUHW/GAlqeYC7DBknDyMWkHzrzTpDhUvy7MUxqyrPA==
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.7.0.tgz#c01093a82287c8331f08f1075499fef124888796"
+  integrity sha512-+CbZuJ4uEiuTL9s5Z/ULkuRg1O9AvVqVvceaBrhbYHIy1R3dPO7FMmG0nZLD0//ZzZq0MUOjwdBQvk+w1JHUqQ==
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
@@ -5504,16 +5504,16 @@ react-native@0.60.5:
     whatwg-fetch "^3.0.0"
 
 react-navigation-stack@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.8.0.tgz#52cb159371b64d20780a72ce43e9620adec2f2a0"
-  integrity sha512-J8ezJlZRxoXuxVH7Y9EOBBluoOpjgrFN0HBKMJyi8ctFEVDsEjjbsffhk6ihOeZ2um7dPYErzeD7sLjx8YQDzw==
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.8.1.tgz#88602596239b4a238285f3dd1860bb74f7aa2a74"
+  integrity sha512-XOkHuYlQjZKnD4jTU0Ml847sKjpwsJpQ6JX4ZfOq8D0e6fPWXbpYNhvUnzHMHMm+tnbhTqkqP1Umu40Hmx748Q==
   dependencies:
     prop-types "^15.7.2"
 
 react-navigation@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.6.tgz#6e0c4324c8eb314f31b510a43cbf7cea9410f246"
-  integrity sha512-DEhAcuiPI+I8pEgKStVrhDjZA5bc/1Nc+ByKWPn1pVWJCRHs+i+vJ6D2KWZCUtpzKCSm/yVPyUab4hOCg8L+Ww==
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.7.tgz#cc7ce334fef009242494d623e50e9cf79eb63ddd"
+  integrity sha512-0tTWanq870Hyr1VGHuj98+myRHNQnKgpRgjgzhAwVuLShyPIB9OnoLGIwIcqEdxgxGo+JMFmIGg8KCr7xapfgg==
   dependencies:
     "@react-navigation/core" "^3.5.1"
     "@react-navigation/native" "^3.6.2"
