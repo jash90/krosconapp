@@ -1,13 +1,14 @@
-import { NetInfo, AsyncStorage } from "react-native";
+import {AsyncStorage } from "react-native";
 import Toast from "react-native-simple-toast";
 import { Crashlytics } from 'react-native-fabric';
+import NetInfo from "@react-native-community/netinfo";
 import NavigationService from "./NavigationService";
 import Scenes from "./Scenes";
 import Stores from "./stores";
 import axios from "axios";
 export default class ErroUtil {
     public static async errorService(error: any) {
-        const connectionInfo = await NetInfo.getConnectionInfo();
+        const connectionInfo = await NetInfo.fetch();
         const internetConnectionStatus = connectionInfo.type !== 'none' && connectionInfo.type !== 'unknown';
         if (!internetConnectionStatus) {
             Toast.show("Brak połączenia z internetem", Toast.LONG);
@@ -23,9 +24,9 @@ export default class ErroUtil {
             Toast.show(`Coś poszło nie tak skontaktuj się z obsługą, bądź administratorem.`, Toast.LONG);
         }
         console.log(error);
-        Crashlytics.recordError({
-            code: "123",
-            message: JSON.stringify(error),
-        });
+        // Crashlytics.recordError({
+        //     code: "123",
+        //     message: JSON.stringify(error),
+        // });
     }
 }

@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import { Dimensions } from "react-native";
-import QRCode from "react-native-qrcode";
+import QRCode from 'react-native-qrcode-svg';
 import { Container } from "../components";
 import { RCViewCenter } from "../components/StyledComponent";
 import { SceneProps } from "../interfaces";

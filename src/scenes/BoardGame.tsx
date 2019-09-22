@@ -9,7 +9,6 @@ import Scenes from "../Scenes";
 import Store from "../stores";
 import { Game } from "../models";
 import { RCView } from "../components/StyledComponent";
-//import Moment from "moment";
 import Moment from 'moment/min/moment-with-locales';
 interface Props extends SceneProps {
   item: any;

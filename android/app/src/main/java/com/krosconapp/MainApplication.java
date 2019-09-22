@@ -1,26 +1,21 @@
 package com.krosconapp;
 
 import android.app.Application;
-
+import android.util.Log;
 import com.crashlytics.android.Crashlytics;
+import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
+import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.smixx.fabric.FabricPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.imagepicker.ImagePickerPackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import io.fabric.sdk.android.Fabric;
-import org.reactnative.camera.RNCameraPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
+import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.soloader.SoLoader;
-
-import java.util.Arrays;
-import java.util.List;
 import io.fabric.sdk.android.Fabric;
-import com.crashlytics.android.Crashlytics;
+import java.util.List;
+import org.reactnative.camera.RNCameraPackage;
+
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -32,16 +27,11 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new FabricPackage(),
-            new RNGestureHandlerPackage(),
-            new VectorIconsPackage(),
-            new LinearGradientPackage(),
-            new ImagePickerPackage(),
-            new RNDeviceInfo(),
-            new RNCameraPackage()
-      );
+      @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      // Packages that cannot be autolinked yet can be added manually here, for example:
+      // packages.add(new MyReactNativePackage());
+      return packages;
     }
 
     @Override
