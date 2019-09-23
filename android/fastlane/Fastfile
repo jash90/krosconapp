@@ -23,8 +23,17 @@ lane :beta do
     build_secret: "b208fc30c4a534120dac7eb5b8ecc96b37fe73273371e9ef8ff7738af12ea43e"
   )
 end
-lane :bump_version do
-increment_version_number(
-  version_number: "1.0.0" # Set a specific version number
-)
+
+desc 'bump version [major|minor|patch]'
+  lane :bump_version do |options|
+    sh "yarn version --#{options[:type]} --no-git-tag-version"
+  end
+
+lane :store do
+  # build the release variant
+  build_android_app(task: "assembleRelease")
+
+  # upload to Google Play
+  supply(track: "beta")
 end
+
