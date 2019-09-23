@@ -29,11 +29,16 @@ desc 'bump version [major|minor|patch]'
     sh "yarn version --#{options[:type]} --no-git-tag-version"
   end
 
-lane :store do
-  # build the release variant
-  build_android_app(task: "assembleRelease")
+# lane :store do
+#   # build the release variant
+#   build_android_app(task: "assembleRelease")
 
-  # upload to Google Play
-  supply(track: "beta")
-end
+#   # upload to Google Play
+#   supply(
+#     track: "beta",
+#     skip_upload_images: true,
+#     skip_upload_screenshots: true,
+#   )
+
+# end
 
