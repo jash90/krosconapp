@@ -20,7 +20,8 @@ import {
   Privilege,
   QR,
   Register,
-  HistoryLoan
+  HistoryLoan,
+  About
 } from "./src/scenes/index";
 import store from "./src/stores";
 import NavigationService from "./src/NavigationService";
@@ -40,10 +41,12 @@ const AppNavigator = createStackNavigator(
     Privilege,
     EditProfile,
     ChangePassword,
-    HistoryLoan
+    HistoryLoan,
+    About
   },
   {
-    headerMode: "none"
+    headerMode: "none",
+ //   initialRouteName:"About"
   }
 );
 

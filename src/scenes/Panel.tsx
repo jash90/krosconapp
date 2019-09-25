@@ -11,19 +11,7 @@ import { SceneProps } from "../interfaces";
 import Store from "../stores";
 import { AuthApi } from "../api";
 
-interface State {
-  password: string;
-  repeatPassword: string;
-}
-class Panel extends Component<SceneProps, State> {
-  constructor(props: SceneProps) {
-    super(props);
-    this.state = {
-      password: "",
-      repeatPassword: ""
-    };
-  }
-
+class Panel extends Component<SceneProps> {
   render() {
     return (
       <Container
@@ -59,6 +47,16 @@ class Panel extends Component<SceneProps, State> {
               colorText="white"
               text={"Historia wypożyczeń"}
               onPress={this.history}
+            />
+          )}
+
+          {Store.authStore.privilegeId === 1 && (
+            <Button
+              outline
+              color={`${Color.accentColor}`}
+              colorText="white"
+              text={"O konwencie"}
+              onPress={this.about}
             />
           )}
 
@@ -114,6 +112,9 @@ class Panel extends Component<SceneProps, State> {
   history = () => {
     NavigationService.navigate(Scenes.HistoryLoan);
   };
+
+  about = () => {
+  }
 
   logout = async () => {
     try {

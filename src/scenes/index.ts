@@ -12,5 +12,6 @@ import Privilege from "./Privilege";
 import QR from "./QR";
 import Register from "./Register";
 import HistoryLoan from "./HistoryLoan";
-export { AddItem, BoardGame, Camera, ChangePassword, EditProfile, List, LoadingScreen, LoanGame, Login, Panel, Privilege, QR, Register, HistoryLoan };
+import About from "./About";
+export { AddItem, BoardGame, Camera, ChangePassword, EditProfile, List, LoadingScreen, LoanGame, Login, Panel, Privilege, QR, Register, HistoryLoan, About };
 
