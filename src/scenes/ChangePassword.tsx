@@ -32,7 +32,6 @@ class ChangePassword extends Component<SceneProps, State> {
         scrollView
         right
         icon={"save"}
-        styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
         <Input
           ref={ref => (this.password = ref)}

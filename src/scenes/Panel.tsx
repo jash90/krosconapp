@@ -54,7 +54,6 @@ class Panel extends Component<SceneProps> {
             <Button
               outline
               color={`${Color.accentColor}`}
-              colorText="white"
               text={"O konwencie"}
               onPress={this.about}
             />
@@ -114,6 +113,7 @@ class Panel extends Component<SceneProps> {
   };
 
   about = () => {
+    NavigationService.navigate(Scenes.About);
   }
 
   logout = async () => {

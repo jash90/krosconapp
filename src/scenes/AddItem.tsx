@@ -102,7 +102,6 @@ class AddItem extends Component<SceneProps, State> {
         scrollView
         right
         text={"Dodaj"}
-        styleContent={{ flex: 1 }}
         icon={"save"}
         onPress={() => this.save()}>
         <View style={{ width: "100%" }}>

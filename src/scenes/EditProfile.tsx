@@ -52,7 +52,6 @@ class EditProfile extends Component<SceneProps, State> {
         text={"Edycja Profilu"}
         right
         icon={"save"}
-        styleContent={{ flex: 1, paddingHorizontal: 20 }}
         onPress={() => this.save()}>
         <Input
           ref={ref => (this.firstname = ref)}

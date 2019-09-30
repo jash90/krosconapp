@@ -52,8 +52,7 @@ class LoanGame extends Component<SceneProps, State> {
     }
     return (
       <Container
-        text={loan ? "Wypożycz grę" : "Oddaj grę"}
-        styleContent={{ paddingHorizontal: 20 }}>
+        text={loan ? "Wypożycz grę" : "Oddaj grę"}>
         <WithScannerGame
           ref={ref => (this.game = ref)}
           value={!!this.state.game}

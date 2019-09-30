@@ -75,8 +75,8 @@ class Container extends Component<ContainerProps, State> {
         <ScrollView
           style={
             this.props.styleContent
-              ? [this.props.styleContent, styles.fullStyle]
-              : styles.fullStyle
+            ? this.props.styleContent
+            : styles.fullStyle
           }>
           {this.props.children}
         </ScrollView>
@@ -86,7 +86,7 @@ class Container extends Component<ContainerProps, State> {
         <View
           style={
             this.props.styleContent
-              ? [this.props.styleContent, styles.fullStyle]
+              ? this.props.styleContent
               : styles.fullStyle
           }>
           {this.props.children}
