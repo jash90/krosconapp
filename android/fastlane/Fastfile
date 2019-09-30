@@ -13,6 +13,13 @@ default_platform :android
 # Fastfile actions accept additional configuration, but
 # don't worry, fastlane will prompt you for required
 # info which you can add here later
+
+release_version_number = nil
+
+before_all do
+    release_version_number = sh "(cat ../../package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')"
+end
+
 lane :beta do
   # build the release variant
   build_android_app(task: "assembleRelease")
