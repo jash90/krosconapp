@@ -26,6 +26,7 @@ lane :beta do
 
   # upload to Beta by Crashlytics
   crashlytics(
+    groups:'Testers',
     api_token: "3ef8cadd51195dffa2d744483f1c57ac37ea323e",
     build_secret: "b208fc30c4a534120dac7eb5b8ecc96b37fe73273371e9ef8ff7738af12ea43e"
   )
@@ -36,16 +37,17 @@ desc 'bump version [major|minor|patch]'
     sh "yarn version --#{options[:type]} --no-git-tag-version"
   end
 
-# lane :store do
-#   # build the release variant
-#   build_android_app(task: "assembleRelease")
+lane :store do
+  # build the release variant
+  build_android_app(task: "assembleRelease")
 
-#   # upload to Google Play
-#   supply(
-#     track: "beta",
-#     skip_upload_images: true,
-#     skip_upload_screenshots: true,
-#   )
+  # upload to Google Play
+  supply(
+    track: "beta",
+    package_name:"com.krosconapp",
+    skip_upload_images: true,
+    skip_upload_screenshots: true,
+  )
 
-# end
+end
 

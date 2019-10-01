@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "api-5884247003620098238-706719",
+  "private_key_id": "0cfa897caf737303dc5102e36a58ba58737e10e5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDMmJiIUyupBnsn\niLtQXEGOOiUNS2/yKF36aLWYffUJNOsV0+u7ys5uic90WHQeYKLqhjarkbEdZvNu\noTqsFRkdBh7lbGQnCDXd+RNWk7rU/ppyYcsVi7Yp7MBgCYLajIkMm+og2j/LrBOF\nohUjQQ5NIubO3xZoZx0eyEYZ38N8wG89n+GQwAOfSR54JMXELa5a6/VYJOzd3bNG\n0uCSpDoJ19Yb09NDbrnyrl/jHan7B0AhxVSq5rbcJ4JSgIKhSGPBzzm1kUDKeN+2\ntMxJJGe/rPGlJYVssjwFivVRkPyaTHU0tettx1qnenNww0wIwhAFAXBRFU5zaGdr\nGu8DTOePAgMBAAECggEAAvQrCOt7zwy8Z3A2asJs4d2eCP3vUlAvNyfJg2JCJjgL\niCekmMlPR1JEWqTSRwP/JiKk6b+IjpOcwm/1IGSM6xnaWqvrcD19RZn3I6yt/wLj\n/kXCKv/23nkVYpg7OZDbg6vr6pMsEPKINPQyQ5gzWX1pAVCVirv+XszmZ4Y5qh84\nf6XThB/OWTl/21Xr565vvGusFMp+dtDbFCglnv8vcA95p5E4wqUo2YuXKPilFCPd\nzZkEYtQy/27gfDxbrjC/DjqATpffsQu57QifDWl8POdQEJeNAci4Eg2t4GEernTz\nV3v8m34tZzp61Od5HuomPDgHfUu4Y1Pg0kZ+jRjyQQKBgQDq1UwhBXNelvFVRl0v\njjIrIIBQoApDpzQMRgpyemVP8WJ/K6Z4JHeVb0AVp6W1s17/6gDHvMZd5BgEjK80\nPAsbZTcgJk3v7fN/JGrPutpAjJ2BOoTzoQxUVyIZwfXCdrUY63zDgR1hoorv2syH\n+afJjrQRoLrZgn4CH605jXfDzwKBgQDfCZYhsMaWO78TJgZiDditVv1uwFYGs0MA\nVNKXXLTDbao42U2Ceqnlxuhwlz44VxglIDtsXmNQdJmAcqk9eNSB3RjsqlDP6eQg\nvOPqPRCSgjtqIQwXrgzZcq6uuLAt8V2aq0JrqVn1ZGL77bmcfyJC73Go03hZgsS/\nK8bzwXTQQQKBgGDC2seQc2U6VN6KS8NYmBtlHPobt58AulWEVrGs9SnnkGpOFh3T\nCOMuH/3MQl+INVDFnuSuSB5P6gWV4mtngjwbjIdWwS5nobl1y/0kROHsDso8zqOE\nbIwkCw0J+rXSK/TEs3frL6wXSaBjS3uLxzMp9dB9pgAR4NIHM11PiVXJAoGBAIBs\nnK25hB9tN5BnDLXZEzJ8LGFhDie9gI7oSHovP0ZoFuO0/BRtXPaZma166LC4NYbr\nEExN7RGekeSMITbsJDDChl9/khilrF3NZc6yaqBxrJRngvb/mRZ8GmkwnwFVQXiV\ntCEZ2lqZ+wTk1UNvUOMJzIBRg7LGwVLyehRRCFoBAoGAUpJNJPBhB8X3JyGdhtDD\nZ2a1MbWHW7VffoqXk4PF6CsKAv/kfmXnnmSn4fiL3Yy29sTm8YG9ATiGaBqeRYDZ\nXJpdTi6qzUTaIXBzYXmvro3HIgq5prtqgHer8MOtv0dX10Opw5m148Pxu7VXY+xr\nzuxx7CbMSSqha3HppbtEpdA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "raccoonsoftware@api-5884247003620098238-706719.iam.gserviceaccount.com",
+  "client_id": "106409038526815220736",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/raccoonsoftware%40api-5884247003620098238-706719.iam.gserviceaccount.com"
+}

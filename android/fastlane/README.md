@@ -25,6 +25,11 @@ fastlane beta
 fastlane bump_version
 ```
 bump version [major|minor|patch]
+### store
+```
+fastlane store
+```
+
 
 ----
 
