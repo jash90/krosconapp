@@ -30,6 +30,10 @@ class LoanGame extends Component<SceneProps, State> {
     };
   }
 
+  componentDidMount() {
+    throw new Error('This is a test javascript crash!');
+  }
+
   componentWillMount() {
     const game = Store.propsStore.game;
     if (Store.propsStore.game.id > 0) this.setState({ game });
