@@ -10,14 +10,11 @@ import Store from "../stores";
 import { Game } from "../models";
 import { RCView } from "../components/StyledComponent";
 import Moment from "moment/min/moment-with-locales";
-import Crashes from "appcenter-crashes";
+
 interface Props extends SceneProps {
   item: any;
 }
 class BoardGame extends Component<Props> {
-  componentDidMount() {
-    Crashes.generateTestCrash();
-  }
   componentWillUnmount() {
     Store.propsStore.clearGame();
   }
