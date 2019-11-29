@@ -15,9 +15,7 @@ import DeviceInfo from "react-native-device-info";
 import Language from "./src/Language";
 
 
-//Test1
-
-//Test2
+//TEST
 
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
