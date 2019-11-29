@@ -14,6 +14,10 @@ import Example from "./src/scene/Example";
 import DeviceInfo from "react-native-device-info";
 import Language from "./src/Language";
 
+
+//Test1
+
+
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
