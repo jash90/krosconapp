@@ -1,74 +1,61 @@
-import { Provider } from "mobx-react";
-import React from "react";
-import { MenuProvider } from "react-native-popup-menu";
-import {
-  createAppContainer,
-  NavigationContainerComponent
-} from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import {
-  AddItem,
-  BoardGame,
-  Camera,
-  ChangePassword,
-  EditProfile,
-  List,
-  LoadingScreen,
-  LoanGame,
-  Login,
-  Panel,
-  Privilege,
-  QR,
-  Register,
-  HistoryLoan,
-  About
-} from "./src/scenes/index";
-import store from "./src/stores";
-import NavigationService from "./src/NavigationService";
+import React, { Component } from "react";
+import { Router, Stack, Scene } from "react-native-router-flux";
+import LoadingScreen from "./src/scene/LoadingScreen";
+import List from "./src/scene/List";
+import Item from "./src/scene/Item";
+import Camera from "./src/scene/Camera";
+import AddItem from "./src/scene/AddItem";
+import Login from "./src/scene/Login";
+import Register from "./src/scene/Register";
+import Profile from "./src/scene/Profile";
+import BorrowBooks from "./src/scene/BorrowBooks";
+import Example from "./src/scene/Example";
+
+import DeviceInfo from "react-native-device-info";
+import Language from "./src/Language";
+
+
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
   {
-    LoadingScreen,
-    List,
-    BoardGame,
-    Camera,
-    AddItem,
-    Login,
-    Register,
-    LoanGame,
-    Panel,
-    QR,
-    Privilege,
-    EditProfile,
-    ChangePassword,
-    HistoryLoan,
-    About
+    LoadingScreen: {
+      screen: LoadingScreen
+    },
+    List: {
+      screen: List
+    },
+    Item: {
+      screen: Item
+    },
+    Camera: {
+      screen: Camera
+    },
+    AddItem: {
+      screen: AddItem
+    },
+    Login: {
+      screen: Login
+    },
+    Register: {
+      screen: Register
+    },
+    Profile: {
+      screen: Profile
+    },
+    BorrowBooks: {
+      screen: BorrowBooks
+    },
+    Example: {
+      screen: Example
+    }
   },
   {
-    headerMode: "none",
- //   initialRouteName:"About"
+    headerMode: "none"
   }
 );
 
-const RootNavigator = createAppContainer(AppNavigator);
-
-export default class App extends React.Component {
-
-  render() {
-    return (
-      <MenuProvider>
-        <Provider {...store}>
-          <RootNavigator
-            ref={(navigatorRef: NavigationContainerComponent) => {
-              NavigationService.setTopLevelNavigator(navigatorRef);
-            }}
-          />
-        </Provider>
-      </MenuProvider>
-    );
-  }
-}
-
+export default createAppContainer(AppNavigator);
 // export default class App extends Component {
 //   componentWillMount() {
 //     Language.setL(DeviceInfo.getDeviceLocale().substring(0, 2));
