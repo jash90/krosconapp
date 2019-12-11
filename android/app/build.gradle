@@ -155,12 +155,6 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        rs {
-           storeFile file('keystores/keystore.jks')
-           storePassword keystoreProperties['storePassword']
-           keyAlias keystoreProperties['keyAlias']
-           keyPassword keystoreProperties['keyPassword']
-        }
     }
     buildTypes {
         debug {
@@ -172,15 +166,6 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
-
-        rs {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.rs
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-        }
-
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
