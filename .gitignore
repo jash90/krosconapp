@@ -56,7 +56,7 @@ buck-out/
 .vscode/
 ios/Pods
 *.jks
-keystore.properties
+android/app/keystores/keystore.properties
 #Crashlytics
 
 /android/app/src/main/assets/crashlytics-build.properties
