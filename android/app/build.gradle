@@ -120,10 +120,6 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
-def keystorePropertiesFile = file("keystores/keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
