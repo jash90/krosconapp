@@ -12,6 +12,7 @@ import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import { SceneProps } from "../interfaces";
 import Store from "../stores";
+import Crashes from "appcenter-crashes";
 
 interface State {
   email: string;
@@ -31,6 +32,11 @@ class Login extends Component<SceneProps, State> {
       errorEmail: false
     };
   }
+
+  componentDidMount() {
+    Crashes.generateTestCrash();
+  }
+
   render() {
     return (
       <Container
