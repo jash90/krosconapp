@@ -31,13 +31,9 @@ target 'krosconApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'react-native-camera', path: '../node_modules/react-native-camera'
 
-  pod 'ReactNativeFabric', :path => '../node_modules/react-native-fabric'
 
-  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
 
   target 'krosconAppTests' do
     inherit! :search_paths

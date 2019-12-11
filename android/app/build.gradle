@@ -123,8 +123,6 @@ def enableHermes = project.ext.react.get("enableHermes", false);
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    flavorDimensions "default"
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -165,20 +163,6 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-    productFlavors {
-        dev {
-            minSdkVersion rootProject.ext.minSdkVersion
-            applicationId 'com.krosconapp.dev'
-            targetSdkVersion rootProject.ext.targetSdkVersion
-            resValue "string", "build_config_package", "com.krosconapp"
-        }
-        beta {
-            minSdkVersion rootProject.ext.minSdkVersion
-            applicationId 'com.krosconapp.beta'
-            targetSdkVersion rootProject.ext.targetSdkVersion
-            resValue "string", "build_config_package", "com.krosconapp"
-        }
-    }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -205,12 +189,9 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-camera')
     implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true;
     }
-    implementation project(':@react-native-community_netinfo')
-    implementation project(':react-native-fabric')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
