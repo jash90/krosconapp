@@ -53,7 +53,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 def getNpmVersion() {
     def inputFile
-    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+    if (Os.isFamily(Os.FAMILY_MAC)) {
         inputFile = new File("package.json")
     } else {
         inputFile = new File("../package.json")
