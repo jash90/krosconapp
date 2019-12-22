@@ -9,23 +9,27 @@ import Store from "../stores";
 import Color from "../Color";
 
 class QR extends Component<SceneProps> {
-  render() {
-    const code = Store.authStore.email.toString();
-    return (
-      <Container text={"Kod QR"}>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <RCViewCenter>
-            <QRCode
-              value={code}
-              color="black"
-              backgroundColor="white"
-              size={Dimensions.get("window").width * 0.8}
-            />
-          </RCViewCenter>
-        </View>
-      </Container>
-    );
-  }
+    render() {
+        const code = Store.authStore.email.toString();
+        return (
+            <Container text={"Kod QR"}>
+                <View
+                    style={{
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}>
+                    <RCViewCenter>
+                        <QRCode
+                            value={code}
+                            color="black"
+                            backgroundColor="white"
+                            size={Dimensions.get("window").width * 0.8}
+                        />
+                    </RCViewCenter>
+                </View>
+            </Container>
+        );
+    }
 }
 export default inject("authStore", "propsStore")(observer(QR));

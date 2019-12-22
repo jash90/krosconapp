@@ -47,11 +47,14 @@ class List extends Component<Props, State> {
             count: Math.ceil(data.count / 10),
             page: 0
           });
+          console.log(response);
         })
         .catch(error => {
           ErrorUtil.errorService(error);
         });
     }
+
+      console.log(Store.propsStore)
   }
 
   render() {
