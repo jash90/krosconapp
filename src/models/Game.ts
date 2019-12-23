@@ -9,8 +9,8 @@ export default class Game {
     public minAge: number = 0;
     public description: string = "";
     public publisher: Publisher = new Publisher();
-    public loanGames: LoanGame[] = [];
-    public types: Type[] = [];
+    public loanGames: LoanGame[] = []; 
+    public types: Type[]  = [];
     public mechanics: Mechanic[] = [];
 
     public Game() {

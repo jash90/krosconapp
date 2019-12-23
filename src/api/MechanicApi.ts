@@ -1,7 +1,8 @@
 import axios from "../Axios";
 export default class MechanicApi {
     public static apiName = "mechanic";
-    public static async add(name: string) {
+    public static async add(
+        name: string) {
         return await axios.post(`/${this.apiName}/add`, {
             name
         });
@@ -10,18 +11,18 @@ export default class MechanicApi {
         return await axios.get(`/${this.apiName}s`);
     }
     public static async get(mechanicId: number) {
-        return await axios.get(`/${this.apiName}/${mechanicId}`);
+        return await axios.get(`/${this.apiName}/${mechanicId}`)
     }
     public static async offset(id: number) {
-        return await axios.get(`/${this.apiName}/offset/${id}`);
+        return await axios.get(`/${this.apiName}/offset/${id}`)
     }
-    public static async edit(name: string, mechanicId: number) {
-        return await axios.post(`/${this.apiName}/edit/`, {
+    public static async edit(name: string, mechanicId :number) {
+        return await axios.post(`/${this.apiName}/edit/`,{
             name,
             mechanicId
         });
     }
     public static async remove(mechanicId: number) {
-        return await axios.delete(`/${this.apiName}/remove/${mechanicId}`);
+        return await axios.delete(`/${this.apiName}/remove/${mechanicId}`)
     }
 }

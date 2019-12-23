@@ -2,11 +2,7 @@ import axios from "../Axios";
 export default class EventApi {
     public static apiName = "event";
     public static async add(
-        name: string,
-        start: Date,
-        end: Date,
-        description: string
-    ) {
+        name: string, start: Date, end: Date, description: string) {
         return await axios.post(`/${this.apiName}/add`, {
             name,
             start,
@@ -18,18 +14,12 @@ export default class EventApi {
         return await axios.get(`/${this.apiName}s`);
     }
     public static async get(eventId: number) {
-        return await axios.get(`/${this.apiName}/${eventId}`);
+        return await axios.get(`/${this.apiName}/${eventId}`)
     }
     public static async offset(id: number) {
-        return await axios.get(`/${this.apiName}/offset/${id}`);
+        return await axios.get(`/${this.apiName}/offset/${id}`)
     }
-    public static async edit(
-        name: string,
-        start: Date,
-        end: Date,
-        description: string,
-        eventId: number
-    ) {
+    public static async edit(name: string, start: Date, end: Date, description: string, eventId: number) {
         return await axios.post(`/${this.apiName}/edit/`, {
             name,
             start,
@@ -39,6 +29,6 @@ export default class EventApi {
         });
     }
     public static async remove(eventId: number) {
-        return await axios.delete(`/${this.apiName}/remove/${eventId}`);
+        return await axios.delete(`/${this.apiName}/remove/${eventId}`)
     }
 }

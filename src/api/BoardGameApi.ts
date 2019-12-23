@@ -1,8 +1,7 @@
 import axios from "../Axios";
 export default class BoardGameApi {
     public static apiName = "boardGame";
-    public static async add(
-        name: string,
+    public static async add(name: string,
         uuid: string,
         description: string,
         minPlayers: number,
@@ -10,8 +9,7 @@ export default class BoardGameApi {
         playingTime: number,
         image = null,
         minAge: number,
-        publisherId: number
-    ) {
+        publisherId: number) {
         return await axios.post(`/${this.apiName}/add`, {
             name,
             uuid,
@@ -31,13 +29,12 @@ export default class BoardGameApi {
         return await axios.get(`/${this.apiName}/available`);
     }
     public static async get(boardGameId: number) {
-        return await axios.get(`/${this.apiName}/${boardGameId}`);
+        return await axios.get(`/${this.apiName}/${boardGameId}`)
     }
     public static async offset(id: number = 0) {
-        return await axios.get(`/${this.apiName}/offset/${id}`);
+        return await axios.get(`/${this.apiName}/offset/${id}`)
     }
-    public static async edit(
-        name: string,
+    public static async edit(name: string,
         uuid: string,
         description: string,
         minPlayers: number,
@@ -46,8 +43,7 @@ export default class BoardGameApi {
         image = null,
         minAge: number,
         publisherId: number,
-        boardGameId: number
-    ) {
+        boardGameId: number) {
         return await axios.post(`/${this.apiName}/edit`, {
             name,
             uuid,
@@ -62,14 +58,14 @@ export default class BoardGameApi {
         });
     }
     public static async remove(boardGameId: number) {
-        return await axios.delete(`/${this.apiName}/remove/${boardGameId}`);
+        return await axios.delete(`/${this.apiName}/remove/${boardGameId}`)
     }
 
     public static async search(search: any) {
-        return await axios.post(`/${this.apiName}/search`, search);
+        return await axios.post(`/${this.apiName}/search`, search)
     }
 
     public static async searchByUUID(uuid: string) {
-        return await axios.get(`/${this.apiName}/search/uuid/${uuid}`);
+        return await axios.get(`/${this.apiName}/search/uuid/${uuid}`)
     }
 }

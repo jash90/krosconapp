@@ -22,7 +22,7 @@ export default class User {
     public setUser(user: User) {
         this.id = user.id;
         this.firstname = user.firstname;
-        this.lastname = user.lastname;
+        this.lastname = user.lastname
         this.email = user.email;
         this.city = user.city;
         this.age = user.age;

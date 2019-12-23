@@ -13,20 +13,5 @@ import QR from "./QR";
 import Register from "./Register";
 import HistoryLoan from "./HistoryLoan";
 import About from "./About";
-export {
-    AddItem,
-    BoardGame,
-    Camera,
-    ChangePassword,
-    EditProfile,
-    List,
-    LoadingScreen,
-    LoanGame,
-    Login,
-    Panel,
-    Privilege,
-    QR,
-    Register,
-    HistoryLoan,
-    About
-};
+export { AddItem, BoardGame, Camera, ChangePassword, EditProfile, List, LoadingScreen, LoanGame, Login, Panel, Privilege, QR, Register, HistoryLoan, About };
+

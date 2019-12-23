@@ -7,14 +7,4 @@ import MechanicApi from "./MechanicApi";
 import PublisherApi from "./PublisherApi";
 import TypeApi from "./TypeApi";
 import UserApi from "./UserApi";
-export {
-    AuthApi,
-    BoardGameApi,
-    BoardGameMechanicApi,
-    BoardGameTypeApi,
-    LoanGameApi,
-    MechanicApi,
-    PublisherApi,
-    TypeApi,
-    UserApi
-};
+export { AuthApi, BoardGameApi, BoardGameMechanicApi, BoardGameTypeApi, LoanGameApi, MechanicApi, PublisherApi, TypeApi, UserApi };

@@ -7,7 +7,7 @@ export default class PropsStore {
     @observable
     game: Game = new Game();
     @observable
-    listgame = observable<Game>([]);
+    listgame = observable<Game>([])
     @observable
     user: User = new User();
     @observable
@@ -54,7 +54,7 @@ export default class PropsStore {
     @action setTypeItem(typeItem: TypeItem) {
         this.typeItem = typeItem;
     }
-
+    
     @action setHistoryLoan(historyLoan: LoanGame[]) {
         this.historyLoan = historyLoan;
     }
