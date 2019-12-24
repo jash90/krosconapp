@@ -10,7 +10,7 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
-import {  RCViewFlex } from "../components/StyledComponent";
+import { RCViewFlex } from "../components/StyledComponent";
 import EventApi from "../api/EventApi";
 import Color from "../Color";
 interface Props extends SceneProps {

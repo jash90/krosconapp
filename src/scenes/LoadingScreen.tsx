@@ -24,22 +24,22 @@ class LoadingScreen extends Component<SceneProps> {
     } catch (error) {
       Toast.show(error);
     }
-    BoardGameApi.offset()
-      .then(response => {
-        const data = response.data;
-        Store.propsStore.setListGame(data.items);
-        NavigationService.navigate(Scenes.List, {
-          listgame: data.items,
-          count: data.count
-        });
-      })
-      .catch(error => {
-        ErrorUtil.errorService(error);
+    // BoardGameApi.offset()
+    //   .then(response => {
+    //     const data = response.data;
+    //     Store.propsStore.setListGame(data.items);
         NavigationService.navigate(Scenes.List, {
           listgame: [],
           count: 0
         });
-      });
+      // })
+      // .catch(error => {
+      //   ErrorUtil.errorService(error);
+      //   NavigationService.navigate(Scenes.List, {
+      //     listgame: [],
+      //     count: 0
+      //   });
+      // });
   };
 
   render() {

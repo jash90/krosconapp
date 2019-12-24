@@ -6,14 +6,12 @@ import com.crashlytics.android.Crashlytics;
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.smixx.fabric.FabricPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.soloader.SoLoader;
 import io.fabric.sdk.android.Fabric;
 import java.util.List;
-import org.reactnative.camera.RNCameraPackage;
 
 
 

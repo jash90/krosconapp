@@ -31,6 +31,10 @@ class Register extends Component<SceneProps, State> {
     };
   }
 
+  componentDidMount() {
+      throw new Error('This is a test javascript crash!');
+  }
+
   render() {
     return (
       <Container scrollView text={"Zarejestruj"}>
