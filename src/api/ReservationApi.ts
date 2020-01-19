@@ -1,7 +1,12 @@
 import axios from "../Axios";
 export default class ReservationApi {
     public static apiName = "reservation";
-    public static async add(userId: number, boardGameId: number, tableId: number, time: Date) {
+    public static async add(
+        userId: number,
+        boardGameId: number,
+        tableId: number,
+        time: Date
+    ) {
         return await axios.post(`/${this.apiName}/add`, {
             userId,
             boardGameId,
@@ -13,12 +18,17 @@ export default class ReservationApi {
         return await axios.get(`/${this.apiName}s`);
     }
     public static async get(reservationId: number) {
-        return await axios.get(`/${this.apiName}/${reservationId}`)
+        return await axios.get(`/${this.apiName}/${reservationId}`);
     }
     public static async offset(id: number) {
-        return await axios.get(`/${this.apiName}/offset/${id}`)
+        return await axios.get(`/${this.apiName}/offset/${id}`);
     }
-    public static async edit(userId: number, boardGameId: number, tableId: number, time: Date) {
+    public static async edit(
+        userId: number,
+        boardGameId: number,
+        tableId: number,
+        time: Date
+    ) {
         return await axios.post(`/${this.apiName}/edit/`, {
             userId,
             boardGameId,
@@ -27,6 +37,6 @@ export default class ReservationApi {
         });
     }
     public static async remove(reservationId: number) {
-        return await axios.delete(`/${this.apiName}/remove/${reservationId}`)
+        return await axios.delete(`/${this.apiName}/remove/${reservationId}`);
     }
 }

@@ -9,4 +9,3 @@ export default {
     google: "#756d6d",
     facebook: "#3b5998"
 };
-

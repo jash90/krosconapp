@@ -17,7 +17,7 @@ export default class LoanGame {
     }
     public setGame(loanGame: LoanGame) {
         this.id = loanGame.id;
-        this.user.setUser(loanGame.user)
+        this.user.setUser(loanGame.user);
         this.boardGame.setGame(loanGame.boardGame);
         this.hireUser.setUser(loanGame.hireUser);
         this.startLoan = loanGame.startLoan;

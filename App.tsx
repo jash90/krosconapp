@@ -45,7 +45,7 @@ const AppNavigator = createStackNavigator(
         About
     },
     {
-        headerMode: "none",
+        headerMode: "none"
         //   initialRouteName:"About"
     }
 );
@@ -53,14 +53,15 @@ const AppNavigator = createStackNavigator(
 const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
-
     render() {
         return (
             <MenuProvider>
                 <Provider {...store}>
                     <RootNavigator
                         ref={(navigatorRef: NavigationContainerComponent) => {
-                            NavigationService.setTopLevelNavigator(navigatorRef);
+                            NavigationService.setTopLevelNavigator(
+                                navigatorRef
+                            );
                         }}
                     />
                 </Provider>

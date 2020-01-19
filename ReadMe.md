@@ -8,27 +8,27 @@ Aplikacja KrosconApp ma służy do obsługi wydarzeń z planszówkami, przede ws
 
 ### Administrator
 
-* przeglądanie i wyszukiwanie gier
-* dodawanie i edycja gier, wydawców
-* przyznawanie uprawnień administratora
-* wypożyczanie i oddawanie gier
-* edycja profilu i hasła
+-   przeglądanie i wyszukiwanie gier
+-   dodawanie i edycja gier, wydawców
+-   przyznawanie uprawnień administratora
+-   wypożyczanie i oddawanie gier
+-   edycja profilu i hasła
 
 ### Moderator
 
-* przeglądanie i wyszukiwanie gier
-* dodawanie i edycja gier, wydawców
-* wypożyczanie i oddawanie gier
-* edycja profilu i hasła
+-   przeglądanie i wyszukiwanie gier
+-   dodawanie i edycja gier, wydawców
+-   wypożyczanie i oddawanie gier
+-   edycja profilu i hasła
 
 ### Użytkownik
 
-* przeglądanie i wyszukiwanie gier
-* edycja profilu i hasła
+-   przeglądanie i wyszukiwanie gier
+-   edycja profilu i hasła
 
 ### Gość
 
-* przeglądanie i wyszukiwanie gier
+-   przeglądanie i wyszukiwanie gier
 
 ## Funkcje
 

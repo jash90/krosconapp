@@ -2,25 +2,25 @@ import AuthStore from "./stores/AuthStore";
 
 import PropsStore from "./stores/PropsStore";
 
-interface Props { };
+interface Props {}
 
 interface TextProps extends Props {
     text: string;
-};
+}
 
 interface ButtonProps extends TextProps {
     onPress: () => any;
-};
+}
 
 interface FabProps {
     onPress: () => any;
-    icon:string;
+    icon: string;
 }
 
 interface PickerIconProps {
     onChange: (item: any) => any;
     select: string;
-};
+}
 
 interface HeadProps extends ButtonProps {
     back: boolean;
@@ -31,14 +31,23 @@ interface HeadProps extends ButtonProps {
     icon: string;
 }
 
-interface ContainerProps extends HeadProps{
+interface ContainerProps extends HeadProps {
     styleContent: any;
     scrollView: boolean;
-};
-
-interface SceneProps extends Props{
-    authStore:AuthStore;
-    propsStore:PropsStore;
 }
 
-export { Props, TextProps, ButtonProps, PickerIconProps, HeadProps, ContainerProps, SceneProps, FabProps };
+interface SceneProps extends Props {
+    authStore: AuthStore;
+    propsStore: PropsStore;
+}
+
+export {
+    Props,
+    TextProps,
+    ButtonProps,
+    PickerIconProps,
+    HeadProps,
+    ContainerProps,
+    SceneProps,
+    FabProps
+};
