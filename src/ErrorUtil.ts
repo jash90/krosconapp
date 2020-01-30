@@ -25,10 +25,5 @@ export default class ErroUtil {
                 Toast.LONG
             );
         }
-        if (Platform.OS === "ios") {
-            Crashlytics.recordError(JSON.stringify(error));
-        } else {
-            Crashlytics.logException(JSON.stringify(error));
-        }
     }
 }
