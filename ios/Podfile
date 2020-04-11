@@ -3,9 +3,6 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'krosconApp' do
 
-  pod 'Fabric'
-  pod 'Crashlytics'
-
   # Pods for krosconApp
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'

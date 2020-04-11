@@ -240,7 +240,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				C9EABC3E2336D39700C812F9 /* Fabric */,
 				4141A9EE2023DA0ADE328315 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -514,24 +513,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-krosconApp/Pods-krosconApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		C9EABC3E2336D39700C812F9 /* Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Fabric;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3ef8cadd51195dffa2d744483f1c57ac37ea323e b208fc30c4a534120dac7eb5b8ecc96b37fe73273371e9ef8ff7738af12ea43e\n";
 		};
 		DAEC9622E69A497F2B1238D7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
