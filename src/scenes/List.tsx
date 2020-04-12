@@ -12,6 +12,7 @@ import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
 import Crashes from 'appcenter-crashes';
+import Analytics from 'appcenter-analytics';
 
 interface State {
     active: boolean;
@@ -38,9 +39,9 @@ class List extends Component<Props, State> {
         };
     }
 
-    async componentDidMount() {
-        await Crashes.setEnabled(true);
-        Crashes.generateTestCrash();
+    componentDidMount() {
+        Analytics.trackEvent("text");
+        return new Error("problems");
         // if (Store.propsStore.listgame.length === 0) {
         //   BoardGameApi.offset()
         //     .then(response => {

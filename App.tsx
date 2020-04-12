@@ -26,6 +26,7 @@ import {
 import store from "./src/stores";
 import NavigationService from "./src/NavigationService";
 import Crashes from 'appcenter-crashes';
+import Analytics from 'appcenter-analytics';
 
 
 const AppNavigator = createStackNavigator(
@@ -56,9 +57,9 @@ const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
 
-    componentDidMount = async() =>{
-        await Crashes.setEnabled(true);
-        Crashes.generateTestCrash();
+    componentDidMount = () => {
+        Analytics.setEnabled(true);
+        Crashes.setEnabled(true);
     }
 
     render() {
