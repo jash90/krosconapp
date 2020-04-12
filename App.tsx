@@ -25,6 +25,7 @@ import {
 } from "./src/scenes/index";
 import store from "./src/stores";
 import NavigationService from "./src/NavigationService";
+import Crashes from 'appcenter-crashes';
 
 
 const AppNavigator = createStackNavigator(
@@ -47,12 +48,18 @@ const AppNavigator = createStackNavigator(
     },
     {
         headerMode: "none"
+        //   initialRouteName:"About"
     }
 );
 
 const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
+
+    componentDidMount = async() =>{
+        await Crashes.setEnabled(true);
+        Crashes.generateTestCrash();
+    }
 
     render() {
         return (
