@@ -49,7 +49,7 @@ subprojects { subproject ->
 import org.apache.tools.ant.taskdefs.condition.Os
 
 def getNpmVersion() {
-    def inputFile = new File("../package.json")
+    def inputFile = new File("package.json")
     def packageJson = new JsonSlurper().parseText(inputFile.text)
     return packageJson["version"]
 }
