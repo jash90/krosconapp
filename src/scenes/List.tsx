@@ -11,6 +11,7 @@ import Game from "../models/Game";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
+import Crashes from 'appcenter-crashes';
 
 interface State {
     active: boolean;
@@ -37,7 +38,9 @@ class List extends Component<Props, State> {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        await Crashes.setEnabled(true);
+        Crashes.generateTestCrash();
         // if (Store.propsStore.listgame.length === 0) {
         //   BoardGameApi.offset()
         //     .then(response => {
