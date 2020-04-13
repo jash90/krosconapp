@@ -46,7 +46,6 @@ subprojects { subproject ->
         versionPatch = npmVersion[2]
     }
 }
-import org.apache.tools.ant.taskdefs.condition.Os
 
 def getNpmVersion() {
     def inputFile = new File("package.json")
