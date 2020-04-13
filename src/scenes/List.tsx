@@ -39,9 +39,11 @@ class List extends Component<Props, State> {
         };
     }
 
-    componentDidMount() {
-        Analytics.trackEvent("text");
+    async componentDidMount() {
+        await Analytics.trackEvent("text");
         return new Error("problems");
+        await Crashes.generateTestCrash();
+
         // if (Store.propsStore.listgame.length === 0) {
         //   BoardGameApi.offset()
         //     .then(response => {

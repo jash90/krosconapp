@@ -57,10 +57,10 @@ const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
 
-    componentDidMount = () => {
-        Analytics.setEnabled(true);
-        Crashes.setEnabled(true);
-    }
+    componentDidMount = async () => {
+        await Analytics.setEnabled(true);
+        await Crashes.setEnabled(true);
+    };
 
     render() {
         return (
