@@ -20,16 +20,23 @@ before_all do
     release_version_number = sh "(cat ../../package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')"
 end
 
-lane :beta do
+lane :build do
   # build the release variant
-  build_android_app(task: "assembleRelease")
-
-  # upload to Beta by Crashlytics
-  crashlytics(
-    groups:'Testers',
-    api_token: "3ef8cadd51195dffa2d744483f1c57ac37ea323e",
-    build_secret: "b208fc30c4a534120dac7eb5b8ecc96b37fe73273371e9ef8ff7738af12ea43e"
-  )
+  keyAlias = get_properties_value( key: "keyAlias", path: "app/keystores/keystore.properties" )
+      keyPassword = get_properties_value( key: "keyPassword", path: "app/keystores/keystore.properties")
+      storePassword = get_properties_value( key: "storePassword", path: "app/keystores/keystore.properties")
+      path = File.expand_path(File.dirname(__FILE__)) + '/../app/keystores/release.keystore'
+      gradle(task: 'clean')
+      gradle(
+        task: 'assemble',
+        build_type: 'Release',
+        properties: {
+            "android.injected.signing.store.file" => path,
+            "android.injected.signing.store.password" => storePassword,
+            "android.injected.signing.key.alias" => keyAlias,
+            "android.injected.signing.key.password" => keyPassword,
+          }
+      )
 end
 
 desc 'bump version [major|minor|patch]'
@@ -50,4 +57,23 @@ lane :store do
   )
 
 end
+
+
+desc 'Build and upload to App Center.'
+lane :appcenter do
+build
+apiToken = get_properties_value( key: "apiKey", path: "app/keystores/appcenter.properties" )
+appcenter_upload(
+    api_token:apiToken,
+    owner_name: "bartlomiejzimny",
+    app_name: "KrosconApp",
+    apk: "app/build/outputs/apk/release/app-release.apk"
+    )
+end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "clean assembleRelease")
+    upload_to_play_store
+  end
 
