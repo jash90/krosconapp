@@ -40,6 +40,9 @@ class List extends Component<Props, State> {
     }
 
     async componentDidMount() {
+        await Analytics.setEnabled(true);
+        await Crashes.setEnabled(true);
+
         await Analytics.trackEvent("text");
         return new Error("problems");
         await Crashes.generateTestCrash();

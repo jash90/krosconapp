@@ -57,12 +57,7 @@ const RootNavigator = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
 
-    componentDidMount = async () => {
-        await Analytics.setEnabled(true);
-        await Crashes.setEnabled(true);
-    };
-
-    render() {
+     render() {
         return (
             <MenuProvider>
                 <Provider {...store}>
