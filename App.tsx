@@ -25,8 +25,6 @@ import {
 } from "./src/scenes/index";
 import store from "./src/stores";
 import NavigationService from "./src/NavigationService";
-import Crashes from 'appcenter-crashes';
-import Analytics from 'appcenter-analytics';
 
 
 const AppNavigator = createStackNavigator(
