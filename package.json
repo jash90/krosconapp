@@ -9,6 +9,7 @@
     "pod-update": "cd ios && pod update && pod install && ..",
     "android-release": "cd android && ./gradlew assembleRelease && ..",
     "postinstall": "jetify",
+    "clean": "rm -rf node_modules ios/Pods && yarn install && cd ios && pod install && cd ..",
     "patch": "yarn version --patch",
     "minor": "yarn version --minor",
     "major": "yarn version --major",
