@@ -13,23 +13,24 @@ import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import { SceneProps } from "../interfaces";
 import Store from "../stores";
+import { LoginProcess } from "../actions/auth/LoginProcess";
 
 interface State {
     email: string;
     password: string;
-    errorPassword: boolean;
     errorEmail: boolean;
+    errorPassword: boolean;
 }
 class Login extends Component<SceneProps, State> {
-    public loginInput: Input | null | undefined;
+    public emailInput: Input | null | undefined;
     public passwordInput: Input | null | undefined;
     constructor(props: SceneProps) {
         super(props);
         this.state = {
             email: "",
             password: "",
+            errorEmail: false,
             errorPassword: false,
-            errorEmail: false
         };
     }
 
@@ -46,7 +47,7 @@ class Login extends Component<SceneProps, State> {
                 onPress={() => NavigationService.navigate(Scenes.Register)}>
                 <Logo size={150} />
                 <Input
-                    ref={ref => (this.loginInput = ref)}
+                    ref={ref => (this.emailInput = ref)}
                     autoCapitalize={"none"}
                     value={this.state.email}
                     placeholder={"Email"}
@@ -79,7 +80,7 @@ class Login extends Component<SceneProps, State> {
 
     login = async () => {
         const { email, password } = this.state;
-        Input.validate([this.loginInput, this.passwordInput]);
+        Input.validate([this.emailInput, this.passwordInput]);
         if (!email) {
             Toast.show("Uzupełnij email");
             return;
@@ -88,26 +89,8 @@ class Login extends Component<SceneProps, State> {
             Toast.show("Uzupełnij hasło");
             return;
         }
-        AuthApi.login(this.state.email, this.state.password)
-            .then(async response => {
-                const data = response.data;
-                if (data.item) {
-                    Store.authStore.setUser(data.item);
-                    axios.defaults.headers.common["authorization"] = String(
-                        data.item.token
-                    );
-                    await AsyncStorage.setItem(
-                        "User",
-                        JSON.stringify(data.item)
-                    );
-                    NavigationService.reset(Scenes.List);
-                } else if (data.error) {
-                    Toast.show("Niepoprawny login lub hasło.");
-                }
-            })
-            .catch(error => {
-                ErrorUtil.errorService(error);
-            });
+
+        await LoginProcess(email, password);
     };
 }
 

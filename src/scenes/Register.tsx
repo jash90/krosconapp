@@ -86,7 +86,7 @@ class Register extends Component<SceneProps, State> {
             </Container>
         );
     }
-    register() {
+    async register() {
         const { email, password, firstname, lastname } = this.state;
         Input.validate([
             this.firstname,
@@ -110,24 +110,25 @@ class Register extends Component<SceneProps, State> {
             Toast.show("Uzupełnij nazwisko");
             return;
         }
-        AuthApi.register(
-            this.state.email,
-            this.state.password,
-            this.state.firstname,
-            this.state.lastname
-        )
-            .then(response => {
-                if (response.data.item) {
-                    Toast.show(`Utworzyłeś konto ${this.state.email}.`);
-                    NavigationService.navigate(Scenes.Login);
-                } else if (response.data.error) {
-                    Toast.show(`Nie udało się utworzyć konta`);
-                    ErrorUtil.errorService(response.data.error);
-                }
-            })
-            .catch(error => {
-                ErrorUtil.errorService(error);
-            });
+        try {
+            const { data } = await AuthApi.register(
+                this.state.email,
+                this.state.password,
+                this.state.firstname,
+                this.state.lastname
+            );
+
+            if (data.item) {
+                Toast.show(`Utworzyłeś konto ${this.state.email}.`);
+                NavigationService.navigate(Scenes.Login);
+            } else if (data.error) {
+                Toast.show(`Nie udało się utworzyć konta`);
+                ErrorUtil.errorService(data.error);
+            }
+        } catch (error) {
+            ErrorUtil.errorService(error);
+        }
+
     }
 }
 export default inject("authStore", "propsStore")(observer(Register));

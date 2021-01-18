@@ -119,7 +119,6 @@ class Panel extends Component<SceneProps> {
 
     logout = async () => {
         try {
-            await AuthApi.logout();
             axios.defaults.headers.common["authorization"] = null;
             NavigationService.reset(Scenes.List);
             Toast.show("Wylogowano");
