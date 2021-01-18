@@ -31,7 +31,4 @@ export default class AuthApi {
             password
         });
     }
-    public static async logout() {
-        return await axios.get("/logout");
-    }
 }
