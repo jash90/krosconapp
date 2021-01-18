@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View, AsyncStorage } from "react-native";
+import { View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Color from "../Color";
 import { Container, Button, UserHeader } from "../components";
 import Toast from "react-native-simple-toast";

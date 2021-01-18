@@ -1,6 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { AsyncStorage, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-simple-toast";
 import AuthApi from "../api/AuthApi";
 import axios from "../Axios";

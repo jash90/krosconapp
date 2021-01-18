@@ -1,6 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { AsyncStorage, Image, View } from "react-native";
+import { Image, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-simple-toast";
 import { BoardGameApi } from "../api";
 import axios from "../Axios";
