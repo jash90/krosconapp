@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import { RNCamera } from "react-native-camera";
 import Toast from "react-native-simple-toast";
 import { BoardGameApi, UserApi } from "../api";
@@ -19,20 +19,23 @@ class Camera extends Component<CameraProps> {
 
     render() {
         return (
-            <View style={styles.container}>
-                <RNCamera
-                    ref={(ref: any) => {
-                        this.camera = ref;
-                    }}
-                    style={styles.preview}
-                    permissionDialogTitle={"Permission to use camera"}
-                    permissionDialogMessage={
-                        "We need your permission to use your camera phone"
-                    }
-                    onBarCodeRead={(data: any, type: any) =>
-                        this.onBarCodeRead(data, type)
-                    }
-                />
+            <View style={{ width: "100%", height: "100%", backgroundColor: "grey" }}>
+                <SafeAreaView style={styles.container}>
+
+                    <RNCamera
+                        ref={(ref: any) => {
+                            this.camera = ref;
+                        }}
+                        style={styles.preview}
+                        permissionDialogTitle={"Permission to use camera"}
+                        permissionDialogMessage={
+                            "We need your permission to use your camera phone"
+                        }
+                        onBarCodeRead={(data: any, type: any) =>
+                            this.onBarCodeRead(data, type)
+                        }
+                    />
+                </SafeAreaView>
             </View>
         );
     }

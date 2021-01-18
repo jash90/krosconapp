@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Text, View } from "react-native";
+import { Modal, Text, TouchableWithoutFeedback, View } from "react-native";
 import { RCView } from "../components/StyledComponent";
 import { Button, PickerPawn, ViewText } from "./index";
 
@@ -48,69 +48,71 @@ class ModalPickerPawn extends Component<Props, State> {
                     animationType={"slide"}
                     transparent
                     onRequestClose={() => this.setState({ modal: false })}>
-                    <View
-                        style={{
-                            flex: 1,
-                            backgroundColor: "rgba(0,0,0,0.5)",
-                            justifyContent: "center",
-                            alignItems: "center"
-                        }}>
-                        <RCView
+                    <TouchableWithoutFeedback onPress={() => this.setState({ modal: false })}>
+                        <View
                             style={{
-                                height: "40%",
-                                width: "90%",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                                justifyContent: "space-between"
+                                flex: 1,
+                                backgroundColor: "rgba(0,0,0,0.5)",
+                                justifyContent: "center",
+                                alignItems: "center"
                             }}>
-                            <View
+                            <RCView
                                 style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    paddingVertical: 10,
+                                    height: "40%",
+                                    width: "90%",
+                                    flexDirection: "column",
+                                    alignItems: "flex-start",
                                     justifyContent: "space-between"
                                 }}>
-                                <Text>Min graczy</Text>
                                 <View
                                     style={{
                                         width: "100%",
-                                        borderRadius: 20,
-                                        borderWidth: 1,
-                                        alignSelf: "flex-start"
+                                        height: "100%",
+                                        paddingVertical: 10,
+                                        justifyContent: "space-between"
                                     }}>
-                                    <PickerPawn
-                                        initPlayers={this.props.minPlayers}
-                                        maxPlayers={10}
-                                        onValueChange={minPlayers =>
-                                            this.props.onChangeMin(minPlayers)
+                                    <Text>Min graczy</Text>
+                                    <View
+                                        style={{
+                                            width: "100%",
+                                            borderRadius: 20,
+                                            borderWidth: 1,
+                                            alignSelf: "flex-start"
+                                        }}>
+                                        <PickerPawn
+                                            initPlayers={this.props.minPlayers}
+                                            maxPlayers={10}
+                                            onValueChange={minPlayers =>
+                                                this.props.onChangeMin(minPlayers)
+                                            }
+                                        />
+                                    </View>
+                                    <Text>Max graczy</Text>
+                                    <View
+                                        style={{
+                                            width: "100%",
+                                            borderRadius: 20,
+                                            borderWidth: 1,
+                                            alignSelf: "flex-start"
+                                        }}>
+                                        <PickerPawn
+                                            initPlayers={this.props.maxPlayers}
+                                            maxPlayers={10}
+                                            onValueChange={maxPlayers =>
+                                                this.props.onChangeMax(maxPlayers)
+                                            }
+                                        />
+                                    </View>
+                                    <Button
+                                        text={"Zapisz"}
+                                        onPress={() =>
+                                            this.setState({ modal: false })
                                         }
                                     />
                                 </View>
-                                <Text>Max graczy</Text>
-                                <View
-                                    style={{
-                                        width: "100%",
-                                        borderRadius: 20,
-                                        borderWidth: 1,
-                                        alignSelf: "flex-start"
-                                    }}>
-                                    <PickerPawn
-                                        initPlayers={this.props.maxPlayers}
-                                        maxPlayers={10}
-                                        onValueChange={maxPlayers =>
-                                            this.props.onChangeMax(maxPlayers)
-                                        }
-                                    />
-                                </View>
-                                <Button
-                                    text={"Zapisz"}
-                                    onPress={() =>
-                                        this.setState({ modal: false })
-                                    }
-                                />
-                            </View>
-                        </RCView>
-                    </View>
+                            </RCView>
+                        </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
             </View>
         );
