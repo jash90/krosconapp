@@ -41,7 +41,7 @@ export default class Input extends Component<Props, State> {
         return (
             <View
                 style={{
-                    flex: 1,
+                    height:50,
                     backgroundColor: "white",
                     borderRadius: 20,
                     justifyContent: "flex-end",

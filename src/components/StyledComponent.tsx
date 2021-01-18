@@ -18,7 +18,6 @@ const RCView = styled.View`
     margin-bottom: 10px;
     padding: 0px 20px;
     border-radius: 20px;
-    justify-content: flex-start;
     align-items: center;
 `;
 const RCViewFlex = styled(RCView)`

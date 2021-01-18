@@ -15,7 +15,6 @@ interface Props extends SceneProps {
 }
 class GameHeader extends Component<Props> {
     render() {
-        console.log(this.props.game);
         return (
             <View
                 style={{

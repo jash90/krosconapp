@@ -35,7 +35,6 @@ class About extends Component<Props, State> {
     componentDidMount = async () => {
         const response = await EventApi.all();
         this.setState({ event: response.data.items[0] });
-        console.log(response);
     };
 
     render() {

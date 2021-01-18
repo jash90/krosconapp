@@ -12,6 +12,7 @@ import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
 import Moment from "moment";
+import { BoardGamesProcess } from "../actions/boardGames/BoardGamesProcess";
 
 class LoadingScreen extends Component<SceneProps> {
     componentDidMount = async () => {
@@ -24,25 +25,15 @@ class LoadingScreen extends Component<SceneProps> {
                     user.token
                 );
             }
+
+            await BoardGamesProcess();
+
+            NavigationService.navigate(Scenes.List);
+
         } catch (error) {
             Toast.show(error);
         }
-        // BoardGameApi.offset()
-        //   .then(response => {
-        //     const data = response.data;
-        //     Store.propsStore.setListGame(data.items);
-        NavigationService.navigate(Scenes.List, {
-            listgame: [],
-            count: 0
-        });
-        // })
-        // .catch(error => {
-        //   ErrorUtil.errorService(error);
-        //   NavigationService.navigate(Scenes.List, {
-        //     listgame: [],
-        //     count: 0
-        //   });
-        // });
+
     };
 
     render() {

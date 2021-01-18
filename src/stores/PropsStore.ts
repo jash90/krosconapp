@@ -9,6 +9,8 @@ export default class PropsStore {
     @observable
     listgame = observable<Game>([]);
     @observable
+    maxPageBoardGame: number = 0;
+    @observable
     user: User = new User();
     @observable
     code: string = "";
@@ -25,6 +27,10 @@ export default class PropsStore {
 
     @action setListGame(listGame: any) {
         this.listgame = listGame;
+    }
+
+    @action setMaxPageBoardGame(maxPageBoardGame: number) {
+        this.maxPageBoardGame = maxPageBoardGame;
     }
 
     @action setUser(user: User) {
