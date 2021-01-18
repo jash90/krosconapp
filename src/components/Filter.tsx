@@ -6,6 +6,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
+    TouchableWithoutFeedback,
     View
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -13,6 +14,7 @@ import { Button, ModalPickerPawn, ModalSingleList, ViewText, Input } from ".";
 import { PublisherApi } from "../api";
 import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
+import InputAge from "./InputAge";
 
 interface Props {
     onChangeValue: (value: any) => void;
@@ -46,15 +48,15 @@ class Filter extends Component<Props, State> {
         };
     }
 
-    componentWillReceiveProps() {
-        PublisherApi.all()
-            .then(response => {
-                this.setState({ publishers: response.data.items });
-            })
-            .catch(error => {
-                ErrorUtil.errorService(error);
-            });
-    }
+    // componentWillReceiveProps() {
+    //     // PublisherApi.all()
+    //     //     .then(response => {
+    //     //         this.setState({ publishers: response.data.items });
+    //     //     })
+    //     //     .catch(error => {
+    //     //         ErrorUtil.errorService(error);
+    //     //     });
+    // }
 
     render() {
         const {
@@ -152,6 +154,7 @@ class Filter extends Component<Props, State> {
                                 horizontal
                                 data={mechanics}
                                 showsHorizontalScrollIndicator={false}
+                                keyExtractor={item => String(item.id)}
                                 renderItem={({ item }: any) => {
                                     return (
                                         <View
@@ -162,7 +165,9 @@ class Filter extends Component<Props, State> {
                                                 borderRadius: 20,
                                                 borderWidth: 1,
                                                 borderColor: "black"
-                                            }}>
+                                            }}
+
+                                        >
                                             <Text>{item}</Text>
                                         </View>
                                     );
@@ -180,6 +185,7 @@ class Filter extends Component<Props, State> {
                                 horizontal
                                 data={types}
                                 showsHorizontalScrollIndicator={false}
+                                keyExtractor={item => String(item.id)}
                                 renderItem={({ item }: any) => {
                                     return (
                                         <View
@@ -204,30 +210,22 @@ class Filter extends Component<Props, State> {
                     animationType={"slide"}
                     transparent
                     onRequestClose={() => this.setState({ modal: false })}>
-                    <View
-                        style={{
-                            width: "100%",
-                            height: "100%",
-
-                            backgroundColor: "rgba(0,0,0,0.5)",
-                            justifyContent: "center",
-                            alignItems: "center"
-                        }}>
+                    <TouchableWithoutFeedback onPress={() => this.setState({ modal: false })}>
                         <View
                             style={{
-                                width: "100%",
-                                height: "90%",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                                justifyContent: "space-between",
-                                backgroundColor: "#d2d2d2",
-                                borderRadius: 20,
-                                paddingHorizontal: 20,
-                                marginVertical: 10
-                            }}>
-                            <ScrollView
-                                style={{ flex: 1, width: "100%" }}
-                                showsVerticalScrollIndicator={false}>
+                                flex: 1,
+                                backgroundColor: "rgba(0,0,0,0.5)",
+                                justifyContent: "center",
+                                alignItems: "center"
+                            }}
+                        >
+                            <View
+                                style={{
+                                    flexDirection: "column",
+                                    backgroundColor: "#d2d2d2",
+                                    borderRadius: 20,
+                                    paddingHorizontal: 20,
+                                }}>
                                 <Input
                                     value={this.state.name}
                                     placeholder={"Nazwa gry planszowej"}
@@ -245,37 +243,10 @@ class Filter extends Component<Props, State> {
                                         this.setState({ maxPlayers })
                                     }
                                 />
-                                <RCView
-                                    style={{ width: "100%" }}
-                                    flexDirection="row">
-                                    <Text
-                                        style={{
-                                            color: "black",
-                                            fontSize: 16
-                                        }}>
-                                        Wiek
-                                    </Text>
-                                    <TextInput
-                                        style={{
-                                            textAlign: "right",
-                                            fontSize: 16,
-                                            width: 25
-                                        }}
-                                        keyboardType="phone-pad"
-                                        value={this.state.minAge}
-                                        maxLength={2}
-                                        onChangeText={text =>
-                                            this.setState({ minAge: text })
-                                        }
-                                    />
-                                    <Text
-                                        style={{
-                                            color: "black",
-                                            fontSize: 16
-                                        }}>
-                                        lat +
-                                    </Text>
-                                </RCView>
+                                <InputAge
+                                    value={this.state.minAge}
+                                    onChangeText={(text: string) => this.setState({ minAge: text })} />
+
                                 <RCView
                                     flexDirection="row"
                                     justifyContent="flex-start"
@@ -287,7 +258,7 @@ class Filter extends Component<Props, State> {
                                             fontSize: 16
                                         }}>
                                         Czas gry
-                                    </Text>
+                                </Text>
                                     <TextInput
                                         style={{
                                             textAlign: "right",
@@ -307,47 +278,8 @@ class Filter extends Component<Props, State> {
                                             fontSize: 16
                                         }}>
                                         min
-                                    </Text>
+                                </Text>
                                 </RCView>
-                                <ModalSingleList
-                                    placeholder={"Wydawca"}
-                                    value={this.state.publisher}
-                                    list={this.state.publishers}
-                                    onChangeValue={publisher =>
-                                        this.setState({ publisher })
-                                    }
-                                />
-
-                                {/* <ModalMultiList
-                  placeholder={"Typy gry"}
-                  value={this.state.types}
-                  list={[
-                    "publisher1dfgdfgdfgdfgdfgdfgdfg",
-                    "publisher2dfgdfg",
-                    "publisher3",
-                    "publisher4",
-                    "publisher5",
-                    "publisher6",
-                    "publisher7"
-                  ]}
-                  onChangeValue={types => this.setState({ types })}
-                />
-                <ModalMultiList
-                  placeholder={"Mechaniki gry"}
-                  value={this.state.mechanics}
-                  list={[
-                    "publisher1dfgdfgdfgdfgdfgdfgdfg",
-                    "publisher2dfgdfg",
-                    "publisher3",
-                    "publisher4",
-                    "publisher5",
-                    "publisher6",
-                    "publisher7"
-                  ]}
-                  onChangeValue={mechanics => this.setState({ mechanics })}
-                /> */}
-                            </ScrollView>
-                            <View style={{ width: "100%" }}>
                                 <Button
                                     outline
                                     color="black"
@@ -355,14 +287,16 @@ class Filter extends Component<Props, State> {
                                     onPress={this.clearFilter}
                                 />
                                 <Button
+                                    primary
                                     color="black"
                                     colorText="white"
                                     text="Filtruj"
                                     onPress={this.filterBoardGame}
                                 />
+
                             </View>
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
             </View>
         );
