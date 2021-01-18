@@ -31,7 +31,7 @@ class Camera extends Component<CameraProps> {
                         permissionDialogMessage={
                             "We need your permission to use your camera phone"
                         }
-                        onBarCodeRead={(data: any, type: any) =>
+                        onBarCodeRead={({data, type}) =>
                             this.onBarCodeRead(data, type)
                         }
                     />
