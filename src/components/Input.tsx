@@ -1,11 +1,5 @@
-import React, { Component } from "react";
-import {
-    StyleSheet,
-    TextInput,
-    TextInputProps,
-    View,
-    Text
-} from "react-native";
+import React, {Component} from "react";
+import {Text, TextInput, TextInputProps, View} from "react-native";
 
 interface Props extends TextInputProps {
     error?: boolean | null;

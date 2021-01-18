@@ -1,6 +1,5 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { ScannerComponent } from "../components";
+import {ScannerComponent} from "../components";
 
 interface Props {
     value: boolean;

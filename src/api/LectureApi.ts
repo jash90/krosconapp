@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class LectureApi {
     public static apiName = "lecture";
     public static async add(

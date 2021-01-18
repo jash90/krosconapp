@@ -1,7 +1,7 @@
+import React, {Component} from "react";
+import {TouchableOpacity} from "react-native";
 import styled from "styled-components";
-import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
-import { ButtonProps } from "../interfaces";
+import {ButtonProps} from "../interfaces";
 
 const Primary = styled.View`
     width: 100%;

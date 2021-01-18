@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
+import React, {Component} from "react";
+import {FlatList, Text, TouchableOpacity, View} from "react-native";
+import {createIconSetFromIcoMoon} from "react-native-vector-icons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
-import { RCView } from "../components/StyledComponent";
+import {RCView} from "../components/StyledComponent";
+
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
     onValueChange: (value: number) => void;

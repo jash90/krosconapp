@@ -1,18 +1,9 @@
-import React, { Component } from "react";
-import {
-    FlatList,
-    Modal,
-    ScrollView,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    View
-} from "react-native";
+import React, {Component} from "react";
+import {FlatList, Modal, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { Button, ModalPickerPawn, ModalSingleList, ViewText, Input } from ".";
-import { PublisherApi } from "../api";
-import { RCView } from "../components/StyledComponent";
+import {Button, Input, ModalPickerPawn, ViewText} from ".";
+import {PublisherApi} from "../api";
+import {RCView} from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
 import InputAge from "./InputAge";
 

@@ -1,4 +1,5 @@
-import { Publisher, Type, Mechanic, User, Game } from ".";
+import {Game, User} from ".";
+
 export default class LoanGame {
     public id: number = 0;
     public user: User = new User();

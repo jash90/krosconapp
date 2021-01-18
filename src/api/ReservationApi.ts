@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class ReservationApi {
     public static apiName = "reservation";
     public static async add(

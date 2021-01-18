@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class PublisherApi {
     public static apiName = "publisher";
     public static async add(name: string) {

@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class EventApi {
     public static apiName = "event";
     public static async add(

@@ -1,11 +1,12 @@
-import { AuthApi } from "../../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from "react-native-simple-toast";
+import {AuthApi} from "../../api";
+import axios from "../../Axios";
 import ErrorUtil from "../../ErrorUtil";
 import NavigationService from "../../NavigationService";
-import Toast from 'react-native-simple-toast';
-import axios from '../../Axios';
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Scenes from '../../Scenes';
+import Scenes from "../../Scenes";
 import Store from "../../stores";
+
 export async function LoginProcess(login: string, password: string) {
     try {
         const { data } = await AuthApi.login(login, password);

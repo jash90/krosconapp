@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class TableApi {
     public static apiName = "table";
     public static async add(name: string) {

@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class FeedbackApi {
     public static apiName = "feedback";
     public static async add(

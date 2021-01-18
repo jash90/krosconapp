@@ -1,9 +1,9 @@
-import { Body, Header, Icon, Left, Right, Title } from "native-base";
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import {Body, Header, Icon, Left, Right, Title} from "native-base";
+import React, {Component} from "react";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Color from "../Color";
-import { HeadProps } from "../interfaces";
+import {HeadProps} from "../interfaces";
 import NavigationService from "../NavigationService";
 
 export default class Head extends Component<HeadProps> {

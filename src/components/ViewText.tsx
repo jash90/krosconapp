@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { TouchableHighlight, View } from "react-native";
-import { RCText, RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {TouchableHighlight, View} from "react-native";
+import {RCText, RCView} from "./StyledComponent";
+
 interface Props {
     label: string;
     text: string;

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Modal, Text, TouchableWithoutFeedback, View } from "react-native";
-import { RCView } from "../components/StyledComponent";
-import { Button, PickerPawn, ViewText } from "./index";
+import React, {Component} from "react";
+import {Modal, Text, TouchableWithoutFeedback, View} from "react-native";
+import {RCView} from "../components/StyledComponent";
+import {Button, PickerPawn, ViewText} from "./index";
 
 interface Props {
     onChangeMin: (value: number) => void;

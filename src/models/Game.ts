@@ -1,4 +1,5 @@
-import { Publisher, Type, Mechanic, LoanGame } from ".";
+import {LoanGame, Mechanic, Publisher, Type} from ".";
+
 export default class Game {
     public id: number = 0;
     public uuid: string = "";

@@ -18,6 +18,7 @@ import ScannerComponent from "./ScannerComponent";
 import Separator from "./Separator";
 import UserHeader from "./UserHeader";
 import ViewText from "./ViewText";
+
 export {
     Separator,
     PickerIcon,

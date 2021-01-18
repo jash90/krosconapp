@@ -1,15 +1,14 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { FlatList, Text, View } from "react-native";
+import {inject, observer} from "mobx-react";
+import Moment from "moment/min/moment-with-locales";
+import React, {Component} from "react";
+import {FlatList, Text, View} from "react-native";
 import Color from "../Color";
-import { Button, Container, GameHeader } from "../components";
-import { SceneProps } from "../interfaces";
+import {Button, Container, GameHeader} from "../components";
+import {SceneProps} from "../interfaces";
+import {Game} from "../models";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
-import { Game } from "../models";
-import { RCView } from "../components/StyledComponent";
-import Moment from "moment/min/moment-with-locales";
 
 interface Props extends SceneProps {
     item: any;

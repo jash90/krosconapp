@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class BoardGameApi {
     public static apiName = "boardGames";
     public static async add(

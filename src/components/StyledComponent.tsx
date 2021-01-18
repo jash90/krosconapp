@@ -1,4 +1,5 @@
 import styled from "@emotion/native";
+
 const Spacer = styled.View`
     display: flex;
     flex: 1;

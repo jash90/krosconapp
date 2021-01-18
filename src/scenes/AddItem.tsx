@@ -1,27 +1,19 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { Text, TextInput, View, Alert } from "react-native";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {Alert, View} from "react-native";
 import Toast from "react-native-simple-toast";
-import { BoardGameApi, PublisherApi } from "../api";
-import {
-    Container,
-    Dropdown,
-    ModalMultiList,
-    ModalPickerPawn,
-    ModalSingleList,
-    ViewText,
-    Input
-} from "../components";
-import { RCView } from "../components/StyledComponent";
-import { withScanner } from "../components/withScanner";
+import {BoardGameApi, PublisherApi} from "../api";
+import {Container, Dropdown, Input, ModalMultiList, ModalPickerPawn, ModalSingleList, ViewText} from "../components";
+import TinyInput from "../components/TinyInput";
+import {withScanner} from "../components/withScanner";
 import ErrorUtil from "../ErrorUtil";
-import { SceneProps } from "../interfaces";
+import {SceneProps} from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
-const WithScannerText = withScanner(ViewText);
 import Store from "../stores";
-import TinyInput from "../components/TinyInput";
-import { Game, Publisher } from "../models";
+
+const WithScannerText = withScanner(ViewText);
+
 interface State {
     name: string;
     minPlayers: number;

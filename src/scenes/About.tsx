@@ -1,18 +1,12 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { Container, ViewText } from "../components";
-import { SceneProps } from "../interfaces";
-import {
-    FlatList,
-    View,
-    Text,
-    Image,
-    Dimensions,
-    TouchableOpacity
-} from "react-native";
-import { RCViewFlex } from "../components/StyledComponent";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {Dimensions, FlatList, Image, Text, TouchableOpacity, View} from "react-native";
 import EventApi from "../api/EventApi";
 import Color from "../Color";
+import {Container} from "../components";
+import {RCViewFlex} from "../components/StyledComponent";
+import {SceneProps} from "../interfaces";
+
 interface Props extends SceneProps {
     item: any;
 }

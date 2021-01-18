@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class LoanGameApi {
     public static apiName = "user";
     public static async edit(

@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {Text, TouchableOpacity, View} from "react-native";
+import {createIconSetFromIcoMoon} from "react-native-vector-icons";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import selection from "../../android/app/src/main/assets/style/selection.json";
+import {SceneProps} from "../interfaces";
+import Game from "../models/Game";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
-import { SceneProps } from "../interfaces";
-import { observer, inject } from "mobx-react";
-import Game from "../models/Game";
 import Store from "../stores";
+
 const Icon = createIconSetFromIcoMoon(selection);
 interface Props extends SceneProps {
     game: Game | null;

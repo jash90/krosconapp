@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import React, {Component} from "react";
+import {Image, Text, TouchableOpacity, View} from "react-native";
 import Color from "../Color";
-import { ButtonProps } from "../interfaces";
+import {ButtonProps} from "../interfaces";
+
 export default class GoogleButton extends Component<ButtonProps> {
     render() {
         return (

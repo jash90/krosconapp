@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class MechanicApi {
     public static apiName = "mechanic";
     public static async add(name: string) {

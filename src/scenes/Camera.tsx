@@ -1,14 +1,14 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
-import { RNCamera } from "react-native-camera";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {SafeAreaView, StyleSheet, View} from "react-native";
+import {RNCamera} from "react-native-camera";
 import Toast from "react-native-simple-toast";
-import { BoardGameApi, UserApi } from "../api";
+import {BoardGameApi, UserApi} from "../api";
 import ErrorUtil from "../ErrorUtil";
-import { SceneProps } from "../interfaces";
+import {SceneProps} from "../interfaces";
 import NavigationService from "../NavigationService";
-import TypeItem from "../TypeItem";
 import Store from "../stores";
+import TypeItem from "../TypeItem";
 
 interface CameraProps extends SceneProps {
     changeCode: Function;

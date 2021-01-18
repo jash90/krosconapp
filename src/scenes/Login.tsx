@@ -1,19 +1,13 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {StyleSheet} from "react-native";
 import Toast from "react-native-simple-toast";
-import AuthApi from "../api/AuthApi";
-import axios from "../Axios";
+import {LoginProcess} from "../actions/auth/LoginProcess";
 import Color from "../Color";
-import { Button, Container, Logo, Input } from "../components";
-import { RCView } from "../components/StyledComponent";
-import ErrorUtil from "../ErrorUtil";
+import {Button, Container, Input, Logo} from "../components";
+import {SceneProps} from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
-import { SceneProps } from "../interfaces";
-import Store from "../stores";
-import { LoginProcess } from "../actions/auth/LoginProcess";
 
 interface State {
     email: string;

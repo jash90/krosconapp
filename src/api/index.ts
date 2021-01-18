@@ -7,6 +7,7 @@ import MechanicApi from "./MechanicApi";
 import PublisherApi from "./PublisherApi";
 import TypeApi from "./TypeApi";
 import UserApi from "./UserApi";
+
 export {
     AuthApi,
     BoardGameApi,

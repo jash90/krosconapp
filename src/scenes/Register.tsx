@@ -1,15 +1,14 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { View } from "react-native";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
 import Toast from "react-native-simple-toast";
 import AuthApi from "../api/AuthApi";
-import { Button, Container, Logo, Input } from "../components";
-import { RCView } from "../components/StyledComponent";
+import {Button, Container, Input, Logo} from "../components";
 import ErrorUtil from "../ErrorUtil";
-import { SceneProps } from "../interfaces";
+import {SceneProps} from "../interfaces";
 import Language from "../Language";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+
 interface State {
     email: string;
     password: string;

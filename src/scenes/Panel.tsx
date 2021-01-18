@@ -1,16 +1,15 @@
-import React, { Component } from "react";
-import { View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Color from "../Color";
-import { Container, Button, UserHeader } from "../components";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {View} from "react-native";
 import Toast from "react-native-simple-toast";
-import { inject, observer } from "mobx-react";
-import Scenes from "../Scenes";
 import axios from "../Axios";
+import Color from "../Color";
+import {Button, Container, UserHeader} from "../components";
+import {SceneProps} from "../interfaces";
 import NavigationService from "../NavigationService";
-import { SceneProps } from "../interfaces";
+import Scenes from "../Scenes";
 import Store from "../stores";
-import { AuthApi } from "../api";
 
 class Panel extends Component<SceneProps> {
     render() {

@@ -1,11 +1,11 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import Toast from "react-native-simple-toast";
-import { AuthApi, UserApi } from "../api";
-import { Container, UserHeader } from "../components";
+import {AuthApi, UserApi} from "../api";
+import {Container, UserHeader} from "../components";
 import ErrorUtil from "../ErrorUtil";
-import { SceneProps } from "../interfaces";
+import {SceneProps} from "../interfaces";
 
 interface State {
     users: any[];

@@ -1,9 +1,4 @@
-import { NavigationActions, StackActions } from "react-navigation";
-import {
-    NavigationContainerComponent,
-    NavigationRoute,
-    NavigationScreenProp
-} from "react-navigation";
+import {NavigationActions, NavigationContainerComponent, StackActions} from "react-navigation";
 import Scenes from "./Scenes";
 
 export default class NavigationService {

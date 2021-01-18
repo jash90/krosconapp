@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TextProps } from "../interfaces";
+import React, {Component} from "react";
+import {StyleSheet, Text, View} from "react-native";
+import {TextProps} from "../interfaces";
 
 export default class Separator extends Component<TextProps> {
     render() {

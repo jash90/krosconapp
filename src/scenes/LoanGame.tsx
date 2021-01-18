@@ -1,16 +1,16 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {Alert} from "react-native";
 import Toast from "react-native-simple-toast";
-import { LoanGameApi } from "../api";
+import {LoanGameApi} from "../api";
 import Color from "../Color";
-import { Button, Container, GameHeader, UserHeader } from "../components";
-import { withScanner } from "../components/withScanner";
+import {Button, Container, GameHeader, UserHeader} from "../components";
+import {withScanner} from "../components/withScanner";
 import ErrorUtil from "../ErrorUtil";
-import { SceneProps } from "../interfaces";
+import {SceneProps} from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
-import { Alert } from "react-native";
 
 const WithScannerUser = withScanner(UserHeader);
 const WithScannerGame = withScanner(GameHeader);

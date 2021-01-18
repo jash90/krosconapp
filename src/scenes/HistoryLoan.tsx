@@ -1,17 +1,13 @@
-import { inject, observer } from "mobx-react";
-import { Fab } from "native-base";
-import React, { Component } from "react";
-import { FlatList, Image, TouchableOpacity } from "react-native";
-import { BoardGameApi, LoanGameApi } from "../api/index";
-import Color from "../Color";
-import { Container, Filter, GameHeader, ViewText } from "../components";
+import {inject, observer} from "mobx-react";
+import Moment from "moment";
+import React, {Component} from "react";
+import {FlatList, TouchableOpacity} from "react-native";
+import {BoardGameApi, LoanGameApi} from "../api/index";
+import {Container, GameHeader, ViewText} from "../components";
 import ErrorUtil from "../ErrorUtil";
-import { SceneProps } from "../interfaces";
-import Game from "../models/Game";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
-import Moment from "moment";
 
 interface State {
     refresh: boolean;

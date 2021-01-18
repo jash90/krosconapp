@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, {Component} from "react";
+import {Text, TouchableOpacity, View} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
+
 interface User {
     firstname: string;
     lastname: string;

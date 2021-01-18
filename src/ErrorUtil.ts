@@ -1,11 +1,11 @@
-import { Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Toast from "react-native-simple-toast";
 import NetInfo from "@react-native-community/netinfo";
+import axios from "axios";
+import Toast from "react-native-simple-toast";
 import NavigationService from "./NavigationService";
 import Scenes from "./Scenes";
 import Stores from "./stores";
-import axios from "axios";
+
 export default class ErroUtil {
     public static async errorService(error: any) {
         const connectionInfo = await NetInfo.fetch();

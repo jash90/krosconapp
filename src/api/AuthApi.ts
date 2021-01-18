@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class AuthApi {
     public static async login(email: string, password: string) {
         return await axios.post("/login", {

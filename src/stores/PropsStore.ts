@@ -1,5 +1,5 @@
-import { observable, action } from "mobx";
-import { Game, User, LoanGame } from "../models";
+import {action, observable} from "mobx";
+import {Game, LoanGame, User} from "../models";
 import Scenes from "../Scenes";
 import TypeItem from "../TypeItem";
 

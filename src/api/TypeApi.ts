@@ -1,4 +1,5 @@
 import axios from "../Axios";
+
 export default class TypeApi {
     public static apiName = "type";
     public static async add(name: string) {
