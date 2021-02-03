@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import React, {Component} from "react";
 import {Image, View} from "react-native";
 import Toast from "react-native-simple-toast";
-import {BoardGamesProcess} from "../actions/boardGames/BoardGamesProcess";
+import {GetPageGameProcess} from "../actions/boardGames/GetPageGameProcess";
 import axios from "../Axios";
 import Color from "../Color";
 import {SceneProps} from "../interfaces";
@@ -23,7 +23,7 @@ class LoadingScreen extends Component<SceneProps> {
                 );
             }
 
-            await BoardGamesProcess();
+            await GetPageGameProcess();
 
             NavigationService.navigate(Scenes.List);
 

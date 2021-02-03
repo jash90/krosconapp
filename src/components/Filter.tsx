@@ -145,8 +145,8 @@ class Filter extends Component<Props, State> {
                                 horizontal
                                 data={mechanics}
                                 showsHorizontalScrollIndicator={false}
-                                keyExtractor={item => String(item.id)}
-                                renderItem={({ item }: any) => {
+                                keyExtractor={item => String(item)}
+                                renderItem={({item}: any) => {
                                     return (
                                         <View
                                             style={{
@@ -176,8 +176,8 @@ class Filter extends Component<Props, State> {
                                 horizontal
                                 data={types}
                                 showsHorizontalScrollIndicator={false}
-                                keyExtractor={item => String(item.id)}
-                                renderItem={({ item }: any) => {
+                                keyExtractor={item => String(item)}
+                                renderItem={({item}: any) => {
                                     return (
                                         <View
                                             style={{

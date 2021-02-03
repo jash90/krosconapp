@@ -15,7 +15,6 @@ class Panel extends Component<SceneProps> {
     render() {
         return (
             <Container
-                back={false}
                 left
                 leftIcon={"arrow-back"}
                 leftPress={() => NavigationService.navigate(Scenes.List)}

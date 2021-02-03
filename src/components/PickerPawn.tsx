@@ -1,18 +1,18 @@
 import React, {Component} from "react";
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
-import {createIconSetFromIcoMoon} from "react-native-vector-icons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
-import {RCView} from "../components/StyledComponent";
+import {Icon} from "./Icon";
+import {RCView} from "./StyledComponent";
 
-const Icon = createIconSetFromIcoMoon(selection);
 interface Props {
     onValueChange: (value: number) => void;
     maxPlayers: number;
     initPlayers: number;
 }
+
 interface State {
     minPlayers: number;
 }
+
 class PickerPawn extends Component<Props, State> {
     constructor(props: Props) {
         super(props);

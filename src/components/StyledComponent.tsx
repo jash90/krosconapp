@@ -1,4 +1,4 @@
-import styled from "@emotion/native";
+import styled from "styled-components/native";
 
 const Spacer = styled.View`
     display: flex;

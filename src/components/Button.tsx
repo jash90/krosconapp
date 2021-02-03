@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {TouchableOpacity} from "react-native";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import {ButtonProps} from "../interfaces";
 
 const Primary = styled.View`

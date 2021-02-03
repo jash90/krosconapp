@@ -2,7 +2,7 @@ import {inject, observer} from "mobx-react";
 import {Fab} from "native-base";
 import React, {Component} from "react";
 import {FlatList, Image, TouchableOpacity} from "react-native";
-import {BoardGamesProcess} from "../actions/boardGames/BoardGamesProcess";
+import {GetPageGameProcess} from "../actions/boardGames/GetPageGameProcess";
 import {BoardGameApi} from "../api/index";
 import Color from "../Color";
 import {Container, Filter, GameHeader} from "../components";
@@ -33,7 +33,6 @@ class List extends Component<Props, State> {
     render() {
         return (
             <Container
-                back={false}
                 right
                 icon={"person"}
                 onPress={this.openProfile}>
@@ -88,9 +87,9 @@ class List extends Component<Props, State> {
     };
     onRefresh = async () => {
         if (this.filter) this.filter.clearFilter();
-        this.setState({ refresh: true });
-        await BoardGamesProcess();
-        this.setState({ refresh: false });
+        this.setState({refresh: true});
+        await GetPageGameProcess();
+        this.setState({refresh: false});
     };
 
     async searchBoardGame(search: any) {
@@ -105,7 +104,7 @@ class List extends Component<Props, State> {
     onEndReached = async () => {
         if (this.state.page + 1 < Store.propsStore.maxPageBoardGame) {
             try {
-                await BoardGamesProcess(this.state.page + 1);
+                await GetPageGameProcess(this.state.page + 1);
 
                 this.setState((current) => {
                     page: current.page + 1
