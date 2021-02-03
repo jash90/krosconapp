@@ -22,6 +22,7 @@
     "@emotion/native": "^10.0.14",
     "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/netinfo": "^4.2.2",
+
     "appcenter": "2.6.0",
     "appcenter-analytics": "2.6.0",
     "appcenter-crashes": "2.6.0",
@@ -40,7 +41,7 @@
     "react-native-qrcode-svg": "^5.2.0",
     "react-native-simple-toast": "^0.1.1",
     "react-native-svg": "^9.9.4",
-    "react-native-vector-icons": "^6.6.0",
+    "react-native-vector-icons": "^8.0.0",
     "react-navigation": "^4.0.6",
     "react-navigation-stack": "^1.8.0",
     "styled-components": "^4.4.1"
@@ -55,6 +56,7 @@
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.2",
     "@types/react-native": "^0.60.14",
+    "@types/react-native-vector-icons": "^6.4.6",
     "@types/react-test-renderer": "^16.9.0",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",

@@ -119,8 +119,8 @@ PODS:
     - React
   - RNSVG (9.9.4):
     - React
-  - RNVectorIcons (6.6.0):
-    - React
+  - RNVectorIcons (8.0.0):
+    - React-Core
   - yoga (0.60.5.React)
 
 DEPENDENCIES:
@@ -267,7 +267,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 05bae7ecfab1cbd5441993f1ca098f7c3b3f8d0e
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNSVG: 435cda60cd9e1ea6188eb0e21c12fc0f85def8e8
-  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RNVectorIcons: f67a1abce2ec73e62fe4606e8110e95a832bc859
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
 PODFILE CHECKSUM: 247dbb9b9410c2d1b20f803863fbfc67889a780f

@@ -1,17 +1,14 @@
 import {inject, observer} from "mobx-react";
 import React, {Component} from "react";
 import {Text, TouchableOpacity, View} from "react-native";
-import {createIconSetFromIcoMoon} from "react-native-vector-icons";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
-import selection from "../../android/app/src/main/assets/style/selection.json";
-import {SceneProps} from "../interfaces";
 import Game from "../models/Game";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
+import {Icon} from "./Icon";
 
-const Icon = createIconSetFromIcoMoon(selection);
-interface Props extends SceneProps {
+interface Props {
     game: Game | null;
 }
 class GameHeader extends Component<Props> {
@@ -51,12 +48,14 @@ class GameHeader extends Component<Props> {
                             {Store.authStore.privilegeId > 1 && (
                                 <TouchableOpacity
                                     onPress={() => {
-                                        Store.propsStore.setGame(
-                                            this.props.game
-                                        );
-                                        NavigationService.navigate(
-                                            Scenes.AddItem
-                                        );
+                                        if (this.props.game) {
+                                            Store.propsStore.setGame(
+                                                this.props.game
+                                            );
+                                            NavigationService.navigate(
+                                                Scenes.AddItem
+                                            );
+                                        }
                                     }}>
                                     <MaterialIcon name="edit" size={26} />
                                 </TouchableOpacity>
