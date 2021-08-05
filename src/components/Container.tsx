@@ -1,9 +1,9 @@
-import {Container as NContainer} from "native-base";
-import React, {Component} from "react";
-import {findNodeHandle, ScrollView, StyleSheet, Text, View} from "react-native";
-import {Head} from ".";
+import { Container as NContainer } from "native-base";
+import React, { Component } from "react";
+import { findNodeHandle, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Head } from ".";
 import Color from "../Color";
-import {ContainerProps} from "../interfaces";
+import { ContainerProps } from "../interfaces";
 import Language from "../Language";
 
 interface State {
@@ -16,14 +16,14 @@ class Container extends Component<ContainerProps, State> {
         back: true,
         left: false,
         leftIcon: "",
-        leftPress: () => {},
+        leftPress: () => { },
         right: false,
         icon: "",
         scrollView: false,
         styleContent: null,
         text: false,
         children: null,
-        onPress: () => {}
+        onPress: () => { }
     };
 
     constructor(props: ContainerProps) {

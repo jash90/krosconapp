@@ -1,7 +1,7 @@
-import {Card, Icon} from "native-base";
-import React, {PureComponent} from "react";
-import {FlatList, StyleSheet, Text, View} from "react-native";
-import {Menu, MenuOption, MenuOptions, MenuTrigger} from "react-native-popup-menu";
+import { Card, Icon } from "native-base";
+import React, { PureComponent } from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu";
 
 const CustomMenu = (props: any) => {
     let { style, children, layouts, ...other } = props;

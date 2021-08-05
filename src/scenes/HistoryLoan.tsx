@@ -1,9 +1,9 @@
-import {inject, observer} from "mobx-react";
+import { inject, observer } from "mobx-react";
 import Moment from "moment";
-import React, {Component} from "react";
-import {FlatList, TouchableOpacity} from "react-native";
-import {BoardGameApi, LoanGameApi} from "../api/index";
-import {Container, GameHeader, ViewText} from "../components";
+import React, { Component } from "react";
+import { FlatList, TouchableOpacity } from "react-native";
+import { BoardGameApi, LoanGameApi } from "../api/index";
+import { Container, GameHeader, ViewText } from "../components";
 import ErrorUtil from "../ErrorUtil";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";

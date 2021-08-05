@@ -1,4 +1,4 @@
-import {NavigationActions, NavigationContainerComponent, StackActions} from "react-navigation";
+import { NavigationActions, NavigationContainerComponent, StackActions } from "react-navigation";
 import Scenes from "./Scenes";
 
 export default class NavigationService {

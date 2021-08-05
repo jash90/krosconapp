@@ -1,12 +1,12 @@
-import {inject, observer} from "mobx-react";
-import React, {Component} from "react";
-import {Text, TouchableOpacity, View} from "react-native";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import Game from "../models/Game";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
-import {Icon} from "./Icon";
+import { Icon } from "./Icon";
 
 interface Props {
     game: Game | null;

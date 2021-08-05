@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {FlatList, Modal, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {ViewText} from "./index";
-import {RCView} from "./StyledComponent";
+import React, { Component } from "react";
+import { FlatList, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ViewText } from "./index";
+import { RCView } from "./StyledComponent";
 
 interface Props {
     onChangeValue: (value: any) => void;
@@ -43,9 +43,8 @@ class ModalSingleList extends Component<Props, State> {
                             this.props.value.name.length === 0) &&
                         this.state.validate
                     }
-                    text={`${
-                        this.props.value.name ? this.props.value.name : ""
-                    }`}
+                    text={`${this.props.value.name ? this.props.value.name : ""
+                        }`}
                     onPress={() => this.setState({ modal: true })}
                 />
                 <Modal
@@ -103,7 +102,7 @@ class ModalSingleList extends Component<Props, State> {
                                                         this.state.value
                                                     ) ||
                                                     text.name ===
-                                                        this.props.value.name
+                                                    this.props.value.name
                                                 );
                                             }
                                             return true;

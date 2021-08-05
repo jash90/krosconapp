@@ -2,7 +2,7 @@ import AuthStore from "./stores/AuthStore";
 
 import PropsStore from "./stores/PropsStore";
 
-interface Props {}
+interface Props { }
 
 interface TextProps extends Props {
     text: string;

@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Text, TextInput, TextInputProps, View} from "react-native";
+import React, { Component } from "react";
+import { Text, TextInput, TextInputProps, View } from "react-native";
 
 interface Props extends TextInputProps {
     error?: boolean | null;
@@ -35,7 +35,7 @@ export default class Input extends Component<Props, State> {
         return (
             <View
                 style={{
-                    height:50,
+                    height: 50,
                     backgroundColor: "white",
                     borderRadius: 20,
                     justifyContent: "flex-end",

@@ -1,8 +1,8 @@
-import {Icon} from "native-base";
-import React, {Component} from "react";
-import {Text, TouchableOpacity, View} from "react-native";
+import { Icon } from "native-base";
+import React, { Component } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import Color from "../Color";
-import {ButtonProps} from "../interfaces";
+import { ButtonProps } from "../interfaces";
 
 export default class FacebookButton extends Component<ButtonProps> {
     render() {

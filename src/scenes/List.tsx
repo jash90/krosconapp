@@ -1,13 +1,13 @@
-import {inject, observer} from "mobx-react";
-import {Fab} from "native-base";
-import React, {Component} from "react";
-import {FlatList, Image, TouchableOpacity} from "react-native";
-import {GetPageGameProcess} from "../actions/boardGames/GetPageGameProcess";
-import {BoardGameApi} from "../api/index";
+import { inject, observer } from "mobx-react";
+import { Fab } from "native-base";
+import React, { Component } from "react";
+import { FlatList, Image, TouchableOpacity } from "react-native";
+import { GetPageGameProcess } from "../actions/boardGames/GetPageGameProcess";
+import { BoardGameApi } from "../api/index";
 import Color from "../Color";
-import {Container, Filter, GameHeader} from "../components";
+import { Container, Filter, GameHeader } from "../components";
 import ErrorUtil from "../ErrorUtil";
-import {Props} from "../interfaces";
+import { Props } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";
@@ -48,7 +48,7 @@ class List extends Component<Props, State> {
                             onPress={() => {
                                 this.openItem(item);
                             }}>
-                            <GameHeader game={item}/>
+                            <GameHeader game={item} />
                         </TouchableOpacity>
                     )}
                     refreshing={this.state.refresh}
@@ -87,9 +87,9 @@ class List extends Component<Props, State> {
     };
     onRefresh = async () => {
         if (this.filter) this.filter.clearFilter();
-        this.setState({refresh: true});
+        this.setState({ refresh: true });
         await GetPageGameProcess();
-        this.setState({refresh: false});
+        this.setState({ refresh: false });
     };
 
     async searchBoardGame(search: any) {

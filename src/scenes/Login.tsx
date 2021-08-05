@@ -1,11 +1,11 @@
-import {inject, observer} from "mobx-react";
-import React, {Component} from "react";
-import {StyleSheet} from "react-native";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { StyleSheet } from "react-native";
 import Toast from "react-native-simple-toast";
-import {LoginProcess} from "../actions/auth/LoginProcess";
+import { LoginProcess } from "../actions/auth/LoginProcess";
 import Color from "../Color";
-import {Button, Container, Input, Logo} from "../components";
-import {SceneProps} from "../interfaces";
+import { Button, Container, Input, Logo } from "../components";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 

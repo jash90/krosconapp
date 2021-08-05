@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import {FlatList, Modal, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
+import React, { Component } from "react";
+import { FlatList, Modal, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import {Button, Input, ModalPickerPawn, ViewText} from ".";
-import {PublisherApi} from "../api";
-import {RCView} from "../components/StyledComponent";
+import { Button, Input, ModalPickerPawn, ViewText } from ".";
+import { PublisherApi } from "../api";
+import { RCView } from "../components/StyledComponent";
 import ErrorUtil from "../ErrorUtil";
 import InputAge from "./InputAge";
 
@@ -146,7 +146,7 @@ class Filter extends Component<Props, State> {
                                 data={mechanics}
                                 showsHorizontalScrollIndicator={false}
                                 keyExtractor={item => String(item)}
-                                renderItem={({item}: any) => {
+                                renderItem={({ item }: any) => {
                                     return (
                                         <View
                                             style={{
@@ -177,7 +177,7 @@ class Filter extends Component<Props, State> {
                                 data={types}
                                 showsHorizontalScrollIndicator={false}
                                 keyExtractor={item => String(item)}
-                                renderItem={({item}: any) => {
+                                renderItem={({ item }: any) => {
                                     return (
                                         <View
                                             style={{
@@ -249,7 +249,7 @@ class Filter extends Component<Props, State> {
                                             fontSize: 16
                                         }}>
                                         Czas gry
-                                </Text>
+                                    </Text>
                                     <TextInput
                                         style={{
                                             textAlign: "right",
@@ -269,7 +269,7 @@ class Filter extends Component<Props, State> {
                                             fontSize: 16
                                         }}>
                                         min
-                                </Text>
+                                    </Text>
                                 </RCView>
                                 <Button
                                     outline

@@ -1,11 +1,11 @@
-import {inject, observer} from "mobx-react";
-import React, {Component} from "react";
-import {SafeAreaView, StyleSheet, View} from "react-native";
-import {RNCamera} from "react-native-camera";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import { RNCamera } from "react-native-camera";
 import Toast from "react-native-simple-toast";
-import {BoardGameApi, UserApi} from "../api";
+import { BoardGameApi, UserApi } from "../api";
 import ErrorUtil from "../ErrorUtil";
-import {SceneProps} from "../interfaces";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Store from "../stores";
 import TypeItem from "../TypeItem";
@@ -31,7 +31,7 @@ class Camera extends Component<CameraProps> {
                         permissionDialogMessage={
                             "We need your permission to use your camera phone"
                         }
-                        onBarCodeRead={({data, type}) =>
+                        onBarCodeRead={({ data, type }) =>
                             this.onBarCodeRead(data, type)
                         }
                     />

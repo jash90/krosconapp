@@ -1,4 +1,4 @@
-import {Game, User} from ".";
+import { Game, User } from ".";
 
 export default class LoanGame {
     public id: number = 0;

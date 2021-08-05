@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import {Text, TextInput, TextInputProps} from "react-native";
-import {RCView} from "./StyledComponent";
+import React, { Component } from "react";
+import { Text, TextInput, TextInputProps } from "react-native";
+import { RCView } from "./StyledComponent";
 
 interface Props extends TextInputProps {
     error?: boolean | null;

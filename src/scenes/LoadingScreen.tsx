@@ -1,12 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {inject, observer} from "mobx-react";
-import React, {Component} from "react";
-import {Image, View} from "react-native";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { Image, View } from "react-native";
 import Toast from "react-native-simple-toast";
-import {GetPageGameProcess} from "../actions/boardGames/GetPageGameProcess";
+import { GetPageGameProcess } from "../actions/boardGames/GetPageGameProcess";
 import axios from "../Axios";
 import Color from "../Color";
-import {SceneProps} from "../interfaces";
+import { SceneProps } from "../interfaces";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";

@@ -1,11 +1,11 @@
-import {inject, observer} from "mobx-react";
-import React, {Component} from "react";
-import {Dimensions, FlatList, Image, Text, TouchableOpacity, View} from "react-native";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import EventApi from "../api/EventApi";
 import Color from "../Color";
-import {Container} from "../components";
-import {RCViewFlex} from "../components/StyledComponent";
-import {SceneProps} from "../interfaces";
+import { Container } from "../components";
+import { RCViewFlex } from "../components/StyledComponent";
+import { SceneProps } from "../interfaces";
 
 interface Props extends SceneProps {
     item: any;
@@ -90,8 +90,8 @@ class About extends Component<Props, State> {
                             {!this.state.event
                                 ? ""
                                 : String(
-                                      this.state.event.description
-                                  ).substring(0, this.state.subString)}
+                                    this.state.event.description
+                                ).substring(0, this.state.subString)}
                         </Text>
                         <TouchableOpacity
                             onPress={() => {

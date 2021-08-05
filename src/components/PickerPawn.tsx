@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {FlatList, Text, TouchableOpacity, View} from "react-native";
-import {Icon} from "./Icon";
-import {RCView} from "./StyledComponent";
+import React, { Component } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { Icon } from "./Icon";
+import { RCView } from "./StyledComponent";
 
 interface Props {
     onValueChange: (value: number) => void;

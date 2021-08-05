@@ -1,9 +1,9 @@
-import {Icon} from "native-base";
-import React, {Component} from "react";
-import {FlatList, StyleSheet, TouchableOpacity, View} from "react-native";
+import { Icon } from "native-base";
+import React, { Component } from "react";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Color from "../Color";
-import {PickerIconProps} from "../interfaces";
+import { PickerIconProps } from "../interfaces";
 
 interface State {
     transports: string[];

@@ -1,11 +1,11 @@
-import {inject, observer} from "mobx-react";
+import { inject, observer } from "mobx-react";
 import Moment from "moment/min/moment-with-locales";
-import React, {Component} from "react";
-import {FlatList, Text, View} from "react-native";
+import React, { Component } from "react";
+import { FlatList, Text, View } from "react-native";
 import Color from "../Color";
-import {Button, Container, GameHeader} from "../components";
-import {SceneProps} from "../interfaces";
-import {Game} from "../models";
+import { Button, Container, GameHeader } from "../components";
+import { SceneProps } from "../interfaces";
+import { Game } from "../models";
 import NavigationService from "../NavigationService";
 import Scenes from "../Scenes";
 import Store from "../stores";

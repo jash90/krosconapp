@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {FlatList, Modal, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {Button} from "./index";
-import {RCText, RCView} from "./StyledComponent";
+import React, { Component } from "react";
+import { FlatList, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button } from "./index";
+import { RCText, RCView } from "./StyledComponent";
 
 interface Props {
     onChangeValue: (value: string[]) => void;

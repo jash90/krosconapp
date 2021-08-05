@@ -1,9 +1,9 @@
-import {Icon} from "native-base";
-import React, {Component} from "react";
-import {Platform, TouchableOpacity} from "react-native";
+import { Icon } from "native-base";
+import React, { Component } from "react";
+import { Platform, TouchableOpacity } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Color from "../Color";
-import {FabProps} from "../interfaces";
+import { FabProps } from "../interfaces";
 
 export default class Fab extends Component<FabProps> {
     render() {

@@ -1,5 +1,5 @@
 import React from "react";
-import {ScannerComponent} from "../components";
+import { ScannerComponent } from "../components";
 
 interface Props {
     value: boolean;

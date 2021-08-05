@@ -1,10 +1,10 @@
-import {inject, observer} from "mobx-react";
-import React, {Component} from "react";
-import {Dimensions, View} from "react-native";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { Dimensions, View } from "react-native";
 import QRCode from "react-native-qrcode-svg";
-import {Container} from "../components";
-import {RCViewCenter} from "../components/StyledComponent";
-import {SceneProps} from "../interfaces";
+import { Container } from "../components";
+import { RCViewCenter } from "../components/StyledComponent";
+import { SceneProps } from "../interfaces";
 import Store from "../stores";
 
 class QR extends Component<SceneProps> {
