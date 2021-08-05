@@ -1,11 +1,11 @@
-import {inject, observer} from "mobx-react";
-import React, {Component} from "react";
-import {FlatList, Text, TouchableOpacity, View} from "react-native";
+import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import Toast from "react-native-simple-toast";
-import {AuthApi, UserApi} from "../api";
-import {Container, UserHeader} from "../components";
+import { AuthApi, UserApi } from "../api";
+import { Container, UserHeader } from "../components";
 import ErrorUtil from "../ErrorUtil";
-import {SceneProps} from "../interfaces";
+import { SceneProps } from "../interfaces";
 
 interface State {
     users: any[];
@@ -25,16 +25,14 @@ class Privilege extends Component<SceneProps, State> {
     }
 
     async fetchData() {
-        UserApi.all()
-            .then(response => {
-                if (response.data.items)
-                    this.setState({ users: response.data.items });
-                if (response.data.error)
-                    ErrorUtil.errorService(response.data.error);
-            })
-            .catch(error => {
-                ErrorUtil.errorService(error);
-            });
+        try {
+            const { data } = await UserApi.all();
+            this.setState({ users: data });
+
+        } catch (error) {
+            console.log({ error });
+            ErrorUtil.errorService(error);
+        }
     }
 
     onRefresh = async () => {
