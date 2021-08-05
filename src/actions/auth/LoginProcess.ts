@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-simple-toast";
-import {AuthApi} from "../../api";
+import { AuthApi } from "../../api";
 import axios from "../../Axios";
 import ErrorUtil from "../../ErrorUtil";
 import NavigationService from "../../NavigationService";
@@ -9,13 +9,15 @@ import Store from "../../stores";
 
 export async function LoginProcess(login: string, password: string) {
     try {
-        const { data } = await AuthApi.login(login, password);
+        let { data } = await AuthApi.login(login, password);
 
         if (data) {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+
+            data.token = `Bearer ${data.token}`;
+
             Store.authStore.setUser(data);
-            axios.defaults.headers.common["authorization"] = String(
-                data.token
-            );
+
             await AsyncStorage.setItem(
                 "User",
                 JSON.stringify(data)
