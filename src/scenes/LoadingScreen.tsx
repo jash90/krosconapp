@@ -25,7 +25,7 @@ class LoadingScreen extends Component<SceneProps> {
 
             await GetPageGameProcess();
 
-            NavigationService.navigate(Scenes.List);
+            NavigationService.reset(Scenes.List);
 
         } catch (error) {
             Toast.show(error);
