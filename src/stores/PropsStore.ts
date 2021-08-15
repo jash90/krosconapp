@@ -1,7 +1,9 @@
-import { action, observable } from "mobx";
-import { Game, LoanGame, User } from "../models";
-import Scenes from "../Scenes";
-import TypeItem from "../TypeItem";
+import {action, observable} from "mobx";
+import User from "../features/auth/models/User";
+import Game from "../features/boardGame/models/Game";
+import LoanGame from "../features/loanGame/models/LoanGame";
+import ScanQRItem from "../features/loanGame/models/ScanQRItem";
+import Scenes from "../services/navigation/utils/Scenes";
 
 export default class PropsStore {
     @observable
@@ -17,7 +19,7 @@ export default class PropsStore {
     @observable
     routeName: Scenes = Scenes.List;
     @observable
-    typeItem: TypeItem = TypeItem.User;
+    ScanQRItem: ScanQRItem = ScanQRItem.User;
     @observable
     historyLoan: LoanGame[] = [];
 
@@ -57,8 +59,8 @@ export default class PropsStore {
         this.routeName = routeName;
     }
 
-    @action setTypeItem(typeItem: TypeItem) {
-        this.typeItem = typeItem;
+    @action setScanQRItem(ScanQRItem: ScanQRItem) {
+        this.ScanQRItem = ScanQRItem;
     }
 
     @action setHistoryLoan(historyLoan: LoanGame[]) {

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Text, TextInput, TextInputProps } from "react-native";
-import { RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {Text, TextInput, TextInputProps} from "react-native";
+import {RCView} from "./StyledComponent";
 
 interface Props extends TextInputProps {
     firstDescription: string;
@@ -8,6 +8,7 @@ interface Props extends TextInputProps {
     error?: boolean | null;
     errorText?: string;
 }
+
 interface State {
     validate: boolean;
 }
@@ -19,13 +20,14 @@ export default class TinyInput extends Component<Props, State> {
             validate: false
         };
     }
+
     static defaultProps = {
         underlineColorAndroid: "transparent",
         value: "text"
     };
 
     public validate() {
-        this.setState({ validate: true });
+        this.setState({validate: true});
     }
 
     public static validate(refs: any[]) {
@@ -40,10 +42,10 @@ export default class TinyInput extends Component<Props, State> {
                 flexDirection="row"
                 style={
                     this.props.error && this.state.validate
-                        ? { borderColor: "red", borderWidth: 1 }
+                        ? {borderColor: "red", borderWidth: 1}
                         : {}
                 }>
-                <Text style={{ color: "black", fontSize: 16 }}>
+                <Text style={{color: "black", fontSize: 16}}>
                     {this.props.firstDescription}
                 </Text>
                 <TextInput
@@ -59,14 +61,15 @@ export default class TinyInput extends Component<Props, State> {
                     maxLength={this.props.maxLength}
                     onChangeText={this.onChangeText}
                 />
-                <Text style={{ color: "black", fontSize: 16 }}>
+                <Text style={{color: "black", fontSize: 16}}>
                     {this.props.secondDescription}
                 </Text>
             </RCView>
         );
     }
+
     onChangeText = (text: string) => {
-        this.setState({ validate: false });
+        this.setState({validate: false});
         if (this.props.onChangeText) this.props.onChangeText(text);
     };
 }

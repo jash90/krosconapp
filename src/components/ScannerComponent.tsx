@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Text, TouchableOpacity } from "react-native";
-import { RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {Text, TouchableOpacity} from "react-native";
+import {RCView} from "./StyledComponent";
 
 interface Props {
     value: any[];
@@ -8,6 +8,7 @@ interface Props {
     error?: boolean;
     scannerText?: string;
 }
+
 class ScannerComponent extends Component<Props> {
     render() {
         return (
@@ -15,7 +16,7 @@ class ScannerComponent extends Component<Props> {
                 <RCView
                     style={
                         this.props.error
-                            ? { borderColor: "red", borderWidth: 1 }
+                            ? {borderColor: "red", borderWidth: 1}
                             : {}
                     }>
                     <Text

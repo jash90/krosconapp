@@ -1,14 +1,15 @@
-import { Icon } from "native-base";
-import React, { Component } from "react";
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import {Icon} from "native-base";
+import React, {Component} from "react";
+import {FlatList, StyleSheet, TouchableOpacity, View} from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import Color from "../Color";
-import { PickerIconProps } from "../interfaces";
+import styled from "styled-components/native";
+import {PickerIconProps} from "../utils/interfaces";
 
 interface State {
     transports: string[];
     select: number;
 }
+
 export default class PickerIcon extends Component<PickerIconProps, State> {
     constructor(props: PickerIconProps) {
         super(props);
@@ -17,12 +18,13 @@ export default class PickerIcon extends Component<PickerIconProps, State> {
             select: 0
         };
     }
+
     componentWillMount = () => {
         if (this.props) {
             if (this.props.select) {
                 var index = this.state.transports.indexOf(this.props.select);
                 if (index > -1) {
-                    this.setState({ select: index });
+                    this.setState({select: index});
                 }
             }
         }
@@ -37,11 +39,10 @@ export default class PickerIcon extends Component<PickerIconProps, State> {
                     extraData={this.state.select}
                     renderItem={item =>
                         item.index == this.state.select ? (
-                            <LinearGradient
-                                colors={[Color.primaryColor, Color.accentColor]}
-                                style={styles.gradientIcon}>
+                            <Gradient>
                                 <TouchableOpacity
-                                    onPress={() => this.onChange(item)}>
+                                    onPress={() => this.onChange(item)}
+                                >
                                     <Icon
                                         name={"md-" + item.item}
                                         ios={"md-" + item.item}
@@ -49,7 +50,7 @@ export default class PickerIcon extends Component<PickerIconProps, State> {
                                         style={styles.activeIcon}
                                     />
                                 </TouchableOpacity>
-                            </LinearGradient>
+                            </Gradient>
                         ) : (
                             <TouchableOpacity
                                 onPress={() => this.onChange(item)}>
@@ -67,8 +68,9 @@ export default class PickerIcon extends Component<PickerIconProps, State> {
             </View>
         );
     }
+
     onChange = (item: any) => {
-        this.setState({ select: item.index });
+        this.setState({select: item.index});
         this.props.onChange(item);
     };
 }
@@ -83,9 +85,7 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         color: "white"
     },
-    gradientIcon: {
-        borderRadius: 20
-    },
+    gradientIcon: {},
     flatListStyle: {
         flex: 1,
         justifyContent: "space-around",
@@ -99,3 +99,9 @@ const styles = StyleSheet.create({
         marginTop: 20
     }
 });
+
+const Gradient = styled(LinearGradient).attrs(props => ({
+    colors: [props.theme.colors.primaryColor, props.theme.colors.accentColor]
+}))`
+  borderRadius: 20
+`;

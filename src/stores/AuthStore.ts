@@ -1,5 +1,5 @@
-import { action, observable } from "mobx";
-import { User } from "../models";
+import {action, observable} from "mobx";
+import User from "../features/auth/models/User";
 
 export default class AuthStore {
     @observable

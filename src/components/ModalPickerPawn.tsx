@@ -1,7 +1,9 @@
-import React, { Component } from "react";
-import { Modal, Text, TouchableWithoutFeedback, View } from "react-native";
-import { Button, PickerPawn, ViewText } from "./index";
-import { RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {Modal, Text, TouchableWithoutFeedback, View} from "react-native";
+import FullButton from "./FullButton";
+import PickerPawn from "./PickerPawn";
+import {RCView} from "./StyledComponent";
+import ViewText from "./ViewText";
 
 interface Props {
     onChangeMin: (value: number) => void;
@@ -9,10 +11,12 @@ interface Props {
     minPlayers: number;
     maxPlayers: number;
 }
+
 interface State {
     modal: boolean;
     validate: boolean;
 }
+
 class ModalPickerPawn extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -23,7 +27,7 @@ class ModalPickerPawn extends Component<Props, State> {
     }
 
     public validate() {
-        this.setState({ validate: true });
+        this.setState({validate: true});
     }
 
     public static validate(ref: any) {
@@ -32,30 +36,32 @@ class ModalPickerPawn extends Component<Props, State> {
 
     render() {
         return (
-            <View style={{ width: "100%" }}>
+            <View style={{width: "100%"}}>
                 <ViewText
                     label={"Min/Max graczy"}
                     error={
                         (this.props.minPlayers === 0 ||
-                            this.props.maxPlayers === 0) &&
+                         this.props.maxPlayers === 0) &&
                         this.state.validate
                     }
                     text={`${this.props.minPlayers}/${this.props.maxPlayers}`}
-                    onPress={() => this.setState({ modal: true })}
+                    onPress={() => this.setState({modal: true})}
                 />
                 <Modal
                     visible={this.state.modal}
                     animationType={"slide"}
                     transparent
-                    onRequestClose={() => this.setState({ modal: false })}>
-                    <TouchableWithoutFeedback onPress={() => this.setState({ modal: false })}>
+                    onRequestClose={() => this.setState({modal: false})}
+                >
+                    <TouchableWithoutFeedback onPress={() => this.setState({modal: false})}>
                         <View
                             style={{
                                 flex: 1,
                                 backgroundColor: "rgba(0,0,0,0.5)",
                                 justifyContent: "center",
                                 alignItems: "center"
-                            }}>
+                            }}
+                        >
                             <RCView
                                 style={{
                                     height: "40%",
@@ -94,7 +100,8 @@ class ModalPickerPawn extends Component<Props, State> {
                                             borderRadius: 20,
                                             borderWidth: 1,
                                             alignSelf: "flex-start"
-                                        }}>
+                                        }}
+                                    >
                                         <PickerPawn
                                             initPlayers={this.props.maxPlayers}
                                             maxPlayers={10}
@@ -103,10 +110,10 @@ class ModalPickerPawn extends Component<Props, State> {
                                             }
                                         />
                                     </View>
-                                    <Button
+                                    <FullButton
                                         text={"Zapisz"}
                                         onPress={() =>
-                                            this.setState({ modal: false })
+                                            this.setState({modal: false})
                                         }
                                     />
                                 </View>

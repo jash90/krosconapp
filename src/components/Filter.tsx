@@ -1,15 +1,20 @@
-import React, { Component } from "react";
-import { FlatList, Modal, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import React, {Component} from "react";
+import {FlatList, Modal, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { Button, Input, ModalPickerPawn, ViewText } from ".";
-import { PublisherApi } from "../api";
-import { RCView } from "../components/StyledComponent";
-import ErrorUtil from "../ErrorUtil";
+import {RCView} from "../components/StyledComponent";
+import ErrorUtil from "../services/error/ErrorUtil";
+import {networkService} from "../services/network/NetworkService";
+import FullButton from "./FullButton";
+import Input from "./Input";
 import InputAge from "./InputAge";
+import ModalPickerPawn from "./ModalPickerPawn";
+import OutLineButton from "./OutlineButton";
+import ViewText from "./ViewText";
 
 interface Props {
     onChangeValue: (value: any) => void;
 }
+
 interface State {
     modal: boolean;
     name: string;
@@ -22,6 +27,7 @@ interface State {
     mechanics: string[];
     publishers: any[];
 }
+
 class Filter extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -60,7 +66,7 @@ class Filter extends Component<Props, State> {
             mechanics
         } = this.state;
         return (
-            <View style={{ width: "100%" }}>
+            <View style={{width: "100%"}}>
                 <View
                     style={{
                         marginVertical: 10,
@@ -81,9 +87,9 @@ class Filter extends Component<Props, State> {
                             autoCapitalize={"none"}
                             value={this.state.name}
                             placeholder={"Nazwa gry planszowej"}
-                            style={{ flex: 1, fontSize: 16 }}
+                            style={{flex: 1, fontSize: 16}}
                             onChangeText={(name: any) =>
-                                this.setState({ name })
+                                this.setState({name})
                             }
                             onEndEditing={this.onChangeValue}
                             returnKeyType={"search"}
@@ -91,13 +97,14 @@ class Filter extends Component<Props, State> {
 
                         <TouchableOpacity
                             onPress={this.openModal}
-                            style={{ justifyContent: "center" }}>
+                            style={{justifyContent: "center"}}
+                        >
                             <Icon name={"filter-list"} size={30} color="grey" />
                         </TouchableOpacity>
                     </View>
 
                     {minPlayers > 0 && maxPlayers > 0 && (
-                        <View style={{ paddingVertical: 10, width: "100%" }}>
+                        <View style={{paddingVertical: 10, width: "100%"}}>
                             <ViewText
                                 onlyText
                                 label={"Min/max graczy:"}
@@ -107,7 +114,7 @@ class Filter extends Component<Props, State> {
                     )}
 
                     {Number(age) > 0 && (
-                        <View style={{ paddingVertical: 10, width: "100%" }}>
+                        <View style={{paddingVertical: 10, width: "100%"}}>
                             <ViewText
                                 onlyText
                                 label={"Wiek:"}
@@ -117,7 +124,7 @@ class Filter extends Component<Props, State> {
                     )}
 
                     {Number(time) > 0 && (
-                        <View style={{ paddingVertical: 10, width: "100%" }}>
+                        <View style={{paddingVertical: 10, width: "100%"}}>
                             <ViewText
                                 onlyText
                                 label={"Czas rozgrywki:"}
@@ -127,7 +134,7 @@ class Filter extends Component<Props, State> {
                     )}
 
                     {!!publisher.id && (
-                        <View style={{ paddingVertical: 10, width: "100%" }}>
+                        <View style={{paddingVertical: 10, width: "100%"}}>
                             <ViewText
                                 onlyText
                                 label={"Wydawca:"}
@@ -137,8 +144,8 @@ class Filter extends Component<Props, State> {
                     )}
 
                     {!!mechanics.length && (
-                        <View style={{ flexDirection: "row" }}>
-                            <View style={{ justifyContent: "center" }}>
+                        <View style={{flexDirection: "row"}}>
+                            <View style={{justifyContent: "center"}}>
                                 <Text>{"Mechaniki: "}</Text>
                             </View>
                             <FlatList
@@ -146,7 +153,7 @@ class Filter extends Component<Props, State> {
                                 data={mechanics}
                                 showsHorizontalScrollIndicator={false}
                                 keyExtractor={item => String(item)}
-                                renderItem={({ item }: any) => {
+                                renderItem={({item}: any) => {
                                     return (
                                         <View
                                             style={{
@@ -168,8 +175,8 @@ class Filter extends Component<Props, State> {
                     )}
 
                     {!!types.length && (
-                        <View style={{ flexDirection: "row" }}>
-                            <View style={{ justifyContent: "center" }}>
+                        <View style={{flexDirection: "row"}}>
+                            <View style={{justifyContent: "center"}}>
                                 <Text>{"Typy: "}</Text>
                             </View>
                             <FlatList
@@ -177,7 +184,7 @@ class Filter extends Component<Props, State> {
                                 data={types}
                                 showsHorizontalScrollIndicator={false}
                                 keyExtractor={item => String(item)}
-                                renderItem={({ item }: any) => {
+                                renderItem={({item}: any) => {
                                     return (
                                         <View
                                             style={{
@@ -187,7 +194,8 @@ class Filter extends Component<Props, State> {
                                                 borderRadius: 20,
                                                 borderWidth: 1,
                                                 borderColor: "black"
-                                            }}>
+                                            }}
+                                        >
                                             <Text>{item}</Text>
                                         </View>
                                     );
@@ -200,8 +208,9 @@ class Filter extends Component<Props, State> {
                     visible={this.state.modal}
                     animationType={"slide"}
                     transparent
-                    onRequestClose={() => this.setState({ modal: false })}>
-                    <TouchableWithoutFeedback onPress={() => this.setState({ modal: false })}>
+                    onRequestClose={() => this.setState({modal: false})}
+                >
+                    <TouchableWithoutFeedback onPress={() => this.setState({modal: false})}>
                         <View
                             style={{
                                 flex: 1,
@@ -221,22 +230,23 @@ class Filter extends Component<Props, State> {
                                     value={this.state.name}
                                     placeholder={"Nazwa gry planszowej"}
                                     onChangeText={(name: any) =>
-                                        this.setState({ name })
+                                        this.setState({name})
                                     }
                                 />
                                 <ModalPickerPawn
                                     minPlayers={this.state.minPlayers}
                                     maxPlayers={this.state.maxPlayers}
                                     onChangeMin={minPlayers =>
-                                        this.setState({ minPlayers })
+                                        this.setState({minPlayers})
                                     }
                                     onChangeMax={maxPlayers =>
-                                        this.setState({ maxPlayers })
+                                        this.setState({maxPlayers})
                                     }
                                 />
                                 <InputAge
                                     value={this.state.minAge}
-                                    onChangeText={(text: string) => this.setState({ minAge: text })} />
+                                    onChangeText={(text: string) => this.setState({minAge: text})}
+                                />
 
                                 <RCView
                                     flexDirection="row"
@@ -260,25 +270,24 @@ class Filter extends Component<Props, State> {
                                         value={this.state.playingTime}
                                         maxLength={3}
                                         onChangeText={time =>
-                                            this.setState({ playingTime: time })
+                                            this.setState({playingTime: time})
                                         }
                                     />
                                     <Text
                                         style={{
                                             color: "black",
                                             fontSize: 16
-                                        }}>
+                                        }}
+                                    >
                                         min
                                     </Text>
                                 </RCView>
-                                <Button
-                                    outline
+                                <OutLineButton
                                     color="black"
                                     text="Wyczyść"
                                     onPress={this.clearFilter}
                                 />
-                                <Button
-                                    primary
+                                <FullButton
                                     color="black"
                                     colorText="white"
                                     text="Filtruj"
@@ -292,6 +301,7 @@ class Filter extends Component<Props, State> {
             </View>
         );
     }
+
     onChangeValue = () => {
         const {
             name,
@@ -343,18 +353,18 @@ class Filter extends Component<Props, State> {
 
     filterBoardGame = () => {
         this.onChangeValue();
-        this.setState({ modal: false });
+        this.setState({modal: false});
     };
 
     openModal = () => {
-        PublisherApi.all()
+        networkService.allPublishers()
             .then(response => {
-                this.setState({ publishers: response.data.items });
+                this.setState({publishers: response.data.items});
             })
             .catch(error => {
                 ErrorUtil.errorService(error);
             });
-        this.setState({ modal: true });
+        this.setState({modal: true});
     };
     clearFilter = () => {
         this.setState({

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { Image, TouchableOpacity, View } from "react-native";
+import React, {Component} from "react";
+import {Image, TouchableOpacity, View} from "react-native";
 
 interface Props {
     size: number;
 }
+
 export default class Logo extends Component<Props> {
     render() {
         return (
@@ -20,7 +21,7 @@ export default class Logo extends Component<Props> {
                 }}>
                 <TouchableOpacity>
                     <Image
-                        source={require("../img/logo.png")}
+                        source={require("../assets/img/logo.png")}
                         style={{
                             width: this.props.size - 20,
                             height: this.props.size - 20

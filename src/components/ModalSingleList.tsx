@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { FlatList, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { ViewText } from "./index";
-import { RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {FlatList, Modal, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {RCView} from "./StyledComponent";
+import ViewText from "./ViewText";
 
 interface Props {
     onChangeValue: (value: any) => void;
@@ -9,11 +9,13 @@ interface Props {
     list: any[];
     placeholder: string;
 }
+
 interface State {
     modal: boolean;
     value: string;
     validate: boolean;
 }
+
 class ModalSingleList extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -25,7 +27,7 @@ class ModalSingleList extends Component<Props, State> {
     }
 
     public validate() {
-        this.setState({ validate: true });
+        this.setState({validate: true});
     }
 
     public static validate(ref: any) {
@@ -34,33 +36,35 @@ class ModalSingleList extends Component<Props, State> {
 
     render() {
         return (
-            <View style={{ width: "100%" }}>
+            <View style={{width: "100%"}}>
                 <ViewText
                     label={"Wydawca"}
                     error={
                         (!this.props.value ||
-                            !this.props.value.name ||
-                            this.props.value.name.length === 0) &&
+                         !this.props.value.name ||
+                         this.props.value.name.length === 0) &&
                         this.state.validate
                     }
                     text={`${this.props.value.name ? this.props.value.name : ""
-                        }`}
-                    onPress={() => this.setState({ modal: true })}
+                    }`}
+                    onPress={() => this.setState({modal: true})}
                 />
                 <Modal
                     visible={this.state.modal}
                     animationType={"slide"}
                     transparent
-                    onRequestClose={() => this.setState({ modal: false })}>
+                    onRequestClose={() => this.setState({modal: false})}
+                >
                     <View
                         style={{
                             flex: 1,
                             backgroundColor: "rgba(0,0,0,0.5)",
                             justifyContent: "center",
                             alignItems: "center"
-                        }}>
+                        }}
+                    >
                         <TouchableOpacity
-                            onPress={() => this.setState({ modal: false })}
+                            onPress={() => this.setState({modal: false})}
                             style={{
                                 width: "100%",
                                 height: "100%",
@@ -82,11 +86,11 @@ class ModalSingleList extends Component<Props, State> {
                                         paddingVertical: 10,
                                         justifyContent: "space-between"
                                     }}>
-                                    <RCView style={{ borderWidth: 1 }}>
+                                    <RCView style={{borderWidth: 1}}>
                                         <TextInput
                                             value={this.state.value}
                                             placeholder={this.props.placeholder}
-                                            style={{ fontSize: 16, flex: 1 }}
+                                            style={{fontSize: 16, flex: 1}}
                                             onChangeText={publisher =>
                                                 this.setState({
                                                     value: publisher
@@ -107,7 +111,7 @@ class ModalSingleList extends Component<Props, State> {
                                             }
                                             return true;
                                         })}
-                                        renderItem={({ item }) =>
+                                        renderItem={({item}) =>
                                             this.renderItem(item)
                                         }
                                         showsVerticalScrollIndicator={false}
@@ -120,20 +124,21 @@ class ModalSingleList extends Component<Props, State> {
             </View>
         );
     }
+
     renderItem(item: any) {
         const selected = item === this.props.value;
         return (
             <TouchableOpacity
                 onPress={() => {
                     this.props.onChangeValue(item);
-                    this.setState({ modal: false, validate: true });
+                    this.setState({modal: false, validate: true});
                 }}>
                 <RCView
                     style={{
                         borderWidth: 1,
                         backgroundColor: selected ? "black" : "white"
                     }}>
-                    <Text style={{ color: selected ? "white" : "black" }}>
+                    <Text style={{color: selected ? "white" : "black"}}>
                         {item.name}
                     </Text>
                 </RCView>

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
-import { Icon } from "./Icon";
-import { RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {FlatList, Text, TouchableOpacity, View} from "react-native";
+import {Icon} from "./Icon";
+import {RCView} from "./StyledComponent";
 
 interface Props {
     onValueChange: (value: number) => void;
@@ -20,6 +20,7 @@ class PickerPawn extends Component<Props, State> {
             minPlayers: props.initPlayers
         };
     }
+
     render() {
         return (
             <RCView flexDirection="row" justifyContent="center">
@@ -49,20 +50,22 @@ class PickerPawn extends Component<Props, State> {
                     )}
                 />
                 <View>
-                    <Text style={{ color: "grey", fontSize: 16 }}>
+                    <Text style={{color: "grey", fontSize: 16}}>
                         {this.state.minPlayers}
                     </Text>
                 </View>
             </RCView>
         );
     }
+
     createArray(count: number, max: number) {
         let active: any[] = new Array(count).fill(true);
         let disactive: any[] = new Array(max - count).fill(false);
         return active.concat(disactive);
     }
+
     setValue(value: number) {
-        this.setState({ minPlayers: value });
+        this.setState({minPlayers: value});
         this.props.onValueChange(value);
     }
 }

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TextProps } from "../interfaces";
+import React, {Component} from "react";
+import {StyleSheet, Text, View} from "react-native";
+import {TextProps} from "../utils/interfaces";
 
 export default class Separator extends Component<TextProps> {
     render() {
@@ -13,7 +13,7 @@ export default class Separator extends Component<TextProps> {
 }
 
 const styles = StyleSheet.create({
-    text: { fontSize: 20, color: "black" },
+    text: {fontSize: 20, color: "black"},
     contener: {
         borderRadius: 20,
         width: "90%",

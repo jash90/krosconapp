@@ -1,13 +1,15 @@
 import React from "react";
-import { ScannerComponent } from "../components";
+import ScannerComponent from "./ScannerComponent";
 
 interface Props {
     value: boolean;
     error?: boolean;
 }
+
 interface State {
     validate: boolean;
 }
+
 export const withScanner = (WrappedComponent: any) => {
     return class withScanner extends React.Component<Props, State> {
         constructor(props: Props) {
@@ -16,12 +18,13 @@ export const withScanner = (WrappedComponent: any) => {
                 validate: false
             };
         }
+
         public static defaultProps: Props = {
             value: false
         };
 
         public validate() {
-            this.setState({ validate: true });
+            this.setState({validate: true});
         }
 
         public static validate(ref: any) {
@@ -29,7 +32,7 @@ export const withScanner = (WrappedComponent: any) => {
         }
 
         render() {
-            const { value } = this.props;
+            const {value} = this.props;
 
             return (
                 <>

@@ -1,11 +1,11 @@
-import { Card, Icon } from "native-base";
-import React, { PureComponent } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu";
+import {Card, Icon} from "native-base";
+import React, {PureComponent} from "react";
+import {FlatList, StyleSheet, Text, View} from "react-native";
+import {Menu, MenuOption, MenuOptions, MenuTrigger} from "react-native-popup-menu";
 
 const CustomMenu = (props: any) => {
-    let { style, children, layouts, ...other } = props;
-    let { x, y, width, height } = layouts.triggerLayout;
+    let {style, children, layouts, ...other} = props;
+    let {x, y, width, height} = layouts.triggerLayout;
 
     let position = {
         top: y + (height - 42) / 2,
@@ -30,7 +30,7 @@ interface Props {
 
 class DropDown extends PureComponent<Props> {
     render() {
-        let { value, items, onSelect, styleTitle, styleItem } = this.props;
+        let {value, items, onSelect, styleTitle, styleItem} = this.props;
 
         return (
             <Menu renderer={CustomMenu}>
@@ -53,14 +53,16 @@ class DropDown extends PureComponent<Props> {
                         style={styles.styleFlatList}
                         contentContainerStyle={styles.contentFlatList}
                         data={items}
-                        renderItem={({ item }) => (
+                        renderItem={({item}) => (
                             <MenuOption
                                 style={styles.menuOption}
-                                onSelect={() => onSelect(item)}>
+                                onSelect={() => onSelect(item)}
+                            >
                                 <Text
                                     allowFontScaling
                                     numberOfLines={1}
-                                    style={[styleItem, styles.textItem]}>
+                                    style={[styleItem, styles.textItem]}
+                                >
                                     {item}
                                 </Text>
                             </MenuOption>

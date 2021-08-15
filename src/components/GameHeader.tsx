@@ -1,16 +1,17 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import {inject, observer} from "mobx-react";
+import React, {Component} from "react";
+import {Text, TouchableOpacity, View} from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
-import Game from "../models/Game";
-import NavigationService from "../NavigationService";
-import Scenes from "../Scenes";
+import Game from "../features/boardGame/models/Game";
+import NavigationService from "../services/navigation/NavigationService";
+import Scenes from "../services/navigation/utils/Scenes";
 import Store from "../stores";
-import { Icon } from "./Icon";
+import {Icon} from "./Icon";
 
 interface Props {
     game: Game | null;
 }
+
 class GameHeader extends Component<Props> {
     render() {
         return (
@@ -113,6 +114,7 @@ class GameHeader extends Component<Props> {
             </View>
         );
     }
+
     renderPawn(min: number, max: number) {
         var table = [];
         for (var i = 0; i < max; i++) {
@@ -125,4 +127,5 @@ class GameHeader extends Component<Props> {
         return table;
     }
 }
+
 export default inject("authStore", "propsStore")(observer(GameHeader));

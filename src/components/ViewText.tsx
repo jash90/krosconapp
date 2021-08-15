@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { TouchableHighlight, View } from "react-native";
-import { RCText, RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {TouchableHighlight, View} from "react-native";
+import {RCText, RCView} from "./StyledComponent";
 
 interface Props {
     label: string;
@@ -10,6 +10,7 @@ interface Props {
     onlyText?: boolean;
     withOutClick?: boolean;
 }
+
 export default class ViewText extends Component<Props> {
     render() {
         if (this.props.onlyText) {
@@ -17,7 +18,7 @@ export default class ViewText extends Component<Props> {
                 <View
                     style={
                         this.props.error
-                            ? { borderColor: "red", borderWidth: 1 }
+                            ? {borderColor: "red", borderWidth: 1}
                             : {}
                     }>
                     {this.renderText()}
@@ -29,7 +30,7 @@ export default class ViewText extends Component<Props> {
                 <RCView
                     style={
                         this.props.error
-                            ? { borderColor: "red", borderWidth: 1 }
+                            ? {borderColor: "red", borderWidth: 1}
                             : {}
                     }>
                     {this.renderText()}
@@ -42,7 +43,7 @@ export default class ViewText extends Component<Props> {
                     <RCView
                         style={
                             this.props.error
-                                ? { borderColor: "red", borderWidth: 1 }
+                                ? {borderColor: "red", borderWidth: 1}
                                 : {}
                         }>
                         {this.renderText()}

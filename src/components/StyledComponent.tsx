@@ -32,4 +32,4 @@ const RCViewCenter = styled(RCView)`
     padding: 20px;
 `;
 
-export { Spacer, RCText, RCView, RCViewCenter, RCViewFlex };
+export {Spacer, RCText, RCView, RCViewCenter, RCViewFlex};

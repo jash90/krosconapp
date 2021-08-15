@@ -1,32 +1,34 @@
-import { Body, Header, Icon, Left, Right, Title } from "native-base";
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import {Body, Header, Icon, Left, Right, Title} from "native-base";
+import React, {Component} from "react";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import Color from "../Color";
-import { HeadProps } from "../interfaces";
-import NavigationService from "../NavigationService";
+import styled from "styled-components";
+import NavigationService from "../services/navigation/NavigationService";
+import {HeadProps} from "../utils/interfaces";
+
 
 export default class Head extends Component<HeadProps> {
     static defaultProps = {
         back: true,
         left: false,
         leftIcon: "",
-        leftPress: () => { },
+        leftPress: () => {
+        },
         right: false,
         icon: "",
         text: false,
-        onPress: () => { }
+        onPress: () => {
+        }
     };
+
     render() {
         return (
-            <Header
-                androidStatusBarColor={Color.secondaryColor}
-                style={styles.styleHeader}>
+            <Container>
                 <Left>{this.renderLeft()}</Left>
                 <Body style={styles.textHeader}>
-                    <Title style={{ color: Color.primaryColor }}>
+                    <Text>
                         {this.props.text}
-                    </Title>
+                    </Text>
                 </Body>
                 <Right>
                     {this.props.right ? (
@@ -50,9 +52,10 @@ export default class Head extends Component<HeadProps> {
                         </TouchableOpacity>
                     ) : null}
                 </Right>
-            </Header>
+            </Container>
         );
     }
+
     renderLeft() {
         if (this.props.back) {
             return (
@@ -99,9 +102,18 @@ export default class Head extends Component<HeadProps> {
     }
 }
 
+const Container = styled(Header).attrs(props => ({
+    androidStatusBarColor: props.theme.colors.secondaryColor
+}))`
+  backgroundColor: ${props => props.theme.colors.secondaryColor}
+`;
+
+const Text = styled(Title)`
+  color: ${props => props.theme.colors.primaryColor}
+`;
+
 const styles = StyleSheet.create({
-    styleHeader: { backgroundColor: Color.secondaryColor },
-    textHeader: { flex: 3, justifyContent: "center", alignItems: "center" },
-    iconLeftHeader: { color: "white", paddingLeft: 5, paddingRight: 5 },
-    iconRightHeader: { paddingRight: 5 }
+    textHeader: {flex: 3, justifyContent: "center", alignItems: "center"},
+    iconLeftHeader: {color: "white", paddingLeft: 5, paddingRight: 5},
+    iconRightHeader: {paddingRight: 5}
 });

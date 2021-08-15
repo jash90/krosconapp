@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, {Component} from "react";
+import {Text, TouchableOpacity, View} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import NavigationService from "../NavigationService";
-import Scenes from "../Scenes";
+import NavigationService from "../services/navigation/NavigationService";
+import Scenes from "../services/navigation/utils/Scenes";
 
 interface User {
     firstname: string;
@@ -19,6 +19,7 @@ interface Props {
     user: User;
     edit?: boolean;
 }
+
 export default class UserHeader extends Component<Props> {
     render() {
         const {
@@ -37,14 +38,15 @@ export default class UserHeader extends Component<Props> {
                     paddingHorizontal: 20,
                     marginVertical: 10,
                     borderRadius: 20
-                }}>
-                <View style={{ flexDirection: "row" }}>
-                    <View style={{ flexDirection: "column" }}>
-                        <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+                }}
+            >
+                <View style={{flexDirection: "row"}}>
+                    <View style={{flexDirection: "column"}}>
+                        <Text style={{fontWeight: "bold", fontSize: 18}}>
                             {`${firstname ? firstname : "-"} ${lastname ? lastname : "-"
-                                }`}
+                            }`}
                         </Text>
-                        <Text style={{ fontSize: 16 }}>{`${email}`}</Text>
+                        <Text style={{fontSize: 16}}>{`${email}`}</Text>
                     </View>
                     {this.props.edit && (
                         <View
@@ -57,15 +59,15 @@ export default class UserHeader extends Component<Props> {
                                 <Icon
                                     name={"edit"}
                                     size={30}
-                                    style={{ padding: 5 }}
+                                    style={{padding: 5}}
                                 />
                             </TouchableOpacity>
                         </View>
                     )}
                 </View>
-                <Text style={{ fontSize: 16 }}>{`${age ? age : "-"} lat`}</Text>
-                <Text style={{ fontSize: 16 }}>{`Miasto: ${city ? city : "-"
-                    }`}</Text>
+                <Text style={{fontSize: 16}}>{`${age ? age : "-"} lat`}</Text>
+                <Text style={{fontSize: 16}}>{`Miasto: ${city ? city : "-"
+                }`}</Text>
                 {this.props.children}
             </View>
         );

@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Text, TextInput, TextInputProps, View } from "react-native";
+import React, {Component} from "react";
+import {Text, TextInput, TextInputProps, View} from "react-native";
 
 interface Props extends TextInputProps {
     error?: boolean | null;
     errorText?: string;
 }
+
 interface State {
     validate: boolean;
 }
@@ -16,13 +17,14 @@ export default class Input extends Component<Props, State> {
             validate: false
         };
     }
+
     static defaultProps = {
         underlineColorAndroid: "transparent",
         value: "text"
     };
 
     public validate() {
-        this.setState({ validate: true });
+        this.setState({validate: true});
     }
 
     public static validate(refs: any[]) {
@@ -94,8 +96,9 @@ export default class Input extends Component<Props, State> {
             </View>
         );
     }
+
     onChangeText = (text: string) => {
-        this.setState({ validate: false });
+        this.setState({validate: false});
         if (this.props.onChangeText) this.props.onChangeText(text);
     };
 }

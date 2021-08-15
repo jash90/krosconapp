@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { FlatList, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { Button } from "./index";
-import { RCText, RCView } from "./StyledComponent";
+import React, {Component} from "react";
+import {FlatList, Modal, Text, TextInput, TouchableOpacity, View} from "react-native";
+import FullButton from "./FullButton";
+import {RCText, RCView} from "./StyledComponent";
 
 interface Props {
     onChangeValue: (value: string[]) => void;
@@ -9,10 +9,12 @@ interface Props {
     list: string[];
     placeholder: string;
 }
+
 interface State {
     modal: boolean;
     value: string;
 }
+
 class ModalMultiList extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -21,10 +23,11 @@ class ModalMultiList extends Component<Props, State> {
             value: ""
         };
     }
+
     render() {
         const length = this.props.value.length;
         return (
-            <View style={{ width: "100%" }}>
+            <View style={{width: "100%"}}>
                 {!!length && (
                     <View
                         style={{
@@ -33,11 +36,14 @@ class ModalMultiList extends Component<Props, State> {
                             borderRadius: 20,
                             paddingHorizontal: 20,
                             marginVertical: 10
-                        }}>
+                        }}
+                    >
                         <TouchableOpacity
-                            onPress={() => this.setState({ modal: true })}>
+                            onPress={() => this.setState({modal: true})}
+                        >
                             <View
-                                style={{ margin: 5, backgroundColor: "White" }}>
+                                style={{margin: 5, backgroundColor: "White"}}
+                            >
                                 <Text>{this.props.placeholder}</Text>
                             </View>
                         </TouchableOpacity>
@@ -54,7 +60,8 @@ class ModalMultiList extends Component<Props, State> {
                 )}
                 {!length && (
                     <TouchableOpacity
-                        onPress={() => this.setState({ modal: true })}>
+                        onPress={() => this.setState({modal: true})}
+                    >
                         <View
                             style={{
                                 backgroundColor: "white",
@@ -64,7 +71,8 @@ class ModalMultiList extends Component<Props, State> {
                                 height: 50,
                                 borderRadius: 20,
                                 justifyContent: "center"
-                            }}>
+                            }}
+                        >
                             <RCText>{this.props.placeholder}</RCText>
                         </View>
                     </TouchableOpacity>
@@ -73,14 +81,16 @@ class ModalMultiList extends Component<Props, State> {
                     visible={this.state.modal}
                     animationType={"slide"}
                     transparent
-                    onRequestClose={() => this.setState({ modal: false })}>
+                    onRequestClose={() => this.setState({modal: false})}
+                >
                     <View
                         style={{
                             flex: 1,
                             backgroundColor: "rgba(0,0,0,0.5)",
                             justifyContent: "center",
                             alignItems: "center"
-                        }}>
+                        }}
+                    >
                         <RCView
                             style={{
                                 height: "60%",
@@ -96,31 +106,31 @@ class ModalMultiList extends Component<Props, State> {
                                     paddingVertical: 10,
                                     justifyContent: "space-between"
                                 }}>
-                                <RCView style={{ borderWidth: 1 }}>
+                                <RCView style={{borderWidth: 1}}>
                                     <TextInput
                                         value={this.state.value}
                                         placeholder={this.props.placeholder}
-                                        style={{ flex: 1, fontSize: 16 }}
+                                        style={{flex: 1, fontSize: 16}}
                                         onChangeText={value =>
-                                            this.setState({ value })
+                                            this.setState({value})
                                         }
                                     />
                                 </RCView>
                                 <FlatList
                                     data={this.props.list}
-                                    renderItem={({ item }) =>
+                                    renderItem={({item}) =>
                                         this.renderItem(item)
                                     }
                                     showsVerticalScrollIndicator={false}
                                 />
                             </View>
                         </RCView>
-                        <View style={{ width: "100%" }}>
-                            <Button
+                        <View style={{width: "100%"}}>
+                            <FullButton
                                 color="black"
                                 colorText="white"
                                 text="Zapisz"
-                                onPress={() => this.setState({ modal: false })}
+                                onPress={() => this.setState({modal: false})}
                             />
                         </View>
                     </View>
@@ -128,6 +138,7 @@ class ModalMultiList extends Component<Props, State> {
             </View>
         );
     }
+
     renderItem(item: string) {
         const selected = this.props.value.includes(item);
         return (
@@ -143,7 +154,7 @@ class ModalMultiList extends Component<Props, State> {
                         borderWidth: 1,
                         backgroundColor: selected ? "black" : "white"
                     }}>
-                    <Text style={{ color: selected ? "white" : "black" }}>
+                    <Text style={{color: selected ? "white" : "black"}}>
                         {item}
                     </Text>
                 </RCView>
@@ -151,7 +162,7 @@ class ModalMultiList extends Component<Props, State> {
         );
     }
 
-    renderTag = ({ item }: any) => {
+    renderTag = ({item}: any) => {
         return (
             <View
                 style={{
@@ -161,7 +172,8 @@ class ModalMultiList extends Component<Props, State> {
                     borderRadius: 20,
                     borderWidth: 1,
                     borderColor: "black"
-                }}>
+                }}
+            >
                 <Text>{item}</Text>
             </View>
         );
