@@ -47,33 +47,24 @@ interface ColorButtonProps extends ButtonProps {
   secondaryColor?: boolean;
 }
 
-export default class OutLineButton extends Component<
-                 ColorButtonProps
-               > {
-                 render() {
-                   const { colorText, ...other } = this.props;
-                   const cText = colorText
-                     ? colorText
-                     : other.color
-                     ? other.color
-                     : "black";
+export default class OutLineButton extends Component<ColorButtonProps> {
+  render() {
+    const { colorText, ...other } = this.props;
+    const cText = colorText ? colorText : other.color ? other.color : "black";
 
-                   return (
-                     <TouchableOpacity
-                       style={{
-                         marginVertical: 10
-                       }}
-                       onPress={this.props.onPress}
-                     >
-                       <Outline {...other}>
-                         <CText
-                           accentColor={this.props.accentColor}
-                           color={cText}
-                         >
-                           {this.props.text}
-                         </CText>
-                       </Outline>
-                     </TouchableOpacity>
-                   );
-                 }
-               }
+    return (
+      <TouchableOpacity
+        style={{
+          marginVertical: 10
+        }}
+        onPress={this.props.onPress}
+      >
+        <Outline {...other}>
+          <CText accentColor={this.props.accentColor} color={cText}>
+            {this.props.text}
+          </CText>
+        </Outline>
+      </TouchableOpacity>
+    );
+  }
+}

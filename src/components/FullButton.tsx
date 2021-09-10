@@ -35,25 +35,21 @@ interface ColorButtonProps extends ButtonProps {
   secondaryColor?: boolean;
 }
 
-export default class FullButton extends Component<
-                 ColorButtonProps
-               > {
-                 render() {
-                   const { colorText, ...other } = this.props;
+export default class FullButton extends Component<ColorButtonProps> {
+  render() {
+    const { colorText, ...other } = this.props;
 
-                   return (
-                     <TouchableOpacity
-                       style={{
-                         marginVertical: 10
-                       }}
-                       onPress={this.props.onPress}
-                     >
-                       <Primary {...other}>
-                         <CText color={colorText}>
-                           {this.props.text}
-                         </CText>
-                       </Primary>
-                     </TouchableOpacity>
-                   );
-                 }
-               }
+    return (
+      <TouchableOpacity
+        style={{
+          marginVertical: 10
+        }}
+        onPress={this.props.onPress}
+      >
+        <Primary {...other}>
+          <CText color={colorText}>{this.props.text}</CText>
+        </Primary>
+      </TouchableOpacity>
+    );
+  }
+}

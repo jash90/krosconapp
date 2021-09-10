@@ -27,15 +27,15 @@ export default class GoogleButton extends Component<ButtonProps> {
 }
 
 const Container = styled.View({
-    borderRadius: 20,
-    width: "90%",
-    height: 60,
-    justifyContent: "center",
-    backgroundColor: "white"
+  borderRadius: 20,
+  width: "90%",
+  height: 60,
+  justifyContent: "center",
+  backgroundColor: "white"
 });
 
 const Text = styled.Text`
-  color: ${props => props.theme.colors.googleColor}
-  font-size: 20px;
-  padding-left: 10px;
+    color: ${props => props.theme.colors.googleColor}
+    font-size: 20px;
+    padding-left: 10px;
 `;
