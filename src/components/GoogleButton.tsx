@@ -1,31 +1,29 @@
-import React, {Component} from "react";
-import {Image, TouchableOpacity} from "react-native";
+import React, { Component } from "react";
+import { Image, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import {ButtonProps} from "../utils/interfaces";
+import { ButtonProps } from "../utils/interfaces";
 
 export default class GoogleButton extends Component<ButtonProps> {
-    render() {
-        return (
-            <Container>
-                <TouchableOpacity
-                    style={{
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}
-                    onPress={this.props.onPress}
-                >
-                    <Image
-                        source={require("../assets/img/google.jpg")}
-                        style={{width: 20, height: 20}}
-                    />
-                    <Text>
-                        {this.props.text}
-                    </Text>
-                </TouchableOpacity>
-            </Container>
-        );
-    }
+  render() {
+    return (
+      <Container>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+          onPress={this.props.onPress}
+        >
+          <Image
+            source={require("../assets/img/google.jpg")}
+            style={{ width: 20, height: 20 }}
+          />
+          <Text>{this.props.text}</Text>
+        </TouchableOpacity>
+      </Container>
+    );
+  }
 }
 
 const Container = styled.View({

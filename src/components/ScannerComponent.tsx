@@ -10,25 +10,23 @@ interface Props {
 }
 
 class ScannerComponent extends Component<Props> {
-    render() {
-        return (
-            <TouchableOpacity onPress={this.props.onPress}>
-                <RCView
-                    style={
-                        this.props.error
-                            ? {borderColor: "red", borderWidth: 1}
-                            : {}
-                    }>
-                    <Text
-                        style={{
-                            fontSize: 16
-                        }}>
-                        {this.props.scannerText}
-                    </Text>
-                </RCView>
-            </TouchableOpacity>
-        );
-    }
+  render() {
+    return (
+      <TouchableOpacity onPress={this.props.onPress}>
+        <RCView
+          style={this.props.error ? { borderColor: "red", borderWidth: 1 } : {}}
+        >
+          <Text
+            style={{
+              fontSize: 16
+            }}
+          >
+            {this.props.scannerText}
+          </Text>
+        </RCView>
+      </TouchableOpacity>
+    );
+  }
 }
 
 export default ScannerComponent;
