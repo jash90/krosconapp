@@ -99,7 +99,7 @@ export default class Head extends Component<HeadProps> {
 const Container = styled(Header).attrs(props => ({
   androidStatusBarColor: props.theme.colors.secondaryColor
 }))`
-  backgroundcolor: ${props => props.theme.colors.secondaryColor};
+  background-color: ${props => props.theme.colors.secondaryColor};
 `;
 
 const Text = styled(Title)`
