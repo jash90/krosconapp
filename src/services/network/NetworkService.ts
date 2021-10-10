@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
 
 class NetworkService {
   public service: AxiosInstance;
@@ -6,14 +6,14 @@ class NetworkService {
   constructor() {
     this.service = axios.create({
       //baseURL: "https://kroscon-api.raccoonsoftware.pl",
-      baseURL: "http://localhost:3000",
+      baseURL: 'http://localhost:3000',
       timeout: 20000,
-      headers: { "X-Custom-Header": "application/json" }
+      headers: { 'X-Custom-Header': 'application/json' }
     });
   }
 
   async login(email: string, password: string) {
-    return await this.service.post("/login", {
+    return await this.service.post('/login', {
       email: email,
       password: password
     });
@@ -25,7 +25,7 @@ class NetworkService {
     firstname: string,
     lastname: string
   ) {
-    return await this.service.post("/register", {
+    return await this.service.post('/register', {
       email,
       password,
       firstname,
@@ -34,14 +34,14 @@ class NetworkService {
   }
 
   async changePrivilege(userId: number, privilegeId: number) {
-    return await this.service.post("/changePrivilege", {
+    return await this.service.post('/changePrivilege', {
       userId,
       privilegeId
     });
   }
 
   async changePassword(userId: number, password: string) {
-    return await this.service.post("/changePassword", {
+    return await this.service.post('/changePassword', {
       userId,
       password
     });
@@ -54,7 +54,7 @@ class NetworkService {
     age: number,
     userId: number
   ) {
-    return await this.service.post(`/user/edit`, {
+    return await this.service.post('/user/edit', {
       firstname,
       lastname,
       city,
@@ -64,7 +64,7 @@ class NetworkService {
   }
 
   async allUsers() {
-    return await this.service.get(`/users`);
+    return await this.service.get('/users');
   }
 
   async getUser(userId: number) {
@@ -76,7 +76,7 @@ class NetworkService {
   }
 
   async searchUser(email: string) {
-    return await this.service.post(`/user/search`, { email });
+    return await this.service.post('/user/search', { email });
   }
 
   async addBoardGame(
@@ -90,7 +90,7 @@ class NetworkService {
     minAge: number,
     publisherId: number
   ) {
-    return await this.service.post(`/boardGames/add`, {
+    return await this.service.post('/boardGames/add', {
       name,
       uuid,
       description,
@@ -104,11 +104,11 @@ class NetworkService {
   }
 
   async allBoardGames() {
-    return await this.service.get(`/boardGames`);
+    return await this.service.get('/boardGames');
   }
 
   async availableBoardGames() {
-    return await this.service.get(`/boardGame/available`);
+    return await this.service.get('/boardGame/available');
   }
 
   async getBoardGame(boardGameId: number) {
@@ -131,7 +131,7 @@ class NetworkService {
     publisherId: number,
     boardGameId: number
   ) {
-    return await this.service.post(`/boardGame/edit`, {
+    return await this.service.post('/boardGame/edit', {
       name,
       uuid,
       description,
@@ -150,7 +150,7 @@ class NetworkService {
   }
 
   async searchBoardGame(search: any) {
-    return await this.service.post(`/boardGame/search`, search);
+    return await this.service.post('/boardGame/search', search);
   }
 
   async searchBoardGameByUUID(uuid: string) {
@@ -158,7 +158,7 @@ class NetworkService {
   }
 
   async addEvent(name: string, start: Date, end: Date, description: string) {
-    return await this.service.post(`/event/add`, {
+    return await this.service.post('/event/add', {
       name,
       start,
       end,
@@ -167,7 +167,7 @@ class NetworkService {
   }
 
   async allEvents() {
-    return await this.service.get(`/events`);
+    return await this.service.get('/events');
   }
 
   async getEvent(eventId: number) {
@@ -185,7 +185,7 @@ class NetworkService {
     description: string,
     eventId: number
   ) {
-    return await this.service.post(`/event/edit/`, {
+    return await this.service.post('/event/edit/', {
       name,
       start,
       end,
@@ -204,7 +204,7 @@ class NetworkService {
     loanGameId: number,
     rating: number
   ) {
-    return await this.service.post(`/feedback/add`, {
+    return await this.service.post('/feedback/add', {
       userId,
       boardGameId,
       loanGameId,
@@ -213,7 +213,7 @@ class NetworkService {
   }
 
   async allFeedbacks() {
-    return await this.service.get(`/feedbacks`);
+    return await this.service.get('/feedbacks');
   }
 
   async getFeedback(feedbackId: number) {
@@ -230,7 +230,7 @@ class NetworkService {
     loanGameId: number,
     rating: number
   ) {
-    return await this.service.post(`/feedback/edit/`, {
+    return await this.service.post('/feedback/edit/', {
       userId,
       boardGameId,
       loanGameId,
@@ -249,7 +249,7 @@ class NetworkService {
     description: string,
     eventId: number
   ) {
-    return await this.service.post(`/lecture/add`, {
+    return await this.service.post('/lecture/add', {
       name,
       start,
       end,
@@ -259,7 +259,7 @@ class NetworkService {
   }
 
   async allLectures() {
-    return await this.service.get(`/lectures`);
+    return await this.service.get('/lectures');
   }
 
   async getLecture(lectureId: number) {
@@ -277,7 +277,7 @@ class NetworkService {
     description: string,
     eventId: number
   ) {
-    return await this.service.post(`/lecture/edit/`, {
+    return await this.service.post('/lecture/edit/', {
       name,
       start,
       end,
@@ -296,7 +296,7 @@ class NetworkService {
     boardGameId: number,
     tableId: number
   ) {
-    return await this.service.post(`/loanGame/add`, {
+    return await this.service.post('/loanGame/add', {
       userId,
       hireUserId,
       boardGameId,
@@ -305,7 +305,7 @@ class NetworkService {
   }
 
   async allLoanGames() {
-    return await this.service.get(`/loanGames`);
+    return await this.service.get('/loanGames');
   }
 
   async getLoanGame(loanGameId: number) {
@@ -317,7 +317,7 @@ class NetworkService {
   }
 
   async updateLoanGame(loanGameId: number, hireUserId: number) {
-    return await this.service.post(`/loanGame/edit`, {
+    return await this.service.post('/loanGame/edit', {
       loanGameId,
       hireUserId
     });
@@ -328,17 +328,17 @@ class NetworkService {
   }
 
   async getLoanGamesByUser(userId: number) {
-    return await this.service.post(`/loanGame/user`, { userId });
+    return await this.service.post('/loanGame/user', { userId });
   }
 
   async addMechanic(name: string) {
-    return await this.service.post(`/mechanic/add`, {
+    return await this.service.post('/mechanic/add', {
       name
     });
   }
 
   async allMechanics() {
-    return await this.service.get(`/mechanics`);
+    return await this.service.get('/mechanics');
   }
 
   async getMechanic(mechanicId: number) {
@@ -350,7 +350,7 @@ class NetworkService {
   }
 
   async updateMechanic(name: string, mechanicId: number) {
-    return await this.service.post(`/mechanic/edit/`, {
+    return await this.service.post('/mechanic/edit/', {
       name,
       mechanicId
     });
@@ -361,13 +361,13 @@ class NetworkService {
   }
 
   async addPublisher(name: string) {
-    return await this.service.post(`/publisher/add`, {
+    return await this.service.post('/publisher/add', {
       name
     });
   }
 
   async allPublishers() {
-    return await this.service.get(`/publishers`);
+    return await this.service.get('/publishers');
   }
 
   async getPublisher(publisherId: number) {
@@ -379,7 +379,7 @@ class NetworkService {
   }
 
   async updatePublisher(name: string, publisherId: number) {
-    return await this.service.post(`/publisher/edit/`, {
+    return await this.service.post('/publisher/edit/', {
       name,
       publisherId
     });
@@ -395,7 +395,7 @@ class NetworkService {
     tableId: number,
     time: Date
   ) {
-    return await this.service.post(`/reservation/add`, {
+    return await this.service.post('/reservation/add', {
       userId,
       boardGameId,
       tableId,
@@ -404,7 +404,7 @@ class NetworkService {
   }
 
   async allReservations() {
-    return await this.service.get(`/reservations`);
+    return await this.service.get('/reservations');
   }
 
   async getReservation(reservationId: number) {
@@ -421,7 +421,7 @@ class NetworkService {
     tableId: number,
     time: Date
   ) {
-    return await this.service.post(`/reservation/edit/`, {
+    return await this.service.post('/reservation/edit/', {
       userId,
       boardGameId,
       tableId,
@@ -434,13 +434,13 @@ class NetworkService {
   }
 
   async addTable(name: string) {
-    return await this.service.post(`/table/add`, {
+    return await this.service.post('/table/add', {
       name
     });
   }
 
   async allTables() {
-    return await this.service.get(`/tables`);
+    return await this.service.get('/tables');
   }
 
   async getTable(tableId: number) {
@@ -452,7 +452,7 @@ class NetworkService {
   }
 
   async updateTable(name: string, tableId: number) {
-    return await this.service.post(`/table/edit/`, {
+    return await this.service.post('/table/edit/', {
       name,
       tableId
     });
@@ -463,13 +463,13 @@ class NetworkService {
   }
 
   async addType(name: string) {
-    return await this.service.post(`/type/add`, {
+    return await this.service.post('/type/add', {
       name
     });
   }
 
   async allTypes() {
-    return await this.service.get(`/types`);
+    return await this.service.get('/types');
   }
 
   async getType(typeId: number) {
@@ -481,7 +481,7 @@ class NetworkService {
   }
 
   async updateType(name: string, typeId: number) {
-    return await this.service.post(`/type/edit/`, {
+    return await this.service.post('/type/edit/', {
       name,
       typeId
     });
