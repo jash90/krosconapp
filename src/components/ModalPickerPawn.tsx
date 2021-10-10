@@ -6,15 +6,15 @@ import {RCView} from "./StyledComponent";
 import ViewText from "./ViewText";
 
 interface Props {
-    onChangeMin: (value: number) => void;
-    onChangeMax: (value: number) => void;
-    minPlayers: number;
-    maxPlayers: number;
+  onChangeMin: (value: number) => void;
+  onChangeMax: (value: number) => void;
+  minPlayers: number;
+  maxPlayers: number;
 }
 
 interface State {
-    modal: boolean;
-    validate: boolean;
+  modal: boolean;
+  validate: boolean;
 }
 
 class ModalPickerPawn extends Component<Props, State> {

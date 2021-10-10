@@ -33,9 +33,9 @@ export default class FacebookButton extends Component<ButtonProps> {
 }
 
 const Container = styled.View`
-    border-radius: 20px;
-    width: 90%;
-    height: 60px;
-    justify-content: center;
-    background-color: ${props => props.theme.colors.facebookColor};
+  border-radius: 20px;
+  width: 90%;
+  height: 60px;
+  justify-content: center;
+  background-color: ${props => props.theme.colors.facebookColor};
 `;

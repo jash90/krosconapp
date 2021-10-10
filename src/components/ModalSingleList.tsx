@@ -4,16 +4,16 @@ import {RCView} from "./StyledComponent";
 import ViewText from "./ViewText";
 
 interface Props {
-    onChangeValue: (value: any) => void;
-    value: any;
-    list: any[];
-    placeholder: string;
+  onChangeValue: (value: any) => void;
+  value: any;
+  list: any[];
+  placeholder: string;
 }
 
 interface State {
-    modal: boolean;
-    value: string;
-    validate: boolean;
+  modal: boolean;
+  value: string;
+  validate: boolean;
 }
 
 class ModalSingleList extends Component<Props, State> {

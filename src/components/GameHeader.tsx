@@ -9,7 +9,7 @@ import Store from "../stores";
 import {Icon} from "./Icon";
 
 interface Props {
-    game: Game | null;
+  game: Game | null;
 }
 
 class GameHeader extends Component<Props> {

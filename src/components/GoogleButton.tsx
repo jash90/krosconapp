@@ -35,7 +35,7 @@ const Container = styled.View({
 });
 
 const Text = styled.Text`
-    color: ${props => props.theme.colors.googleColor}
-    font-size: 20px;
-    padding-left: 10px;
+  color: ${props => props.theme.colors.googleColor}
+  font-size: 20px;
+  padding-left: 10px;
 `;

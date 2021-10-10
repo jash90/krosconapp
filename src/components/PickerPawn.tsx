@@ -4,13 +4,13 @@ import {Icon} from "./Icon";
 import {RCView} from "./StyledComponent";
 
 interface Props {
-    onValueChange: (value: number) => void;
-    maxPlayers: number;
-    initPlayers: number;
+  onValueChange: (value: number) => void;
+  maxPlayers: number;
+  initPlayers: number;
 }
 
 interface State {
-    minPlayers: number;
+  minPlayers: number;
 }
 
 class PickerPawn extends Component<Props, State> {

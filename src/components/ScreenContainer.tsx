@@ -1,8 +1,8 @@
-import { Container as NContainer } from "native-base";
-import React, { Component } from "react";
-import { Text } from "react-native";
+import {Container as NContainer} from "native-base";
+import React, {Component} from "react";
+import {Text} from "react-native";
 import styled from "styled-components/native";
-import { ScreenContainerProps } from "../utils/interfaces";
+import {ScreenContainerProps} from "../utils/interfaces";
 import Head from "./Head";
 
 interface State {

@@ -4,15 +4,15 @@ import FullButton from "./FullButton";
 import {RCText, RCView} from "./StyledComponent";
 
 interface Props {
-    onChangeValue: (value: string[]) => void;
-    value: string[];
-    list: string[];
-    placeholder: string;
+  onChangeValue: (value: string[]) => void;
+  value: string[];
+  list: string[];
+  placeholder: string;
 }
 
 interface State {
-    modal: boolean;
-    value: string;
+  modal: boolean;
+  value: string;
 }
 
 class ModalMultiList extends Component<Props, State> {
