@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface krosconappTests : XCTestCase
+@interface krosconAppTests : XCTestCase
 
 @end
 
-@implementation krosconappTests
+@implementation krosconAppTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

@@ -1,8 +1,8 @@
-# Aplikacja KrosconApp
+# Aplikacja krosconApp
 
 ## Opis
 
-Aplikacja KrosconApp ma służy do obsługi wydarzeń z planszówkami, przede wszystkim do przyśpieszenia katalogowania i wypożyczania planszówek i zbierania o nich informacji.
+Aplikacja krosconApp ma służy do obsługi wydarzeń z planszówkami, przede wszystkim do przyśpieszenia katalogowania i wypożyczania planszówek i zbierania o nich informacji.
 
 ## Typy użytkowników
 
