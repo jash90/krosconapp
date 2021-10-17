@@ -57,3 +57,10 @@
 - przycisk kierujący do filtra
 - lista może być dowolna(pozioma lub pionowa)
 - element listy powinien zawierać grafikę wydarzenia, nazwę wydarzenia, miejsce, datę rozpoczęcia i zakończenia
+- informacja o tym czy wydarzenie jest płatne
+
+### Ekran z szczegółami wydarzenia
+- dobrze byłoby żeby widok szczegółowy rozszerzał element listy z widoku listy prelekcji np. jak tu [przykład](https://github.com/IjzerenHein/react-native-shared-element/blob/main/set-ios.gif), chodzi o to żeby element listy był częścią widoku szczegółu wydarzenia, albo nie odbiegał znacząco.
+- opis wydarzenia
+- lista prelekcji
+- informacja o organizatorach
