@@ -31,7 +31,7 @@
 - pole z małym kodem qr
 - przycisk do edycji danych użytkownika
 - przycisk do rezerwacji stolika
-- przycisk do pokazania listy prelekcji(harmonogramu eventu)
+- przycisk do pokazania listy eventów
 
 ### Ekran skanowania
 - zawiera w większości czarne pole, zamiast, którego będzie widok z aparatu telefonu
