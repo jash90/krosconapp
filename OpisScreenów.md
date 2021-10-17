@@ -31,7 +31,7 @@
 - pole z małym kodem qr
 - przycisk do edycji danych użytkownika
 - przycisk do rezerwacji stolika
-- przycisk do pokazania listy eventów
+- przycisk do pokazania listy wydarzeń
 
 ### Ekran skanowania
 - zawiera w większości czarne pole, zamiast, którego będzie widok z aparatu telefonu
@@ -52,3 +52,8 @@
 - możliwość podania nazwy jednej gry i jej rezerwacji
 - przycisk zatwierdzenia
 
+### Ekran listy wydarzeń
+- pole do wyszukiwania wydarzeń
+- przycisk kierujący do filtra
+- lista może być dowolna(pozioma lub pionowa)
+- element listy powinien zawierać grafikę wydarzenia, nazwę wydarzenia, miejsce, datę rozpoczęcia i zakończenia
