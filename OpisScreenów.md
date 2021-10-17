@@ -63,4 +63,12 @@
 - dobrze byłoby żeby widok szczegółowy rozszerzał element listy z widoku listy prelekcji np. jak tu [przykład](https://github.com/IjzerenHein/react-native-shared-element/blob/main/set-ios.gif), chodzi o to żeby element listy był częścią widoku szczegółu wydarzenia, albo nie odbiegał znacząco.
 - opis wydarzenia
 - lista prelekcji
+  - powinna zawierać nazwę, prelegenta oraz data i godzinę prelekcji 
 - informacja o organizatorach
+
+### Ekran szczegółów prelekcji
+- rozszerza element z listy prelekcji
+- opis prelekcji
+- informacja o sali/miejscu prelekcji
+- informacja o ilości miejsc
+
