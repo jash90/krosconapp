@@ -1,11 +1,11 @@
 ### Ekran logowania
 - przycisk kierujący do rejestracji
 - przycisk do zalogowania
-- pole do wpisania emailu i hasła
+- pole do wpisania email i hasła
 
 ### Ekran rejestracji
 - przycisk rejestrujący użytkownika
-- pole do wpisania imienia, nazwiska, emailu i hasła i powtórzenia hasła
+- pole do wpisania imienia, nazwiska, email i hasła i powtórzenia hasła
 
 ### Ekran z listą gier
 - pole do wyszukiwania gry
@@ -35,7 +35,7 @@
 
 ### Ekran skanowania
 - zawiera w większości czarne pole, zamiast, którego będzie widok z aparatu telefonu
-- można dodać ramki i elementy związane z wizualną identyfikacją apki tzn, logo nazwa itd.
+- można dodać ramki i elementy związane z wizualną identyfikacją aplikacji tzn, logo nazwa itd.
 
 ### Ekran zmiany hasła 
 - pole na stare hasło, nowe hasło i potwierdzenie nowego hasła
